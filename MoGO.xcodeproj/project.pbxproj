@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DAC9BA031660D7FA00C36D2E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
+		DAC9BA051660D7FA00C36D2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA041660D7FA00C36D2E /* Foundation.framework */; };
+		DAC9BA071660D7FA00C36D2E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA061660D7FA00C36D2E /* CoreGraphics.framework */; };
+		DAC9BA0D1660D7FA00C36D2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA0B1660D7FA00C36D2E /* InfoPlist.strings */; };
+		DAC9BA0F1660D7FA00C36D2E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA0E1660D7FA00C36D2E /* main.m */; };
+		DAC9BA131660D7FA00C36D2E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA121660D7FA00C36D2E /* AppDelegate.m */; };
+		DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */; };
+		DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */; };
+		DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA1B1660D7FA00C36D2E /* ViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DAC9B9FE1660D7FA00C36D2E /* MoGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAC9BA021660D7FA00C36D2E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DAC9BA041660D7FA00C36D2E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DAC9BA061660D7FA00C36D2E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DAC9BA0A1660D7FA00C36D2E /* MoGO-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoGO-Info.plist"; sourceTree = "<group>"; };
+		DAC9BA0C1660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DAC9BA0E1660D7FA00C36D2E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DAC9BA101660D7FA00C36D2E /* MoGO-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoGO-Prefix.pch"; sourceTree = "<group>"; };
+		DAC9BA111660D7FA00C36D2E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DAC9BA121660D7FA00C36D2E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DAC9BA151660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		DAC9BA181660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		DAC9BA1A1660D7FA00C36D2E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DAC9BA1B1660D7FA00C36D2E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAC9B9FB1660D7FA00C36D2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC9BA031660D7FA00C36D2E /* UIKit.framework in Frameworks */,
+				DAC9BA051660D7FA00C36D2E /* Foundation.framework in Frameworks */,
+				DAC9BA071660D7FA00C36D2E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DAC9B9F31660D7F900C36D2E = {
+			isa = PBXGroup;
+			children = (
+				DAC9BA081660D7FA00C36D2E /* MoGO */,
+				DAC9BA011660D7FA00C36D2E /* Frameworks */,
+				DAC9B9FF1660D7FA00C36D2E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DAC9B9FF1660D7FA00C36D2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAC9B9FE1660D7FA00C36D2E /* MoGO.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAC9BA011660D7FA00C36D2E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DAC9BA021660D7FA00C36D2E /* UIKit.framework */,
+				DAC9BA041660D7FA00C36D2E /* Foundation.framework */,
+				DAC9BA061660D7FA00C36D2E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DAC9BA081660D7FA00C36D2E /* MoGO */ = {
+			isa = PBXGroup;
+			children = (
+				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
+				DAC9BA121660D7FA00C36D2E /* AppDelegate.m */,
+				DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */,
+				DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */,
+				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
+				DAC9BA1B1660D7FA00C36D2E /* ViewController.m */,
+				DAC9BA091660D7FA00C36D2E /* Supporting Files */,
+			);
+			path = MoGO;
+			sourceTree = "<group>";
+		};
+		DAC9BA091660D7FA00C36D2E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DAC9BA0A1660D7FA00C36D2E /* MoGO-Info.plist */,
+				DAC9BA0B1660D7FA00C36D2E /* InfoPlist.strings */,
+				DAC9BA0E1660D7FA00C36D2E /* main.m */,
+				DAC9BA101660D7FA00C36D2E /* MoGO-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAC9B9FD1660D7FA00C36D2E /* MoGO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAC9BA1F1660D7FA00C36D2E /* Build configuration list for PBXNativeTarget "MoGO" */;
+			buildPhases = (
+				DAC9B9FA1660D7FA00C36D2E /* Sources */,
+				DAC9B9FB1660D7FA00C36D2E /* Frameworks */,
+				DAC9B9FC1660D7FA00C36D2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoGO;
+			productName = MoGO;
+			productReference = DAC9B9FE1660D7FA00C36D2E /* MoGO.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAC9B9F51660D7F900C36D2E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = DAC9B9F81660D7F900C36D2E /* Build configuration list for PBXProject "MoGO" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DAC9B9F31660D7F900C36D2E;
+			productRefGroup = DAC9B9FF1660D7FA00C36D2E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAC9B9FD1660D7FA00C36D2E /* MoGO */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAC9B9FC1660D7FA00C36D2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC9BA0D1660D7FA00C36D2E /* InfoPlist.strings in Resources */,
+				DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */,
+				DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAC9B9FA1660D7FA00C36D2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC9BA0F1660D7FA00C36D2E /* main.m in Sources */,
+				DAC9BA131660D7FA00C36D2E /* AppDelegate.m in Sources */,
+				DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DAC9BA0B1660D7FA00C36D2E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAC9BA0C1660D7FA00C36D2E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAC9BA151660D7FA00C36D2E /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAC9BA181660D7FA00C36D2E /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAC9BA1D1660D7FA00C36D2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DAC9BA1E1660D7FA00C36D2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAC9BA201660D7FA00C36D2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoGO/MoGO-Prefix.pch";
+				INFOPLIST_FILE = "MoGO/MoGO-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DAC9BA211660D7FA00C36D2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoGO/MoGO-Prefix.pch";
+				INFOPLIST_FILE = "MoGO/MoGO-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAC9B9F81660D7F900C36D2E /* Build configuration list for PBXProject "MoGO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC9BA1D1660D7FA00C36D2E /* Debug */,
+				DAC9BA1E1660D7FA00C36D2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAC9BA1F1660D7FA00C36D2E /* Build configuration list for PBXNativeTarget "MoGO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC9BA201660D7FA00C36D2E /* Debug */,
+				DAC9BA211660D7FA00C36D2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DAC9B9F51660D7F900C36D2E /* Project object */;
+}

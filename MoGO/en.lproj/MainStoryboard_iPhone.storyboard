@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
+    <dependencies>
+        <development defaultVersion="4200" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="5">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Startscreen" id="gIH-Td-vuO"/>
+                    <connections>
+                        <segue destination="n0S-ah-3IA" kind="push" id="8n5-oJ-5v5"/>
+                        <segue destination="JKN-HO-f9c" kind="push" id="omb-Gw-HCZ"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="660" y="178"/>
+        </scene>
+        <scene sceneID="NxR-UI-Rog">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YO7-f4-ghV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="JKN-HO-f9c" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dev-xL-IVv">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Terminübersicht" id="5zE-1C-n5K"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1077" y="-439"/>
+        </scene>
+        <scene sceneID="qf7-dJ-rAj">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-nJ-xov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="n0S-ah-3IA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vv5-uO-mdV">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Suche" id="yJw-9R-Qi3"/>
+                    <connections>
+                        <segue destination="RWq-Jq-LmT" kind="push" id="Tqe-dC-Tmn"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1079" y="178"/>
+        </scene>
+        <scene sceneID="ce6-ko-jht">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qIv-66-lNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="RWq-Jq-LmT" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g2J-xF-lli">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Arztdetail" id="u9I-q2-MN8"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <segue destination="gCb-VM-UNO" kind="push" id="WmU-kM-8wL"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1517" y="112"/>
+        </scene>
+        <scene sceneID="jRv-Pa-rxy">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ATu-p1-Kqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="gCb-VM-UNO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sZJ-Ck-s2G">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Termin machen" id="OBr-im-zJs"/>
+                    <connections>
+                        <segue destination="wEp-Bs-d7t" kind="push" id="ims-AM-hPl"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1986" y="67"/>
+        </scene>
+        <scene sceneID="V93-fu-UUn">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Hx-1o-YIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="wEp-Bs-d7t" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nwb-py-SvJ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Termindetail" id="EQq-eb-AHb"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2412" y="-11"/>
+        </scene>
+        <scene sceneID="09p-fb-ph4">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CQS-A3-6U0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="04g-ES-bBl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="zMv-TF-Q2g">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="gQc-Xg-lYm"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="184" y="178"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
