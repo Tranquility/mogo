@@ -14,7 +14,6 @@
 
     @property (nonatomic,strong) NSArray *appointmentList;
     @property (nonatomic,strong) NSArray *doctorsList;
-@property (nonatomic,strong) IBOutlet UITableView *appointmentTableView;
-@property (nonatomic,strong) IBOutlet UITableView *doctorsTableView;
+@property (nonatomic,strong) IBOutlet UITableView *appointmentsTableView;
 
 @end

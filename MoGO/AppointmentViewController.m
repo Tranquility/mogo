@@ -14,8 +14,7 @@
 
 @synthesize appointmentList = _appointmentList;
 @synthesize doctorsList = _doctorsList;
-@synthesize appointmentTableView = _appointmentTableView;
-@synthesize doctorsTableView = _doctorsTableView;
+@synthesize appointmentsTableView = _appointmentsTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,7 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.appointmentList = [[NSArray alloc] initWithObjects:@"Termin1", @"Termin2",
+    self.appointmentList = [[NSArray alloc] initWithObjects:@"23.01.2001, Dr. Scrum", @"1.12.2013, Dr. Hyde",
                        @"Termin3", nil];
     self.doctorsList = [[NSArray alloc] initWithObjects:@"+ neuen Arzt suchen", @"Doktor No", @"Doktor Hulk",
                             @"Doktor Heid", @"Doktor Jekyll", @"Doktor Scrum", nil];
@@ -92,6 +91,8 @@
     
     // Configure the cell.
     cell.textLabel.text = [self.appointmentList objectAtIndex:[indexPath row]];
+    cell.detailTextLabel.text = @"Urologe";
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
     }
@@ -106,8 +107,12 @@
         
         // Configure the cell.
         cell.textLabel.text = [self.doctorsList objectAtIndex:[indexPath row]];
-        
-        return cell;
+        if (indexPath.row != 0)
+        {
+        cell.detailTextLabel.text = @"Urologe";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+       return cell;
     }
 }    
     - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -125,7 +130,7 @@
        
     if (indexPath.section == 0)
     {
-        [self performSegueWithIdentifier:@"appointmentDetail" sender:self];
+        [self performSegueWithIdentifier:@"toAppointmentDetail" sender:self];
     }
     else
     {

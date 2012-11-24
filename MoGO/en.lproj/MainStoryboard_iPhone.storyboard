@@ -59,7 +59,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="l0U-Bl-3ch" userLabel="doctorsTableView">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="l0U-Bl-3ch" userLabel="appointmentsTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -84,14 +84,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="Termine" id="5zE-1C-n5K"/>
                     <connections>
-                        <outlet property="doctorsTableView" destination="l0U-Bl-3ch" id="p1D-fC-1Ky"/>
-                        <segue destination="wEp-Bs-d7t" kind="push" identifier="appointmentDetail" id="mtb-th-UsI"/>
+                        <outlet property="appointmentsTableView" destination="l0U-Bl-3ch" id="lJs-wO-TGj"/>
+                        <segue destination="wEp-Bs-d7t" kind="push" identifier="toAppointmentDetail" id="mtb-th-UsI"/>
                         <segue destination="n0S-ah-3IA" kind="push" identifier="toSearch" id="1Fk-rt-SPK"/>
                         <segue destination="gCb-VM-UNO" kind="push" identifier="toMakeAppointment" id="G07-vO-8EL"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1273" y="-391"/>
+            <point key="canvasLocation" x="1259" y="-507"/>
         </scene>
         <scene sceneID="qf7-dJ-rAj">
             <objects>
@@ -177,6 +177,22 @@
             <point key="canvasLocation" x="184" y="178"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AppointmentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="appointmentTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="appointmentsTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="doctorsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -184,7 +200,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="1Fk-rt-SPK"/>
-        <segue reference="G07-vO-8EL"/>
         <segue reference="mtb-th-UsI"/>
+        <segue reference="G07-vO-8EL"/>
     </inferredMetricsTieBreakers>
 </document>
