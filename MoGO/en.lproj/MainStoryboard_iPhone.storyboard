@@ -16,8 +16,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="J4x-3F-OIX">
                                 <rect key="frame" x="10" y="50" width="140" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal" title="Suche">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Arztsuche">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -36,6 +36,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="JKN-HO-f9c" kind="push" id="J92-XN-nY1"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -43,7 +46,6 @@
                     <navigationItem key="navigationItem" title="Startscreen" id="gIH-Td-vuO"/>
                     <connections>
                         <segue destination="n0S-ah-3IA" kind="push" id="8n5-oJ-5v5"/>
-                        <segue destination="JKN-HO-f9c" kind="push" id="omb-Gw-HCZ"/>
                     </connections>
                 </viewController>
             </objects>
@@ -56,12 +58,40 @@
                     <view key="view" contentMode="scaleToFill" id="Dev-xL-IVv">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="l0U-Bl-3ch" userLabel="doctorsTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="rPx-Fp-Sr5">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="JKN-HO-f9c" id="0bH-vs-05b"/>
+                                    <outlet property="delegate" destination="JKN-HO-f9c" id="jDU-py-o8q"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Terminübersicht" id="5zE-1C-n5K"/>
+                    <navigationItem key="navigationItem" title="Termine" id="5zE-1C-n5K"/>
+                    <connections>
+                        <outlet property="doctorsTableView" destination="l0U-Bl-3ch" id="p1D-fC-1Ky"/>
+                        <segue destination="wEp-Bs-d7t" kind="push" identifier="appointmentDetail" id="mtb-th-UsI"/>
+                        <segue destination="n0S-ah-3IA" kind="push" identifier="toSearch" id="1Fk-rt-SPK"/>
+                        <segue destination="gCb-VM-UNO" kind="push" identifier="toMakeAppointment" id="G07-vO-8EL"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1077" y="-439"/>
+            <point key="canvasLocation" x="1273" y="-391"/>
         </scene>
         <scene sceneID="qf7-dJ-rAj">
             <objects>
@@ -78,7 +108,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1079" y="178"/>
+            <point key="canvasLocation" x="1259" y="452"/>
         </scene>
         <scene sceneID="ce6-ko-jht">
             <objects>
@@ -96,7 +126,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1517" y="112"/>
+            <point key="canvasLocation" x="1823" y="452"/>
         </scene>
         <scene sceneID="jRv-Pa-rxy">
             <objects>
@@ -113,7 +143,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1986" y="67"/>
+            <point key="canvasLocation" x="2360" y="45"/>
         </scene>
         <scene sceneID="V93-fu-UUn">
             <objects>
@@ -127,7 +157,7 @@
                     <navigationItem key="navigationItem" title="Termindetail" id="EQq-eb-AHb"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2412" y="-11"/>
+            <point key="canvasLocation" x="2940" y="-47"/>
         </scene>
         <scene sceneID="09p-fb-ph4">
             <objects>
@@ -147,20 +177,14 @@
             <point key="canvasLocation" x="184" y="178"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AppointmentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentViewController.h"/>
-        </class>
-        <class className="SearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="1Fk-rt-SPK"/>
+        <segue reference="G07-vO-8EL"/>
+        <segue reference="mtb-th-UsI"/>
+    </inferredMetricsTieBreakers>
 </document>
