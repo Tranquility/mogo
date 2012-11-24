@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
     <dependencies>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
+        <!--View Controller - Startscreen-->
         <scene sceneID="5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -37,6 +36,18 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yh0-tb-adN">
+                                <rect key="frame" x="172" y="51" width="136" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Termin buchen">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -46,12 +57,13 @@
                         <segue destination="JKN-HO-f9c" kind="push" id="omb-Gw-HCZ"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="660" y="178"/>
         </scene>
+        <!--Appointment View Controller - Terminübersicht-->
         <scene sceneID="NxR-UI-Rog">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YO7-f4-ghV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="JKN-HO-f9c" customClass="AppointmentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dev-xL-IVv">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -60,12 +72,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Terminübersicht" id="5zE-1C-n5K"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YO7-f4-ghV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1077" y="-439"/>
         </scene>
+        <!--Search View Controller - Suche-->
         <scene sceneID="qf7-dJ-rAj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-nJ-xov" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="n0S-ah-3IA" customClass="SearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vv5-uO-mdV">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -77,30 +90,123 @@
                         <segue destination="RWq-Jq-LmT" kind="push" id="Tqe-dC-Tmn"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-nJ-xov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="178"/>
+            <point key="canvasLocation" x="1136" y="267"/>
         </scene>
+        <!--Medic Detail View Controller - Arztdetail-->
         <scene sceneID="ce6-ko-jht">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qIv-66-lNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="RWq-Jq-LmT" sceneMemberID="viewController">
+                <viewController id="RWq-Jq-LmT" customClass="MedicDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g2J-xF-lli">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name des Arzts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9bh-UL-aYv" userLabel="lDoctorname">
+                                <rect key="frame" x="32" y="157" width="128" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dr. Arzt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AXA-et-fif" userLabel="Doctorname">
+                                <rect key="frame" x="182" y="157" width="58" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Typ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D5l-uW-SDa" userLabel="lType">
+                                <rect key="frame" x="32" y="184" width="31" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Adresse" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T3i-UR-kVc" userLabel="lAdress">
+                                <rect key="frame" x="32" y="213" width="68" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Telefon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w9Q-8k-asi" userLabel="lPhone">
+                                <rect key="frame" x="32" y="266" width="61" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Öffnungszeiten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sY7-3A-p9Y" userLabel="lOpeningHours">
+                                <rect key="frame" x="32" y="296" width="124" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TX7-hY-Kz5" userLabel="bBookButton">
+                                <rect key="frame" x="95" y="367" width="132" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Termin buchen">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gCb-VM-UNO" kind="push" id="wuF-kc-9IS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chirurg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HE4-M3-QIa" userLabel="doctortype">
+                                <rect key="frame" x="183" y="186" width="56" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="040 712 24 56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7xq-Qe-ky7" userLabel="doctorphone">
+                                <rect key="frame" x="183" y="266" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mo. - Do. 08:00 bis 13:00 Uhr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w6X-ms-Klb" userLabel="doctoropening">
+                                <rect key="frame" x="49" y="327" width="224" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Toaststraße 12                                   22111 Hamburg" id="GzA-SS-O6Z" userLabel="doctoradress">
+                                <rect key="frame" x="174" y="207" width="240" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" id="rjh-gM-JbW">
+                                <rect key="frame" x="20" y="9" width="280" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Arztdetail" id="u9I-q2-MN8"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <segue destination="gCb-VM-UNO" kind="push" id="WmU-kM-8wL"/>
+                        <outlet property="mapOutlet" destination="rjh-gM-JbW" id="D8H-zZ-SOP"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qIv-66-lNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1517" y="112"/>
         </scene>
+        <!--View Controller - Termin machen-->
         <scene sceneID="jRv-Pa-rxy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ATu-p1-Kqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="gCb-VM-UNO" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sZJ-Ck-s2G">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -112,12 +218,13 @@
                         <segue destination="wEp-Bs-d7t" kind="push" id="ims-AM-hPl"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ATu-p1-Kqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1986" y="67"/>
         </scene>
+        <!--View Controller - Termindetail-->
         <scene sceneID="V93-fu-UUn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Hx-1o-YIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="wEp-Bs-d7t" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nwb-py-SvJ">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -126,12 +233,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Termindetail" id="EQq-eb-AHb"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Hx-1o-YIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2412" y="-11"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="09p-fb-ph4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CQS-A3-6U0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="04g-ES-bBl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="zMv-TF-Q2g">
@@ -143,6 +251,7 @@
                         <segue destination="2" kind="relationship" relationship="rootViewController" id="gQc-Xg-lYm"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CQS-A3-6U0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="184" y="178"/>
         </scene>
@@ -150,6 +259,12 @@
     <classes>
         <class className="AppointmentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentViewController.h"/>
+        </class>
+        <class className="MedicDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
+            </relationships>
         </class>
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
