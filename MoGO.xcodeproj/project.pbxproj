@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD2D1660E3F300C79B32 /* SearchViewController.m */; };
+		DABBFD341660E52800C79B32 /* AppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD331660E52800C79B32 /* AppointmentViewController.m */; };
 		DAC9BA031660D7FA00C36D2E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
 		DAC9BA051660D7FA00C36D2E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA041660D7FA00C36D2E /* Foundation.framework */; };
 		DAC9BA071660D7FA00C36D2E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA061660D7FA00C36D2E /* CoreGraphics.framework */; };
@@ -19,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DABBFD2C1660E3F300C79B32 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		DABBFD2D1660E3F300C79B32 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		DABBFD321660E52800C79B32 /* AppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentViewController.h; sourceTree = "<group>"; };
+		DABBFD331660E52800C79B32 /* AppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentViewController.m; sourceTree = "<group>"; };
 		DAC9B9FE1660D7FA00C36D2E /* MoGO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoGO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAC9BA021660D7FA00C36D2E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DAC9BA041660D7FA00C36D2E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,6 +91,10 @@
 				DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */,
 				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
 				DAC9BA1B1660D7FA00C36D2E /* ViewController.m */,
+				DABBFD2C1660E3F300C79B32 /* SearchViewController.h */,
+				DABBFD2D1660E3F300C79B32 /* SearchViewController.m */,
+				DABBFD321660E52800C79B32 /* AppointmentViewController.h */,
+				DABBFD331660E52800C79B32 /* AppointmentViewController.m */,
 				DAC9BA091660D7FA00C36D2E /* Supporting Files */,
 			);
 			path = MoGO;
@@ -167,6 +177,8 @@
 				DAC9BA0F1660D7FA00C36D2E /* main.m in Sources */,
 				DAC9BA131660D7FA00C36D2E /* AppDelegate.m in Sources */,
 				DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */,
+				DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */,
+				DABBFD341660E52800C79B32 /* AppointmentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +300,7 @@
 				DAC9BA211660D7FA00C36D2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
