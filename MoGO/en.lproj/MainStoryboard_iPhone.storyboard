@@ -181,9 +181,7 @@
         <class className="AppointmentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="appointmentTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="appointmentsTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="doctorsTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="SearchViewController" superclassName="UIViewController">

@@ -7,6 +7,7 @@
 //
 
 #import "AppointmentViewController.h"
+#import "AppointmentTableViewCell.h"
 
 @implementation AppointmentViewController
 
@@ -45,8 +46,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.appointmentList = [[NSArray alloc] initWithObjects:@"23.01.2001, Dr. Scrum", @"1.12.2013, Dr. Hyde",
-                       @"Termin3", nil];
+    self.appointmentList = [[NSArray alloc] initWithObjects:@"09.09.12, Dr. Scrum", @"01.12.2013, Dr. Hyde",
+                       @"15.04.1988, Dr. No", nil];
     self.doctorsList = [[NSArray alloc] initWithObjects:@"+ neuen Arzt suchen", @"Doktor No", @"Doktor Hulk",
                             @"Doktor Heid", @"Doktor Jekyll", @"Doktor Scrum", nil];
     
@@ -84,15 +85,20 @@
     {
     static NSString *CellIdentifier = @"viewcell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
+       
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AppointmentTableViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }     
     
     // Configure the cell.
-    cell.textLabel.text = [self.appointmentList objectAtIndex:[indexPath row]];
-    cell.detailTextLabel.text = @"Urologe";
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    cell.DateLabel.text = @"Muh";
+    cell.doctorDisciplineLabel.text = @"Hautarzt";
+    cell.doctorLabel.text = @"Doktor No";
+        //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        
+
     
     return cell;
     }
