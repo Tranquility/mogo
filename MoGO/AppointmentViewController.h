@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppointmentViewController : UIViewController
+
+
+@interface AppointmentViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+    @property (nonatomic,strong) NSArray *appointmentList;
+    @property (nonatomic,strong) NSArray *doctorsList;
+@property (nonatomic,strong) IBOutlet UITableView *appointmentTableView;
+@property (nonatomic,strong) IBOutlet UITableView *doctorsTableView;
 
 @end
