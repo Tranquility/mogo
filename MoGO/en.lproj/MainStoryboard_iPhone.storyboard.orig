@@ -24,7 +24,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+<<<<<<< HEAD
                                     <segue destination="JKN-HO-f9c" kind="push" id="Qgx-jE-6k1"/>
+=======
+                                    <segue destination="n0S-ah-3IA" kind="push" identifier="SearchSeque" id="hzT-oN-BZq"/>
+>>>>>>> 2ce54fc... Add story "search"
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hrt-h7-MrA">
@@ -38,14 +42,20 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="JKN-HO-f9c" kind="push" identifier="AppointmentSegue" id="HVd-lu-z6o"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Startscreen" id="gIH-Td-vuO"/>
+<<<<<<< HEAD
                     <connections>
                         <segue destination="n0S-ah-3IA" kind="push" id="8n5-oJ-5v5"/>
                     </connections>
+=======
+>>>>>>> 2ce54fc... Add story "search"
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,7 +107,6 @@
         <!--Search View Controller - Suche-->
         <scene sceneID="qf7-dJ-rAj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-nJ-xov" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="n0S-ah-3IA" customClass="SearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vv5-uO-mdV">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -185,6 +194,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Suche" id="yJw-9R-Qi3"/>
+<<<<<<< HEAD
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-nJ-xov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+=======
                     <connections>
                         <outlet property="pickerView" destination="Q85-aE-hUG" id="PXU-c4-8AT"/>
                         <outlet property="searchDisplayController" destination="mop-Zi-uQ1" id="G1d-2L-JE8"/>
@@ -200,6 +213,7 @@
                         <outlet property="searchResultsDelegate" destination="n0S-ah-3IA" id="Mwx-04-UIA"/>
                     </connections>
                 </searchDisplayController>
+>>>>>>> 2ce54fc... Add story "search"
             </objects>
             <point key="canvasLocation" x="1259" y="452"/>
         </scene>

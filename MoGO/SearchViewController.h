@@ -10,4 +10,8 @@
 
 @interface SearchViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UIPickerView* pickerView;
+@property (nonatomic, strong) IBOutlet UIView* subView;
+@property (nonatomic, strong) NSArray* arrayDisciplines;
+
 @end
