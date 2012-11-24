@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-nJ-xov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="267"/>
+            <point key="canvasLocation" x="1259" y="452"/>
         </scene>
         <!--Medic Detail View Controller - Arztdetail-->
         <scene sceneID="ce6-ko-jht">
