@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G56" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -38,14 +38,14 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="n0S-ah-3IA" kind="push" id="4zZ-Pj-sG2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Startscreen" id="gIH-Td-vuO"/>
-                    <connections>
-                        <segue destination="n0S-ah-3IA" kind="push" id="8n5-oJ-5v5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,7 +97,6 @@
         <!--Search View Controller - Suche-->
         <scene sceneID="qf7-dJ-rAj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-nJ-xov" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="n0S-ah-3IA" customClass="SearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vv5-uO-mdV">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -192,6 +191,7 @@
                         <segue destination="RWq-Jq-LmT" kind="push" identifier="DoctorDetailSegue" id="Tqe-dC-Tmn"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-nJ-xov" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="mop-Zi-uQ1">
                     <connections>
                         <outlet property="delegate" destination="n0S-ah-3IA" id="bga-1T-jl7"/>
@@ -382,6 +382,8 @@
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
             <relationships>
+                <relationship kind="action" name="closeDisciplinePicker:"/>
+                <relationship kind="action" name="showDisciplinePicker:"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="subView" candidateClass="UIView"/>
             </relationships>
@@ -396,8 +398,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jr0-IK-B71"/>
-        <segue reference="8n5-oJ-5v5"/>
         <segue reference="ims-AM-hPl"/>
+        <segue reference="jr0-IK-B71"/>
+        <segue reference="4zZ-Pj-sG2"/>
     </inferredMetricsTieBreakers>
 </document>
