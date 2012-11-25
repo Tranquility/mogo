@@ -73,41 +73,47 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell autoresizesSubviews="NO" contentMode="scaleAspectFit" restorationIdentifier="AppointmentTableViewCell" selectionStyle="blue" indentationWidth="10" reuseIdentifier="AppointmentTableViewCell" rowHeight="62" id="hgh-eV-DwX" customClass="AppointmentTableViewCell">
-                                        <rect key="frame" x="0.0" y="91" width="320" height="63"/>
+                                    <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" restorationIdentifier="AppointmentTableViewCell" selectionStyle="blue" indentationWidth="10" reuseIdentifier="AppointmentTableViewCell" rowHeight="63" id="hgh-eV-DwX" customClass="AppointmentTableViewCell">
+                                        <rect key="frame" x="0.0" y="91" width="320" height="64"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="61"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Arztname" lineBreakMode="tailTruncation" minimumFontSize="10" id="iWp-Vn-A4X" userLabel="doctorLabel">
-                                                    <rect key="frame" x="20" y="5" width="73" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Arztname" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="iWp-Vn-A4X" userLabel="doctorLabel">
+                                                    <rect key="frame" x="12" y="5" width="159" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="21"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12.01.1999" lineBreakMode="tailTruncation" minimumFontSize="10" id="N4S-7K-8jg" userLabel="DateLabel">
-                                                    <rect key="frame" x="214" y="5" width="86" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12.01.1999 09:30" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="N4S-7K-8jg" userLabel="DateLabel">
+                                                    <rect key="frame" x="178" y="5" width="112" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.35000000000000003" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Arzttyp" lineBreakMode="tailTruncation" minimumFontSize="10" id="LB3-ON-hXb" userLabel="doctorDisciplineLabel">
-                                                    <rect key="frame" x="29" y="32" width="55" height="21"/>
+                                                    <rect key="frame" x="12" y="32" width="55" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.35326086960000003" green="0.35326086960000003" blue="0.35326086960000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="detail_disclosure.jpg" id="e7y-Or-hZT">
-                                                    <rect key="frame" x="275" y="30" width="25" height="25"/>
+                                                    <rect key="frame" x="265" y="30" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <outlet property="DateLabel" destination="N4S-7K-8jg" id="ofX-K6-R0L"/>
+                                            <outlet property="doctorDisciplineLabel" destination="LB3-ON-hXb" id="cUI-V0-nZM"/>
+                                            <outlet property="doctorLabel" destination="iWp-Vn-A4X" id="Yqb-Bd-YBJ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

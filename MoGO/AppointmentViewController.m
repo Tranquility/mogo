@@ -79,6 +79,17 @@
 
     }
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section==0)
+    {
+        return 63;
+    }
+    else{
+        return 45;
+    }
+    }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0)
@@ -92,7 +103,7 @@
     }
     
     // Configure the cell.
-    cell.DateLabel.text = @"Muh";
+    cell.DateLabel.text = @"12.12.2012 09:30";
     cell.doctorDisciplineLabel.text = @"Hautarzt";
     cell.doctorLabel.text = @"Doktor No";
         //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -135,16 +146,19 @@
        
     if (indexPath.section == 0)
     {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self performSegueWithIdentifier:@"toAppointmentDetail" sender:self];
     }
     else
     {
         if (indexPath.row == 0)
         {
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             [self performSegueWithIdentifier:@"toSearch" sender:self];
         }
         else
         {
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             [self performSegueWithIdentifier:@"toMakeAppointment" sender:self];
 
         }
