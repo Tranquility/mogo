@@ -57,7 +57,7 @@
                      self.arrayGeneralDoctors,
                      self.arrayPediatritians,
                      self.arrayGynecologists, nil];
-    self.arrayChosen = [[NSArray alloc] init];
+    self.arrayChosen = [[NSMutableArray alloc] init];
     [self.pickerView selectRow:0 inComponent:0 animated:YES];
 }
 
@@ -111,6 +111,24 @@
 
 - (IBAction)chooseDiscipline:(id)sender {
     self.subView.hidden = YES;
+    [self.tableView reloadData];
+}
+
+- (IBAction)updateNameTextField:(id)sender {
+
+    [self.arrayChosen removeAllObjects];
+    
+    NSString* text = [self.doctorNameField.text lowercaseString];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
+    for (NSArray *array in self.arrayAll) {
+        for (NSString *name in array) {
+            NSString* tempname = [name lowercaseString];
+            NSTextCheckingResult *match = [regex firstMatchInString:tempname options:0 range:NSMakeRange(0, name.length)];
+            if (match) {
+                [self.arrayChosen addObject:name];
+            }
+        }
+    }
     [self.tableView reloadData];
 }
 

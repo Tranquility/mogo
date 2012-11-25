@@ -108,8 +108,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="closeKeyboard:" destination="n0S-ah-3IA" eventType="editingDidEndOnExit" id="1Dh-jy-46l"/>
-                                    <outlet property="delegate" destination="vv5-uO-mdV" id="NdY-6x-p4u"/>
+                                    <action selector="closeKeyboard:" destination="n0S-ah-3IA" eventType="editingDidEndOnExit" id="NkY-7P-0r4"/>
+                                    <action selector="updateNameTextField:" destination="n0S-ah-3IA" eventType="editingChanged" id="DW5-mj-2Gq"/>
+                                    <outlet property="delegate" destination="n0S-ah-3IA" id="zpQ-bc-7FW"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name des Arztes" lineBreakMode="tailTruncation" minimumFontSize="10" id="JEE-mX-jj6">
@@ -207,7 +208,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Suche" id="yJw-9R-Qi3"/>
                     <connections>
-                        <outlet property="doctorNameField" destination="IjU-5g-4JU" id="ROG-tu-Q80"/>
+                        <outlet property="doctorNameField" destination="IjU-5g-4JU" id="Vob-E1-hHY"/>
                         <outlet property="pickerView" destination="Q85-aE-hUG" id="PXU-c4-8AT"/>
                         <outlet property="searchDisplayController" destination="mop-Zi-uQ1" id="G1d-2L-JE8"/>
                         <outlet property="subView" destination="8Xq-LP-jvR" id="ebn-RZ-Cfx"/>
@@ -410,6 +411,7 @@
                 <relationship kind="action" name="closeDisciplinePicker:"/>
                 <relationship kind="action" name="closeKeyboard:"/>
                 <relationship kind="action" name="showDisciplinePicker:"/>
+                <relationship kind="action" name="updateNameTextField:"/>
                 <relationship kind="outlet" name="doctorNameField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="subView" candidateClass="UIView"/>

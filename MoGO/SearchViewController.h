@@ -20,7 +20,7 @@
 @property (nonatomic) NSArray* arrayGynecologists;
 @property (nonatomic) NSArray* arrayGeneralDoctors;
 @property (nonatomic) NSArray* arrayAll;
-@property (nonatomic) NSArray* arrayChosen;
+@property (nonatomic) NSMutableArray* arrayChosen;
 
 
 @end
