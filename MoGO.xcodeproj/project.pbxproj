@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */; };
+		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
+		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
 		DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD2D1660E3F300C79B32 /* SearchViewController.m */; };
 		DABBFD341660E52800C79B32 /* AppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD331660E52800C79B32 /* AppointmentViewController.m */; };
 		DAC9BA031660D7FA00C36D2E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
@@ -23,6 +26,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MedicDetailViewController.h; path = ../MedicDetailViewController.h; sourceTree = "<group>"; };
+		2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedicDetailViewController.m; path = ../MedicDetailViewController.m; sourceTree = "<group>"; };
+		2D163A211660F116000A65A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2D163A231661021D000A65A7 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
+		2D163A241661021D000A65A7 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
 		DABBFD2C1660E3F300C79B32 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		DABBFD2D1660E3F300C79B32 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		DABBFD321660E52800C79B32 /* AppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentViewController.h; sourceTree = "<group>"; };
@@ -51,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */,
 				DAC9BA031660D7FA00C36D2E /* UIKit.framework in Frameworks */,
 				DAC9BA051660D7FA00C36D2E /* Foundation.framework in Frameworks */,
 				DAC9BA071660D7FA00C36D2E /* CoreGraphics.framework in Frameworks */,
@@ -80,6 +89,7 @@
 		DAC9BA011660D7FA00C36D2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D163A211660F116000A65A7 /* MapKit.framework */,
 				DAC9BA021660D7FA00C36D2E /* UIKit.framework */,
 				DAC9BA041660D7FA00C36D2E /* Foundation.framework */,
 				DAC9BA061660D7FA00C36D2E /* CoreGraphics.framework */,
@@ -92,6 +102,10 @@
 			children = (
 				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
 				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
+				2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */,
+				2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */,
+				2D163A231661021D000A65A7 /* MapViewAnnotation.h */,
+				2D163A241661021D000A65A7 /* MapViewAnnotation.m */,
 				DAC9BA121660D7FA00C36D2E /* AppDelegate.m */,
 				DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */,
 				DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */,
@@ -189,6 +203,8 @@
 				DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */,
 				DABBFD341660E52800C79B32 /* AppointmentViewController.m in Sources */,
 				F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */,
+				2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */,
+				2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
