@@ -24,6 +24,8 @@
 		F16BF0FA16625777000E5FC0 /* MonthTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F16BF0F916625777000E5FC0 /* MonthTemplateView.xib */; };
 		F16BF0FE16625794000E5FC0 /* MonthTemplateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */; };
 		F16BF10116625926000E5FC0 /* MakeAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */; };
+		F16BF10616626669000E5FC0 /* arztsuche.png in Resources */ = {isa = PBXBuildFile; fileRef = F16BF10516626669000E5FC0 /* arztsuche.png */; };
+		F16BF10916626811000E5FC0 /* accessories-date.png in Resources */ = {isa = PBXBuildFile; fileRef = F16BF10816626811000E5FC0 /* accessories-date.png */; };
 		F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */; };
 		F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F18376D716611E98005D03E5 /* detail_disclosure.jpg */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,8 @@
 		F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MonthTemplateView.m; path = ../MonthTemplateView.m; sourceTree = "<group>"; };
 		F16BF0FF16625926000E5FC0 /* MakeAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakeAppointmentViewController.h; path = ../MakeAppointmentViewController.h; sourceTree = "<group>"; };
 		F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MakeAppointmentViewController.m; path = ../MakeAppointmentViewController.m; sourceTree = "<group>"; };
+		F16BF10516626669000E5FC0 /* arztsuche.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arztsuche.png; sourceTree = "<group>"; };
+		F16BF10816626811000E5FC0 /* accessories-date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accessories-date.png"; sourceTree = "<group>"; };
 		F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
 		F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
 		F18376D716611E98005D03E5 /* detail_disclosure.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = detail_disclosure.jpg; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 		DAC9BA081660D7FA00C36D2E /* MoGO */ = {
 			isa = PBXGroup;
 			children = (
+				F16BF10716626675000E5FC0 /* icons */,
 				F16BF0F916625777000E5FC0 /* MonthTemplateView.xib */,
 				F16BF0FC16625794000E5FC0 /* MonthTemplateView.h */,
 				F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */,
@@ -144,6 +149,15 @@
 				DAC9BA101660D7FA00C36D2E /* MoGO-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F16BF10716626675000E5FC0 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				F16BF10816626811000E5FC0 /* accessories-date.png */,
+				F16BF10516626669000E5FC0 /* arztsuche.png */,
+			);
+			name = icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +215,8 @@
 				DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */,
 				F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */,
 				F16BF0FA16625777000E5FC0 /* MonthTemplateView.xib in Resources */,
+				F16BF10616626669000E5FC0 /* arztsuche.png in Resources */,
+				F16BF10916626811000E5FC0 /* accessories-date.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
