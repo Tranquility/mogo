@@ -10,8 +10,17 @@
 
 @interface SearchViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UIPickerView* pickerView;
-@property (nonatomic, strong) IBOutlet UIView* subView;
-@property (nonatomic, strong) NSArray* arrayDisciplines;
+@property (nonatomic) IBOutlet UIPickerView* pickerView;
+@property (nonatomic) IBOutlet UITableView* tableView;
+@property (nonatomic) IBOutlet UIView* subView;
+@property (nonatomic) IBOutlet UITextField* doctorNameField;
+@property (nonatomic) NSArray* arrayDisciplines;
+@property (nonatomic) NSArray* arrayDentists;
+@property (nonatomic) NSArray* arrayPediatritians;
+@property (nonatomic) NSArray* arrayGynecologists;
+@property (nonatomic) NSArray* arrayGeneralDoctors;
+@property (nonatomic) NSArray* arrayAll;
+@property (nonatomic) NSArray* arrayChosen;
+
 
 @end
