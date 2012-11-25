@@ -83,14 +83,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0)
     {
-    static NSString *CellIdentifier = @"viewcell";
+    static NSString *CellIdentifier = @"AppointmentTableViewCell";
     
     AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
        
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AppointmentTableViewCell" owner:self options:nil];
-            cell = [nib objectAtIndex:0];
-        }     
+            cell = [[AppointmentTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
     
     // Configure the cell.
     cell.DateLabel.text = @"Muh";
