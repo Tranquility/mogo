@@ -24,6 +24,8 @@
 		F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */; };
 		F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F18376D716611E98005D03E5 /* detail_disclosure.jpg */; };
 		F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F133360216623D2800502A50 /* AppointmentDetailViewController.m */; };
+		F13335F716622A1600502A50 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335F616622A1600502A50 /* DoctorModel.m */; };
+		F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335FB166231AA00502A50 /* AppointmentModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,10 @@
 		F18376D716611E98005D03E5 /* detail_disclosure.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = detail_disclosure.jpg; sourceTree = "<group>"; };
 		F133360116623D2800502A50 /* AppointmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailViewController.h; sourceTree = "<group>"; };
 		F133360216623D2800502A50 /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
+		F13335F516622A1600502A50 /* DoctorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorModel.h; sourceTree = "<group>"; };
+		F13335F616622A1600502A50 /* DoctorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorModel.m; sourceTree = "<group>"; };
+		F13335FA166231AA00502A50 /* AppointmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentModel.h; sourceTree = "<group>"; };
+		F13335FB166231AA00502A50 /* AppointmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
+				F13335F91662317300502A50 /* DataModel */,
 				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
 				2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */,
 				2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */,
@@ -136,6 +143,17 @@
 				DAC9BA101660D7FA00C36D2E /* MoGO-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F13335F91662317300502A50 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				F13335F516622A1600502A50 /* DoctorModel.h */,
+				F13335F616622A1600502A50 /* DoctorModel.m */,
+				F13335FA166231AA00502A50 /* AppointmentModel.h */,
+				F13335FB166231AA00502A50 /* AppointmentModel.m */,
+			);
+			name = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +229,8 @@
 				2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */,
 				2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */,
 				F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */,
+				F13335F716622A1600502A50 /* DoctorModel.m in Sources */,
+				F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
