@@ -21,6 +21,9 @@
 		DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */; };
 		DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */; };
 		DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA1B1660D7FA00C36D2E /* ViewController.m */; };
+		F16BF0FA16625777000E5FC0 /* MonthTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F16BF0F916625777000E5FC0 /* MonthTemplateView.xib */; };
+		F16BF0FE16625794000E5FC0 /* MonthTemplateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */; };
+		F16BF10116625926000E5FC0 /* MakeAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */; };
 		F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */; };
 		F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F18376D716611E98005D03E5 /* detail_disclosure.jpg */; };
 /* End PBXBuildFile section */
@@ -49,6 +52,11 @@
 		DAC9BA181660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DAC9BA1A1660D7FA00C36D2E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DAC9BA1B1660D7FA00C36D2E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F16BF0F916625777000E5FC0 /* MonthTemplateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MonthTemplateView.xib; path = ../MonthTemplateView.xib; sourceTree = "<group>"; };
+		F16BF0FC16625794000E5FC0 /* MonthTemplateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MonthTemplateView.h; path = ../MonthTemplateView.h; sourceTree = "<group>"; };
+		F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MonthTemplateView.m; path = ../MonthTemplateView.m; sourceTree = "<group>"; };
+		F16BF0FF16625926000E5FC0 /* MakeAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakeAppointmentViewController.h; path = ../MakeAppointmentViewController.h; sourceTree = "<group>"; };
+		F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MakeAppointmentViewController.m; path = ../MakeAppointmentViewController.m; sourceTree = "<group>"; };
 		F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
 		F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
 		F18376D716611E98005D03E5 /* detail_disclosure.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = detail_disclosure.jpg; sourceTree = "<group>"; };
@@ -100,6 +108,11 @@
 		DAC9BA081660D7FA00C36D2E /* MoGO */ = {
 			isa = PBXGroup;
 			children = (
+				F16BF0F916625777000E5FC0 /* MonthTemplateView.xib */,
+				F16BF0FC16625794000E5FC0 /* MonthTemplateView.h */,
+				F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */,
+				F16BF0FF16625926000E5FC0 /* MakeAppointmentViewController.h */,
+				F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */,
 				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
 				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
 				2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */,
@@ -187,6 +200,7 @@
 				DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */,
 				DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */,
 				F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */,
+				F16BF0FA16625777000E5FC0 /* MonthTemplateView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +219,8 @@
 				F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */,
 				2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */,
 				2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */,
+				F16BF0FE16625794000E5FC0 /* MonthTemplateView.m in Sources */,
+				F16BF10116625926000E5FC0 /* MakeAppointmentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
