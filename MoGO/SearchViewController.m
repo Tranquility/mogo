@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "AFNetworking.h"
 
 @implementation SearchViewController
 
@@ -59,6 +60,17 @@
                      self.arrayGynecologists, nil];
     self.arrayChosen = [[NSMutableArray alloc] init];
     [self.pickerView selectRow:0 inComponent:0 animated:YES];
+    
+    NSURL *url = [NSURL URLWithString:@"https://itunes.apple.com/search?term=hardcoremetal"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation
+                                         JSONRequestOperationWithRequest:request
+                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
+                                             NSLog(@"results: %@", [[json valueForKeyPath:@"results"] valueForKeyPath:@"artistName"]);
+                                         } failure:nil];
+    
+    [operation start];
 }
 
 - (void)viewDidUnload
