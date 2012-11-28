@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25FAB33216661B62008EB8CF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FAB33116661B62008EB8CF /* SenTestingKit.framework */; };
+		25FAB33316661B62008EB8CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
+		25FAB33416661B62008EB8CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA041660D7FA00C36D2E /* Foundation.framework */; };
+		25FAB33A16661B62008EB8CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25FAB33816661B62008EB8CF /* InfoPlist.strings */; };
+		25FAB33D16661B62008EB8CF /* MoGOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FAB33C16661B62008EB8CF /* MoGOTests.m */; };
 		2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */; };
 		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
 		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
@@ -21,14 +26,21 @@
 		DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */; };
 		DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */; };
 		DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA1B1660D7FA00C36D2E /* ViewController.m */; };
-		F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */; };
-		F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F18376D716611E98005D03E5 /* detail_disclosure.jpg */; };
-		F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F133360216623D2800502A50 /* AppointmentDetailViewController.m */; };
 		F13335F716622A1600502A50 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335F616622A1600502A50 /* DoctorModel.m */; };
 		F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335FB166231AA00502A50 /* AppointmentModel.m */; };
+		F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F133360216623D2800502A50 /* AppointmentDetailViewController.m */; };
+		F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */; };
+		F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F18376D716611E98005D03E5 /* detail_disclosure.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		25FAB33016661B62008EB8CF /* MoGOTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoGOTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		25FAB33116661B62008EB8CF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		25FAB33716661B62008EB8CF /* MoGOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoGOTests-Info.plist"; sourceTree = "<group>"; };
+		25FAB33916661B62008EB8CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		25FAB33B16661B62008EB8CF /* MoGOTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoGOTests.h; sourceTree = "<group>"; };
+		25FAB33C16661B62008EB8CF /* MoGOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoGOTests.m; sourceTree = "<group>"; };
+		25FAB33E16661B62008EB8CF /* MoGOTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoGOTests-Prefix.pch"; sourceTree = "<group>"; };
 		2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MedicDetailViewController.h; path = ../MedicDetailViewController.h; sourceTree = "<group>"; };
 		2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedicDetailViewController.m; path = ../MedicDetailViewController.m; sourceTree = "<group>"; };
 		2D163A211660F116000A65A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -52,18 +64,28 @@
 		DAC9BA181660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DAC9BA1A1660D7FA00C36D2E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DAC9BA1B1660D7FA00C36D2E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
-		F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
-		F18376D716611E98005D03E5 /* detail_disclosure.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = detail_disclosure.jpg; sourceTree = "<group>"; };
-		F133360116623D2800502A50 /* AppointmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailViewController.h; sourceTree = "<group>"; };
-		F133360216623D2800502A50 /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
 		F13335F516622A1600502A50 /* DoctorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorModel.h; sourceTree = "<group>"; };
 		F13335F616622A1600502A50 /* DoctorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorModel.m; sourceTree = "<group>"; };
 		F13335FA166231AA00502A50 /* AppointmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentModel.h; sourceTree = "<group>"; };
 		F13335FB166231AA00502A50 /* AppointmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentModel.m; sourceTree = "<group>"; };
+		F133360116623D2800502A50 /* AppointmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailViewController.h; sourceTree = "<group>"; };
+		F133360216623D2800502A50 /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
+		F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
+		F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
+		F18376D716611E98005D03E5 /* detail_disclosure.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = detail_disclosure.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		25FAB32C16661B62008EB8CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25FAB33216661B62008EB8CF /* SenTestingKit.framework in Frameworks */,
+				25FAB33316661B62008EB8CF /* UIKit.framework in Frameworks */,
+				25FAB33416661B62008EB8CF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DAC9B9FB1660D7FA00C36D2E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,10 +100,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25FAB33516661B62008EB8CF /* MoGOTests */ = {
+			isa = PBXGroup;
+			children = (
+				25FAB33B16661B62008EB8CF /* MoGOTests.h */,
+				25FAB33C16661B62008EB8CF /* MoGOTests.m */,
+				25FAB33616661B62008EB8CF /* Supporting Files */,
+			);
+			path = MoGOTests;
+			sourceTree = "<group>";
+		};
+		25FAB33616661B62008EB8CF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				25FAB33716661B62008EB8CF /* MoGOTests-Info.plist */,
+				25FAB33816661B62008EB8CF /* InfoPlist.strings */,
+				25FAB33E16661B62008EB8CF /* MoGOTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		DAC9B9F31660D7F900C36D2E = {
 			isa = PBXGroup;
 			children = (
 				DAC9BA081660D7FA00C36D2E /* MoGO */,
+				25FAB33516661B62008EB8CF /* MoGOTests */,
 				DAC9BA011660D7FA00C36D2E /* Frameworks */,
 				DAC9B9FF1660D7FA00C36D2E /* Products */,
 			);
@@ -91,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC9B9FE1660D7FA00C36D2E /* MoGO.app */,
+				25FAB33016661B62008EB8CF /* MoGOTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +146,7 @@
 				DAC9BA021660D7FA00C36D2E /* UIKit.framework */,
 				DAC9BA041660D7FA00C36D2E /* Foundation.framework */,
 				DAC9BA061660D7FA00C36D2E /* CoreGraphics.framework */,
+				25FAB33116661B62008EB8CF /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,6 +204,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		25FAB32F16661B62008EB8CF /* MoGOTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25FAB34116661B62008EB8CF /* Build configuration list for PBXNativeTarget "MoGOTests" */;
+			buildPhases = (
+				25FAB32B16661B62008EB8CF /* Sources */,
+				25FAB32C16661B62008EB8CF /* Frameworks */,
+				25FAB32D16661B62008EB8CF /* Resources */,
+				25FAB32E16661B62008EB8CF /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoGOTests;
+			productName = MoGOTests;
+			productReference = 25FAB33016661B62008EB8CF /* MoGOTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		DAC9B9FD1660D7FA00C36D2E /* MoGO */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DAC9BA1F1660D7FA00C36D2E /* Build configuration list for PBXNativeTarget "MoGO" */;
@@ -197,11 +260,20 @@
 			projectRoot = "";
 			targets = (
 				DAC9B9FD1660D7FA00C36D2E /* MoGO */,
+				25FAB32F16661B62008EB8CF /* MoGOTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		25FAB32D16661B62008EB8CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25FAB33A16661B62008EB8CF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DAC9B9FC1660D7FA00C36D2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,7 +287,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		25FAB32E16661B62008EB8CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		25FAB32B16661B62008EB8CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25FAB33D16661B62008EB8CF /* MoGOTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DAC9B9FA1660D7FA00C36D2E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,6 +333,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		25FAB33816661B62008EB8CF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25FAB33916661B62008EB8CF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		DAC9BA0B1660D7FA00C36D2E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -264,6 +368,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		25FAB33F16661B62008EB8CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MoGO.app/MoGO";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoGOTests/MoGOTests-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "MoGOTests/MoGOTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		25FAB34016661B62008EB8CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MoGO.app/MoGO";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MoGOTests/MoGOTests-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "MoGOTests/MoGOTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		DAC9BA1D1660D7FA00C36D2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -314,6 +465,7 @@
 		DAC9BA201660D7FA00C36D2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoGO/MoGO-Prefix.pch";
 				INFOPLIST_FILE = "MoGO/MoGO-Info.plist";
@@ -325,6 +477,7 @@
 		DAC9BA211660D7FA00C36D2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoGO/MoGO-Prefix.pch";
 				INFOPLIST_FILE = "MoGO/MoGO-Info.plist";
@@ -336,6 +489,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		25FAB34116661B62008EB8CF /* Build configuration list for PBXNativeTarget "MoGOTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25FAB33F16661B62008EB8CF /* Debug */,
+				25FAB34016661B62008EB8CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		DAC9B9F81660D7F900C36D2E /* Build configuration list for PBXProject "MoGO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
