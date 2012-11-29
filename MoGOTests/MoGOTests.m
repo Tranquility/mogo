@@ -30,7 +30,7 @@
 - (void)testExample
 {
     //Funktions Test
-    STAssertEquals(@"Dr.Arz", doctorModel.name, nil);
+    STAssertEquals(@"Dr.Arzt", doctorModel.name, nil);
 }
 
 @end
