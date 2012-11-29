@@ -26,6 +26,8 @@
 		DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */; };
 		DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */; };
 		DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA1B1660D7FA00C36D2E /* ViewController.m */; };
+		DAF677F3166782F20074EDAC /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F2166782F20074EDAC /* AddressModel.m */; };
+		DAF677F61667887E0074EDAC /* PatientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F51667887E0074EDAC /* PatientModel.m */; };
 		F13335F716622A1600502A50 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335F616622A1600502A50 /* DoctorModel.m */; };
 		F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335FB166231AA00502A50 /* AppointmentModel.m */; };
 		F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F133360216623D2800502A50 /* AppointmentDetailViewController.m */; };
@@ -64,6 +66,10 @@
 		DAC9BA181660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DAC9BA1A1660D7FA00C36D2E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DAC9BA1B1660D7FA00C36D2E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DAF677F1166782F20074EDAC /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		DAF677F2166782F20074EDAC /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		DAF677F41667887E0074EDAC /* PatientModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientModel.h; sourceTree = "<group>"; };
+		DAF677F51667887E0074EDAC /* PatientModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientModel.m; sourceTree = "<group>"; };
 		F13335F516622A1600502A50 /* DoctorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorModel.h; sourceTree = "<group>"; };
 		F13335F616622A1600502A50 /* DoctorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorModel.m; sourceTree = "<group>"; };
 		F13335FA166231AA00502A50 /* AppointmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentModel.h; sourceTree = "<group>"; };
@@ -197,6 +203,10 @@
 				F13335F616622A1600502A50 /* DoctorModel.m */,
 				F13335FA166231AA00502A50 /* AppointmentModel.h */,
 				F13335FB166231AA00502A50 /* AppointmentModel.m */,
+				DAF677F1166782F20074EDAC /* AddressModel.h */,
+				DAF677F2166782F20074EDAC /* AddressModel.m */,
+				DAF677F41667887E0074EDAC /* PatientModel.h */,
+				DAF677F51667887E0074EDAC /* PatientModel.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -327,6 +337,8 @@
 				F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */,
 				F13335F716622A1600502A50 /* DoctorModel.m in Sources */,
 				F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */,
+				DAF677F3166782F20074EDAC /* AddressModel.m in Sources */,
+				DAF677F61667887E0074EDAC /* PatientModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +508,7 @@
 				25FAB34016661B62008EB8CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DAC9B9F81660D7F900C36D2E /* Build configuration list for PBXProject "MoGO" */ = {
 			isa = XCConfigurationList;

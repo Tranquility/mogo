@@ -10,44 +10,22 @@
 
 @implementation DoctorModel
 
-@synthesize id = _id;
-@synthesize name = _name;
-@synthesize discipline = _discipline;
-@synthesize street = _street;
-@synthesize zipcode = _zipcode;
-@synthesize city = _city;
-@synthesize coordinate = _coordinate;
-@synthesize phone = _phone;
-@synthesize fax = _fax;
-@synthesize openinghours = _openinghours;
-
-- (DoctorModel*)initWithId:(int)id andName:(NSString*)name andDiscipline:(NSString*)discipline andStreet:(NSString*)street andZipcode:(int)zipcode andCity:(NSString*)city andCoordinate:(CLLocationCoordinate2D*)coordinate andPhone:(NSString*)phone andFax:(NSString*)fax andOpeninghours:(NSMutableArray*)openinghours
-{
+- (DoctorModel*)initWithTitle:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone address:(AddressModel*)address {
     self = [super init];
-    if (self)
-    {
-        _name = name;
-        _discipline = discipline;
-        _street = street;
-        _zipcode = zipcode;
-        _city = city;
-        _coordinate = coordinate;
-        _phone = phone;
-        _fax = fax;
-        _openinghours = openinghours;
+    if (self) {
+        self.title = title;
+        self.gender = gender;
+        self.firstName = first;
+        self.lastName = last;
+        self.mail = mail;
+        self.telephone = phone;
+        self.address = address;
     }
     return self;
 }
 
-- (DoctorModel*)initWithId:(int)id andName:(NSString*)name andDiscipline:(NSString*)discipline
-{
-    self = [super init];
-    if (self)
-    {
-    _name = name;
-    _discipline = discipline;
-    }
-    return self;
+- (NSString*)toString {
+    return [NSString stringWithFormat:@"%@ %@ %@", self.title, self.firstName, self.lastName];
 }
 
 @end

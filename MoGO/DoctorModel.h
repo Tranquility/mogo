@@ -7,22 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CoreLocation/CoreLocation.h"
+#import "AddressModel.h"
 
 @interface DoctorModel : NSObject
 
-@property (nonatomic) int id;
-@property (nonatomic,strong) NSString *name;
-@property (nonatomic,strong) NSString *discipline;
-@property (nonatomic,strong) NSString *street;
-@property (nonatomic) int zipcode;
-@property (nonatomic,strong) NSString *city;
-@property (nonatomic) CLLocationCoordinate2D *coordinate;
-@property (nonatomic,strong) NSString *phone;
-@property (nonatomic,strong) NSString *fax;
-@property (nonatomic,strong) NSMutableArray *openinghours;
+@property (nonatomic) NSString *title;
+@property (nonatomic) NSString *gender;
+@property (nonatomic) NSString *firstName;
+@property (nonatomic) NSString *lastName;
+@property (nonatomic) NSString *mail;
+@property (nonatomic) NSString *telephone;
+@property (nonatomic) AddressModel *address;
 
-- (DoctorModel*)initWithId:(int)id andName:(NSString*)name andDiscipline:(NSString*)discipline andStreet:(NSString*)street andZipcode:(int)zipcode andCity:(NSString*)city andCoordinate:(CLLocationCoordinate2D*)coordinate andPhone:(NSString*)phone andFax:(NSString*)fax andOpeninghours:(NSMutableArray*)openinghours;
+- (DoctorModel*)initWithTitle:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone adress:(AddressModel*)adress;
 
-- (DoctorModel*)initWithId:(int)id andName:(NSString*)name andDiscipline:(NSString*)discipline;
+- (NSString*)toString;
+
 @end

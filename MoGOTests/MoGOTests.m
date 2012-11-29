@@ -10,27 +10,22 @@
 
 @implementation MoGOTests
 
-@synthesize doctorModel;
-
 - (void)setUp
 {
     [super setUp];
-    self.doctorModel = [[DoctorModel alloc]initWithId:1 andName:@"Dr.Arzt" andDiscipline:@"KinderArzt"];
-    STAssertNotNil(doctorModel, nil);
-    // Set-up code here.
+    self.address = [[AddressModel alloc] initWithStreet:@"Landstraße" streetNumber:4 zipCode:@"23909" city:@"Ratzeburg" coordinate:self.coordinate];
+    self.doctor = [[DoctorModel alloc] initWithTitle:@"Dr." gender:@"male" firstName:@"Thomas" lastName:@"Block" mail:@"info@block.de" telephone:@"04541877966" adress:self.address];
+    STAssertNotNil(self.doctor, nil);
 }
 
 - (void)tearDown
 {
-    // Tear-down code here.
-    
     [super tearDown];
 }
 
 - (void)testExample
 {
-    //Funktions Test
-    STAssertEquals(@"Dr.Arzt", doctorModel.name, nil);
+    STAssertEquals(@"Dr.", self.doctor.title, nil);
 }
 
 @end
