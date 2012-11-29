@@ -11,12 +11,6 @@
 
 @implementation AppointmentViewController
 
-
-
-@synthesize appointmentList = _appointmentList;
-@synthesize doctorsList = _doctorsList;
-@synthesize appointmentsTableView = _appointmentsTableView;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,19 +31,19 @@
 #pragma mark - View lifecycle
 
 /*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
+ // Implement loadView to create a view hierarchy programmatically, without using a nib.
+ - (void)loadView
+ {
+ }
+ */
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.appointmentList = [[NSArray alloc] initWithObjects:@"09.09.12, Dr. Scrum", @"01.12.2013, Dr. Hyde",
-                       @"15.04.1988, Dr. No", nil];
+                            @"15.04.1988, Dr. No", nil];
     self.doctorsList = [[NSArray alloc] initWithObjects:@"+ neuen Arzt suchen", @"Doktor No", @"Doktor Hulk",
-                            @"Doktor Heid", @"Doktor Jekyll", @"Doktor Scrum", nil];
+                        @"Doktor Heid", @"Doktor Jekyll", @"Doktor Scrum", nil];
     
 }
 
@@ -68,15 +62,13 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   if (section == 0)
-   {
-       return  [self.appointmentList count];
-
-   }
-    else 
+    if (section == 0)
     {
-        return  [self.doctorsList count];
-
+        return self.appointmentList.count;
+    }
+    else
+    {
+        return self.doctorsList.count;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,65 +77,69 @@
     {
         return 63;
     }
-    else{
+    else
+    {
         return 45;
     }
-    }
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0)
     {
-    static NSString *CellIdentifier = @"AppointmentTableViewCell";
-    
-    AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-       
-            cell = [[AppointmentTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    // Configure the cell.
-    cell.DateLabel.text = @"12.12.2012 09:30";
-    cell.doctorDisciplineLabel.text = @"Hautarzt";
-    cell.doctorLabel.text = @"Doktor No";
+        NSString *cellIdentifier = @"AppointmentTableViewCell";
+        
+        AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[AppointmentTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        }
+        
+        // Configure the cell.
+        cell.DateLabel.text = @"12.12.2012 09:30";
+        cell.doctorDisciplineLabel.text = @"Hautarzt";
+        cell.doctorLabel.text = @"Doktor No";
         //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         
-
-    
-    return cell;
+        return cell;
     }
     else
     {
-        static NSString *CellIdentifier = @"viewcell2";
+        NSString *cellIdentifier = @"viewcell2";
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         }
         
         // Configure the cell.
         cell.textLabel.text = [self.doctorsList objectAtIndex:[indexPath row]];
         if (indexPath.row != 0)
         {
-        cell.detailTextLabel.text = @"Urologe";
+            cell.detailTextLabel.text = @"Urologe";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-       return cell;
+        return cell;
     }
-}    
-    - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-    {
-        return 2;
-    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
 
 - (NSString *) tableView:(UITableView *) tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0)
+    {
         return @"Kommende Termine";
+    }
     else
+    {
         return @"Neuen Termin buchen bei";
+    }
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-       
+    
     if (indexPath.section == 0)
     {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -160,35 +156,35 @@
         {
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             [self performSegueWithIdentifier:@"toMakeAppointment" sender:self];
-
+            
         }
     }
     /*NSArray *listData =self.tableContents objectForKey:
-                                         [self.sortedKeys objectAtIndex:[indexPath section]]];
-   
-    NSUInteger row = [indexPath row];
+     [self.sortedKeys objectAtIndex:[indexPath section]]];
+     
+     NSUInteger row = [indexPath row];
+     
+     NSString *rowValue = [listData objectAtIndex:row];
+     
+     NSString *message = [[NSString alloc] initWithFormat:rowValue];
+     UIAlertView *alert = [[UIAlertView alloc]
+     
+     initWithTitle:@"You selected"
+     
+     message:message delegate:nil
+     
+     cancelButtonTitle:@"OK"
+     
+     otherButtonTitles:nil];
+     
+     [alert show];
+     
+     [alert release];
+     
+     [message release];
+     
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];*/
     
-    NSString *rowValue = [listData objectAtIndex:row];
-       
-    NSString *message = [[NSString alloc] initWithFormat:rowValue];
-       UIAlertView *alert = [[UIAlertView alloc]
-                          
-                          initWithTitle:@"You selected"
-                         
-                          message:message delegate:nil
-                          
-                          cancelButtonTitle:@"OK"
-                        
-                          otherButtonTitles:nil];
-    
-    [alert show];
-    
-    [alert release];
-   
-    [message release];
-   
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];*/
-   
 }
 
 

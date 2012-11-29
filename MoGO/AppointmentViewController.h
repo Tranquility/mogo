@@ -13,9 +13,9 @@
 @interface AppointmentViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 
-@property (nonatomic,strong) NSArray *appointmentList;
-@property (nonatomic,strong) NSArray *doctorsList;
-@property (nonatomic,strong) IBOutlet UITableView *appointmentsTableView;
-@property (nonatomic,strong) IBOutlet UITableView *doctorsTableView;
+@property (nonatomic) NSArray *appointmentList;
+@property (nonatomic) NSArray *doctorsList;
+@property (nonatomic) IBOutlet UITableView *appointmentsTableView;
+@property (nonatomic) IBOutlet UITableView *doctorsTableView;
 
 @end

@@ -14,5 +14,4 @@
 @property (nonatomic, weak) IBOutlet UILabel *doctorDisciplineLabel;
 @property (nonatomic, weak) IBOutlet UILabel *DateLabel;
 
-
 @end
