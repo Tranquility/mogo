@@ -181,6 +181,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="closeKeyboard:" destination="n0S-ah-3IA" eventType="touchUpInside" id="68m-KE-rOh"/>
                                     <action selector="showDisciplinePicker:" destination="n0S-ah-3IA" eventType="touchUpInside" id="MGX-Zf-EDx"/>
                                 </connections>
                             </button>
@@ -255,7 +256,7 @@
                         <outlet property="searchDisplayController" destination="mop-Zi-uQ1" id="G1d-2L-JE8"/>
                         <outlet property="subView" destination="8Xq-LP-jvR" id="ebn-RZ-Cfx"/>
                         <outlet property="tableView" destination="EtS-g9-fFy" id="IQq-gM-cc2"/>
-                        <segue destination="RWq-Jq-LmT" kind="push" identifier="DoctorDetailSegue" id="Tqe-dC-Tmn"/>
+                        <segue destination="RWq-Jq-LmT" kind="push" identifier="toDoctorDetail" id="Tqe-dC-Tmn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwT-nJ-xov" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -527,62 +528,14 @@
     <resources>
         <image name="detail_disclosure.jpg" width="29" height="29"/>
     </resources>
-    <classes>
-        <class className="AppointmentDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="changeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="disciplineLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noteTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="AppointmentTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="DateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doctorDisciplineLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="AppointmentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="appointmentsTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="doctorsTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="MedicDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="SearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closeDisciplinePicker:"/>
-                <relationship kind="outlet" name="doctorNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="subView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ims-AM-hPl"/>
-        <segue reference="jr0-IK-B71"/>
+        <segue reference="mtb-th-UsI"/>
         <segue reference="4zZ-Pj-sG2"/>
+        <segue reference="G07-vO-8EL"/>
     </inferredMetricsTieBreakers>
 </document>

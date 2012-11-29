@@ -189,9 +189,9 @@
 				DABBFD331660E52800C79B32 /* AppointmentViewController.m */,
 				F133360116623D2800502A50 /* AppointmentDetailViewController.h */,
 				F133360216623D2800502A50 /* AppointmentDetailViewController.m */,
-				DAC9BA091660D7FA00C36D2E /* Supporting Files */,
 				F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */,
 				F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */,
+				DAC9BA091660D7FA00C36D2E /* Supporting Files */,
 			);
 			path = MoGO;
 			sourceTree = "<group>";

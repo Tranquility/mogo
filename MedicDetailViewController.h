@@ -16,4 +16,6 @@
 
 @property (nonatomic) IBOutlet MKMapView *mapOutlet;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+
 @end

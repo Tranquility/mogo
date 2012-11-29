@@ -14,15 +14,6 @@
 
 @implementation AppointmentDetailViewController
 
-@synthesize doctorLabel = _doctorLabel;
-@synthesize disciplineLabel = _disciplineLabel;
-@synthesize dateLabel = _dateLabel;
-@synthesize timeLabel = _timeLabel;
-@synthesize noteTextView = _noteTextView;
-@synthesize changeButton = _changeButton;
-@synthesize cancelButton = _cancelButton;
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

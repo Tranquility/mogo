@@ -23,27 +23,9 @@
 - (void)viewDidLoad
 {
     //Statischer Aufruf weil Test.
-    [self drawMap:53.556581 andLongitute:9.990402 andString:@"Dr. Arzt"];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-}
-
--(void)drawMap:(double)withLatitude andLongitute:(double)longitude andString:(NSString*)arztname
-{
-    CLLocationCoordinate2D location;
-	location.latitude = withLatitude;
-	location.longitude = longitude;
-    
-        NSLog(@"%f", location.latitude);
-    
-    
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location, 0.5*ZOOMFACTOR, 0.5*ZOOMFACTOR);
-    MKCoordinateRegion adjustedRegion = [_mapOutlet regionThatFits:viewRegion];
-    [_mapOutlet setRegion:adjustedRegion animated:YES];
-    
-    MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:arztname andCoordinate:location];
-	[self.mapOutlet addAnnotation:newAnnotation];
-
+    [self drawMapWithLatitude:53.556581 andLongitute:9.990402 andString:@"Dr. No"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,10 +35,28 @@
 }
 
 
-
 - (void)viewDidUnload {
 
     [self setMapOutlet:nil];
     [super viewDidUnload];
 }
+
+-(void)drawMapWithLatitude:(double)latitude andLongitute:(double)longitude andString:(NSString*)doctorName
+{
+    CLLocationCoordinate2D location;
+	location.latitude = latitude;
+	location.longitude = longitude;
+    
+    NSLog(@"%f", location.latitude);
+    
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location, 0.5*ZOOMFACTOR, 0.5*ZOOMFACTOR);
+    MKCoordinateRegion adjustedRegion = [_mapOutlet regionThatFits:viewRegion];
+    [self.mapOutlet setRegion:adjustedRegion animated:YES];
+    
+    MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:doctorName andCoordinate:location];
+	[self.mapOutlet addAnnotation:newAnnotation];
+    
+}
+
 @end

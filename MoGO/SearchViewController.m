@@ -11,20 +11,6 @@
 
 @implementation SearchViewController
 
-@synthesize pickerView = _pickerView;
-@synthesize subView = _subView;
-@synthesize tableView = _tableView;
-@synthesize doctorNameField = _doctorNameField;
-
-@synthesize arrayDisciplines = _arrayDisciplines;
-@synthesize arrayDentists = _arrayDentists;
-@synthesize arrayPediatritians = _arrayPediatritians;
-@synthesize arrayGynecologists = _arrayGynecologists;
-@synthesize arrayGeneralDoctors = _arrayGeneralDoctors;
-@synthesize arrayAll = _arrayAll;
-@synthesize arrayChosen = _arrayChosen;
-
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -159,7 +145,6 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         
-        // Configure the cell.
         cell.textLabel.text = [self.arrayChosen objectAtIndex:[indexPath row]];
         
         return cell;
