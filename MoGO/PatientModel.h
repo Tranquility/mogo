@@ -17,6 +17,4 @@
 
 - (PatientModel*)initWithFirstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone;
 
-- (NSString*)toString;
-
 @end

@@ -22,7 +22,7 @@
     return self;
 }
 
-- (NSString*)toString {
+- (NSString*)description {
     return [NSString stringWithFormat:@"%@ %@, %@, %@", self.firstName, self.lastName, self.mail, self.telephone];
 }
 

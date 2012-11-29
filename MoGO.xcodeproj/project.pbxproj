@@ -25,6 +25,10 @@
 		DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */; };
 		DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */; };
 		DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA1B1660D7FA00C36D2E /* ViewController.m */; };
+		DAF230D91667B91300AAE358 /* VisitingHoursModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF230D81667B91300AAE358 /* VisitingHoursModel.m */; };
+		DAF230DC1667BBA100AAE358 /* Time.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF230DB1667BBA100AAE358 /* Time.m */; };
+		DAF230DF1667CA2F00AAE358 /* TimeslotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF230DE1667CA2F00AAE358 /* TimeslotModel.m */; };
+		DAF230E21667D74000AAE358 /* TimeslotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF230E11667D74000AAE358 /* TimeslotTest.m */; };
 		DAF677F3166782F20074EDAC /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F2166782F20074EDAC /* AddressModel.m */; };
 		DAF677F61667887E0074EDAC /* PatientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F51667887E0074EDAC /* PatientModel.m */; };
 		DAF677F9166798A20074EDAC /* DoctorAddressTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F8166798A20074EDAC /* DoctorAddressTest.m */; };
@@ -65,6 +69,14 @@
 		DAC9BA181660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DAC9BA1A1660D7FA00C36D2E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DAC9BA1B1660D7FA00C36D2E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DAF230D71667B91300AAE358 /* VisitingHoursModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitingHoursModel.h; sourceTree = "<group>"; };
+		DAF230D81667B91300AAE358 /* VisitingHoursModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitingHoursModel.m; sourceTree = "<group>"; };
+		DAF230DA1667BBA100AAE358 /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
+		DAF230DB1667BBA100AAE358 /* Time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Time.m; sourceTree = "<group>"; };
+		DAF230DD1667CA2F00AAE358 /* TimeslotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeslotModel.h; sourceTree = "<group>"; };
+		DAF230DE1667CA2F00AAE358 /* TimeslotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeslotModel.m; sourceTree = "<group>"; };
+		DAF230E01667D74000AAE358 /* TimeslotTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeslotTest.h; sourceTree = "<group>"; };
+		DAF230E11667D74000AAE358 /* TimeslotTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeslotTest.m; sourceTree = "<group>"; };
 		DAF677F1166782F20074EDAC /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		DAF677F2166782F20074EDAC /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		DAF677F41667887E0074EDAC /* PatientModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientModel.h; sourceTree = "<group>"; };
@@ -116,6 +128,8 @@
 				DAF677F8166798A20074EDAC /* DoctorAddressTest.m */,
 				DAF677FA16679AF60074EDAC /* PatientTest.h */,
 				DAF677FB16679AF60074EDAC /* PatientTest.m */,
+				DAF230E01667D74000AAE358 /* TimeslotTest.h */,
+				DAF230E11667D74000AAE358 /* TimeslotTest.m */,
 				25FAB33616661B62008EB8CF /* Supporting Files */,
 			);
 			path = MoGOTests;
@@ -212,6 +226,12 @@
 				DAF677F2166782F20074EDAC /* AddressModel.m */,
 				DAF677F41667887E0074EDAC /* PatientModel.h */,
 				DAF677F51667887E0074EDAC /* PatientModel.m */,
+				DAF230D71667B91300AAE358 /* VisitingHoursModel.h */,
+				DAF230D81667B91300AAE358 /* VisitingHoursModel.m */,
+				DAF230DA1667BBA100AAE358 /* Time.h */,
+				DAF230DB1667BBA100AAE358 /* Time.m */,
+				DAF230DD1667CA2F00AAE358 /* TimeslotModel.h */,
+				DAF230DE1667CA2F00AAE358 /* TimeslotModel.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -325,6 +345,7 @@
 			files = (
 				DAF677F9166798A20074EDAC /* DoctorAddressTest.m in Sources */,
 				DAF677FC16679AF60074EDAC /* PatientTest.m in Sources */,
+				DAF230E21667D74000AAE358 /* TimeslotTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +366,9 @@
 				F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */,
 				DAF677F3166782F20074EDAC /* AddressModel.m in Sources */,
 				DAF677F61667887E0074EDAC /* PatientModel.m in Sources */,
+				DAF230D91667B91300AAE358 /* VisitingHoursModel.m in Sources */,
+				DAF230DC1667BBA100AAE358 /* Time.m in Sources */,
+				DAF230DF1667CA2F00AAE358 /* TimeslotModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,7 @@
     return self;
 }
 
-- (NSString*)toString {
+- (NSString*)description {
     return [NSString stringWithFormat:@"%@ %d, %@ %@", self.street, self.streetNumber, self.zipCode, self.city];
 }
 @end

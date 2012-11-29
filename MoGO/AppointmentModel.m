@@ -9,17 +9,14 @@
 #import "AppointmentModel.h"
 
 @implementation AppointmentModel
-@synthesize id = _id;
-@synthesize doctor = _doctor;
-@synthesize note = _note;
 
-- (AppointmentModel*)initWithId:(int)id andDoctor:(DoctorModel*)doctor andDate:(NSDate*)date andNote:(NSString*)note{
+- (AppointmentModel*)initWithDoctor:(DoctorModel*)doctor andDate:(NSDate*)date andNote:(NSString*)note{
     self = [super init];
     if (self)
     {
-        _id = id;
-        _doctor = doctor;
-        _note = note;
+        self.doctor = doctor;
+        self.date = date;
+        self.note = note;
     }
     return self;
 }
