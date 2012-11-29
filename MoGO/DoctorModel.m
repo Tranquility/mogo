@@ -10,7 +10,8 @@
 
 @implementation DoctorModel
 
-- (DoctorModel*)initWithTitle:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone address:(AddressModel*)address {
+- (DoctorModel*)initWithTitle:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone address:(AddressModel*)address;
+{
     self = [super init];
     if (self) {
         self.title = title;

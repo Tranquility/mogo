@@ -19,7 +19,7 @@
 @property (nonatomic) NSString *telephone;
 @property (nonatomic) AddressModel *address;
 
-- (DoctorModel*)initWithTitle:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone adress:(AddressModel*)adress;
+- (DoctorModel*)initWithTitle:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone address:(AddressModel*)address;
 
 - (NSString*)toString;
 

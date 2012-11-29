@@ -15,7 +15,7 @@
 @property (nonatomic) NSString *mail;
 @property (nonatomic) NSString *telephone;
 
-- (PatientModel*)initWithFirstName:(NSString*) lastName:(NSString*) mail:(NSString*)mail telephone:(NSString*)phone;
+- (PatientModel*)initWithFirstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone;
 
 - (NSString*)toString;
 

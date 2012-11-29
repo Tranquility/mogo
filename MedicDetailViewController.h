@@ -12,9 +12,8 @@
 
 #define ZOOMFACTOR 500.344
 
-
 @interface MedicDetailViewController : UIViewController
-@property (strong, nonatomic) IBOutlet MKMapView *mapOutlet;
 
+@property (nonatomic) IBOutlet MKMapView *mapOutlet;
 
 @end

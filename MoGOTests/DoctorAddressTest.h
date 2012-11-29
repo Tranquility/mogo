@@ -1,8 +1,8 @@
 //
-//  MoGOTests.h
-//  MoGOTests
+//  DoctorAddressTest.h
+//  MoGO
 //
-//  Created by 0leschen on 28.11.12.
+//  Created by 0schleew on 29.11.12.
 //
 //
 
@@ -10,10 +10,9 @@
 #import "DoctorModel.h"
 #import "AddressModel.h"
 
-@interface MoGOTests : SenTestCase
+@interface DoctorAddressTest : SenTestCase
 
 @property (nonatomic) DoctorModel *doctor;
 @property (nonatomic) AddressModel *address;
-@property (nonatomic) CLLocationCoordinate2D *coordinate;
 
 @end
