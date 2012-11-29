@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25872568C99647269B8F4825 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B5E67D3F6E46409EA1866E /* libPods.a */; };
 		25FAB33216661B62008EB8CF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FAB33116661B62008EB8CF /* SenTestingKit.framework */; };
 		25FAB33316661B62008EB8CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
 		25FAB33416661B62008EB8CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA041660D7FA00C36D2E /* Foundation.framework */; };
 		25FAB33A16661B62008EB8CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25FAB33816661B62008EB8CF /* InfoPlist.strings */; };
-		25872568C99647269B8F4825 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B5E67D3F6E46409EA1866E /* libPods.a */; };
 		2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */; };
 		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
 		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
+		BA65DC771667BE80007F7140 /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65DC761667BE80007F7140 /* ApiClient.m */; };
 		DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD2D1660E3F300C79B32 /* SearchViewController.m */; };
 		DABBFD341660E52800C79B32 /* AppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD331660E52800C79B32 /* AppointmentViewController.m */; };
 		DAC9BA031660D7FA00C36D2E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
@@ -49,6 +50,8 @@
 		2D163A231661021D000A65A7 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		2D163A241661021D000A65A7 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
 		997A9E158FE6449E91104A0C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		BA65DC751667BE80007F7140 /* ApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiClient.h; sourceTree = "<group>"; };
+		BA65DC761667BE80007F7140 /* ApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiClient.m; sourceTree = "<group>"; };
 		DABBFD2C1660E3F300C79B32 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		DABBFD2D1660E3F300C79B32 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		DABBFD321660E52800C79B32 /* AppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentViewController.h; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				F13335F91662317300502A50 /* DataModel */,
 				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
 				DAC9BA121660D7FA00C36D2E /* AppDelegate.m */,
+				BA65DC751667BE80007F7140 /* ApiClient.h */,
+				BA65DC761667BE80007F7140 /* ApiClient.m */,
 				2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */,
 				2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */,
 				2D163A231661021D000A65A7 /* MapViewAnnotation.h */,
@@ -323,9 +328,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
 		D5A2DBF418CF4CFE8E8F0F64 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,6 +371,7 @@
 				F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */,
 				DAF677F3166782F20074EDAC /* AddressModel.m in Sources */,
 				DAF677F61667887E0074EDAC /* PatientModel.m in Sources */,
+				BA65DC771667BE80007F7140 /* ApiClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
