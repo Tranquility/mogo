@@ -9,10 +9,6 @@
 #import "MedicDetailViewController.h"
 #import "MapViewAnnotation.h"
 
-
-@interface MedicDetailViewController ()
-@end
-
 @implementation MedicDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +33,8 @@
     CLLocationCoordinate2D location;
 	location.latitude = withLatitude;
 	location.longitude = longitude;
+    
+        NSLog(@"%f", location.latitude);
     
     
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location, 0.5*ZOOMFACTOR, 0.5*ZOOMFACTOR);

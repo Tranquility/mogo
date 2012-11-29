@@ -47,12 +47,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.arrayDisciplines = [[NSArray alloc] initWithObjects:@"Zahnarzt", @"Allgemeinarzt", @"Kinderarzt", @"Frauenarzt", nil];
-    self.arrayGeneralDoctors = [[NSArray alloc] initWithObjects:@"Dr. Block", @"Dr. Rauhhut", @"Dr. Kranz", nil];
-    self.arrayDentists = [[NSArray alloc] initWithObjects:@"Dr. Bohr", @"Dr. Merk", @"Dr. Schmelz", nil];
-    self.arrayPediatritians = [[NSArray alloc] initWithObjects:@"Dr. Hals", @"Dr. Nase", @"Dr. Ohr", nil];
-    self.arrayGynecologists = [[NSArray alloc] initWithObjects:@"Dr. Sommer", @"Dr. Winter", @"Dr. Herbst", nil];
-    self.arrayAll = [[NSArray alloc] initWithObjects:
+    self.arrayDisciplines = [[NSMutableArray alloc] initWithObjects:@"Zahnarzt", @"Allgemeinarzt", @"Kinderarzt", @"Frauenarzt", nil];
+    self.arrayGeneralDoctors = [[NSMutableArray alloc] initWithObjects:@"Dr. Block", @"Dr. Rauhhut", @"Dr. Kranz", nil];
+    self.arrayDentists = [[NSMutableArray alloc] initWithObjects:@"Dr. Bohr", @"Dr. Merk", @"Dr. Schmelz", nil];
+    self.arrayPediatritians = [[NSMutableArray alloc] initWithObjects:@"Dr. Hals", @"Dr. Nase", @"Dr. Ohr", nil];
+    self.arrayGynecologists = [[NSMutableArray alloc] initWithObjects:@"Dr. Sommer", @"Dr. Winter", @"Dr. Herbst", nil];
+    self.arrayAll = [[NSMutableArray alloc] initWithObjects:
                      self.arrayDentists,
                      self.arrayGeneralDoctors,
                      self.arrayPediatritians,

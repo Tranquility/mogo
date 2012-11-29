@@ -11,7 +11,6 @@
 		25FAB33316661B62008EB8CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
 		25FAB33416661B62008EB8CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA041660D7FA00C36D2E /* Foundation.framework */; };
 		25FAB33A16661B62008EB8CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25FAB33816661B62008EB8CF /* InfoPlist.strings */; };
-		25FAB33D16661B62008EB8CF /* MoGOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FAB33C16661B62008EB8CF /* MoGOTests.m */; };
 		2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */; };
 		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
 		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
@@ -26,6 +25,10 @@
 		DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */; };
 		DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */; };
 		DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA1B1660D7FA00C36D2E /* ViewController.m */; };
+		DAF677F3166782F20074EDAC /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F2166782F20074EDAC /* AddressModel.m */; };
+		DAF677F61667887E0074EDAC /* PatientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F51667887E0074EDAC /* PatientModel.m */; };
+		DAF677F9166798A20074EDAC /* DoctorAddressTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F8166798A20074EDAC /* DoctorAddressTest.m */; };
+		DAF677FC16679AF60074EDAC /* PatientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677FB16679AF60074EDAC /* PatientTest.m */; };
 		F13335F716622A1600502A50 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335F616622A1600502A50 /* DoctorModel.m */; };
 		F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335FB166231AA00502A50 /* AppointmentModel.m */; };
 		F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F133360216623D2800502A50 /* AppointmentDetailViewController.m */; };
@@ -38,8 +41,6 @@
 		25FAB33116661B62008EB8CF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		25FAB33716661B62008EB8CF /* MoGOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoGOTests-Info.plist"; sourceTree = "<group>"; };
 		25FAB33916661B62008EB8CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		25FAB33B16661B62008EB8CF /* MoGOTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoGOTests.h; sourceTree = "<group>"; };
-		25FAB33C16661B62008EB8CF /* MoGOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoGOTests.m; sourceTree = "<group>"; };
 		25FAB33E16661B62008EB8CF /* MoGOTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoGOTests-Prefix.pch"; sourceTree = "<group>"; };
 		2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MedicDetailViewController.h; path = ../MedicDetailViewController.h; sourceTree = "<group>"; };
 		2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedicDetailViewController.m; path = ../MedicDetailViewController.m; sourceTree = "<group>"; };
@@ -64,6 +65,14 @@
 		DAC9BA181660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DAC9BA1A1660D7FA00C36D2E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DAC9BA1B1660D7FA00C36D2E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DAF677F1166782F20074EDAC /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		DAF677F2166782F20074EDAC /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		DAF677F41667887E0074EDAC /* PatientModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientModel.h; sourceTree = "<group>"; };
+		DAF677F51667887E0074EDAC /* PatientModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientModel.m; sourceTree = "<group>"; };
+		DAF677F7166798A20074EDAC /* DoctorAddressTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorAddressTest.h; sourceTree = "<group>"; };
+		DAF677F8166798A20074EDAC /* DoctorAddressTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorAddressTest.m; sourceTree = "<group>"; };
+		DAF677FA16679AF60074EDAC /* PatientTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientTest.h; sourceTree = "<group>"; };
+		DAF677FB16679AF60074EDAC /* PatientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientTest.m; sourceTree = "<group>"; };
 		F13335F516622A1600502A50 /* DoctorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorModel.h; sourceTree = "<group>"; };
 		F13335F616622A1600502A50 /* DoctorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorModel.m; sourceTree = "<group>"; };
 		F13335FA166231AA00502A50 /* AppointmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentModel.h; sourceTree = "<group>"; };
@@ -103,8 +112,10 @@
 		25FAB33516661B62008EB8CF /* MoGOTests */ = {
 			isa = PBXGroup;
 			children = (
-				25FAB33B16661B62008EB8CF /* MoGOTests.h */,
-				25FAB33C16661B62008EB8CF /* MoGOTests.m */,
+				DAF677F7166798A20074EDAC /* DoctorAddressTest.h */,
+				DAF677F8166798A20074EDAC /* DoctorAddressTest.m */,
+				DAF677FA16679AF60074EDAC /* PatientTest.h */,
+				DAF677FB16679AF60074EDAC /* PatientTest.m */,
 				25FAB33616661B62008EB8CF /* Supporting Files */,
 			);
 			path = MoGOTests;
@@ -157,11 +168,11 @@
 				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
 				F13335F91662317300502A50 /* DataModel */,
 				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
+				DAC9BA121660D7FA00C36D2E /* AppDelegate.m */,
 				2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */,
 				2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */,
 				2D163A231661021D000A65A7 /* MapViewAnnotation.h */,
 				2D163A241661021D000A65A7 /* MapViewAnnotation.m */,
-				DAC9BA121660D7FA00C36D2E /* AppDelegate.m */,
 				DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */,
 				DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */,
 				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
@@ -197,6 +208,10 @@
 				F13335F616622A1600502A50 /* DoctorModel.m */,
 				F13335FA166231AA00502A50 /* AppointmentModel.h */,
 				F13335FB166231AA00502A50 /* AppointmentModel.m */,
+				DAF677F1166782F20074EDAC /* AddressModel.h */,
+				DAF677F2166782F20074EDAC /* AddressModel.m */,
+				DAF677F41667887E0074EDAC /* PatientModel.h */,
+				DAF677F51667887E0074EDAC /* PatientModel.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -308,7 +323,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25FAB33D16661B62008EB8CF /* MoGOTests.m in Sources */,
+				DAF677F9166798A20074EDAC /* DoctorAddressTest.m in Sources */,
+				DAF677FC16679AF60074EDAC /* PatientTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +343,8 @@
 				F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */,
 				F13335F716622A1600502A50 /* DoctorModel.m in Sources */,
 				F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */,
+				DAF677F3166782F20074EDAC /* AddressModel.m in Sources */,
+				DAF677F61667887E0074EDAC /* PatientModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +514,7 @@
 				25FAB34016661B62008EB8CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DAC9B9F81660D7F900C36D2E /* Build configuration list for PBXProject "MoGO" */ = {
 			isa = XCConfigurationList;
