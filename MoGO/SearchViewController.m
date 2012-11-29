@@ -7,6 +7,9 @@
 //
 
 #import "SearchViewController.h"
+#import "AFNetworking.h"
+#import "ApiClient.h"
+#import "DoctorModel.h"
 
 @implementation SearchViewController
 
@@ -33,18 +36,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.arrayDisciplines = [[NSMutableArray alloc] initWithObjects:@"Zahnarzt", @"Allgemeinarzt", @"Kinderarzt", @"Frauenarzt", nil];
-    self.arrayGeneralDoctors = [[NSMutableArray alloc] initWithObjects:@"Dr. Block", @"Dr. Rauhhut", @"Dr. Kranz", nil];
-    self.arrayDentists = [[NSMutableArray alloc] initWithObjects:@"Dr. Bohr", @"Dr. Merk", @"Dr. Schmelz", nil];
-    self.arrayPediatritians = [[NSMutableArray alloc] initWithObjects:@"Dr. Hals", @"Dr. Nase", @"Dr. Ohr", nil];
-    self.arrayGynecologists = [[NSMutableArray alloc] initWithObjects:@"Dr. Sommer", @"Dr. Winter", @"Dr. Herbst", nil];
-    self.arrayAll = [[NSMutableArray alloc] initWithObjects:
-                     self.arrayDentists,
-                     self.arrayGeneralDoctors,
-                     self.arrayPediatritians,
-                     self.arrayGynecologists, nil];
     self.arrayChosen = [[NSMutableArray alloc] init];
     [self.pickerView selectRow:0 inComponent:0 animated:YES];
+    
+    
+    [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id response) {
+                                    for (id doctorJson in response) {
+                                        NSString *firstname = [doctorJson valueForKeyPath:@"firstname"];
+                                        NSString *lastname = [doctorJson valueForKeyPath:@"lastname"];
+                                        NSString *gender = [doctorJson valueForKeyPath:@"gender"];
+                                        NSString *mail = [doctorJson valueForKeyPath:@"mail"];
+                                        NSString *telephone = [doctorJson valueForKeyPath:@"telephone"];
+                                        NSString *title = [doctorJson valueForKeyPath:@"title"];
+                                        CLLocationCoordinate2D location;
+                                        location.latitude = 1.123456;
+                                        location.longitude = 6.54321;
+                                        AddressModel *address = [[AddressModel alloc] initWithStreet:@"sesamstraße"
+                                                                                        streetNumber:15
+                                                                                             zipCode:@"123456"
+                                                                                                city:@"Hamburg"
+                                                                                          coordinate:&location];
+                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithTitle:title
+                                                                                               gender:gender
+                                                                                            firstName:firstname
+                                                                                             lastName:lastname
+                                                                                                 mail:mail
+                                                                                            telephone:telephone
+                                                                                              address:address];
+                                        [self.arrayChosen addObject:doctorModel];
+                                    }
+                                    [self.tableView reloadData];
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    NSLog(@"Error fetching docs!");
+                                    NSLog(@"%@", error);
+                                    
+                                }];
+    
 }
 
 - (void)viewDidUnload
@@ -71,17 +100,19 @@
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component 
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.arrayDisciplines.count;
+    // TOO: return discipline count
+    return 0;
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [self.arrayDisciplines objectAtIndex:row];
+    //TODO: set discipline for current row
+    return @"title";
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.arrayChosen = [self.arrayAll objectAtIndex:row];
+    //TODO: Set disciplines
 }
 
 #pragma mark - UIPickerViewDelegate method
@@ -101,21 +132,12 @@
 }
 
 - (IBAction)updateNameTextField:(id)sender {
-
+    
     [self.arrayChosen removeAllObjects];
     
-    NSString* text = [self.doctorNameField.text lowercaseString];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
-    for (NSArray *array in self.arrayAll) {
-        for (NSString *name in array) {
-            NSString* tempname = [name lowercaseString];
-            NSTextCheckingResult *match = [regex firstMatchInString:tempname options:0 range:NSMakeRange(0, name.length)];
-            if (match) {
-                [self.arrayChosen addObject:name];
-            }
-        }
-    }
-    [self.tableView reloadData];
+    //NSString* text = [self.doctorNameField.text lowercaseString];
+    //NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
+        [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource/Delegates methods
@@ -126,16 +148,18 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-        
-        NSString* CellIdentifier = @"standard";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        }
-        
-        cell.textLabel.text = [self.arrayChosen objectAtIndex:[indexPath row]];
-        
-        return cell;
+    
+    NSString* CellIdentifier = @"standard";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    DoctorModel *currentDoctor = [self.arrayChosen objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = currentDoctor.description;
+    
+    return cell;
 }
 
 @end

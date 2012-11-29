@@ -14,12 +14,6 @@
 @property (nonatomic) IBOutlet UITableView* tableView;
 @property (nonatomic) IBOutlet UIView* subView;
 @property (nonatomic) IBOutlet UITextField* doctorNameField;
-@property (nonatomic) NSMutableArray* arrayDisciplines;
-@property (nonatomic) NSMutableArray* arrayDentists;
-@property (nonatomic) NSMutableArray* arrayPediatritians;
-@property (nonatomic) NSMutableArray* arrayGynecologists;
-@property (nonatomic) NSMutableArray* arrayGeneralDoctors;
-@property (nonatomic) NSMutableArray* arrayAll;
 @property (nonatomic) NSMutableArray* arrayChosen;
 
 
