@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface AppointmentDetailViewController : UIViewController
-@property (nonatomic,strong) IBOutlet UILabel *doctorLabel;
-@property (nonatomic,strong) IBOutlet UILabel *disciplineLabel;
-@property (nonatomic,strong) IBOutlet UILabel *dateLabel;
-@property (nonatomic,strong) IBOutlet UILabel *timeLabel;
-@property (nonatomic,strong) IBOutlet UITextView *noteTextView;
-@property (nonatomic,strong) IBOutlet UIButton *changeButton;
-@property (nonatomic,strong) IBOutlet UIButton *cancelButton;
+@property (nonatomic) IBOutlet UILabel *doctorLabel;
+@property (nonatomic) IBOutlet UILabel *disciplineLabel;
+@property (nonatomic) IBOutlet UILabel *dateLabel;
+@property (nonatomic) IBOutlet UILabel *timeLabel;
+@property (nonatomic) IBOutlet UITextView *noteTextView;
+@property (nonatomic) IBOutlet UIButton *changeButton;
+@property (nonatomic) IBOutlet UIButton *cancelButton;
 
 @end

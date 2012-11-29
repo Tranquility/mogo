@@ -9,9 +9,6 @@
 #import "AppointmentTableViewCell.h"
 
 @implementation AppointmentTableViewCell
-@synthesize doctorLabel = _doctorLabel;
-@synthesize doctorDisciplineLabel = _doctorDisciplineLabel;
-@synthesize DateLabel  = _DateLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
