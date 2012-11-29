@@ -15,7 +15,7 @@
     [super setUp];
     
     self.patient = [[PatientModel alloc] initWithFirstName:@"Max" lastName:@"Mustermann" mail:@"mmustermann@gmail.com" telephone:@"0401726354"];
-    
+
     STAssertNotNil(self.patient, nil);
 }
 
@@ -24,11 +24,13 @@
     [super tearDown];
 }
 
-- (void)testProperties
+- (void)testPatient
 {
     STAssertEqualObjects(@"Max", self.patient.firstName, nil);
     STAssertEqualObjects(@"Mustermann", self.patient.lastName, nil);
     STAssertEqualObjects(@"mmustermann@gmail.com", self.patient.mail, nil);
     STAssertEqualObjects(@"0401726354", self.patient.telephone, nil);
 }
+
+
 @end

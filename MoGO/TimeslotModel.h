@@ -10,9 +10,9 @@
 
 @interface TimeslotModel : NSObject
 
-@property (nonatomic, readonly) NSDate *start;
-@property (nonatomic, readonly) NSDate *end;
-@property (nonatomic, readonly) NSInteger appointmentDuration;
+@property (nonatomic) NSDate *start;
+@property (nonatomic) NSDate *end;
+@property (nonatomic) NSInteger appointmentDuration;
 @property (nonatomic) NSMutableArray *appointments;
 
 - (TimeslotModel*)initWithStartTime:(NSDate*)start andEndTime:(NSDate*)end andAppointmentDuration:(NSInteger)duration;

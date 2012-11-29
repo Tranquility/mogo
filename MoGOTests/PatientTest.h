@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "PatientModel.h"
+#import "TimeslotModel.h"
 
 @interface PatientTest : SenTestCase
 
