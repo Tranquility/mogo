@@ -8,10 +8,11 @@
 
 #import "MakeAppointmentViewController.h"
 #import "MonthTemplateView.h"
+#import "MonthTemplateOverviewView.h"
 
 @interface MakeAppointmentViewController ()
-@property (nonatomic,strong) MonthTemplateView *month1;
-@property (nonatomic,strong) MonthTemplateView *month2;
+@property (nonatomic,strong) MonthTemplateOverviewView *month1;
+@property (nonatomic,strong) MonthTemplateOverviewView *month2;
 
 @end
 
@@ -27,7 +28,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _month1 = [[MonthTemplateView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        _month1 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
         [_calendarScrollView addSubview:_month1];
     }
     return self;
@@ -36,8 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.month1 = [[MonthTemplateView alloc] initWithFrame:CGRectMake(0, 0,320, 283)];
-    self.month2 = [[MonthTemplateView alloc] initWithFrame:CGRectMake(320, 0,320, 283)];
+	self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(0, 0,320, 283)];
+    self.month2 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(320, 0,320, 283)];
 
     [_calendarScrollView addSubview:_month1];
     [_calendarScrollView addSubview:_month2];

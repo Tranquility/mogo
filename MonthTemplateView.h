@@ -10,6 +10,6 @@
 
 @interface MonthTemplateView : UIView
 
-@property (nonatomic) IBOutlet UIView *mainView;
+@property (nonatomic) IBOutlet UIView *dayView;
 
 @end

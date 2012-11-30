@@ -10,6 +10,9 @@
 		2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */; };
 		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
 		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
+		991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */; };
+		991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */; };
+		991F17101668F313008DBAC7 /* MonthCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 991F170F1668F313008DBAC7 /* MonthCollectionViewCell.m */; };
 		DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD2D1660E3F300C79B32 /* SearchViewController.m */; };
 		DABBFD341660E52800C79B32 /* AppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD331660E52800C79B32 /* AppointmentViewController.m */; };
 		DAC9BA031660D7FA00C36D2E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
@@ -36,6 +39,11 @@
 		2D163A211660F116000A65A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2D163A231661021D000A65A7 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		2D163A241661021D000A65A7 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
+		991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthTemplateOverviewView.xib; sourceTree = "<group>"; };
+		991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthTemplateOverviewView.h; sourceTree = "<group>"; };
+		991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthTemplateOverviewView.m; sourceTree = "<group>"; };
+		991F170E1668F313008DBAC7 /* MonthCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCollectionViewCell.h; sourceTree = "<group>"; };
+		991F170F1668F313008DBAC7 /* MonthCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthCollectionViewCell.m; sourceTree = "<group>"; };
 		DABBFD2C1660E3F300C79B32 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		DABBFD2D1660E3F300C79B32 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		DABBFD321660E52800C79B32 /* AppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentViewController.h; sourceTree = "<group>"; };
@@ -116,6 +124,11 @@
 				F16BF0F916625777000E5FC0 /* MonthTemplateView.xib */,
 				F16BF0FC16625794000E5FC0 /* MonthTemplateView.h */,
 				F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */,
+				991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */,
+				991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */,
+				991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */,
+				991F170E1668F313008DBAC7 /* MonthCollectionViewCell.h */,
+				991F170F1668F313008DBAC7 /* MonthCollectionViewCell.m */,
 				F16BF0FF16625926000E5FC0 /* MakeAppointmentViewController.h */,
 				F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */,
 				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
@@ -133,9 +146,9 @@
 				DABBFD2D1660E3F300C79B32 /* SearchViewController.m */,
 				DABBFD321660E52800C79B32 /* AppointmentViewController.h */,
 				DABBFD331660E52800C79B32 /* AppointmentViewController.m */,
-				DAC9BA091660D7FA00C36D2E /* Supporting Files */,
 				F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */,
 				F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */,
+				DAC9BA091660D7FA00C36D2E /* Supporting Files */,
 			);
 			path = MoGO;
 			sourceTree = "<group>";
@@ -217,6 +230,7 @@
 				F16BF0FA16625777000E5FC0 /* MonthTemplateView.xib in Resources */,
 				F16BF10616626669000E5FC0 /* arztsuche.png in Resources */,
 				F16BF10916626811000E5FC0 /* accessories-date.png in Resources */,
+				991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +251,8 @@
 				2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */,
 				F16BF0FE16625794000E5FC0 /* MonthTemplateView.m in Sources */,
 				F16BF10116625926000E5FC0 /* MakeAppointmentViewController.m in Sources */,
+				991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */,
+				991F17101668F313008DBAC7 /* MonthCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

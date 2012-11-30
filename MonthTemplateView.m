@@ -10,15 +10,15 @@
 
 @implementation MonthTemplateView
 
-@synthesize mainView = _mainView;
+@synthesize dayView = _dayView;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         [[NSBundle mainBundle] loadNibNamed:@"MonthTemplateView" owner:self options:nil];
-        self.mainView.frame = self.bounds;
-        [self addSubview:self.mainView];
+        self.dayView.frame = self.bounds;
+        [self addSubview:self.dayView];
         self.backgroundColor = UIColor.redColor;
     }
     return self;

@@ -13,8 +13,9 @@
 #define ZOOMFACTOR 500.344
 
 
-@interface MedicDetailViewController : UIViewController
+@interface MedicDetailViewController : UIViewController <UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet MKMapView *mapOutlet;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
 @end

@@ -10,10 +10,13 @@
 #import "MapViewAnnotation.h"
 
 
-@interface MedicDetailViewController ()
+@interface MedicDetailViewController () 
 @end
 
 @implementation MedicDetailViewController
+
+@synthesize mapOutlet = _mapOutlet;
+@synthesize scrollView = _scrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +32,7 @@
     //Statischer Aufruf weil Test.
     [self drawMap:53.556581 andLongitute:9.990402 andString:@"Dr. Arzt"];
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	_scrollView.contentSize = CGSizeMake(320, 750);
 }
 
 -(void)drawMap:(double)withLatitude andLongitute:(double)longitude andString:(NSString*)arztname
@@ -59,6 +62,7 @@
 - (void)viewDidUnload {
 
     [self setMapOutlet:nil];
+    [self setScrollView:nil];
     [super viewDidUnload];
 }
 @end
