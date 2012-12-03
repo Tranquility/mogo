@@ -33,4 +33,39 @@
     }
 }
 
+- (BOOL)isOpenAtTime:(Time*)time andDay:(Weekdays)day {
+    NSMutableArray *chosen;
+    
+    switch (day) {
+        case 1:
+            chosen = self.monday;
+            break;
+        case 2:
+            chosen = self.tuesday;
+            break;
+        case 3:
+            chosen = self.wednesday;
+            break;
+        case 4:
+            chosen = self.thursday;
+            break;
+        case 5:
+            chosen = self.friday;
+            break;
+        default:
+            break;
+    }
+    
+    for (NSArray *tuple in chosen) {
+        if (![time isEarlierThan:[tuple objectAtIndex:0]] && [time isEarlierThan:[tuple objectAtIndex:1]]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+    
+}
+
+
+
 @end

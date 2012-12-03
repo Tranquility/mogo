@@ -27,4 +27,6 @@ typedef enum {
 
 - (void)addOpeningTime:(Time*)opening andClosingTime:(Time*)closing forDay:(Weekdays)day;
 
+- (BOOL)isOpenAtTime:(Time*)time andDay:(Weekdays)day;
+
 @end
