@@ -29,9 +29,9 @@
     NSInteger numberOfAppointments = interval / 60 / self.appointmentDuration;
     NSLog(@"%d", numberOfAppointments);
     self.appointments = [[NSMutableArray alloc] init];
-
+    NSNumber *empty = [NSNumber numberWithBool:NO];
     for (NSInteger i = 0; i < numberOfAppointments; i += 1) {
-        [self.appointments replaceObjectAtIndex:i withObject:[NSNumber numberWithBool:YES]];
+        [self.appointments addObject: empty];
     }
 }
 
@@ -45,7 +45,7 @@
        [NSException raise:@"Invalid index value" format:@"Index (%d) is out of bounds!", index];
     }
 
-    return [[self.appointments objectAtIndex:index] boolValue];
+    return ![[self.appointments objectAtIndex:index] boolValue];
 }
 
 

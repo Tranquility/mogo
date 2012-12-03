@@ -14,7 +14,7 @@
 {
     [super setUp];
     
-    self.patient = [[PatientModel alloc] initWithFirstName:@"Max" lastName:@"Mustermann" mail:@"mmustermann@gmail.com" telephone:@"0401726354"];
+    self.patient = [[PatientModel alloc] initWithId:11 firstName:@"Max" lastName:@"Mustermann" mail:@"mmustermann@gmail.com" telephone:@"0401726354"];
 
     STAssertNotNil(self.patient, nil);
 }

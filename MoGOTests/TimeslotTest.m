@@ -32,7 +32,7 @@
 {
     STAssertEquals(15, self.slot.appointmentDuration, nil);
     STAssertEquals(8, [self.slot numberOfAppointments], nil);
-    STAssertFalse([self.slot isAppointmentAvailable:0], nil);
+    STAssertTrue([self.slot isAppointmentAvailable:0], nil);
 }
 
 @end
