@@ -13,5 +13,8 @@
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIButton *buttonRight;
 @property (nonatomic) IBOutlet UIButton *buttonLeft;
+@property (nonatomic) IBOutlet UIView *kalView;
+
+
 
 @end

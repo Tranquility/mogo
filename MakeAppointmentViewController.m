@@ -19,17 +19,14 @@
 @implementation MakeAppointmentViewController
 
 
-@synthesize calendarScrollView = _calendarScrollView;
-@synthesize month1 = _month1;
-@synthesize month2 = _month2;
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _month1 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-        [_calendarScrollView addSubview:_month1];
+        CGRect r = CGRectMake(0,0,320,364);
+        self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:r];
+        
+        [self.calendarScrollView addSubview:self.month1.mainView];
     }
     return self;
 }
@@ -37,12 +34,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(0, 0,320, 283)];
-    self.month2 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(320, 0,320, 283)];
-
-    [_calendarScrollView addSubview:_month1];
-    [_calendarScrollView addSubview:_month2];
-    self.calendarScrollView.contentSize = CGSizeMake(640, 283);
+	//self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(0, 0,320, 283)];
+    //self.month2 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(320, 0,320, 283)];
+    CGRect r = CGRectMake(0,0,320,283);
+    self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:r];
+    
+    [self.calendarScrollView addSubview:self.month1.mainView];
+    //[_calendarScrollView addSubview:_month2];
+    self.calendarScrollView.contentSize = CGSizeMake(320, 364);
     }
 - (void)didReceiveMemoryWarning
 {
