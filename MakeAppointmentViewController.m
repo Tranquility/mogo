@@ -23,10 +23,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        CGRect r = CGRectMake(0,0,320,364);
-        self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:r];
+       // CGRect r = CGRectMake(0,0,320,364);
+       // self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:r andWithMonth:12 andWithYear:2012];
         
-        [self.calendarScrollView addSubview:self.month1.mainView];
+       // [self.calendarScrollView addSubview:self.month1.mainView];
     }
     return self;
 }
@@ -36,12 +36,12 @@
     [super viewDidLoad];
 	//self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(0, 0,320, 283)];
     //self.month2 = [[MonthTemplateOverviewView alloc] initWithFrame:CGRectMake(320, 0,320, 283)];
-    CGRect r = CGRectMake(0,0,320,283);
-    self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:r];
-    
-    [self.calendarScrollView addSubview:self.month1.mainView];
+    CGRect r = CGRectMake(0,0,320,364);
+    self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:r andWithMonth:12 andWithYear:2012];
     //[_calendarScrollView addSubview:_month2];
     self.calendarScrollView.contentSize = CGSizeMake(320, 364);
+    [self.calendarScrollView addSubview:self.month1.mainView];
+
     }
 - (void)didReceiveMemoryWarning
 {

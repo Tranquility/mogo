@@ -15,15 +15,17 @@
     self = [super initWithFrame:frame];
     if (self) {
         [[NSBundle mainBundle] loadNibNamed:@"DayTemplateView" owner:self options:nil];
-        self.day.text = [NSString stringWithFormat:@"%d",day];
-        if (status == 1)
+        
+        
+        if (status == 0)
         {
-            self.day.backgroundColor = UIColor.grayColor;
+            self.day.text=@"";
         }
         else
         {
             self.day.backgroundColor = UIColor.greenColor;
-        }
+            self.day.text = [NSString stringWithFormat:@"%d",day];        }
+        
         self.clipsToBounds = NO;
         self.mainView.frame = self.bounds;
         [self addSubview:self.mainView];

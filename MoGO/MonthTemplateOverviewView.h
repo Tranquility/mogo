@@ -16,5 +16,8 @@
 @property (nonatomic) IBOutlet UIView *kalView;
 
 
+- (id)initWithFrame:(CGRect)frame andWithMonth:(NSInteger)currentMonth andWithYear:(NSInteger)currentYear;
+
+
 
 @end
