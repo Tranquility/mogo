@@ -25,7 +25,7 @@
     return self;
 }
 
-- (NSString*)toString {
+- (NSString*)description {
     return [NSString stringWithFormat:@"%@ %@ %@", self.title, self.firstName, self.lastName];
 }
 

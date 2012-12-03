@@ -21,6 +21,6 @@
 
 - (DoctorModel*)initWithTitle:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone address:(AddressModel*)address;
 
-- (NSString*)toString;
+- (NSString*)description;
 
 @end
