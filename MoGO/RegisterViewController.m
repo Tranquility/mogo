@@ -6,15 +6,23 @@
 //
 //
 
-#import "LoginViewController.h"
+#import "RegisterViewController.h"
 #import "MailManipulator.h"
 #define PASSWORD_MIN_SIZE 5
 
-@interface LoginViewController ()
+static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
+static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
+static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
+static const CGFloat PORTRAIT_KEYBOARD_HIGHT = 216;
+static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
+
+
+@interface RegisterViewController ()
+
 
 @end
 
-@implementation LoginViewController
+@implementation RegisterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +37,6 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Registrieren"];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,11 +117,59 @@
     return [self passwordsEqual] && [self passwordLengthValid] && [self isEveryFieldFilled] && [mailChecker isMailFormatValid:_mailAdressField.text];
 }
 
+// Text field specific functions below
 
 -(BOOL)textFieldShouldReturn:(UITextField *) theTextField
 {
     [theTextField   resignFirstResponder];
     return YES;
+}
+
+-(void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
+    CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
+    CGFloat midLine = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
+    CGFloat numerator = midLine - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
+    CGFloat denominator = (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION) * viewRect.size.height;
+    CGFloat heightFraction = numerator / denominator;
+    
+    if (heightFraction < 0.0)
+    {
+        heightFraction = 0.0;
+    }
+    else if (heightFraction > 1.0)
+    {
+        heightFraction = 1.0;
+    }
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        animatedDistance = floor(PORTRAIT_KEYBOARD_HIGHT * heightFraction);
+    }
+    else
+    {
+        animatedDistance = floor(LANDSCPE_KEYBOARD_HIGHT * heightFraction);
+    }
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y -= animatedDistance;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    [self.view setFrame:viewFrame];
+    [UIView commitAnimations];
+
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y += animatedDistance;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    [self.view setFrame:viewFrame];
+    [UIView commitAnimations];
 }
 
 

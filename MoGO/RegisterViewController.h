@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
+@interface RegisterViewController : UIViewController
+{
+    CGFloat scrollDistance;
+    CGFloat animatedDistance;
+}
+
+
 @property (weak, nonatomic) IBOutlet UITextField *mailAdressField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordConfirmField;
