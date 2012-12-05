@@ -11,7 +11,7 @@
 @interface DayTemplateView : UIView
 
 @property (nonatomic) IBOutlet UIView *mainView;
-@property (nonatomic) IBOutlet UILabel *day;
+@property (nonatomic) IBOutlet UILabel *dayLabel;
 
 - (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day;
 
