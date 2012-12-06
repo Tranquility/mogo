@@ -19,6 +19,4 @@
 
 - (AddressModel*)initWithStreet:(NSString*)street streetNumber:(NSInteger)number zipCode:(NSString*)zipCode city:(NSString*)city coordinate:(CLLocationCoordinate2D*)coordinate;
 
-- (NSString*)toString;
-
 @end
