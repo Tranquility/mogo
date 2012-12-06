@@ -19,7 +19,7 @@
     location.longitude = 10.786232;
     
     self.address = [[AddressModel alloc] initWithStreet:@"Schweriner Straße" streetNumber:49 zipCode:@"23909" city:@"Ratzeburg" coordinate:&location];
-    self.doctor = [[DoctorModel alloc] initWithTitle:@"Dr." gender:@"male" firstName:@"Thomas" lastName:@"Block" mail:@"info@block.de" telephone:@"045412041" address:self.address];
+    self.doctor = [[DoctorModel alloc] initWithId:0 title:@"Dr." gender:@"male" firstName:@"Thomas" lastName:@"Block" mail:@"info@block.de" telephone:@"045412041" address:self.address];
     
     STAssertNotNil(self.doctor, nil);
 }
