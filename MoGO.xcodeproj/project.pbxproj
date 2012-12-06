@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		25872568C99647269B8F4825 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B5E67D3F6E46409EA1866E /* libPods.a */; };
 		25E8BE981670B56600807CC7 /* DrugDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E8BE971670B56600807CC7 /* DrugDetailViewController.m */; };
-		25E8BE9A1670B5FE00807CC7 /* qrcode_sommergelee.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E8BE991670B5FE00807CC7 /* qrcode_sommergelee.png */; };
 		25FAB33216661B62008EB8CF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FAB33116661B62008EB8CF /* SenTestingKit.framework */; };
 		25FAB33316661B62008EB8CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
 		25FAB33416661B62008EB8CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA041660D7FA00C36D2E /* Foundation.framework */; };
@@ -347,7 +346,6 @@
 				DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */,
 				DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */,
 				F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */,
-				25E8BE9A1670B5FE00807CC7 /* qrcode_sommergelee.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
