@@ -11,10 +11,11 @@
 
 @interface AppointmentModel : NSObject
 
-@property (nonatomic) int id;
-@property (nonatomic,strong) DoctorModel *doctor;
-@property (nonatomic,strong) NSDate *date;
-@property (nonatomic,strong) NSString *note;
+@property (nonatomic) NSInteger idNumber;
+@property (nonatomic) DoctorModel *doctor;
+@property (nonatomic) NSDate *date;
+@property (nonatomic) NSString *note;
 
-- (AppointmentModel*)initWithId:(int)id andDoctor:(DoctorModel*)doctor andDate:(NSDate*)date andNote:(NSString*)note;
+- (AppointmentModel*)initWithId:(NSInteger)idNumber doctor:(DoctorModel*)doctor andDate:(NSDate*)date andNote:(NSString*)note;
+
 @end

@@ -1,5 +1,5 @@
 //
-//  PatientTest.h
+//  TimeslotTest.h
 //  MoGO
 //
 //  Created by 0schleew on 29.11.12.
@@ -7,11 +7,10 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "PatientModel.h"
 #import "TimeslotModel.h"
 
-@interface PatientTest : SenTestCase
+@interface TimeslotTest : SenTestCase
 
-@property (nonatomic) PatientModel *patient;
+@property (nonatomic) TimeslotModel *slot;
 
 @end
