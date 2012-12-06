@@ -43,12 +43,13 @@
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     for (id doctorJson in response) {
+                                        NSInteger idNumber  = [[doctorJson valueForKeyPath:@"id"] intValue];
                                         NSString *firstname = [doctorJson valueForKeyPath:@"firstname"];
-                                        NSString *lastname = [doctorJson valueForKeyPath:@"lastname"];
-                                        NSString *gender = [doctorJson valueForKeyPath:@"gender"];
-                                        NSString *mail = [doctorJson valueForKeyPath:@"mail"];
+                                        NSString *lastname  = [doctorJson valueForKeyPath:@"lastname"];
+                                        NSString *gender    = [doctorJson valueForKeyPath:@"gender"];
+                                        NSString *mail      = [doctorJson valueForKeyPath:@"mail"];
                                         NSString *telephone = [doctorJson valueForKeyPath:@"telephone"];
-                                        NSString *title = [doctorJson valueForKeyPath:@"title"];
+                                        NSString *title     = [doctorJson valueForKeyPath:@"title"];
                                         CLLocationCoordinate2D location;
                                         location.latitude = 1.123456;
                                         location.longitude = 6.54321;
@@ -57,13 +58,14 @@
                                                                                              zipCode:@"123456"
                                                                                                 city:@"Hamburg"
                                                                                           coordinate:&location];
-                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithTitle:title
-                                                                                               gender:gender
-                                                                                            firstName:firstname
-                                                                                             lastName:lastname
-                                                                                                 mail:mail
-                                                                                            telephone:telephone
-                                                                                              address:address];
+                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:idNumber
+                                                                                             title:title
+                                                                                            gender:gender
+                                                                                         firstName:firstname
+                                                                                          lastName:lastname
+                                                                                              mail:mail
+                                                                                         telephone:telephone
+                                                                                           address:address];
                                         [self.arrayChosen addObject:doctorModel];
                                     }
                                     [self.tableView reloadData];
