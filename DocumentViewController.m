@@ -28,21 +28,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.drugList = [[NSArray alloc] initWithObjects:@"HNO", @"Pillen", nil];
-    self.transferList = [[NSArray alloc] initWithObjects:@"Dr.Scrum", @"Dr.Master", nil];
-    self.recordList =[[NSArray alloc]initWithObjects:@"Patient X", nil];
+    self.drugList = @[@"HNO", @"Pillen"];
+    self.transferList = @[@"Dr.Scrum", @"Dr.Master"];
+    self.recordList = @[@"Patient X"];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 // Customize the number of rows in the table view.
@@ -67,7 +61,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0)
     {
-        NSString *cellIdentifier = @"viewcell1";
+        NSString *cellIdentifier = @"drugcell";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
@@ -84,7 +78,7 @@
     
     if (indexPath.section == 1)
     {
-        NSString *cellIdentifier = @"viewcell2";
+        NSString *cellIdentifier = @"transfercell";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
@@ -101,7 +95,7 @@
     
     if (indexPath.section == 2)
     {
-        NSString *cellIdentifier = @"viewcell3";
+        NSString *cellIdentifier = @"recordcell";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
@@ -117,6 +111,14 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0)
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self performSegueWithIdentifier:@"toDrugDetail" sender:self];
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
