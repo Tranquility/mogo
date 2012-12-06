@@ -407,11 +407,14 @@
 				DAF677F3166782F20074EDAC /* AddressModel.m in Sources */,
 				DAF677F61667887E0074EDAC /* PatientModel.m in Sources */,
 				BA65DC771667BE80007F7140 /* ApiClient.m in Sources */,
+<<<<<<< HEAD
 				DAF230D91667B91300AAE358 /* VisitingHoursModel.m in Sources */,
 				DAF230DC1667BBA100AAE358 /* Time.m in Sources */,
 				DAF230DF1667CA2F00AAE358 /* TimeslotModel.m in Sources */,
+=======
 				25FBF0CB166F79A800E9F129 /* DocumentViewController.m in Sources */,
 				25E8BE981670B56600807CC7 /* DrugDetailViewController.m in Sources */,
+>>>>>>> add/document
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

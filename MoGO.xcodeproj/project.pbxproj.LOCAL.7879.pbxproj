@@ -8,13 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		25872568C99647269B8F4825 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B5E67D3F6E46409EA1866E /* libPods.a */; };
-		25E8BE981670B56600807CC7 /* DrugDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E8BE971670B56600807CC7 /* DrugDetailViewController.m */; };
-		25E8BE9A1670B5FE00807CC7 /* qrcode_sommergelee.png in Resources */ = {isa = PBXBuildFile; fileRef = 25E8BE991670B5FE00807CC7 /* qrcode_sommergelee.png */; };
 		25FAB33216661B62008EB8CF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FAB33116661B62008EB8CF /* SenTestingKit.framework */; };
 		25FAB33316661B62008EB8CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
 		25FAB33416661B62008EB8CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA041660D7FA00C36D2E /* Foundation.framework */; };
 		25FAB33A16661B62008EB8CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25FAB33816661B62008EB8CF /* InfoPlist.strings */; };
-		25FBF0CB166F79A800E9F129 /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FBF0CA166F79A800E9F129 /* DocumentViewController.m */; };
 		2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */; };
 		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
 		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
@@ -46,16 +43,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		25E8BE961670B56600807CC7 /* DrugDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrugDetailViewController.h; sourceTree = "<group>"; };
-		25E8BE971670B56600807CC7 /* DrugDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrugDetailViewController.m; sourceTree = "<group>"; };
-		25E8BE991670B5FE00807CC7 /* qrcode_sommergelee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qrcode_sommergelee.png; path = ../../../Downloads/qrcode_sommergelee.png; sourceTree = "<group>"; };
 		25FAB33016661B62008EB8CF /* MoGOTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoGOTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25FAB33116661B62008EB8CF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		25FAB33716661B62008EB8CF /* MoGOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoGOTests-Info.plist"; sourceTree = "<group>"; };
 		25FAB33916661B62008EB8CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		25FAB33E16661B62008EB8CF /* MoGOTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoGOTests-Prefix.pch"; sourceTree = "<group>"; };
-		25FBF0C9166F79A800E9F129 /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocumentViewController.h; path = ../DocumentViewController.h; sourceTree = "<group>"; };
-		25FBF0CA166F79A800E9F129 /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentViewController.m; path = ../DocumentViewController.m; sourceTree = "<group>"; };
 		2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MedicDetailViewController.h; path = ../MedicDetailViewController.h; sourceTree = "<group>"; };
 		2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedicDetailViewController.m; path = ../MedicDetailViewController.m; sourceTree = "<group>"; };
 		2D163A211660F116000A65A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -197,16 +189,11 @@
 			isa = PBXGroup;
 			children = (
 				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
-				25E8BE991670B5FE00807CC7 /* qrcode_sommergelee.png */,
 				F13335F91662317300502A50 /* DataModel */,
 				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
 				DAC9BA121660D7FA00C36D2E /* AppDelegate.m */,
 				BA65DC751667BE80007F7140 /* ApiClient.h */,
 				BA65DC761667BE80007F7140 /* ApiClient.m */,
-				25FBF0C9166F79A800E9F129 /* DocumentViewController.h */,
-				25FBF0CA166F79A800E9F129 /* DocumentViewController.m */,
-				25E8BE961670B56600807CC7 /* DrugDetailViewController.h */,
-				25E8BE971670B56600807CC7 /* DrugDetailViewController.m */,
 				2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */,
 				2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */,
 				2D163A231661021D000A65A7 /* MapViewAnnotation.h */,
@@ -342,7 +329,6 @@
 				DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */,
 				DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */,
 				F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */,
-				25E8BE9A1670B5FE00807CC7 /* qrcode_sommergelee.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,8 +396,6 @@
 				DAF230D91667B91300AAE358 /* VisitingHoursModel.m in Sources */,
 				DAF230DC1667BBA100AAE358 /* Time.m in Sources */,
 				DAF230DF1667CA2F00AAE358 /* TimeslotModel.m in Sources */,
-				25FBF0CB166F79A800E9F129 /* DocumentViewController.m in Sources */,
-				25E8BE981670B56600807CC7 /* DrugDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
