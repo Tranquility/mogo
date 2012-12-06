@@ -19,6 +19,6 @@
 
 - (NSInteger)numberOfAppointments;
 
-- (BOOL) isAppointmentAvailable:(NSInteger)id;
+- (BOOL) isAppointmentAvailable:(NSInteger)index;
 
 @end

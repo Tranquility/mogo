@@ -27,6 +27,7 @@
 		DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */; };
 		DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */; };
 		DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA1B1660D7FA00C36D2E /* ViewController.m */; };
+		DAEB161E1670B88F00665B1F /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB161D1670B88F00665B1F /* DocumentModel.m */; };
 		DAF230D91667B91300AAE358 /* VisitingHoursModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF230D81667B91300AAE358 /* VisitingHoursModel.m */; };
 		DAF230DC1667BBA100AAE358 /* Time.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF230DB1667BBA100AAE358 /* Time.m */; };
 		DAF230DF1667CA2F00AAE358 /* TimeslotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF230DE1667CA2F00AAE358 /* TimeslotModel.m */; };
@@ -74,6 +75,8 @@
 		DAC9BA181660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DAC9BA1A1660D7FA00C36D2E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DAC9BA1B1660D7FA00C36D2E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DAEB161C1670B88F00665B1F /* DocumentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentModel.h; sourceTree = "<group>"; };
+		DAEB161D1670B88F00665B1F /* DocumentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentModel.m; sourceTree = "<group>"; };
 		DAF230D71667B91300AAE358 /* VisitingHoursModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitingHoursModel.h; sourceTree = "<group>"; };
 		DAF230D81667B91300AAE358 /* VisitingHoursModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitingHoursModel.m; sourceTree = "<group>"; };
 		DAF230DA1667BBA100AAE358 /* Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Time.h; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				DAF230DB1667BBA100AAE358 /* Time.m */,
 				DAF230DD1667CA2F00AAE358 /* TimeslotModel.h */,
 				DAF230DE1667CA2F00AAE358 /* TimeslotModel.m */,
+				DAEB161C1670B88F00665B1F /* DocumentModel.h */,
+				DAEB161D1670B88F00665B1F /* DocumentModel.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 				DAF230D91667B91300AAE358 /* VisitingHoursModel.m in Sources */,
 				DAF230DC1667BBA100AAE358 /* Time.m in Sources */,
 				DAF230DF1667CA2F00AAE358 /* TimeslotModel.m in Sources */,
+				DAEB161E1670B88F00665B1F /* DocumentModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
