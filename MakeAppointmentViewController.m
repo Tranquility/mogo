@@ -12,9 +12,9 @@
 
 @interface MakeAppointmentViewController ()
 
-//Right now we hold 4 calendar-months at once
-//TODO: this could be changed to a list, enabling better switches of months 
-@property (nonatomic,strong) MonthTemplateOverviewView *month1;
+//Variable for creating one calendar view and add it to the subvie
+@property (nonatomic,strong) MonthTemplateOverviewView *month;
+//The current Offset of the ScrollView (between [0...4*320]
 @property NSInteger currentOffset;
 
 @end
@@ -34,9 +34,9 @@
     [super viewDidLoad];
    
     //Set ScrollView width to 4*Size of a calendar. height=height of one calendar
-    //[self.calendarScrollView setFrame:CGRectMake(0, 0, 4*320, 334)];
     self.calendarScrollView.contentSize = CGSizeMake(4*320, 334);
 
+    //Current offset is 0 (actual month)
     self.currentOffset = 0;
     
     //Initialize the calendar elements with month and year
@@ -47,16 +47,22 @@
     {
         //Size of one Calendar
         CGRect r = CGRectMake(i*320,0,320,334);
-        self.month1 = [[MonthTemplateOverviewView alloc] initWithFrame:r andWithMonth:startMonth andWithYear:startYear andwithParentVC:self];
         
-        //nächster Monat
+        //Create calendarmonth ViewController
+        self.month = [[MonthTemplateOverviewView alloc] initWithFrame:r andWithMonth:startMonth andWithYear:startYear andwithParentVC:self];
+
+        //Add Calendar View as a subview to the scrollview and tell the buttons which function to call when they are pressed
+        [self.calendarScrollView addSubview:self.month.mainView];
+        [self.month.buttonLeft addTarget:self action:@selector(moveCalendarViewtoLeft) forControlEvents:UIControlEventTouchUpInside];
+        [self.month.buttonRight addTarget:self action:@selector(moveCalendarViewtoRight) forControlEvents:UIControlEventTouchUpInside];
+        
+        //next month
         startMonth++;
         if(startMonth==13)
         {
             startMonth=01;
             startYear++;
         }
-        [self.calendarScrollView addSubview:self.month1.mainView];
     }
 
 }
@@ -66,22 +72,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+//Moves the calendarScrollView to the previous month
 -(void) moveCalendarViewtoLeft{
     if(self.currentOffset!=0)
     {
-        self.currentOffset = self.currentOffset -320;
-        //[self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0)];
+        self.currentOffset = self.currentOffset - 320;
+        [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
     }
 }
 
+//Moves the calendarScrollView to the next month
 -(void) moveCalendarViewtoRight{
     self.currentOffset = self.currentOffset + 320;
-    if(self.currentOffset >1280)
+    if(self.currentOffset >960)
     {
-        self.currentOffset = 1280;
+        self.currentOffset = 960;
     }
-    //[self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0)];
+    [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
 }
 
 

@@ -11,8 +11,6 @@
 
 @implementation MonthTemplateOverviewView
 
-
-
 - (id)initWithFrame:(CGRect)frame andWithMonth:(NSInteger)currentMonth andWithYear:(NSInteger)currentYear andwithParentVC:(MakeAppointmentViewController*)myParentVC
 {
     
@@ -30,10 +28,7 @@
         [title appendString:[NSString stringWithFormat:@" / %d",currentYear]];
         self.titleLabel.text = title;
         
-        [self.buttonLeft addTarget:self action:@selector(pressScrollButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self.buttonRight addTarget:self action:@selector(pressScrollButton:) forControlEvents:UIControlEventTouchUpInside];
-
-        
+                
         //
         // Do some preparations for the Calendar
         //
@@ -134,21 +129,6 @@
     return self;
 }
 
-- (void)pressScrollButton:(id)sender {
-    
-    UIButton *pressedButton = (UIButton*)sender;
-    
-    if([pressedButton.restorationIdentifier isEqualToString:@"buttonLeft"])
-    {
-        [self.myParentVC moveCalendarViewtoLeft];
-    }
-    
-    if([pressedButton.restorationIdentifier isEqualToString:@"buttonRight"])
-    {
-        [self.myParentVC moveCalendarViewtoRight];
-    }
-    
-}
 
 
 /*
