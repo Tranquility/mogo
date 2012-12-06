@@ -12,4 +12,8 @@
 
 @property (nonatomic,strong) IBOutlet UIScrollView *calendarScrollView;
 
+
+-(void) moveCalendarViewtoLeft;
+-(void) moveCalendarViewtoRight;
+
 @end

@@ -9,17 +9,31 @@
 #import "MonthTemplateOverviewView.h"
 #import "DayTemplateView.h"
 
-@implementation MonthTemplateOverviewView 
+@implementation MonthTemplateOverviewView
 
 
 
-- (id)initWithFrame:(CGRect)frame andWithMonth:(NSInteger)currentMonth andWithYear:(NSInteger)currentYear
+- (id)initWithFrame:(CGRect)frame andWithMonth:(NSInteger)currentMonth andWithYear:(NSInteger)currentYear andwithParentVC:(MakeAppointmentViewController*)myParentVC
 {
     
     self = [super initWithFrame:frame];
     [[NSBundle mainBundle] loadNibNamed:@"MonthTemplateOverviewView" owner:self options:nil];
-    if (self) {
     
+    self.mainView.frame = frame;
+    
+    self.myParentVC = myParentVC;
+    
+    if (self) {
+        
+        // Set the Title
+        NSMutableString *title =  [NSMutableString stringWithFormat:@"%d", currentMonth];
+        [title appendString:[NSString stringWithFormat:@" / %d",currentYear]];
+        self.titleLabel.text = title;
+        
+        [self.buttonLeft addTarget:self action:@selector(pressScrollButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.buttonRight addTarget:self action:@selector(pressScrollButton:) forControlEvents:UIControlEventTouchUpInside];
+
+        
         //
         // Do some preparations for the Calendar
         //
@@ -109,27 +123,42 @@
                         status = 2; //else set status=1 (no appointmentslots available)
                     }
                 }
-               
+                
                 //Draw Day to Calendar-View (by adding a sub-view)
                 [self.kalView addSubview:[[DayTemplateView alloc] initWithFrame:r andWithStatus:status andWithDay:actualDay]];
-                                
+                
             }
         }
-       
+        
     }
     return self;
 }
 
+- (void)pressScrollButton:(id)sender {
+    
+    UIButton *pressedButton = (UIButton*)sender;
+    
+    if([pressedButton.restorationIdentifier isEqualToString:@"buttonLeft"])
+    {
+        [self.myParentVC moveCalendarViewtoLeft];
+    }
+    
+    if([pressedButton.restorationIdentifier isEqualToString:@"buttonRight"])
+    {
+        [self.myParentVC moveCalendarViewtoRight];
+    }
+    
+}
 
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 
 @end
