@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "ApiClient.h"
 #import "DoctorModel.h"
+#import "MedicDetailViewController.h"
 
 @implementation SearchViewController
 
@@ -162,6 +163,21 @@
     cell.textLabel.text = currentDoctor.description;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"toDoctorDetail" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"toDoctorDetail"]) {
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        DoctorModel *chosenDoctor = [self.arrayChosen objectAtIndex:path.row];
+        MedicDetailViewController *destination = [segue destinationViewController];
+        destination.doctor = chosenDoctor;
+    }
 }
 
 @end

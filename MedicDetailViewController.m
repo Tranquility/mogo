@@ -8,6 +8,7 @@
 
 #import "MedicDetailViewController.h"
 #import "MapViewAnnotation.h"
+#import "AddressModel.h"
 
 @implementation MedicDetailViewController
 
@@ -24,8 +25,18 @@
 {
     //Statischer Aufruf weil Test.
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    [self drawMapWithLatitude:53.556581 andLongitute:9.990402 andString:@"Dr. No"];
+    
+	NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
+    
+    AddressModel *doctorAddress = self.doctor.address;
+    NSString *address = [NSString stringWithFormat:@"%@ %d\n%@ %@", doctorAddress.street, doctorAddress.streetNumber, doctorAddress.zipCode, doctorAddress.city];
+    
+    self.nameField.text = name;
+    self.typeField.text = @"Frauenarzt";
+    self.addressField.text = address;
+    self.phoneField.text = self.doctor.telephone;
+    
+    [self drawMapWithCoordinate:*(doctorAddress.coordinate) andString:@"Dr. No"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,21 +52,14 @@
     [super viewDidUnload];
 }
 
--(void)drawMapWithLatitude:(double)latitude andLongitute:(double)longitude andString:(NSString*)doctorName
+-(void)drawMapWithCoordinate:(CLLocationCoordinate2D)location andString:(NSString*)doctorName
 {
-    CLLocationCoordinate2D location;
-	location.latitude = latitude;
-	location.longitude = longitude;
-    
-    NSLog(@"%f", location.latitude);
-    
-    
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location, 0.5*ZOOMFACTOR, 0.5*ZOOMFACTOR);
-    MKCoordinateRegion adjustedRegion = [_mapOutlet regionThatFits:viewRegion];
+    MKCoordinateRegion adjustedRegion = [self.mapOutlet regionThatFits:viewRegion];
     [self.mapOutlet setRegion:adjustedRegion animated:YES];
     
-    MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:doctorName andCoordinate:location];
-	[self.mapOutlet addAnnotation:newAnnotation];
+//    MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:doctorName andCoordinate:location];
+//	[self.mapOutlet addAnnotation:newAnnotation];
     
 }
 
