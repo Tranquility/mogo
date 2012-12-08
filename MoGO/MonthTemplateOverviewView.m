@@ -23,12 +23,7 @@
     
     if (self) {
         
-        // Set the Title
-        NSMutableString *title =  [NSMutableString stringWithFormat:@"%d", currentMonth];
-        [title appendString:[NSString stringWithFormat:@" / %d",currentYear]];
-        self.titleLabel.text = title;
-        
-                
+                        
         //
         // Do some preparations for the Calendar
         //
@@ -120,17 +115,29 @@
                 }
                 
                 //Draw Day to Calendar-View (by adding a sub-view)
-                [self.kalView addSubview:[[DayTemplateView alloc] initWithFrame:r andWithStatus:status andWithDay:actualDay]];
-                
+                DayTemplateView *newDay =[[DayTemplateView alloc] initWithFrame:r andWithStatus:status andWithDay:actualDay andWithResponder:myParentVC];
+                [self.kalView becomeFirstResponder];
+                [self.kalView addSubview:newDay];
             }
         }
         
     }
     return self;
 }
+-(BOOL)canBecomeFirstResponder{return YES;};
 
+-(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    UITouch *touch = [touches anyObject];
+    
+    [self informParentVC:touch.view.tag];
+    NSLog(@"CLICKED");
+}
 
-
+-(void)informParentVC:(NSInteger)day
+{
+    [self.myParentVC showDay:day];
+}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.

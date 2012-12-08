@@ -12,13 +12,9 @@
 @interface MonthTemplateOverviewView : UIView
 
 @property (nonatomic) IBOutlet UIView *mainView;
-@property (nonatomic) IBOutlet UIButton *buttonRight;
-@property (nonatomic) IBOutlet UIButton *buttonLeft;
 @property (nonatomic) IBOutlet UIView *kalView;
-@property (nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) MakeAppointmentViewController *myParentVC;
 
 - (id)initWithFrame:(CGRect)frame andWithMonth:(NSInteger)currentMonth andWithYear:(NSInteger)currentYear andwithParentVC:(MakeAppointmentViewController*)myParentVC;
-
-
+-(void)informParentVC:(NSInteger)day;
 @end

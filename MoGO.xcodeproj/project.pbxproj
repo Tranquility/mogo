@@ -43,13 +43,13 @@
 		F13335F716622A1600502A50 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335F616622A1600502A50 /* DoctorModel.m */; };
 		F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335FB166231AA00502A50 /* AppointmentModel.m */; };
 		F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F133360216623D2800502A50 /* AppointmentDetailViewController.m */; };
-		F16BF0FA16625777000E5FC0 /* MonthTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F16BF0F916625777000E5FC0 /* MonthTemplateView.xib */; };
-		F16BF0FE16625794000E5FC0 /* MonthTemplateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */; };
 		F16BF10116625926000E5FC0 /* MakeAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */; };
 		F16BF10616626669000E5FC0 /* arztsuche.png in Resources */ = {isa = PBXBuildFile; fileRef = F16BF10516626669000E5FC0 /* arztsuche.png */; };
 		F16BF10916626811000E5FC0 /* accessories-date.png in Resources */ = {isa = PBXBuildFile; fileRef = F16BF10816626811000E5FC0 /* accessories-date.png */; };
 		F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */; };
 		F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F18376D716611E98005D03E5 /* detail_disclosure.jpg */; };
+		F1DBD2B1167368010078CF28 /* MakeAppointmentDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DBD2AF167368010078CF28 /* MakeAppointmentDayViewController.m */; };
+		F1DBD2B2167368010078CF28 /* MakeAppointmentDayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1DBD2B0167368010078CF28 /* MakeAppointmentDayViewController.xib */; };
 		F1E22CCD166CFA490071AA7E /* DayTemplateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1E22CCC166CFA490071AA7E /* DayTemplateView.xib */; };
 		F1E22CD0166CFB010071AA7E /* DayTemplateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E22CCF166CFB010071AA7E /* DayTemplateView.m */; };
 /* End PBXBuildFile section */
@@ -117,9 +117,6 @@
 		F13335FB166231AA00502A50 /* AppointmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentModel.m; sourceTree = "<group>"; };
 		F133360116623D2800502A50 /* AppointmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailViewController.h; sourceTree = "<group>"; };
 		F133360216623D2800502A50 /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
-		F16BF0F916625777000E5FC0 /* MonthTemplateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MonthTemplateView.xib; path = ../MonthTemplateView.xib; sourceTree = "<group>"; };
-		F16BF0FC16625794000E5FC0 /* MonthTemplateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MonthTemplateView.h; path = ../MonthTemplateView.h; sourceTree = "<group>"; };
-		F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MonthTemplateView.m; path = ../MonthTemplateView.m; sourceTree = "<group>"; };
 		F16BF0FF16625926000E5FC0 /* MakeAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MakeAppointmentViewController.h; path = ../MakeAppointmentViewController.h; sourceTree = "<group>"; };
 		F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MakeAppointmentViewController.m; path = ../MakeAppointmentViewController.m; sourceTree = "<group>"; };
 		F16BF10516626669000E5FC0 /* arztsuche.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arztsuche.png; sourceTree = "<group>"; };
@@ -127,6 +124,9 @@
 		F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
 		F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
 		F18376D716611E98005D03E5 /* detail_disclosure.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = detail_disclosure.jpg; sourceTree = "<group>"; };
+		F1DBD2AE167368010078CF28 /* MakeAppointmentDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeAppointmentDayViewController.h; sourceTree = "<group>"; };
+		F1DBD2AF167368010078CF28 /* MakeAppointmentDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeAppointmentDayViewController.m; sourceTree = "<group>"; };
+		F1DBD2B0167368010078CF28 /* MakeAppointmentDayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MakeAppointmentDayViewController.xib; sourceTree = "<group>"; };
 		F1E22CCC166CFA490071AA7E /* DayTemplateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayTemplateView.xib; sourceTree = "<group>"; };
 		F1E22CCE166CFB010071AA7E /* DayTemplateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayTemplateView.h; sourceTree = "<group>"; };
 		F1E22CCF166CFB010071AA7E /* DayTemplateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayTemplateView.m; sourceTree = "<group>"; };
@@ -222,9 +222,9 @@
 				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
 				F13335F91662317300502A50 /* DataModel */,
 				F16BF10716626675000E5FC0 /* icons */,
-				F16BF0F916625777000E5FC0 /* MonthTemplateView.xib */,
-				F16BF0FC16625794000E5FC0 /* MonthTemplateView.h */,
-				F16BF0FD16625794000E5FC0 /* MonthTemplateView.m */,
+				F1DBD2AE167368010078CF28 /* MakeAppointmentDayViewController.h */,
+				F1DBD2AF167368010078CF28 /* MakeAppointmentDayViewController.m */,
+				F1DBD2B0167368010078CF28 /* MakeAppointmentDayViewController.xib */,
 				991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */,
 				991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */,
 				991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */,
@@ -388,11 +388,11 @@
 				DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */,
 				DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */,
 				F18376D816611E98005D03E5 /* detail_disclosure.jpg in Resources */,
-				F16BF0FA16625777000E5FC0 /* MonthTemplateView.xib in Resources */,
 				F16BF10616626669000E5FC0 /* arztsuche.png in Resources */,
 				F16BF10916626811000E5FC0 /* accessories-date.png in Resources */,
 				991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */,
 				F1E22CCD166CFA490071AA7E /* DayTemplateView.xib in Resources */,
+				F1DBD2B2167368010078CF28 /* MakeAppointmentDayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,10 +463,10 @@
 				25FBF0CB166F79A800E9F129 /* DocumentViewController.m in Sources */,
 				25E8BE981670B56600807CC7 /* DrugDetailViewController.m in Sources */,
 				DAEB161E1670B88F00665B1F /* DocumentModel.m in Sources */,
-				F16BF0FE16625794000E5FC0 /* MonthTemplateView.m in Sources */,
 				F16BF10116625926000E5FC0 /* MakeAppointmentViewController.m in Sources */,
 				991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */,
 				F1E22CD0166CFB010071AA7E /* DayTemplateView.m in Sources */,
+				F1DBD2B1167368010078CF28 /* MakeAppointmentDayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
