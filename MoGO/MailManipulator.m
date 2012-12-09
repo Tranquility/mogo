@@ -1,9 +1,7 @@
 //
 //  MailManipulator.m
 //  MoGO
-//
-//  Created by DW on 04.12.12.
-//
+////
 //
 
 #import "MailManipulator.h"
