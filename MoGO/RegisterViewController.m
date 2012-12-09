@@ -8,8 +8,9 @@
 
 #import "RegisterViewController.h"
 #import "MailManipulator.h"
-#define PASSWORD_MIN_SIZE 5
+#define PASSWORD_MIN_SIZE 6
 
+//constant vars for scrolling if user changes from textfield to next textfield
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
 static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
@@ -53,9 +54,8 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     [super viewDidUnload];
 }
 - (IBAction)registerButtonPressed:(id)sender {
-    if([self isInputValid]) //+check for unique mail adress with server
+    if([self isInputValid]) //TODO:check for unique mail adress with server
     {
-        NSLog(@"Wir sind in isInputValid if");
         //send data to server, wait for confirm
         //send confirmation mail
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Anmeldung erfolgreich"
@@ -64,14 +64,12 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
                                                 cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
          [message show];
-        //pushviewzuLogIn
+        //TODO:pushviewzuLogIn
     }
     else
     {
         MailManipulator* mailChecker = [[MailManipulator alloc] init];
-        
-        NSLog(@"Wir sind in isInputValid else");
-        NSString* error = @"";
+                NSString* error = @"";
         if(![self passwordsEqual])
             error = @"Die Passwörter müssen identisch sein";
         else if(![self passwordLengthValid])
@@ -92,7 +90,6 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
         
         
     }
-    NSLog(@"Wir sind am Ende");
     
 }
 
@@ -103,7 +100,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 
 -(BOOL)passwordLengthValid
 {
-    return [_passwordField.text length] > PASSWORD_MIN_SIZE;
+    return [_passwordField.text length] >= PASSWORD_MIN_SIZE;
 }
 
 -(BOOL)isEveryFieldFilled
@@ -125,6 +122,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     return YES;
 }
 
+//scroll down after tabbing from textfield to next textfield below
 -(void) textFieldDidBeginEditing:(UITextField *)textField
 {
     CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
@@ -161,6 +159,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 
 }
 
+//Scroll up after leaving textField if necessarry
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     CGRect viewFrame = self.view.frame;
