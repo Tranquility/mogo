@@ -12,8 +12,13 @@
 #import "DoctorModel.h"
 #import "MedicDetailViewController.h"
 
-@implementation SearchViewController
+@interface SearchViewController ()
 
+@property (nonatomic) DoctorModel *chosenDoctor;
+
+@end
+
+@implementation SearchViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,6 +65,7 @@
                                                                                                 city:@"Hamburg"
                                                                                           coordinate:&location];
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:idNumber
+                                                                                        discipline:@"Frauenarzt"
                                                                                              title:title
                                                                                             gender:gender
                                                                                          firstName:firstname
@@ -160,23 +166,24 @@
     
     DoctorModel *currentDoctor = [self.arrayChosen objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = currentDoctor.description;
+    cell.textLabel.text = [[NSString stringWithFormat:@"%@ %@ %@", currentDoctor.title, currentDoctor.firstName, currentDoctor.lastName] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    self.chosenDoctor = [self.arrayChosen objectAtIndex:indexPath.row];
+    
     [self performSegueWithIdentifier:@"toDoctorDetail" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"toDoctorDetail"]) {
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        DoctorModel *chosenDoctor = [self.arrayChosen objectAtIndex:path.row];
         MedicDetailViewController *destination = [segue destinationViewController];
-        destination.doctor = chosenDoctor;
+        destination.doctor = self.chosenDoctor;
     }
 }
 
