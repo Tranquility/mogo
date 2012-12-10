@@ -517,7 +517,12 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="addressField" destination="GzA-SS-O6Z" id="im8-SB-o23"/>
+                        <outlet property="hoursField" destination="w6X-ms-Klb" id="o72-qN-yPS"/>
                         <outlet property="mapOutlet" destination="rjh-gM-JbW" id="D8H-zZ-SOP"/>
+                        <outlet property="nameField" destination="AXA-et-fif" id="elL-qx-GX0"/>
+                        <outlet property="phoneField" destination="7xq-Qe-ky7" id="oJq-3V-g5a"/>
+                        <outlet property="typeField" destination="HE4-M3-QIa" id="K8P-oS-mKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qIv-66-lNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -784,7 +789,12 @@
         <class className="MedicDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="addressField" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="hoursField" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="nameField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="typeField" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="SearchViewController" superclassName="UIViewController">
