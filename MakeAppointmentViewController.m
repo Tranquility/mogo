@@ -8,6 +8,7 @@
 
 #import "MakeAppointmentViewController.h"
 #import "MonthTemplateOverviewView.h"
+#import "MakeAppointmentDayViewController.h"
 
 @interface MakeAppointmentViewController ()
 
@@ -137,9 +138,11 @@
     NSLog(@"CLICKED");
 }
 
+//Navigate to the dayViewController with the given start day/month/year
 -(void)showDay:(int)day
 {
-    self.monthLabel.text = @"CLICKED";
+    MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController" bundle:Nil andDay:day andMonth:self.currentMonth andYear:self.currentYear];
+    [[self navigationController] pushViewController:dayController animated:YES];
 }
 
 

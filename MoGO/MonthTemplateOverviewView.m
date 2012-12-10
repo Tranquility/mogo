@@ -115,8 +115,7 @@
                 }
                 
                 //Draw Day to Calendar-View (by adding a sub-view)
-                DayTemplateView *newDay =[[DayTemplateView alloc] initWithFrame:r andWithStatus:status andWithDay:actualDay andWithResponder:myParentVC];
-                [self.kalView becomeFirstResponder];
+                DayTemplateView *newDay =[[DayTemplateView alloc] initWithFrame:r andWithStatus:status andWithDay:actualDay andWithResponder:self.myParentVC];
                 [self.kalView addSubview:newDay];
             }
         }
@@ -130,7 +129,7 @@
 {
     UITouch *touch = [touches anyObject];
     
-    [self informParentVC:touch.view.tag];
+    [self.myParentVC showDay:touch.view.tag];
     NSLog(@"CLICKED");
 }
 

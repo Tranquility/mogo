@@ -14,9 +14,11 @@
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UILabel *dayLabel;
 @property (nonatomic) MakeAppointmentViewController *myParentVC;
+
+//Action performed whenever a day is touched
 -(IBAction) showDay: (id) sender;
 
 
-- (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day andWithResponder:myParentVC;
+- (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day andWithResponder:(MakeAppointmentViewController*)ParentVC;
 
 @end

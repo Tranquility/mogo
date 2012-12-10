@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "slotView.h"
 
 @interface MakeAppointmentDayViewController : UIViewController
 
@@ -15,7 +16,9 @@
 @property (nonatomic,strong) IBOutlet UIButton *buttonLeft;
 @property (nonatomic,strong) IBOutlet UIButton *buttonRight;
 @property (nonatomic,strong) IBOutlet UILabel *dayLabel;
+@property (nonatomic,strong) IBOutlet UIView *slotsView;
 
+@property (nonatomic) slotView* slot;
 @property (nonatomic) NSInteger currentDay;
 @property (nonatomic) NSInteger currentMonth;
 @property (nonatomic) NSInteger currentYear;

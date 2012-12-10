@@ -16,5 +16,4 @@
 @property (nonatomic) MakeAppointmentViewController *myParentVC;
 
 - (id)initWithFrame:(CGRect)frame andWithMonth:(NSInteger)currentMonth andWithYear:(NSInteger)currentYear andwithParentVC:(MakeAppointmentViewController*)myParentVC;
--(void)informParentVC:(NSInteger)day;
 @end

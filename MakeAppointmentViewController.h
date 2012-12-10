@@ -19,13 +19,10 @@
 @property (nonatomic,strong) IBOutlet UIButton *buttonLeft;
 @property (nonatomic,strong) IBOutlet UIButton *buttonRight;
 
-
-
-
 -(void) moveCalendarViewtoLeft;
 -(void) moveCalendarViewtoRight;
 -(void)setTitleToMonth:(int)currentMonth andYear:(int)currentYear;
--(void)showDay:(int)day;
+-(void)showDay:(int)sender;
 
 
 @end

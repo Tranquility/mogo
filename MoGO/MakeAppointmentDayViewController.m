@@ -7,6 +7,7 @@
 //
 
 #import "MakeAppointmentDayViewController.h"
+#import "slotView.h"
 
 @interface MakeAppointmentDayViewController ()
 
@@ -22,26 +23,31 @@
         self.currentDay = startDay;
         self.currentMonth = startMonth;
         self.currentYear = startYear;
-        
-        
-    
+        self.slotsView.bounds=CGRectMake(0,0,320, 500);
     }
+    //
+    //Loop through the whole day:
+    //TODO: This needs to be connected to the slot-Datastructure
+    for (int i=0; i<5; i++) {
+        
+        //Split the whole Canvas to tiles
+        CGRect r = CGRectMake(0,0, 320,100);
+        
+        //Draw Slot to Day-View (by adding a sub-view)
+        [self.slotsView addSubview:[[slotView alloc] initWithFrame:r].mainView];
+    }
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    
+
 }
 
--(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    UITouch *touch = [touches anyObject];
-    
-    //[self showDay:touch.view.tag];
-    NSLog(@"CLICKED");
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
