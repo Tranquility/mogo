@@ -49,6 +49,7 @@
 - (void)viewDidUnload {
 
     [self setMapOutlet:nil];
+    [self setFavorit:nil];
     [super viewDidUnload];
 }
 
@@ -61,6 +62,13 @@
 //    MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:doctorName andCoordinate:location];
 //	[self.mapOutlet addAnnotation:newAnnotation];
     
+}
+
+-(IBAction)doFavorit:(id)favorit {
+    UIImage *btnImage1 = [UIImage imageNamed:@"stern1-1.jpg"];
+    UIImage *btnImage2 = [UIImage imageNamed:@"Stern1.jpg"];
+    [favorit setImage:btnImage2 forState:UIControlStateSelected];
+    [favorit setImage:btnImage1 forState:UIControlStateNormal];
 }
 
 @end

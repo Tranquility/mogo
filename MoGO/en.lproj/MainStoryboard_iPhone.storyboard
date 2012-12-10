@@ -458,11 +458,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TX7-hY-Kz5" userLabel="bBookButton">
-                                <rect key="frame" x="95" y="367" width="132" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="favorit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TX7-hY-Kz5" userLabel="bBookButton">
+                                <rect key="frame" x="141" y="356" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Termin buchen">
+                                <state key="normal" image="Stern1.jpg">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -470,7 +470,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="gCb-VM-UNO" kind="push" id="jr0-IK-B71"/>
+                                    <action selector="doFavorit:" destination="RWq-Jq-LmT" eventType="touchUpInside" id="eH5-VJ-Ish"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chirurg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HE4-M3-QIa" userLabel="doctortype">
@@ -517,6 +517,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="favorit" destination="TX7-hY-Kz5" id="4EZ-ek-PIX"/>
                         <outlet property="mapOutlet" destination="rjh-gM-JbW" id="D8H-zZ-SOP"/>
                     </connections>
                 </viewController>
@@ -733,6 +734,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Stern1.jpg" width="385" height="369"/>
         <image name="detail_disclosure.jpg" width="29" height="29"/>
         <image name="qrcode_sommergelee.png" width="1000" height="1000"/>
     </resources>
@@ -784,7 +786,14 @@
         <class className="MedicDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="doFavorit:"/>
+                <relationship kind="outlet" name="addressField" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="favorit" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="hoursField" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="nameField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phoneField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="typeField" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="SearchViewController" superclassName="UIViewController">
@@ -811,9 +820,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="NIu-mk-nUS"/>
         <segue reference="4zZ-Pj-sG2"/>
-        <segue reference="jr0-IK-B71"/>
+        <segue reference="NIu-mk-nUS"/>
+        <segue reference="CaX-Tg-GE0"/>
         <segue reference="ims-AM-hPl"/>
     </inferredMetricsTieBreakers>
 </document>
