@@ -34,7 +34,7 @@
     [super viewDidLoad];
    
     //Set ScrollView width to 4*Size of a calendar. height=height of one calendar
-    self.calendarScrollView.contentSize = CGSizeMake(4*320, 334);
+    self.calendarScrollView.contentSize = CGSizeMake(4 * 320, 334);
 
     //Current offset is 0 (actual month)
     self.currentOffset = 0;
@@ -43,10 +43,10 @@
     //TODO: this needs to be non-static, by starting with the current month
     int startMonth = 12;
     int startYear = 2012;
-    for(int i=0;i<4;i++)
+    for(int i = 0; i < 4; i++)
     {
         //Size of one Calendar
-        CGRect r = CGRectMake(i*320,0,320,334);
+        CGRect r = CGRectMake(i * 320, 0, 320, 334);
         
         //Create calendarmonth ViewController
         self.month = [[MonthTemplateOverviewView alloc] initWithFrame:r andWithMonth:startMonth andWithYear:startYear andwithParentVC:self];
@@ -84,7 +84,7 @@
 //Moves the calendarScrollView to the next month
 -(void) moveCalendarViewtoRight{
     self.currentOffset = self.currentOffset + 320;
-    if(self.currentOffset >960)
+    if(self.currentOffset > 960)
     {
         self.currentOffset = 960;
     }

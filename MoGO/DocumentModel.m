@@ -36,7 +36,7 @@
                                     NSString *firstName = [doctorJson valueForKeyPath:@"firstname"];
                                     NSString *lastName  = [doctorJson valueForKeyPath:@"lastname"];
                                     
-                                    result = [NSString stringWithFormat:@"%@ %@ %@", title, firstName, lastName];
+                                    result = [[NSString stringWithFormat:@"%@ %@ %@", title, firstName, lastName] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Error fetching docs!");

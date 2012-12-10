@@ -49,29 +49,25 @@
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     for (id doctorJson in response) {
-                                        NSInteger idNumber  = [[doctorJson valueForKeyPath:@"id"] intValue];
-                                        NSString *firstname = [doctorJson valueForKeyPath:@"firstname"];
-                                        NSString *lastname  = [doctorJson valueForKeyPath:@"lastname"];
-                                        NSString *gender    = [doctorJson valueForKeyPath:@"gender"];
-                                        NSString *mail      = [doctorJson valueForKeyPath:@"mail"];
-                                        NSString *telephone = [doctorJson valueForKeyPath:@"telephone"];
-                                        NSString *title     = [doctorJson valueForKeyPath:@"title"];
+                                        
                                         CLLocationCoordinate2D location;
-                                        location.latitude = 1.123456;
-                                        location.longitude = 6.54321;
-                                        AddressModel *address = [[AddressModel alloc] initWithStreet:@"sesamstraße"
-                                                                                        streetNumber:15
-                                                                                             zipCode:@"123456"
-                                                                                                city:@"Hamburg"
+                                        location.latitude = [[doctorJson valueForKeyPath:@"latitude"] floatValue];
+                                        location.longitude = [[doctorJson valueForKeyPath:@"longitude"] floatValue];
+                                        
+                                        AddressModel *address = [[AddressModel alloc] initWithStreet:[doctorJson valueForKeyPath:@"street"]
+                                                                                        streetNumber:[[doctorJson valueForKeyPath:@"street_number"] intValue]
+                                                                                             zipCode:[doctorJson valueForKeyPath:@"zip_code"]
+                                                                                                city:[doctorJson valueForKeyPath:@"city"]
                                                                                           coordinate:&location];
-                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:idNumber
+                                        
+                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:[[doctorJson valueForKeyPath:@"id"] intValue]
                                                                                         discipline:@"Frauenarzt"
-                                                                                             title:title
-                                                                                            gender:gender
-                                                                                         firstName:firstname
-                                                                                          lastName:lastname
-                                                                                              mail:mail
-                                                                                         telephone:telephone
+                                                                                             title:[doctorJson valueForKeyPath:@"title"]
+                                                                                            gender:[doctorJson valueForKeyPath:@"gender"]
+                                                                                         firstName:[doctorJson valueForKeyPath:@"firstname"]
+                                                                                          lastName:[doctorJson valueForKeyPath:@"lastname"]
+                                                                                              mail:[doctorJson valueForKeyPath:@"mail"]
+                                                                                         telephone:[doctorJson valueForKeyPath:@"telephone"]
                                                                                            address:address];
                                         [self.arrayChosen addObject:doctorModel];
                                     }
@@ -176,11 +172,13 @@
     
     self.chosenDoctor = [self.arrayChosen objectAtIndex:indexPath.row];
     
+    NSLog(@"%d", indexPath.row);
+    
     [self performSegueWithIdentifier:@"toDoctorDetail" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+{    
     if ([[segue identifier] isEqualToString:@"toDoctorDetail"]) {
         MedicDetailViewController *destination = [segue destinationViewController];
         destination.doctor = self.chosenDoctor;
