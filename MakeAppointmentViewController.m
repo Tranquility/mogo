@@ -40,9 +40,18 @@
     
     //Initialize the calendar elements with month and year
     //TODO: this needs to be non-static, by starting with the current month
-    int startMonth = 12;
-    int startYear = 2012;
-    for(int i = 0; i < 4; i++)
+    self.currentMonth = 12;
+    self.currentYear = 2012;
+    [self setTitleToMonth:self.currentMonth  andYear:self.currentYear];
+   
+    //Set Listener on Buttons
+    [self.buttonLeft addTarget:self action:@selector(moveCalendarViewtoLeft) forControlEvents:UIControlEventTouchUpInside];
+    [self.buttonRight addTarget:self action:@selector(moveCalendarViewtoRight) forControlEvents:UIControlEventTouchUpInside];
+    
+    //helper variable
+    int initMonth = self.currentMonth;
+    int initYear = self.currentYear;
+    for(int i=0;i<4;i++)
     {
         //Size of one Calendar
         CGRect r = CGRectMake(i * 320, 0, 320, 334);

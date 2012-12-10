@@ -178,8 +178,10 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{    
+{
     if ([[segue identifier] isEqualToString:@"toDoctorDetail"]) {
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        DoctorModel *chosenDoctor = [self.arrayChosen objectAtIndex:path.row];
         MedicDetailViewController *destination = [segue destinationViewController];
         destination.doctor = self.chosenDoctor;
     }
