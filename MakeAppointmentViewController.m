@@ -7,7 +7,6 @@
 //
 
 #import "MakeAppointmentViewController.h"
-#import "MonthTemplateView.h"
 #import "MonthTemplateOverviewView.h"
 
 @interface MakeAppointmentViewController ()
@@ -49,23 +48,24 @@
         CGRect r = CGRectMake(i * 320, 0, 320, 334);
         
         //Create calendarmonth ViewController
-        self.month = [[MonthTemplateOverviewView alloc] initWithFrame:r andWithMonth:startMonth andWithYear:startYear andwithParentVC:self];
-
+        self.month = [[MonthTemplateOverviewView alloc] initWithFrame:r andWithMonth:initMonth andWithYear:initYear andwithParentVC:self];
+        
         //Add Calendar View as a subview to the scrollview and tell the buttons which function to call when they are pressed
         [self.calendarScrollView addSubview:self.month.mainView];
-        [self.month.buttonLeft addTarget:self action:@selector(moveCalendarViewtoLeft) forControlEvents:UIControlEventTouchUpInside];
-        [self.month.buttonRight addTarget:self action:@selector(moveCalendarViewtoRight) forControlEvents:UIControlEventTouchUpInside];
-        
+               
         //next month
-        startMonth++;
-        if(startMonth==13)
+        initMonth++;
+        if(initMonth==13)
         {
-            startMonth=01;
-            startYear++;
+            initMonth=01;
+            initYear++;
         }
+        
     }
 
 }
+-(BOOL)canBecomeFirstResponder{return YES;}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -78,7 +78,16 @@
     {
         self.currentOffset = self.currentOffset - 320;
         [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
+        //previous month
+        self.currentMonth-=1;
+        if(self.currentMonth==0)
+        {
+            self.currentMonth=12;
+            self.currentYear-=1;
+        }
     }
+    [self setTitleToMonth:self.currentMonth andYear:self.currentYear];
+
 }
 
 //Moves the calendarScrollView to the next month
@@ -87,8 +96,41 @@
     if(self.currentOffset > 960)
     {
         self.currentOffset = 960;
+        
+    }
+    else{
+        //next month
+        self.currentMonth+=1;
+        if(self.currentMonth==13)
+        {
+            self.currentMonth=1;
+            self.currentYear+=1;
+        }
     }
     [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
+    [self setTitleToMonth:self.currentMonth andYear:self.currentYear];
+}
+
+//Sets the CalendarTitle for a specific date
+-(void)setTitleToMonth:(int)currentMonth andYear:(int)currentYear
+{
+    // Set the Title
+    NSMutableString *title = [NSMutableString stringWithFormat:@"%d", currentMonth];
+    [title appendString:[NSString stringWithFormat:@" / %d",currentYear]];
+    self.monthLabel.text = title;
+}
+
+-(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    UITouch *touch = [touches anyObject];
+    
+    [self showDay:touch.view.tag];
+    NSLog(@"CLICKED");
+}
+
+-(void)showDay:(int)day
+{
+    self.monthLabel.text = @"CLICKED";
 }
 
 

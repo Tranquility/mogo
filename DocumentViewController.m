@@ -7,7 +7,6 @@
 //
 
 #import "DocumentViewController.h"
-#import "DocumentTableViewCell.h"
 
 @interface DocumentViewController ()
 
@@ -55,6 +54,7 @@
     {
         return self.recordList.count;
     }
+    return 0;
 }
 
 
@@ -109,6 +109,8 @@
         
         return cell;
     }
+    
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -139,6 +141,7 @@
     {
         return @"Patientakte";
     }
+    return nil;
 }
 
 

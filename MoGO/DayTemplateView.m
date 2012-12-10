@@ -12,7 +12,7 @@
 
 @implementation DayTemplateView
 
-- (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day
+- (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day andWithResponder:myParentVC
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -42,12 +42,18 @@
         //Add this view to the mainView, which will later be added to the Calendar-View
         self.clipsToBounds = NO;
         self.mainView.frame = self.bounds;
+        self.tag = day;
         [self addSubview:self.mainView];
-
+        self.myParentVC = myParentVC;
+        
     }
     return self;
 }
 
+- (void)showDay {
+    
+    [self.myParentVC showDay:0];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
