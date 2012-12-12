@@ -123,20 +123,8 @@
     }
     return self;
 }
--(BOOL)canBecomeFirstResponder{return YES;};
 
--(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    UITouch *touch = [touches anyObject];
-    
-    [self.myParentVC showDay:touch.view.tag];
-    NSLog(@"CLICKED");
-}
 
--(void)informParentVC:(NSInteger)day
-{
-    [self.myParentVC showDay:day];
-}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.

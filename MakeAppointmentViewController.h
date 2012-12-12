@@ -23,6 +23,6 @@
 -(void) moveCalendarViewtoRight;
 -(void)setTitleToMonth:(int)currentMonth andYear:(int)currentYear;
 -(void)showDay:(int)sender;
-
+-(void)saveNewAppointment:(id)sender;
 
 @end

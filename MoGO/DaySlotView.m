@@ -11,10 +11,13 @@
 
 @implementation DaySlotView
 
-- (id)initWithFrame:(CGRect)frame andDay:(int)startDay andMonth:(int)startMonth andYear:(int)startYear;
+- (id)initWithFrame:(CGRect)frame andDay:(int)startDay andMonth:(int)startMonth andYear:(int)startYear andParentVC:(MakeAppointmentViewController*)myParentVC;
 {
     self = [super initWithFrame:frame];
     [[NSBundle mainBundle] loadNibNamed:@"DaySlotView" owner:self options:nil];
+    
+    //Set ParentVC to enable notifications
+    self.myParentVC = myParentVC;
     
     self.mainView.frame = frame;
         
@@ -31,11 +34,11 @@
                 CGRect r = CGRectMake(0, i*50, 320,49);
             
                 //TODO: Get start and end Time from DataSource
-                NSString* startTime = @"08:30";
+                NSString* startTime = @"09:30";
                 NSString* endTime = @"08:45 Uhr";
 
                 //Draw Slot to SlotView (by adding a sub-view)
-                SlotTemplateView *newSlot =[[SlotTemplateView alloc] initWithFrame:r andStartTime:startTime andEndTime:endTime];
+                SlotTemplateView *newSlot =[[SlotTemplateView alloc] initWithFrame:r andStartTime:startTime andEndTime:endTime andParentVC:self.myParentVC];
                 [self.slotView addSubview:newSlot];
             }
 
@@ -45,6 +48,9 @@
     
         
 }
+
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

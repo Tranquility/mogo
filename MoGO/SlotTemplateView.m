@@ -10,11 +10,13 @@
 
 @implementation SlotTemplateView
 
-- (id)initWithFrame:(CGRect)frame andStartTime:(NSString*)startTime andEndTime:(NSString*)endTime;
+- (id)initWithFrame:(CGRect)frame andStartTime:(NSString*)startTime andEndTime:(NSString*)endTime andParentVC:(MakeAppointmentViewController*)parentVC
 {
     self = [super initWithFrame:frame];
     if (self) {
-            
+        
+        self.myParentVC = parentVC;
+        
         //Load the nib-File and set this object as owner
         [[NSBundle mainBundle] loadNibNamed:@"SlotTemplateView" owner:self options:nil];
         
@@ -32,6 +34,14 @@
     }
     return self;
 }
+
+-(void)saveNewAppointment:(id)sender
+{
+    //Slot has been clicked: This will call the saveNewAppointment:sender method in
+    //MakeAppointmentViewController. See handling there
+    [self.myParentVC saveNewAppointment:sender];
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

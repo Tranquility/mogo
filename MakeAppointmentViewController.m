@@ -9,6 +9,7 @@
 #import "MakeAppointmentViewController.h"
 #import "MonthTemplateOverviewView.h"
 #import "MakeAppointmentDayViewController.h"
+#import "SlotTemplateView.h"
 
 @interface MakeAppointmentViewController ()
 
@@ -130,20 +131,22 @@
     self.monthLabel.text = title;
 }
 
--(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    UITouch *touch = [touches anyObject];
-    
-    [self showDay:touch.view.tag];
-    NSLog(@"CLICKED");
-}
-
 //Navigate to the dayViewController with the given start day/month/year
 -(void)showDay:(int)day
 {
-    MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController" bundle:Nil andDay:day andMonth:self.currentMonth andYear:self.currentYear];
+    MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController" bundle:Nil andDay:day andMonth:self.currentMonth andYear:self.currentYear andParentVC:self];
     [[self navigationController] pushViewController:dayController animated:YES];
 }
 
+//This is called by the SlotTemplateView when a user clicks a slot that he wants to reserve
+-(void)saveNewAppointment:(id)sender
+{
+    //TODO: Connect DataSource and send the new Appointment Request to the server
+    //You can acces properties of the sender by using the following senderObject:
+    SlotTemplateView* callerSlot = (SlotTemplateView*)sender;
+    
+    
+
+}
 
 @end
