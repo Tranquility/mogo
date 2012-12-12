@@ -12,10 +12,12 @@
 
 @implementation DayTemplateView
 
-- (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day andWithResponder:myParentVC
+- (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day andWithResponder:(MakeAppointmentViewController*)ParentVC
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.myParentVC = ParentVC;
         
         //Load the nib-File and set this object as owner
         [[NSBundle mainBundle] loadNibNamed:@"DayTemplateView" owner:self options:nil];
@@ -44,15 +46,13 @@
         self.mainView.frame = self.bounds;
         self.tag = day;
         [self addSubview:self.mainView];
-        self.myParentVC = myParentVC;
-        
     }
     return self;
 }
 
-- (void)showDay {
-    
-    [self.myParentVC showDay:0];
+- (void)showDay:(id)sender {
+    //Tell the parentViewController to open detail view of day x (self.tag)
+    [self.myParentVC showDay:self.tag];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

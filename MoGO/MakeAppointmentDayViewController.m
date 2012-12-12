@@ -7,45 +7,106 @@
 //
 
 #import "MakeAppointmentDayViewController.h"
+#import "DaySlotView.h"
 
-@interface MakeAppointmentDayViewController ()
-
+@interface MakeAppointmentDayViewController() 
 @end
 
 @implementation MakeAppointmentDayViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andDay:(int)startDay andMonth:(int)startMonth andYear:(int)startYear
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andDay:(int)startDay andMonth:(int)startMonth andYear:(int)startYear andParentVC:(MakeAppointmentViewController*)myParentVC
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
+        self.myParentVC = myParentVC;
         self.currentDay = startDay;
         self.currentMonth = startMonth;
         self.currentYear = startYear;
-        
-        
-    
     }
+        
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    //Set ContentSitze as needed
+    //TODO: This could be done better by calculating the height as heightOfOneSlot*numberOfSLots
+    self.slotsView.contentSize = CGSizeMake(320, 500);
+
+    //Size of one SlotView
+    //Again: this could be set as heightOfOneSlot*numberOfSLots instead of fixed 500px
+    CGRect r = CGRectMake(0,0,320,500);
+        
+    //Create Slot View with the given day/month/year
+    self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
+    
+    //Add Slot View as a subview 
+    [self.slotsView addSubview:self.day.slotView];
+
 }
 
--(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    UITouch *touch = [touches anyObject];
-    
-    //[self showDay:touch.view.tag];
-    NSLog(@"CLICKED");
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+//Switches the slotsView to the next day that has available slots open
+-(void)showNextDay:(id)sender
+{
+    //Size of one SlotView
+    CGRect r = CGRectMake(0,0,320,500);
+    
+    //TODO: Connect this to the dataSource and search for the next day
+    //      that has available slots. Then set self.day,self.month,self.year to the new values
+    
+    //Set the Title to the new Values:
+    [self setTitleToDay:[NSString stringWithFormat:@"%d",self.currentDay] andMonth:[NSString stringWithFormat:@"%d",self.currentMonth] andYear:[NSString stringWithFormat:@"%d",self.currentYear]];
+    
+    //Create Slot View with the given day/month/year
+    self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
+    
+    //Add Slot View as a subview
+    [self.slotsView addSubview:self.day];
+
+}
+
+
+//Switches the slotsView to the previous day that has available slots open
+-(void)showPreviousDay:(id)sender
+{
+    //Size of one SlotView
+    CGRect r = CGRectMake(0,0,320,500);
+    
+    //TODO: Connect this to the dataSource and search for the previous day
+    //      that has available slots. Then set self.day,self.month,self.year to the new values
+    
+    //Set the Title to the new Values:
+    [self setTitleToDay:[NSString stringWithFormat:@"%d",self.currentDay] andMonth:[NSString stringWithFormat:@"%d",self.currentMonth] andYear:[NSString stringWithFormat:@"%d",self.currentYear]];
+    
+    //Create Slot View with the given day/month/year
+    self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
+    
+    //Add Slot View as a subview
+    [self.slotsView addSubview:self.day.slotView];
+    
+}
+
+//Sets the CalendarTitle for a specific date
+-(void)setTitleToDay:(NSString*)currentDay andMonth:(NSString*)currentMonth andYear:(NSString*)currentYear
+{
+    // Set the Title
+    NSMutableString *title = [NSMutableString stringWithFormat:@""];
+    [title appendString:currentDay];
+    [title appendString:@"."];
+    [title appendString:currentMonth];
+    [title appendString:@"."];
+    [title appendString:currentYear];
+    self.dayLabel.text = title;
 }
 
 @end
