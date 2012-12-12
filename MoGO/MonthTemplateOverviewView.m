@@ -115,8 +115,7 @@
                 }
                 
                 //Draw Day to Calendar-View (by adding a sub-view)
-                DayTemplateView *newDay =[[DayTemplateView alloc] initWithFrame:r andWithStatus:status andWithDay:actualDay andWithResponder:myParentVC];
-                [self.kalView becomeFirstResponder];
+                DayTemplateView *newDay =[[DayTemplateView alloc] initWithFrame:r andWithStatus:status andWithDay:actualDay andWithResponder:self.myParentVC];
                 [self.kalView addSubview:newDay];
             }
         }
@@ -124,20 +123,8 @@
     }
     return self;
 }
--(BOOL)canBecomeFirstResponder{return YES;};
 
--(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
-{
-    UITouch *touch = [touches anyObject];
-    
-    [self informParentVC:touch.view.tag];
-    NSLog(@"CLICKED");
-}
 
--(void)informParentVC:(NSInteger)day
-{
-    [self.myParentVC showDay:day];
-}
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.
