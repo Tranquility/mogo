@@ -10,9 +10,11 @@
 
 @implementation DoctorModel
 
-- (DoctorModel*)initWithId:(NSInteger)idNumber title:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone address:(AddressModel*)address {
+- (DoctorModel*)initWithId:(NSInteger)idNumber discipline:(NSString*)discipline title:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone address:(AddressModel*)address {
     self = [super init];
     if (self) {
+        self.idNumber = idNumber;
+        self.discipline = discipline;
         self.title = title;
         self.gender = gender;
         self.firstName = first;

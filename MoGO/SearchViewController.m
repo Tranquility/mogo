@@ -12,8 +12,13 @@
 #import "DoctorModel.h"
 #import "MedicDetailViewController.h"
 
-@implementation SearchViewController
+@interface SearchViewController ()
 
+@property (nonatomic) DoctorModel *chosenDoctor;
+
+@end
+
+@implementation SearchViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,28 +49,25 @@
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     for (id doctorJson in response) {
-                                        NSInteger idNumber  = [[doctorJson valueForKeyPath:@"id"] intValue];
-                                        NSString *firstname = [doctorJson valueForKeyPath:@"firstname"];
-                                        NSString *lastname  = [doctorJson valueForKeyPath:@"lastname"];
-                                        NSString *gender    = [doctorJson valueForKeyPath:@"gender"];
-                                        NSString *mail      = [doctorJson valueForKeyPath:@"mail"];
-                                        NSString *telephone = [doctorJson valueForKeyPath:@"telephone"];
-                                        NSString *title     = [doctorJson valueForKeyPath:@"title"];
+                                        
                                         CLLocationCoordinate2D location;
-                                        location.latitude = 1.123456;
-                                        location.longitude = 6.54321;
-                                        AddressModel *address = [[AddressModel alloc] initWithStreet:@"sesamstraße"
-                                                                                        streetNumber:15
-                                                                                             zipCode:@"123456"
-                                                                                                city:@"Hamburg"
+                                        location.latitude = [[doctorJson valueForKeyPath:@"latitude"] floatValue];
+                                        location.longitude = [[doctorJson valueForKeyPath:@"longitude"] floatValue];
+                                        
+                                        AddressModel *address = [[AddressModel alloc] initWithStreet:[doctorJson valueForKeyPath:@"street"]
+                                                                                        streetNumber:[[doctorJson valueForKeyPath:@"street_number"] intValue]
+                                                                                             zipCode:[doctorJson valueForKeyPath:@"zip_code"]
+                                                                                                city:[doctorJson valueForKeyPath:@"city"]
                                                                                           coordinate:&location];
-                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:idNumber
-                                                                                             title:title
-                                                                                            gender:gender
-                                                                                         firstName:firstname
-                                                                                          lastName:lastname
-                                                                                              mail:mail
-                                                                                         telephone:telephone
+                                        
+                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:[[doctorJson valueForKeyPath:@"id"] intValue]
+                                                                                        discipline:@"Frauenarzt"
+                                                                                             title:[doctorJson valueForKeyPath:@"title"]
+                                                                                            gender:[doctorJson valueForKeyPath:@"gender"]
+                                                                                         firstName:[doctorJson valueForKeyPath:@"firstname"]
+                                                                                          lastName:[doctorJson valueForKeyPath:@"lastname"]
+                                                                                              mail:[doctorJson valueForKeyPath:@"mail"]
+                                                                                         telephone:[doctorJson valueForKeyPath:@"telephone"]
                                                                                            address:address];
                                         [self.arrayChosen addObject:doctorModel];
                                     }
@@ -160,13 +162,18 @@
     
     DoctorModel *currentDoctor = [self.arrayChosen objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = currentDoctor.description;
+    cell.textLabel.text = [[NSString stringWithFormat:@"%@ %@ %@", currentDoctor.title, currentDoctor.firstName, currentDoctor.lastName] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    self.chosenDoctor = [self.arrayChosen objectAtIndex:indexPath.row];
+    
+    NSLog(@"%d", indexPath.row);
+    
     [self performSegueWithIdentifier:@"toDoctorDetail" sender:self];
 }
 
@@ -176,7 +183,7 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         DoctorModel *chosenDoctor = [self.arrayChosen objectAtIndex:path.row];
         MedicDetailViewController *destination = [segue destinationViewController];
-        destination.doctor = chosenDoctor;
+        destination.doctor = self.chosenDoctor;
     }
 }
 

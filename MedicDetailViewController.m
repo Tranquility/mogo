@@ -27,12 +27,13 @@
     [super viewDidLoad];
     
 	NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     AddressModel *doctorAddress = self.doctor.address;
     NSString *address = [NSString stringWithFormat:@"%@ %d\n%@ %@", doctorAddress.street, doctorAddress.streetNumber, doctorAddress.zipCode, doctorAddress.city];
     
     self.nameField.text = name;
-    self.typeField.text = @"Frauenarzt";
+    self.typeField.text = self.doctor.discipline;
     self.addressField.text = address;
     self.phoneField.text = self.doctor.telephone;
     
