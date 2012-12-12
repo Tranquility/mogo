@@ -11,6 +11,27 @@
 #import "MakeAppointmentDayViewController.h"
 #import "SlotTemplateView.h"
 
+
+/*
+MakeAppointmentViewController
+ 
+This object handles all the workflow for making an appointment.
+ 
+ At first it will create a certain number of MonthTemplateOverview's, which will be display in the ScrollView.
+ 
+ If the user clicks a day in the MonthTemplateOverview, this Class will be notified by calling its "showDay" Method.
+ 
+ Upon this, a MakeAppointmentDayViewController is pushed to the navigation Stack, which shows all slots of a specific day.
+ 
+ When the user clicks a slot to book it, this object is informed by using the "saveNewAppointment" method.
+ 
+ 
+ 
+ TODO: This need to be connected to the dataSources for Slots and Appointments, as well as all its connected Classes.
+ 
+ TODO: After a new appointment has been saved, this class needs to pop the navigation stack, and perhaps also move via to the startScreen or the appointmentDetails. 
+ 
+*/
 @interface MakeAppointmentViewController ()
 
 //Variable for creating one calendar view and add it to the subvie
@@ -144,9 +165,9 @@
     //TODO: Connect DataSource and send the new Appointment Request to the server
     //You can acces properties of the sender by using the following senderObject:
     SlotTemplateView* callerSlot = (SlotTemplateView*)sender;
-    
-    
 
+    //Example: Access a member of the sender Object:
+    NSLog(callerSlot.startString);
 }
 
 @end

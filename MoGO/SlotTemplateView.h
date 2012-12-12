@@ -15,6 +15,10 @@
 @property (nonatomic) IBOutlet UILabel* appointmentLabel;
 @property (nonatomic) MakeAppointmentViewController* myParentVC;
 
+@property (nonatomic) NSString* startString;
+@property (nonatomic) NSString* endString;
+
+
 - (id)initWithFrame:(CGRect)frame andStartTime:(NSString*)startTime andEndTime:(NSString*)endTime andParentVC:(MakeAppointmentViewController*)parentVC;
 
 -(IBAction)saveNewAppointment:(id)sender;
