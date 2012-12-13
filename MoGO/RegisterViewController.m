@@ -54,18 +54,19 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     {
         //send data to server, wait for confirm
         //send confirmation mail
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Anmeldung erfolgreich"
-                                                          message:@"Bestätigungsmail wird versendet. Sie können sich nun einloggen"
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Anmeldung erfolgreich", @"REGISTER_SUCCESSFULL")
+                                                          message:NSLocalizedString(@"Bestätigungsmail wird versendet. Sie können sich nun einloggen", @"SENT_CONFIRM_MAIL")
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-         [message show];
+                                                otherButtonTitles:nil];
+        [message show];
         //TODO:pushviewzuLogIn
     }
     else
     {
         MailManipulator* mailChecker = [[MailManipulator alloc] init];
                 NSString* error;
+        NSString* error;
         if(![self arePasswordsEqual])
             error = NSLocalizedString(@"Die Passwörter müssen identisch sein", @"PWD_NOT_IDENTICAL");
         else if(![self isPasswordLengthValid])
@@ -82,7 +83,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
-         [message show];
+        [message show];
         
         
     }
@@ -152,7 +153,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
     [self.view setFrame:viewFrame];
     [UIView commitAnimations];
-
+    
 }
 
 //Scroll up after leaving textField if necessarry

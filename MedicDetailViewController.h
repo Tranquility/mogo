@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-//#import <Foundation/Foundation.h>
 #import "DoctorModel.h"
-
-#define ZOOMFACTOR 500.344
 
 @interface MedicDetailViewController : UIViewController
 
