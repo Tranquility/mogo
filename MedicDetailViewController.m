@@ -13,6 +13,8 @@
 
 @implementation MedicDetailViewController
 
+@synthesize favoritButton;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,7 +28,7 @@
 {
     //Statischer Aufruf weil Test.
     [super viewDidLoad];
-    
+        
 	NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
     name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -51,6 +53,7 @@
 - (void)viewDidUnload {
 
     [self setMapOutlet:nil];
+    [self setFavoritButton:nil];
     [super viewDidUnload];
 }
 
