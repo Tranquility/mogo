@@ -65,7 +65,6 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     else
     {
         MailManipulator* mailChecker = [[MailManipulator alloc] init];
-                NSString* error;
         NSString* error;
         if(![self arePasswordsEqual])
             error = NSLocalizedString(@"Die Passwörter müssen identisch sein", @"PWD_NOT_IDENTICAL");
