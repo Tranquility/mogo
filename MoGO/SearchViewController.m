@@ -15,6 +15,8 @@
 @interface SearchViewController ()
 
 @property (nonatomic) DoctorModel *chosenDoctor;
+@property (nonatomic) NSArray *chosenDiscipline;
+@property (nonatomic) NSMutableArray *doctorsForDiscipline;
 
 @end
 
@@ -24,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -42,8 +44,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.arrayChosen = [[NSMutableArray alloc] init];
+    
+    self.allDoctors = [[NSMutableArray alloc] init];
+    self.disciplines = [[NSMutableArray alloc] init];
+    
     [self.pickerView selectRow:0 inComponent:0 animated:YES];
+    
+    [[ApiClient sharedInstance] getPath:@"disciplines.json" parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id response) {
+                                    
+                                    NSArray *tuple = @[@0, @"Alle Fachbereiche"];
+                                    
+                                    [self.disciplines addObject:tuple];
+                                    
+                                    //Add all Disciplines from the Backend
+                                    for (id disciplineJson in response) {
+                                        NSNumber *ident = [disciplineJson valueForKeyPath:@"id"];
+                                        NSString *discipline = [disciplineJson valueForKeyPath:@"name"];
+                                        tuple = @[ident, discipline];
+                                        [self.disciplines addObject:tuple];
+                                    }
+                                    [self.pickerView reloadAllComponents];
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    NSLog(@"Error fetching Disciplines!");
+                                    NSLog(@"%@", error);
+                                    
+                                }];
     
     
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
@@ -61,7 +88,7 @@
                                                                                           coordinate:&location];
                                         
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:[[doctorJson valueForKeyPath:@"id"] intValue]
-                                                                                        discipline:@"Frauenarzt"
+                                                                                        discipline:[self disciplineIdToString:[[doctorJson valueForKeyPath:@"discipline_id"] intValue]]
                                                                                              title:[doctorJson valueForKeyPath:@"title"]
                                                                                             gender:[doctorJson valueForKeyPath:@"gender"]
                                                                                          firstName:[doctorJson valueForKeyPath:@"firstname"]
@@ -69,8 +96,11 @@
                                                                                               mail:[doctorJson valueForKeyPath:@"mail"]
                                                                                          telephone:[doctorJson valueForKeyPath:@"telephone"]
                                                                                            address:address];
-                                        [self.arrayChosen addObject:doctorModel];
+                                        [self.allDoctors addObject:doctorModel];
                                     }
+                                    self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
+                                    self.doctorsForDiscipline = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
+                                    
                                     [self.tableView reloadData];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -98,6 +128,17 @@
     [self.doctorNameField resignFirstResponder];
 }
 
+- (NSString*)disciplineIdToString:(NSInteger)disciplineId {
+    NSString *result;
+    
+    for (NSArray *tuple in self.disciplines) {
+        if ([[tuple objectAtIndex:0] intValue] == disciplineId)
+            result = [tuple objectAtIndex:1];
+    }
+    
+    return result;
+}
+
 #pragma mark - UIPickerViewDataSource/Delegate methods
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
@@ -107,17 +148,16 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    // TOO: return discipline count
-    return 0;
+    return self.disciplines.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    //TODO: set discipline for current row
-    return @"title";
+    return [[self.disciplines objectAtIndex:row] objectAtIndex:1];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    //TODO: Set disciplines
+    self.chosenDiscipline = [self.disciplines objectAtIndex:row];
+    NSLog(@"%d", row);
 }
 
 #pragma mark - UIPickerViewDelegate method
@@ -133,23 +173,54 @@
 
 - (IBAction)chooseDiscipline:(id)sender {
     self.subView.hidden = YES;
+    
+    NSLog(@"%@ %@", [self.chosenDiscipline objectAtIndex:0], [self.chosenDiscipline objectAtIndex:1]);
+    
+    if ([[self.chosenDiscipline objectAtIndex:0] isEqual:@0]) {
+        self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
+    } else {
+        
+        
+        [self.chosenDoctors removeAllObjects];
+        NSString *discipline = [self.chosenDiscipline objectAtIndex:1];
+        
+        for (DoctorModel *doctor in self.allDoctors) {
+            if ([doctor.discipline isEqualToString:discipline]) {
+                [self.chosenDoctors addObject: doctor];
+            }
+        }
+    }
+    
+    self.doctorsForDiscipline = [[NSMutableArray alloc] initWithArray:self.chosenDoctors copyItems:NO];
+    
     [self.tableView reloadData];
 }
 
+/**
+ * This reacts on keyboard input and checks the list of currently chosen doctors (all or of one discipline) if they match the input
+ */
 - (IBAction)updateNameTextField:(id)sender {
     
-    [self.arrayChosen removeAllObjects];
+    [self.chosenDoctors removeAllObjects];
     
-    //NSString* text = [self.doctorNameField.text lowercaseString];
-    //NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
-        [self.tableView reloadData];
+    NSString* text = [NSString stringWithFormat:@"^%@", [self.doctorNameField.text lowercaseString]];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
+    for (DoctorModel *doctor in self.doctorsForDiscipline) {
+        NSString *name = [NSString stringWithFormat:@"%@ %@", [doctor.firstName lowercaseString], [doctor.lastName lowercaseString]];
+        NSTextCheckingResult *match = [regex firstMatchInString:name options:0 range:NSMakeRange(0, name.length)];
+        if (match) {
+            [self.chosenDoctors addObject:doctor];
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource/Delegates methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arrayChosen.count;
+    return self.chosenDoctors.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,7 +231,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    DoctorModel *currentDoctor = [self.arrayChosen objectAtIndex:indexPath.row];
+    DoctorModel *currentDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
     
     cell.textLabel.text = [[NSString stringWithFormat:@"%@ %@ %@", currentDoctor.title, currentDoctor.firstName, currentDoctor.lastName] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -170,10 +241,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    self.chosenDoctor = [self.arrayChosen objectAtIndex:indexPath.row];
-    
-    NSLog(@"%d", indexPath.row);
-    
+    self.chosenDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"toDoctorDetail" sender:self];
 }
 
