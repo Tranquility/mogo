@@ -7,12 +7,11 @@
 //
 
 #import "MedicDetailViewController.h"
+#import "MakeAppointmentViewController.h"
 #import "MapViewAnnotation.h"
 #import "AddressModel.h"
 
 @implementation MedicDetailViewController
-
-@synthesize favoritButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,14 +74,14 @@
     UIImage *btnImageNormal = [UIImage imageNamed:@"sternNormal.jpg"];
     
     //Bilder  den States hinzufügen
-    [favoritButton setImage:btnImageGelb forState:UIControlStateSelected];
-    [favoritButton setImage:btnImageNormal forState:UIControlStateNormal];
+    [self.favoritButton setImage:btnImageGelb forState:UIControlStateSelected];
+    [self.favoritButton setImage:btnImageNormal forState:UIControlStateNormal];
     
     //Auswählen zwischen selected und normal
-    if (favoritButton.selected) {
+    if (self.favoritButton.selected) {
         
         //Arzt entfernen
-        [favoritButton setSelected:NO];
+        [self.favoritButton setSelected:NO];
         UIAlertView *remove = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"remove") message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"arzt entfernen") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [remove show];
         
@@ -90,11 +89,19 @@
     else {
         
         //Arzt hinzufügen
-        [favoritButton setSelected:YES];
+        [self.favoritButton setSelected:YES];
         UIAlertView *add = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"added") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"arzt hinzugefügt") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [add show];
     }
+    
+}
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"docDetailToMakeAppointment"]) {
+        MakeAppointmentViewController *destination = [segue destinationViewController];
+        destination.doctor = self.doctor;
+    }
 }
 
 

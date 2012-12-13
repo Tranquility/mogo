@@ -15,6 +15,8 @@
 
 @interface MedicDetailViewController : UIViewController
 
+@property (nonatomic) IBOutlet UIButton *addFavourite;
+@property (nonatomic) IBOutlet UIBarButtonItem *makeAppointment;
 @property (nonatomic) IBOutlet MKMapView *mapOutlet;
 @property (nonatomic) IBOutlet UILabel *nameField;
 @property (nonatomic) IBOutlet UILabel *typeField;
@@ -26,6 +28,6 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
--(IBAction)doFavorit:(id)favorit;
+- (IBAction)doFavorit:(id)favorit;
 
 @end

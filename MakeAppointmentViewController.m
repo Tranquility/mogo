@@ -54,6 +54,10 @@ This object handles all the workflow for making an appointment.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //Set name and discipline of the doctor
+    NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
+    self.doctorLabel.text = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.doctorDisciplineLabel.text = self.doctor.discipline;
    
     //Set ScrollView width to 4*Size of a calendar. height=height of one calendar
     self.calendarScrollView.contentSize = CGSizeMake(4 * 320, 334);
@@ -87,9 +91,9 @@ This object handles all the workflow for making an appointment.
                
         //next month
         initMonth++;
-        if(initMonth==13)
+        if(initMonth == 13)
         {
-            initMonth=01;
+            initMonth = 1;
             initYear++;
         }
         
@@ -106,16 +110,16 @@ This object handles all the workflow for making an appointment.
 
 //Moves the calendarScrollView to the previous month
 -(void) moveCalendarViewtoLeft{
-    if(self.currentOffset!=0)
+    if(self.currentOffset != 0)
     {
         self.currentOffset = self.currentOffset - 320;
         [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
         //previous month
-        self.currentMonth-=1;
-        if(self.currentMonth==0)
+        self.currentMonth -= 1;
+        if(self.currentMonth == 0)
         {
-            self.currentMonth=12;
-            self.currentYear-=1;
+            self.currentMonth = 12;
+            self.currentYear -= 1;
         }
     }
     [self setTitleToMonth:self.currentMonth andYear:self.currentYear];
@@ -132,11 +136,11 @@ This object handles all the workflow for making an appointment.
     }
     else{
         //next month
-        self.currentMonth+=1;
-        if(self.currentMonth==13)
+        self.currentMonth += 1;
+        if(self.currentMonth == 13)
         {
-            self.currentMonth=1;
-            self.currentYear+=1;
+            self.currentMonth = 1;
+            self.currentYear += 1;
         }
     }
     [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
@@ -156,6 +160,7 @@ This object handles all the workflow for making an appointment.
 -(void)showDay:(int)day
 {
     MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController" bundle:Nil andDay:day andMonth:self.currentMonth andYear:self.currentYear andParentVC:self];
+    dayController.doctor = self.doctor;
     [[self navigationController] pushViewController:dayController animated:YES];
 }
 
