@@ -43,7 +43,7 @@
 
     //Size of one SlotView
     //Again: this could be set as heightOfOneSlot*numberOfSLots instead of fixed 500px
-    CGRect r = CGRectMake(0,0,320,500);
+    CGRect r = CGRectMake(0, 0, 320, 500);
         
     //Create Slot View with the given day/month/year
     self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
@@ -64,7 +64,7 @@
 -(void)showNextDay:(id)sender
 {
     //Size of one SlotView
-    CGRect r = CGRectMake(0,0,320,500);
+    CGRect r = CGRectMake(0, 0, 320, 500);
     
     //TODO: Connect this to the dataSource and search for the next day
     //      that has available slots. Then set self.day,self.month,self.year to the new values
