@@ -6,7 +6,7 @@
 @interface MapViewAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic) NSString *title;
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
 
 - (MapViewAnnotation*)initWithTitle:(NSString*)title andCoordinate:(CLLocationCoordinate2D)coordinate;
 
