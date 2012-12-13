@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		25872568C99647269B8F4825 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B5E67D3F6E46409EA1866E /* libPods.a */; };
-		25B188ED16762A9B0031147B /* Stern1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25B188EC16762A9B0031147B /* Stern1.jpg */; };
-		25B188F016762AA30031147B /* stern1-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25B188EF16762AA30031147B /* stern1-1.jpg */; };
+		25B188ED16762A9B0031147B /* sternNormal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25B188EC16762A9B0031147B /* sternNormal.jpg */; };
+		25B188F016762AA30031147B /* sternGelb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25B188EF16762AA30031147B /* sternGelb.jpg */; };
 		25E8BE981670B56600807CC7 /* DrugDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E8BE971670B56600807CC7 /* DrugDetailViewController.m */; };
 		25FAB33216661B62008EB8CF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FAB33116661B62008EB8CF /* SenTestingKit.framework */; };
 		25FAB33316661B62008EB8CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
@@ -57,8 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		25B188EC16762A9B0031147B /* Stern1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Stern1.jpg; path = ../../../Downloads/Stern1.jpg; sourceTree = "<group>"; };
-		25B188EF16762AA30031147B /* stern1-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "stern1-1.jpg"; path = "../../../Downloads/stern1-1.jpg"; sourceTree = "<group>"; };
+		25B188EC16762A9B0031147B /* sternNormal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sternNormal.jpg; path = ../../../Downloads/sternNormal.jpg; sourceTree = "<group>"; };
+		25B188EF16762AA30031147B /* sternGelb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sternGelb.jpg; path = ../../../Downloads/sternGelb.jpg; sourceTree = "<group>"; };
 		25E8BE961670B56600807CC7 /* DrugDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrugDetailViewController.h; sourceTree = "<group>"; };
 		25E8BE971670B56600807CC7 /* DrugDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrugDetailViewController.m; sourceTree = "<group>"; };
 		25FAB33016661B62008EB8CF /* MoGOTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoGOTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,8 +303,8 @@
 		F16BF10716626675000E5FC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				25B188EF16762AA30031147B /* stern1-1.jpg */,
-				25B188EC16762A9B0031147B /* Stern1.jpg */,
+				25B188EF16762AA30031147B /* sternGelb.jpg */,
+				25B188EC16762A9B0031147B /* sternNormal.jpg */,
 				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
 				F16BF10816626811000E5FC0 /* accessories-date.png */,
 				F16BF10516626669000E5FC0 /* arztsuche.png */,
@@ -399,8 +399,8 @@
 				991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */,
 				F1E22CCD166CFA490071AA7E /* DayTemplateView.xib in Resources */,
 				F1DBD2B2167368010078CF28 /* MakeAppointmentDayViewController.xib in Resources */,
-				25B188ED16762A9B0031147B /* Stern1.jpg in Resources */,
-				25B188F016762AA30031147B /* stern1-1.jpg in Resources */,
+				25B188ED16762A9B0031147B /* sternNormal.jpg in Resources */,
+				25B188F016762AA30031147B /* sternGelb.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

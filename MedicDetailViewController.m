@@ -12,6 +12,8 @@
 
 @implementation MedicDetailViewController
 
+@synthesize favoritButton;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,7 +27,7 @@
 {
     //Statischer Aufruf weil Test.
     [super viewDidLoad];
-    
+        
 	NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
     
     AddressModel *doctorAddress = self.doctor.address;
@@ -49,7 +51,7 @@
 - (void)viewDidUnload {
 
     [self setMapOutlet:nil];
-    [self setFavorit:nil];
+    [self setFavoritButton:nil];
     [super viewDidUnload];
 }
 
@@ -64,11 +66,36 @@
     
 }
 
+//Action für FavoritButton
 -(IBAction)doFavorit:(id)favorit {
-    UIImage *btnImage1 = [UIImage imageNamed:@"stern1-1.jpg"];
-    UIImage *btnImage2 = [UIImage imageNamed:@"Stern1.jpg"];
-    [favorit setImage:btnImage2 forState:UIControlStateSelected];
-    [favorit setImage:btnImage1 forState:UIControlStateNormal];
+    
+    //Bilder Setzen
+    UIImage *btnImageGelb = [UIImage imageNamed:@"sternGelb.jpg"];
+    UIImage *btnImageNormal = [UIImage imageNamed:@"sternNormal.jpg"];
+    
+    //Bilder  den States hinzufügen
+    [favoritButton setImage:btnImageGelb forState:UIControlStateSelected];
+    [favoritButton setImage:btnImageNormal forState:UIControlStateNormal];
+    
+    //Auswählen zwischen selected und normal
+    if (favoritButton.selected) {
+        
+        //Arzt entfernen
+        [favoritButton setSelected:NO];
+        UIAlertView *remove = [[UIAlertView alloc] initWithTitle:@"Entfernt" message:@"Arzt aus den Favoriten entfernt" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [remove show];
+        
+    }
+    else {
+        
+        //Arzt hinzufügen
+        [favoritButton setSelected:YES];
+        UIAlertView *add = [[UIAlertView alloc] initWithTitle:@"Hinzugefügt" message:@"Arzt zu den Favoriten hinzugefügt" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [add show];
+    }
+
 }
+
+
 
 @end

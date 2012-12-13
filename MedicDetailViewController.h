@@ -22,7 +22,7 @@
 @property (nonatomic) IBOutlet UILabel *phoneField;
 @property (nonatomic) IBOutlet UILabel *hoursField;
 @property (nonatomic) DoctorModel *doctor;
-@property (nonatomic) IBOutlet UIButton *favorit;
+@property (nonatomic) IBOutlet UIButton *favoritButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
