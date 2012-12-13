@@ -63,7 +63,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="hdV-vS-xno" kind="push" id="NIu-mk-nUS"/>
+                                    <segue destination="h7E-97-Ext" kind="push" id="Aes-Qk-xH0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -300,11 +300,11 @@
             <objects>
                 <viewController id="h7E-97-Ext" customClass="DocumentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xhd-Sc-07J">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="46" sectionHeaderHeight="10" sectionFooterHeight="10" id="7Uj-o8-pod" userLabel="documentTableView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
@@ -821,7 +821,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="NIu-mk-nUS"/>
         <segue reference="4zZ-Pj-sG2"/>
         <segue reference="jr0-IK-B71"/>
         <segue reference="ims-AM-hPl"/>
