@@ -25,6 +25,7 @@
 @property (nonatomic) IBOutlet UILabel *hoursField;
 @property (nonatomic) DoctorModel *doctor;
 @property (nonatomic) IBOutlet UIButton *favoritButton;
+@property (nonatomic) NSMutableArray *docFavList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 

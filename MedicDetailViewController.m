@@ -24,6 +24,41 @@
 
 - (void)viewDidLoad
 {
+    
+    //Bilder Setzen
+    UIImage *btnImageGelb = [UIImage imageNamed:@"sternGelb.jpg"];
+    UIImage *btnImageNormal = [UIImage imageNamed:@"sternNormal.jpg"];
+    
+    //Button states setzen
+    [self.favoritButton setImage:btnImageGelb forState:UIControlStateSelected];
+    [self.favoritButton setImage:btnImageNormal forState:UIControlStateNormal];
+    
+    //Pfad
+    NSString *myPath = [self saveFilePath];
+    
+    //wenn Liste exestiert dann ersetzen
+	if ([[NSFileManager defaultManager] fileExistsAtPath:myPath])
+	{
+        self.docFavList = [NSKeyedUnarchiver unarchiveObjectWithFile: myPath];
+	}
+    else
+    {
+        self.docFavList = [[NSMutableArray alloc] init];
+    }
+    
+    //Id in String umwandeln
+    NSString *idNumber = [NSString stringWithFormat:@"%d", self.doctor.idNumber];
+    
+    if ([self.docFavList containsObject:idNumber])
+    {
+        [self.favoritButton setSelected:YES];
+    }
+    else
+    {
+        [self.favoritButton setSelected:NO];
+    }
+    
+    
     //Statischer Aufruf weil Test.
     [super viewDidLoad];
         
@@ -69,19 +104,16 @@
 //Action für FavoritButton
 -(IBAction)doFavorit:(id)favorit {
     
-    //Bilder Setzen
-    UIImage *btnImageGelb = [UIImage imageNamed:@"sternGelb.jpg"];
-    UIImage *btnImageNormal = [UIImage imageNamed:@"sternNormal.jpg"];
-    
-    //Bilder  den States hinzufügen
-    [self.favoritButton setImage:btnImageGelb forState:UIControlStateSelected];
-    [self.favoritButton setImage:btnImageNormal forState:UIControlStateNormal];
+    //Id in String umwandeln
+    NSString *idNumber = [NSString stringWithFormat:@"%d", self.doctor.idNumber];
     
     //Auswählen zwischen selected und normal
     if (self.favoritButton.selected) {
         
         //Arzt entfernen
         [self.favoritButton setSelected:NO];
+        [self.docFavList removeObject:idNumber];
+        [NSKeyedArchiver archiveRootObject: self.docFavList toFile: self.saveFilePath];
         UIAlertView *remove = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"remove") message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"arzt entfernen") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [remove show];
         
@@ -90,6 +122,8 @@
         
         //Arzt hinzufügen
         [self.favoritButton setSelected:YES];
+        [self.docFavList addObject:idNumber];
+        [NSKeyedArchiver archiveRootObject: self.docFavList toFile: self.saveFilePath];
         UIAlertView *add = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"added") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"arzt hinzugefügt") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [add show];
     }
@@ -104,6 +138,14 @@
     }
 }
 
-
+//File erstellen zum saven
+- (NSString *) saveFilePath
+{
+	NSArray *path =
+	NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+	return [[path objectAtIndex:0] stringByAppendingPathComponent:@"data.archive"];
+    
+}
 
 @end
