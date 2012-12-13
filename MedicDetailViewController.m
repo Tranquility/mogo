@@ -82,7 +82,7 @@
         
         //Arzt entfernen
         [favoritButton setSelected:NO];
-        UIAlertView *remove = [[UIAlertView alloc] initWithTitle:@"Entfernt" message:@"Arzt aus den Favoriten entfernt" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *remove = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"remove") message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"arzt entfernen") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [remove show];
         
     }
@@ -90,7 +90,7 @@
         
         //Arzt hinzufügen
         [favoritButton setSelected:YES];
-        UIAlertView *add = [[UIAlertView alloc] initWithTitle:@"Hinzugefügt" message:@"Arzt zu den Favoriten hinzugefügt" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *add = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"added") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"arzt hinzugefügt") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [add show];
     }
 
