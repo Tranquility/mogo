@@ -10,8 +10,9 @@
 #import <MessageUI/MessageUI.h>
 
 @interface MailManipulator : NSObject <MFMailComposeViewControllerDelegate>
--(BOOL) isMailFormatValid : (NSString*) theMailToTest;
--(void) sendMailToAdressee : (NSString*) theAdressee withContent: (NSString*) mailContent;
+
+- (BOOL)isMailFormatValid:(NSString*)mail;
+- (void)sendMailToAddress:(NSString*)address withContent:(NSString*)mailContent;
 
 
 

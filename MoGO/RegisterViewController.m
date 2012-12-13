@@ -20,7 +20,6 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 
 @interface RegisterViewController ()
 
-
 @end
 
 @implementation RegisterViewController
@@ -47,12 +46,9 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 }
 
 - (void)viewDidUnload {
-    [self setMailAdressField:nil];
-    [self setPasswordField:nil];
-    [self setPasswordConfirmField:nil];
-    [self setAgeField:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)registerButtonPressed:(id)sender {
     if([self isInputValid]) //TODO:check for unique mail adress with server
     {
@@ -69,20 +65,20 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     else
     {
         MailManipulator* mailChecker = [[MailManipulator alloc] init];
-                NSString* error = @"";
-        if(![self passwordsEqual])
-            error = @"Die Passwörter müssen identisch sein";
-        else if(![self passwordLengthValid])
-            error = @"Ein Passwort muss aus mindestens sechs Zeichen bestehen";
+                NSString* error;
+        if(![self arePasswordsEqual])
+            error = NSLocalizedString(@"Die Passwörter müssen identisch sein", @"PWD_NOT_IDENTICAL");
+        else if(![self isPasswordLengthValid])
+            error = NSLocalizedString(@"Ein Passwort muss aus mindestens sechs Zeichen bestehen", @"PWD_TOO_SHOORT");
         else if(![self isEveryFieldFilled])
-            error = @"Jedes Feld muss gefüllt sein";
-        else if(![mailChecker isMailFormatValid:_mailAdressField.text])
-            error = @"E-Mail-Adressformat ist fehlerhaft";
+            error = NSLocalizedString(@"Jedes Feld muss gefüllt sein", @"FILL_ALL_FIELDS");
+        else if(![mailChecker isMailFormatValid:self.mailAddressField.text])
+            error = NSLocalizedString(@"E-Mail-Adressformat ist fehlerhaft", @"EMAIL_INVALID");
         else
-            error = @"Ein unbekannter Fehler ist aufgetreten";
+            error = NSLocalizedString(@"Ein unbekannter Fehler ist aufgetreten", @"UNKNOWN_ERROR");
         
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:error
-                                                          message:@"Bitte versuchen Sie es erneut"
+                                                          message:NSLocalizedString(@"Bitte versuchen Sie es erneut", @"TRY_AGAIN")
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
@@ -93,25 +89,25 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     
 }
 
--(BOOL)passwordsEqual
+-(BOOL) arePasswordsEqual
 {
-    return [_passwordField.text isEqualToString:_passwordConfirmField.text];
+    return [self.passwordField.text isEqualToString:self.passwordConfirmField.text];
 }
 
--(BOOL)passwordLengthValid
+-(BOOL) isPasswordLengthValid
 {
-    return [_passwordField.text length] >= PASSWORD_MIN_SIZE;
+    return [self.passwordField.text length] >= PASSWORD_MIN_SIZE;
 }
 
--(BOOL)isEveryFieldFilled
+-(BOOL) isEveryFieldFilled
 {
-    return ([_mailAdressField.text length] > 0) && ([_passwordField.text length] > 0) && ([_ageField.text length] > 0);
+    return (self.mailAddressField.text.length > 0) && (self.passwordField.text.length > 0) && (self.ageField.text.length > 0);
 }
 
--(BOOL)isInputValid
+-(BOOL) isInputValid
 {
     MailManipulator* mailChecker = [[MailManipulator alloc] init];
-    return [self passwordsEqual] && [self passwordLengthValid] && [self isEveryFieldFilled] && [mailChecker isMailFormatValid:_mailAdressField.text];
+    return [self arePasswordsEqual] && [self isPasswordLengthValid] && [self isEveryFieldFilled] && [mailChecker isMailFormatValid:self.mailAddressField.text];
 }
 
 // Text field specific functions below

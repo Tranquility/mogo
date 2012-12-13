@@ -8,22 +8,14 @@
 
 @implementation MailManipulator
 
--(BOOL) isMailFormatValid : (NSString*) theMailToTest
-{
-    //more detailed filter could be built though
-    return [theMailToTest rangeOfString:@"^.+@.+\\..{2,}$" options:NSRegularExpressionSearch].location != NSNotFound;
+- (BOOL)isMailFormatValid:(NSString*)mail {
+    return [mail rangeOfString:@"^.+@.+\\..{2,}$" options:NSRegularExpressionSearch].location != NSNotFound;
 }
-
 
 //Function to generate mails, if required
 //TODO: Delete if not required for project
--(void) sendMailToAdressee : (NSString*) theAdressee withContent: (NSString*) mailContent
-{
-
+- (void)sendMailToAddress:(NSString*)address withContent:(NSString*)mailContent {
+    
 }
-
-
-
-
 
 @end

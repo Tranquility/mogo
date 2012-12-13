@@ -27,19 +27,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"LogIn"];
-	// Do any additional setup after loading the view.
     
-    //Later: Check if already logged in
-    //TODO: Improve sequirity
-    /*NSUserDefaults *saveLogin = [NSUserDefaults standardUserDefaults];
-    NSString* registeredMail = [saveLogin stringForKey:@"currentUserMail"];
-    if([registeredMail length] > 1)
-    {
-        [self.navigationController pushViewController:[[ViewController alloc]init]
-                                             animated:YES];
-        NSLog(@"WIR SIND IM VIEWDIDLOAD IF");
-    }*/
+    [self setTitle:@"LogIn"];
+//    Later: Check if already logged in
+//    TODO: Improve sequirity
+    
+//    NSUserDefaults *saveLogin = [NSUserDefaults standardUserDefaults];
+//    NSString* registeredMail = [saveLogin stringForKey:@"currentUserMail"];
+//    if(registeredMail.length > 1)
+//    {
+//        [self.navigationController pushViewController:[[ViewController alloc]init]
+//                                             animated:YES];
+//        NSLog(@"WIR SIND IM VIEWDIDLOAD IF");
+//    }
+
     
 }
 
@@ -54,16 +55,17 @@
     [self setPasswordField:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)loginButtonPressed:(id)sender {
     //generate querry to server
-    NSString *userMail, *userPassword = @"";
+    NSString *userMail, *userPassword;
     userMail = self.mailAdressField.text;
     userPassword = self.passwordField.text;
     //send querry, wait for response, then do
-    if(TRUE) //change with server confirms account
+    if (YES) //change with server confirms account
     {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login erfolgreich"
-                                                          message:@"Viel Spaß bei der Nutzung von MoGo"
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login erfolgreich", @"LOGIN_SUCCESSFULL")
+                                                          message:NSLocalizedString(@"Viel Spaß bei der Nutzung von MoGO", @"ENJOY_MOGO")
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
@@ -77,8 +79,8 @@
     else
     {
         //ask server for fail reason (mail unknown? password wrong? give more detailed feedback)
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login gescheitert"
-                                                          message:@"DER GRUND FÜRS SCHEITERN"
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login gescheitert", @"LOGIN_FAILED")
+                                                          message:NSLocalizedString(@"Dies kann verschiedene Gründe haben", @"FAIL_REASONS")
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
@@ -89,9 +91,9 @@
 }
 
 
--(BOOL)textFieldShouldReturn:(UITextField *) theTextField
+-(BOOL)textFieldShouldReturn:(UITextField *) textField
 {
-    [theTextField   resignFirstResponder];
+    [textField resignFirstResponder];
     return YES;
 }
 
