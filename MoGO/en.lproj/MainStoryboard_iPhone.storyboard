@@ -416,50 +416,22 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name des Arzts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9bh-UL-aYv" userLabel="lDoctorname">
-                                <rect key="frame" x="32" y="157" width="128" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dr. Arzt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AXA-et-fif" userLabel="Doctorname">
+                                <rect key="frame" x="21" y="148" width="279" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dr. Arzt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AXA-et-fif" userLabel="Doctorname">
-                                <rect key="frame" x="182" y="157" width="58" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Typ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D5l-uW-SDa" userLabel="lType">
-                                <rect key="frame" x="32" y="184" width="31" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Adresse" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T3i-UR-kVc" userLabel="lAdress">
-                                <rect key="frame" x="32" y="213" width="68" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Telefon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w9Q-8k-asi" userLabel="lPhone">
-                                <rect key="frame" x="32" y="266" width="61" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Öffnungszeiten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sY7-3A-p9Y" userLabel="lOpeningHours">
-                                <rect key="frame" x="32" y="296" width="124" height="21"/>
+                                <rect key="frame" x="98" y="290" width="124" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TX7-hY-Kz5" userLabel="bBookButton">
-                                <rect key="frame" x="95" y="367" width="132" height="44"/>
+                                <rect key="frame" x="94" y="355" width="132" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Termin buchen">
@@ -470,39 +442,39 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="gCb-VM-UNO" kind="push" id="jr0-IK-B71"/>
+                                    <segue destination="gCb-VM-UNO" kind="push" identifier="docDetailToMakeAppointment" id="jr0-IK-B71"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chirurg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HE4-M3-QIa" userLabel="doctortype">
-                                <rect key="frame" x="183" y="186" width="56" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chirurg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HE4-M3-QIa" userLabel="doctortype">
+                                <rect key="frame" x="21" y="168" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.24959663722826086" green="0.24959663722826086" blue="0.24959663722826086" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="040 712 24 56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7xq-Qe-ky7" userLabel="doctorphone">
+                                <rect key="frame" x="27" y="261" width="268" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="040 712 24 56" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7xq-Qe-ky7" userLabel="doctorphone">
-                                <rect key="frame" x="183" y="266" width="109" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mo. - Do. 08:00 bis 13:00 Uhr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w6X-ms-Klb" userLabel="doctoropening">
+                                <rect key="frame" x="26" y="319" width="268" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mo. - Do. 08:00 bis 13:00 Uhr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w6X-ms-Klb" userLabel="doctoropening">
-                                <rect key="frame" x="49" y="327" width="224" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Toaststraße 12                                   22111 Hamburg" id="GzA-SS-O6Z" userLabel="doctoradress">
-                                <rect key="frame" x="174" y="207" width="240" height="56"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Toaststraße 12                                   22111 Hamburg" textAlignment="center" id="GzA-SS-O6Z" userLabel="doctoradress">
+                                <rect key="frame" x="26" y="197" width="268" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" id="rjh-gM-JbW">
-                                <rect key="frame" x="20" y="97" width="280" height="140"/>
+                                <rect key="frame" x="20" y="84" width="280" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </mapView>
                         </subviews>
@@ -511,7 +483,7 @@
                     <navigationItem key="navigationItem" title="Arztdetail" id="u9I-q2-MN8">
                         <barButtonItem key="rightBarButtonItem" title="+ Termin" id="T01-UB-dUU">
                             <connections>
-                                <segue destination="gCb-VM-UNO" kind="push" id="CaX-Tg-GE0"/>
+                                <segue destination="gCb-VM-UNO" kind="push" identifier="docDetailToMakeAppointment" id="CaX-Tg-GE0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -519,6 +491,8 @@
                     <connections>
                         <outlet property="addressField" destination="GzA-SS-O6Z" id="im8-SB-o23"/>
                         <outlet property="hoursField" destination="w6X-ms-Klb" id="o72-qN-yPS"/>
+                        <outlet property="makeAppointment" destination="TX7-hY-Kz5" id="fSP-Rn-K4R"/>
+                        <outlet property="makeAppointmentBar" destination="T01-UB-dUU" id="GGQ-p3-EoG"/>
                         <outlet property="mapOutlet" destination="rjh-gM-JbW" id="D8H-zZ-SOP"/>
                         <outlet property="nameField" destination="AXA-et-fif" id="elL-qx-GX0"/>
                         <outlet property="phoneField" destination="7xq-Qe-ky7" id="oJq-3V-g5a"/>
@@ -789,8 +763,11 @@
         <class className="MedicDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="openAppointmentView:"/>
                 <relationship kind="outlet" name="addressField" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="hoursField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="makeAppointment" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="makeAppointmentBar" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="nameField" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="phoneField" candidateClass="UILabel"/>

@@ -15,6 +15,8 @@
 
 @interface MedicDetailViewController : UIViewController
 
+@property (nonatomic) IBOutlet UIButton *makeAppointment;
+@property (nonatomic) IBOutlet UIBarButtonItem *makeAppointmentBar;
 @property (nonatomic) IBOutlet MKMapView *mapOutlet;
 @property (nonatomic) IBOutlet UILabel *nameField;
 @property (nonatomic) IBOutlet UILabel *typeField;
@@ -24,5 +26,7 @@
 @property (nonatomic) DoctorModel *doctor;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+
+- (IBAction)openAppointmentView:(id)sender;
 
 @end

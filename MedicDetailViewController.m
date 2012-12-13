@@ -7,6 +7,7 @@
 //
 
 #import "MedicDetailViewController.h"
+#import "MakeAppointmentViewController.h"
 #import "MapViewAnnotation.h"
 #import "AddressModel.h"
 
@@ -62,6 +63,14 @@
 //    MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:doctorName andCoordinate:location];
 //	[self.mapOutlet addAnnotation:newAnnotation];
     
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"docDetailToMakeAppointment"]) {
+        MakeAppointmentViewController *destination = [segue destinationViewController];
+        destination.doctor = self.doctor;
+    }
 }
 
 @end

@@ -32,6 +32,11 @@
 {
     [super viewDidLoad];
     
+    //Set name and discipline of the doctor
+    NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
+    self.doctorLabel.text = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.doctorDisciplineLabel.text = self.doctor.discipline;
+    
     //Set ContentSitze as needed
     //TODO: This could be done better by calculating the height as heightOfOneSlot*numberOfSLots
     self.slotsView.contentSize = CGSizeMake(320, 500);
@@ -100,12 +105,7 @@
 -(void)setTitleToDay:(NSString*)currentDay andMonth:(NSString*)currentMonth andYear:(NSString*)currentYear
 {
     // Set the Title
-    NSMutableString *title = [NSMutableString stringWithFormat:@""];
-    [title appendString:currentDay];
-    [title appendString:@"."];
-    [title appendString:currentMonth];
-    [title appendString:@"."];
-    [title appendString:currentYear];
+    NSString *title = [NSString stringWithFormat:@"%@.%@.%@", currentDay, currentMonth, currentYear];
     self.dayLabel.text = title;
 }
 
