@@ -431,7 +431,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TX7-hY-Kz5" userLabel="bBookButton">
-                                <rect key="frame" x="94" y="355" width="132" height="44"/>
+                                <rect key="frame" x="130" y="355" width="62" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="sternNormal.jpg">
@@ -442,7 +442,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="gCb-VM-UNO" kind="push" identifier="docDetailToMakeAppointment" id="jr0-IK-B71"/>
+                                    <action selector="doFavorit:" destination="RWq-Jq-LmT" eventType="touchUpInside" id="Rmi-4A-ugE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chirurg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HE4-M3-QIa" userLabel="doctortype">
@@ -483,16 +483,16 @@
                     <navigationItem key="navigationItem" title="Arztdetail" id="u9I-q2-MN8">
                         <barButtonItem key="rightBarButtonItem" title="+ Termin" id="T01-UB-dUU">
                             <connections>
-                                <segue destination="gCb-VM-UNO" kind="push" identifier="docDetailToMakeAppointment" id="CaX-Tg-GE0"/>
+                                <segue destination="gCb-VM-UNO" kind="push" identifier="docDetailToMakeAppointment" id="UYi-6G-KtP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="addressField" destination="GzA-SS-O6Z" id="im8-SB-o23"/>
+                        <outlet property="favoritButton" destination="TX7-hY-Kz5" id="0G3-fI-uLP"/>
                         <outlet property="hoursField" destination="w6X-ms-Klb" id="o72-qN-yPS"/>
-                        <outlet property="makeAppointment" destination="TX7-hY-Kz5" id="fSP-Rn-K4R"/>
-                        <outlet property="makeAppointmentBar" destination="T01-UB-dUU" id="GGQ-p3-EoG"/>
+                        <outlet property="makeAppointment" destination="T01-UB-dUU" id="jFr-FK-ymF"/>
                         <outlet property="mapOutlet" destination="rjh-gM-JbW" id="D8H-zZ-SOP"/>
                         <outlet property="nameField" destination="AXA-et-fif" id="elL-qx-GX0"/>
                         <outlet property="phoneField" destination="7xq-Qe-ky7" id="oJq-3V-g5a"/>
@@ -764,14 +764,12 @@
         <class className="MedicDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="openAppointmentView:"/>
-                <relationship kind="outlet" name="addressField" candidateClass="UITextView"/>
                 <relationship kind="action" name="doFavorit:"/>
+                <relationship kind="outlet" name="addFavourite" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressField" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="favoritButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="hoursField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="makeAppointment" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="makeAppointmentBar" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="makeAppointment" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="nameField" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="phoneField" candidateClass="UILabel"/>
@@ -802,8 +800,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jr0-IK-B71"/>
         <segue reference="4zZ-Pj-sG2"/>
+        <segue reference="UYi-6G-KtP"/>
         <segue reference="ims-AM-hPl"/>
     </inferredMetricsTieBreakers>
 </document>

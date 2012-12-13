@@ -13,8 +13,6 @@
 
 @implementation MedicDetailViewController
 
-@synthesize favoritButton;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -68,6 +66,36 @@
     
 }
 
+//Action für FavoritButton
+-(IBAction)doFavorit:(id)favorit {
+    
+    //Bilder Setzen
+    UIImage *btnImageGelb = [UIImage imageNamed:@"sternGelb.jpg"];
+    UIImage *btnImageNormal = [UIImage imageNamed:@"sternNormal.jpg"];
+    
+    //Bilder  den States hinzufügen
+    [self.favoritButton setImage:btnImageGelb forState:UIControlStateSelected];
+    [self.favoritButton setImage:btnImageNormal forState:UIControlStateNormal];
+    
+    //Auswählen zwischen selected und normal
+    if (self.favoritButton.selected) {
+        
+        //Arzt entfernen
+        [self.favoritButton setSelected:NO];
+        UIAlertView *remove = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"remove") message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"arzt entfernen") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [remove show];
+        
+    }
+    else {
+        
+        //Arzt hinzufügen
+        [self.favoritButton setSelected:YES];
+        UIAlertView *add = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"added") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"arzt hinzugefügt") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [add show];
+    }
+    
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"docDetailToMakeAppointment"]) {
@@ -75,5 +103,7 @@
         destination.doctor = self.doctor;
     }
 }
+
+
 
 @end
