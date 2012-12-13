@@ -16,7 +16,7 @@
 @property (nonatomic) MakeAppointmentViewController *myParentVC;
 
 //Action performed whenever a day is touched
--(IBAction) showDay: (id) sender;
+- (IBAction)showDay:(id)sender;
 
 
 - (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day andWithResponder:(MakeAppointmentViewController*)ParentVC;

@@ -32,13 +32,18 @@
 {
     [super viewDidLoad];
     
+    //Set name and discipline of the doctor
+    NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
+    self.doctorLabel.text = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.doctorDisciplineLabel.text = self.doctor.discipline;
+    
     //Set ContentSitze as needed
     //TODO: This could be done better by calculating the height as heightOfOneSlot*numberOfSLots
     self.slotsView.contentSize = CGSizeMake(320, 500);
 
     //Size of one SlotView
     //Again: this could be set as heightOfOneSlot*numberOfSLots instead of fixed 500px
-    CGRect r = CGRectMake(0,0,320,500);
+    CGRect r = CGRectMake(0, 0, 320, 500);
         
     //Create Slot View with the given day/month/year
     self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
@@ -59,7 +64,7 @@
 -(void)showNextDay:(id)sender
 {
     //Size of one SlotView
-    CGRect r = CGRectMake(0,0,320,500);
+    CGRect r = CGRectMake(0, 0, 320, 500);
     
     //TODO: Connect this to the dataSource and search for the next day
     //      that has available slots. Then set self.day,self.month,self.year to the new values
@@ -100,12 +105,7 @@
 -(void)setTitleToDay:(NSString*)currentDay andMonth:(NSString*)currentMonth andYear:(NSString*)currentYear
 {
     // Set the Title
-    NSMutableString *title = [NSMutableString stringWithFormat:@""];
-    [title appendString:currentDay];
-    [title appendString:@"."];
-    [title appendString:currentMonth];
-    [title appendString:@"."];
-    [title appendString:currentYear];
+    NSString *title = [NSString stringWithFormat:@"%@.%@.%@", currentDay, currentMonth, currentYear];
     self.dayLabel.text = title;
 }
 
