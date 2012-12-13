@@ -82,13 +82,13 @@
                                         location.longitude = [[doctorJson valueForKeyPath:@"longitude"] floatValue];
                                         
                                         AddressModel *address = [[AddressModel alloc] initWithStreet:[doctorJson valueForKeyPath:@"street"]
-                                                                                        streetNumber:[[doctorJson valueForKeyPath:@"street_number"] intValue]
+                                                                                        streetNumber:[[doctorJson valueForKey:@"street_number"] intValue]
                                                                                              zipCode:[doctorJson valueForKeyPath:@"zip_code"]
                                                                                                 city:[doctorJson valueForKeyPath:@"city"]
                                                                                           coordinate:&location];
                                         
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:[[doctorJson valueForKeyPath:@"id"] intValue]
-                                                                                        discipline:[self disciplineIdToString:[[doctorJson valueForKeyPath:@"discipline_id"] intValue]]
+                                                                                        discipline:[self disciplineIdToString:[[doctorJson valueForKey:@"discipline_id"] intValue]]
                                                                                              title:[doctorJson valueForKeyPath:@"title"]
                                                                                             gender:[doctorJson valueForKeyPath:@"gender"]
                                                                                          firstName:[doctorJson valueForKeyPath:@"firstname"]
@@ -157,7 +157,6 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     self.chosenDiscipline = [self.disciplines objectAtIndex:row];
-    NSLog(@"%d", row);
 }
 
 #pragma mark - UIPickerViewDelegate method
@@ -173,10 +172,8 @@
 
 - (IBAction)chooseDiscipline:(id)sender {
     self.subView.hidden = YES;
-    
-    NSLog(@"%@ %@", [self.chosenDiscipline objectAtIndex:0], [self.chosenDiscipline objectAtIndex:1]);
-    
-    if ([[self.chosenDiscipline objectAtIndex:0] isEqual:@0]) {
+        
+    if ([[self.chosenDiscipline objectAtIndex:0] intValue] == 0) {
         self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
     } else {
         
