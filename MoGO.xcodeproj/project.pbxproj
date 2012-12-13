@@ -31,6 +31,7 @@
 		DAC9BA161660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */; };
 		DAC9BA191660D7FA00C36D2E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */; };
 		DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC9BA1B1660D7FA00C36D2E /* ViewController.m */; };
+		DAD4F9C11679E4D200E01B4C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAD4F9C01679E4D200E01B4C /* Default-568h@2x.png */; };
 		DAEB161E1670B88F00665B1F /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB161D1670B88F00665B1F /* DocumentModel.m */; };
 		DAF230D91667B91300AAE358 /* VisitingHoursModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF230D81667B91300AAE358 /* VisitingHoursModel.m */; };
 		DAF230DC1667BBA100AAE358 /* Time.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF230DB1667BBA100AAE358 /* Time.m */; };
@@ -97,6 +98,7 @@
 		DAC9BA181660D7FA00C36D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		DAC9BA1A1660D7FA00C36D2E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DAC9BA1B1660D7FA00C36D2E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DAD4F9C01679E4D200E01B4C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DAEB161C1670B88F00665B1F /* DocumentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentModel.h; sourceTree = "<group>"; };
 		DAEB161D1670B88F00665B1F /* DocumentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentModel.m; sourceTree = "<group>"; };
 		DAF230D71667B91300AAE358 /* VisitingHoursModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisitingHoursModel.h; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		DAC9B9F31660D7F900C36D2E = {
 			isa = PBXGroup;
 			children = (
+				DAD4F9C01679E4D200E01B4C /* Default-568h@2x.png */,
 				DAC9BA081660D7FA00C36D2E /* MoGO */,
 				25FAB33516661B62008EB8CF /* MoGOTests */,
 				DAC9BA011660D7FA00C36D2E /* Frameworks */,
@@ -411,6 +414,7 @@
 				F1DBD2B2167368010078CF28 /* MakeAppointmentDayViewController.xib in Resources */,
 				F1AB2D6516788CB50020D0F1 /* DaySlotView.xib in Resources */,
 				F1AB2D6C16788D3E0020D0F1 /* SlotTemplateView.xib in Resources */,
+				DAD4F9C11679E4D200E01B4C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

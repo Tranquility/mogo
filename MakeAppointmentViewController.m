@@ -167,7 +167,7 @@ This object handles all the workflow for making an appointment.
     SlotTemplateView* callerSlot = (SlotTemplateView*)sender;
 
     //Example: Access a member of the sender Object:
-    NSLog(callerSlot.startString);
+    NSLog(@"%@", callerSlot.startString);
 }
 
 @end
