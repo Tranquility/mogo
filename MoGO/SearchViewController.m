@@ -82,13 +82,13 @@
                                         location.longitude = [[doctorJson valueForKeyPath:@"longitude"] floatValue];
                                         
                                         AddressModel *address = [[AddressModel alloc] initWithStreet:[doctorJson valueForKeyPath:@"street"]
-                                                                                        streetNumber:[[doctorJson valueForKey:@"street_number"] intValue]
+                                                                                        streetNumber:[[doctorJson valueForKeyPath:@"street_number"] intValue]
                                                                                              zipCode:[doctorJson valueForKeyPath:@"zip_code"]
                                                                                                 city:[doctorJson valueForKeyPath:@"city"]
                                                                                           coordinate:&location];
                                         
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:[[doctorJson valueForKeyPath:@"id"] intValue]
-                                                                                        discipline:[self disciplineIdToString:[[doctorJson valueForKey:@"discipline_id"] intValue]]
+                                                                                        discipline:[self disciplineIdToString:[[doctorJson valueForKeyPath:@"discipline.id"] intValue]]
                                                                                              title:[doctorJson valueForKeyPath:@"title"]
                                                                                             gender:[doctorJson valueForKeyPath:@"gender"]
                                                                                          firstName:[doctorJson valueForKeyPath:@"firstname"]
