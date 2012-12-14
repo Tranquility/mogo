@@ -24,11 +24,11 @@
 @property (nonatomic) IBOutlet UILabel *phoneField;
 @property (nonatomic) IBOutlet UILabel *hoursField;
 @property (nonatomic) DoctorModel *doctor;
-@property (nonatomic) IBOutlet UIButton *favoritButton;
+@property (nonatomic) IBOutlet UIButton *favouriteButton;
 @property (nonatomic) NSMutableArray *docFavList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
-- (IBAction)doFavorit:(id)favorit;
+- (IBAction)setFavourite:(id)favourite;
 
 @end

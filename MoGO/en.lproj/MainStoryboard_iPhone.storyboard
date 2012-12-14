@@ -442,7 +442,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="doFavorit:" destination="RWq-Jq-LmT" eventType="touchUpInside" id="Rmi-4A-ugE"/>
+                                    <action selector="setFavourite:" destination="RWq-Jq-LmT" eventType="touchUpInside" id="RWK-fi-ud5"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chirurg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HE4-M3-QIa" userLabel="doctortype">
@@ -490,7 +490,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="addressField" destination="GzA-SS-O6Z" id="im8-SB-o23"/>
-                        <outlet property="favoritButton" destination="TX7-hY-Kz5" id="0G3-fI-uLP"/>
+                        <outlet property="favouriteButton" destination="TX7-hY-Kz5" id="6K4-PV-0BS"/>
                         <outlet property="hoursField" destination="w6X-ms-Klb" id="o72-qN-yPS"/>
                         <outlet property="makeAppointment" destination="T01-UB-dUU" id="jFr-FK-ymF"/>
                         <outlet property="mapOutlet" destination="rjh-gM-JbW" id="D8H-zZ-SOP"/>
@@ -764,10 +764,10 @@
         <class className="MedicDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="doFavorit:"/>
+                <relationship kind="action" name="setFavourite:"/>
                 <relationship kind="outlet" name="addFavourite" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="addressField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="favoritButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="hoursField" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="makeAppointment" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
