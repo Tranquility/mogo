@@ -10,14 +10,15 @@
 
 @implementation AddressModel
 
-- (AddressModel*)initWithStreet:(NSString*)street streetNumber:(NSInteger)number zipCode:(NSString*)zipCode city:(NSString*)city coordinate:(CLLocationCoordinate2D*)coordinate {
+- (AddressModel*)initWithStreet:(NSString*)street streetNumber:(NSInteger)number zipCode:(NSString*)zipCode city:(NSString*)city latitude:(NSNumber*)latitude longitude:(NSNumber*)longitude {
     self = [super init];
     if (self) {
         self.street = street;
         self.streetNumber = number;
         self.zipCode = zipCode;
         self.city = city;
-        self.coordinate = coordinate;
+        self.latitude = latitude;
+        self.longitude = longitude;
     }
     
     return self;

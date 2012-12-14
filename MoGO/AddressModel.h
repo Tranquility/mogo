@@ -15,8 +15,9 @@
 @property (nonatomic) NSInteger streetNumber;
 @property (nonatomic) NSString *zipCode;
 @property (nonatomic) NSString *city;
-@property (nonatomic) CLLocationCoordinate2D *coordinate;
+@property (nonatomic) NSNumber *latitude;
+@property (nonatomic) NSNumber *longitude;
 
-- (AddressModel*)initWithStreet:(NSString*)street streetNumber:(NSInteger)number zipCode:(NSString*)zipCode city:(NSString*)city coordinate:(CLLocationCoordinate2D*)coordinate;
+- (AddressModel*)initWithStreet:(NSString*)street streetNumber:(NSInteger)number zipCode:(NSString*)zipCode city:(NSString*)city latitude:(NSNumber*)latitude longitude:(NSNumber*)longitude;
 
 @end
