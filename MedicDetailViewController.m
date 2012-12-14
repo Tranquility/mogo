@@ -76,7 +76,8 @@
     self.addressField.text = address;
     self.phoneField.text = self.doctor.telephone;
     
-    [self drawMapWithCoordinate:*(doctorAddress.coordinate) andString:name];
+    [self drawMapWithCoordinate:*doctorAddress.coordinate andString:name];
+    [self.mapOutlet setMapType:MKMapTypeStandard];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,22 +96,26 @@
 
 -(void)drawMapWithCoordinate:(CLLocationCoordinate2D)location andString:(NSString*)doctorName
 {
-    double miles = 5.0;
-    double scalingFactor = ABS( (cos(2 * M_PI * location.latitude / 360.0) ));
+    //double miles = 5.0;
+    //double scalingFactor = ABS( (cos(2 * M_PI * location.latitude / 360.0) ));
     
-    MKCoordinateSpan span;
+    //MKCoordinateSpan span;
     
-    span.latitudeDelta = miles/69.0;
-    span.longitudeDelta = miles/(scalingFactor * 69.0);
+    //span.latitudeDelta = miles/69.0;
+    //span.longitudeDelta = miles/(scalingFactor * 69.0);
     
-    MKCoordinateRegion region;
-    region.span = span;
-    region.center = location;
+    //MKCoordinateRegion region;
+    //region.span = span;
+    //region.center = location;
     
-    [self.mapOutlet setRegion:region animated:YES];
+    //This can be done easier:
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance (location, 50, 50);
     
+
     MapViewAnnotation *newAnnotation = [[MapViewAnnotation alloc] initWithTitle:doctorName andCoordinate:location];
 	[self.mapOutlet addAnnotation:newAnnotation];
+    
+    [self.mapOutlet setRegion:region animated:YES];
     
 }
 
