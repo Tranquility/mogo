@@ -24,15 +24,53 @@
 
 - (void)viewDidLoad
 {
-    //Statischer Aufruf weil Test.
+    
+    //Set up images
+    UIImage *btnImageYellow = [UIImage imageNamed:@"sternGelb.jpg"];
+    UIImage *btnImageNormal = [UIImage imageNamed:@"sternNormal.jpg"];
+    
+    //Set up Buttons depending on States
+    [self.favouriteButton setImage:btnImageYellow forState:UIControlStateSelected];
+    [self.favouriteButton setImage:btnImageNormal forState:UIControlStateNormal];
+    
+    //Path to the favourite Doctors file
+    NSString *myPath = [self saveFilePath];
+    
+    //Set up Favourite-List depending on whether there exists a file or not
+	if ([[NSFileManager defaultManager] fileExistsAtPath:myPath])
+	{
+        self.docFavList = [NSKeyedUnarchiver unarchiveObjectWithFile: myPath];
+	}
+    else
+    {
+        self.docFavList = [[NSMutableArray alloc] init];
+    }
+    
+    //get the doctorID as a String
+    NSString *idNumber = [NSString stringWithFormat:@"%d", self.doctor.idNumber];
+    
+    //Check if the current doctor is in Favourite-List
+    if ([self.docFavList containsObject:idNumber])
+    {
+        [self.favouriteButton setSelected:YES];
+    }
+    else
+    {
+        [self.favouriteButton setSelected:NO];
+    }
+    
+    //Load super View
     [super viewDidLoad];
-        
+    
+    //Create and format Doctors name
 	NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
     name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
+    //Create and format doctors address
     AddressModel *doctorAddress = self.doctor.address;
     NSString *address = [NSString stringWithFormat:@"%@ %d\n%@ %@", doctorAddress.street, doctorAddress.streetNumber, doctorAddress.zipCode, doctorAddress.city];
     
+    //Set up fields
     self.nameField.text = name;
     self.typeField.text = self.doctor.discipline;
     self.addressField.text = address;
@@ -51,7 +89,7 @@
 - (void)viewDidUnload {
 
     [self setMapOutlet:nil];
-    [self setFavoritButton:nil];
+    [self setFavouriteButton:nil];
     [super viewDidUnload];
 }
 
@@ -76,32 +114,34 @@
     
 }
 
-//Action für FavoritButton
--(IBAction)doFavorit:(id)favorit {
+//This Action will be called when the favourite Button is pressed
+-(IBAction)setFavourite:(id)favourite {
     
-    //Bilder Setzen
-    UIImage *btnImageGelb = [UIImage imageNamed:@"sternGelb.jpg"];
-    UIImage *btnImageNormal = [UIImage imageNamed:@"sternNormal.jpg"];
+    //Get the doctor number as NSString
+    NSString *idNumber = [NSString stringWithFormat:@"%d", self.doctor.idNumber];
     
-    //Bilder  den States hinzufügen
-    [self.favoritButton setImage:btnImageGelb forState:UIControlStateSelected];
-    [self.favoritButton setImage:btnImageNormal forState:UIControlStateNormal];
-    
-    //Auswählen zwischen selected und normal
-    if (self.favoritButton.selected) {
+    //is the Button selected? Then the user wants to de-favourite the doctor
+    if (self.favouriteButton.selected) {
         
-        //Arzt entfernen
-        [self.favoritButton setSelected:NO];
-        UIAlertView *remove = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"remove") message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"arzt entfernen") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [remove show];
+        //remove Doctor and switch buttons select status
+        [self.favouriteButton setSelected:NO];
+        [self.docFavList removeObject:idNumber];
+        [NSKeyedArchiver archiveRootObject: self.docFavList toFile: self.saveFilePath];
+        //Show a notification
+        UIAlertView *removeNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"remove") message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"arzt entfernen") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [removeNotification show];
         
     }
     else {
+        //Otherwise it is currently not selected. Set Btn selected and add Doctor to Favourite-List
         
-        //Arzt hinzufügen
-        [self.favoritButton setSelected:YES];
-        UIAlertView *add = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"added") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"arzt hinzugefügt") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [add show];
+        //add doctor and switch the Buttons status
+        [self.favouriteButton setSelected:YES];
+        [self.docFavList addObject:idNumber];
+        [NSKeyedArchiver archiveRootObject: self.docFavList toFile: self.saveFilePath];
+        //Show a notification
+        UIAlertView *addNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"added") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"arzt hinzugefügt") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [addNotification show];
     }
     
 }
@@ -114,6 +154,14 @@
     }
 }
 
-
+//Creates the FilePath for the Favourite-List
+- (NSString *) saveFilePath
+{
+	NSArray *path =
+	NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+	return [[path objectAtIndex:0] stringByAppendingPathComponent:@"data.archive"];
+    
+}
 
 @end
