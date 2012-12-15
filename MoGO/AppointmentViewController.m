@@ -202,7 +202,7 @@
         
         if(indexPath.row==0)
         {
-            cell.textLabel.text = @"+ neuen Arzt suchen";
+            cell.textLabel.text = NSLocalizedString(@"+ neuen Arzt suchen", @"neuen Arzt suchen");
             cell.detailTextLabel.text = @"";
         }
         else{
