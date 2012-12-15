@@ -1,11 +1,14 @@
 
-COCOAPODS: 0.16.0
-
-DEPENDENCIES: 
-- AFNetworking
-
-PODS: 
+PODS:
 - AFNetworking (1.0.1)
+- SSKeychain (0.1.4)
 
-SPEC CHECKSUMS: 
+DEPENDENCIES:
+- AFNetworking
+- SSKeychain
+
+SPEC CHECKSUMS:
   AFNetworking: 4c11f857c9a18d65f4257c90a1e74ac49f0ac422
+  SSKeychain: bae692a4354f48691ca3463a121dc8060f781a7d
+
+COCOAPODS: 0.16.0
