@@ -8,6 +8,11 @@
 
 #import "AppointmentViewController.h"
 #import "AppointmentTableViewCell.h"
+#import "AppointmentModel.h"
+#import "DoctorModel.h"
+#import "AFNetworking.h"
+#import "ApiClient.h"
+#import "MakeAppointmentViewController.h"
 
 @implementation AppointmentViewController
 
@@ -40,11 +45,80 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.appointmentList = [[NSArray alloc] initWithObjects:@"09.09.12, Dr. Scrum", @"01.12.2013, Dr. Hyde",
-                            @"15.04.1988, Dr. No", nil];
-    self.doctorsList = [[NSArray alloc] initWithObjects:@"+ neuen Arzt suchen", @"Doktor No", @"Doktor Hulk",
-                        @"Doktor Heid", @"Doktor Jekyll", @"Doktor Scrum", nil];
+    self.appointmentList = [[NSMutableArray alloc] init];
     
+    /*
+    // Todo: Connect this to the DataSource and retrieve Appointments from the Server
+    */
+     
+    //For now: Statically create three Appointments and add to the appointmentList:
+    DoctorModel* doctor = [[DoctorModel alloc]initWithId:1 discipline:@"Internist" title:@"Dr." gender:@"Male" firstName:@"Ole" lastName:@"Scrum" mail:@"Nothing" telephone:@"Nothing" address:nil];
+    AppointmentModel* appointment = [[AppointmentModel alloc]initWithId:1 doctor:doctor andDate:[[NSDate alloc] init] andNote:@"Nothing"];
+    [self.appointmentList addObject:appointment];
+    appointment = [[AppointmentModel alloc]initWithId:2 doctor:doctor andDate:[[NSDate alloc] init] andNote:@"Nothing"];
+    [self.appointmentList addObject:appointment];
+    appointment = [[AppointmentModel alloc]initWithId:3 doctor:doctor andDate:[[NSDate alloc] init] andNote:@"Nothing"];
+    [self.appointmentList addObject:appointment];
+    
+    
+    /*
+    //Retrieve the Favourite-Doctor List
+    */
+    //Path to the favourite Doctors file
+    NSString *myPath = [self saveFilePath];
+    
+    //Set up Favourite-List depending on whether there exists a file or not
+	if ([[NSFileManager defaultManager] fileExistsAtPath:myPath])
+	{
+        self.favouriteDoctorIDList = [NSKeyedUnarchiver unarchiveObjectWithFile: myPath];
+	}
+    else
+    {
+        self.favouriteDoctorIDList = [[NSMutableArray alloc] init];
+    }
+    
+    
+    /*
+    / Retrieve all Doctors from the Server
+    / TODO: This really should be done only once, e.g. when the App starts up.
+    */
+    self.doctorList = [[NSMutableArray alloc]init];
+    
+    [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id response) {
+                                    for (id doctorJson in response) {
+                                        
+                                        CLLocationCoordinate2D location;
+                                        location.latitude = [[doctorJson valueForKeyPath:@"latitude"] floatValue];
+                                        location.longitude = [[doctorJson valueForKeyPath:@"longitude"] floatValue];
+                                        
+                                        AddressModel *address = [[AddressModel alloc] initWithStreet:[doctorJson valueForKeyPath:@"street"]
+                                                                                        streetNumber:[[doctorJson valueForKeyPath:@"street_number"] intValue]
+                                                                                             zipCode:[doctorJson valueForKeyPath:@"zip_code"]
+                                                                                                city:[doctorJson valueForKeyPath:@"city"]
+                                                                                          coordinate:&location];
+                                        
+                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:[[doctorJson valueForKeyPath:@"id"] intValue]
+                                                                                        discipline:[doctorJson valueForKeyPath:@"discipline.name"]
+                                                                                             title:[doctorJson valueForKeyPath:@"title"]
+                                                                                            gender:[doctorJson valueForKeyPath:@"gender"]
+                                                                                         firstName:[doctorJson valueForKeyPath:@"firstname"]
+                                                                                          lastName:[doctorJson valueForKeyPath:@"lastname"]
+                                                                                              mail:[doctorJson valueForKeyPath:@"mail"]
+                                                                                         telephone:[doctorJson valueForKeyPath:@"telephone"]
+                                                                                           address:address];
+                                        [self.doctorList addObject:doctorModel];
+                                    }
+     
+                                [self.appointmentsTableView reloadData];
+     
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    NSLog(@"Error fetching docs!");
+                                    NSLog(@"%@", error);
+                                    
+                                }];
+   
 }
 
 - (void)viewDidUnload
@@ -62,13 +136,22 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0)
+    if(section == 0)
     {
         return self.appointmentList.count;
     }
     else
     {
-        return self.doctorsList.count;
+        //We need to be careful here, because the doctorList gets loaded asynchronously, and it could not be loaded yet
+        //resuting in a null reference when updating the tableViewController
+        if(self.doctorList.count>0)
+        {
+            //Always add one, because we have a static entry "Doktor suchen"
+            return self.favouriteDoctorIDList.count+1;
+        }
+        else{
+            return 1;
+        }
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,6 +168,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //Show the Appointments
     if (indexPath.section == 0)
     {
         NSString *cellIdentifier = @"AppointmentTableViewCell";
@@ -94,15 +179,19 @@
             cell = [[AppointmentTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         }
         
-        // Configure the cell.
-        cell.DateLabel.text = @"12.12.2012 09:30";
-        cell.doctorDisciplineLabel.text = @"Hautarzt";
-        cell.doctorLabel.text = @"Doktor No";
+        // Configure the cell according to the Appointment-Datamodel-Object
+        AppointmentModel *appointment = [self.appointmentList objectAtIndex:indexPath.row];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd.MM. 'um' HH:mm"];
+
+        cell.DateLabel.text = [dateFormatter stringFromDate:appointment.date];
+        cell.doctorDisciplineLabel.text = appointment.doctor.discipline;
+        cell.doctorLabel.text = [NSString stringWithFormat:@"%@ %@ %@", appointment.doctor.title, appointment.doctor.firstName,appointment.doctor.lastName];
         //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         
         return cell;
     }
-    else
+    else //Show the Doctors
     {
         NSString *cellIdentifier = @"viewcell2";
         
@@ -111,13 +200,20 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         }
         
-        // Configure the cell.
-        cell.textLabel.text = [self.doctorsList objectAtIndex:[indexPath row]];
-        if (indexPath.row != 0)
+        if(indexPath.row==0)
         {
-            cell.detailTextLabel.text = @"Urologe";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = NSLocalizedString(@"+ neuen Arzt suchen", @"neuen Arzt suchen");
+            cell.detailTextLabel.text = @"";
         }
+        else{
+            //Offset the array inde by -1 because of the first static entry ("Arzt suchen")
+            NSString *doctorID = [self.favouriteDoctorIDList objectAtIndex:[indexPath row]-1];
+            DoctorModel* doctorModel = [self getDoctorByID:doctorID];
+                        
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", doctorModel.title, doctorModel.firstName,doctorModel.lastName];
+            cell.detailTextLabel.text = doctorModel.discipline;
+        }
+        
         return cell;
     }
 }
@@ -154,38 +250,50 @@
         }
         else
         {
+            //Get the doctor that has been clicked
+            NSString *doctorID = [self.favouriteDoctorIDList objectAtIndex:[indexPath row]-1];
+            self.selectedDoctorIDforAppointment = doctorID;
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             [self performSegueWithIdentifier:@"toMakeAppointment" sender:self];
-            
         }
     }
-    /*NSArray *listData =self.tableContents objectForKey:
-     [self.sortedKeys objectAtIndex:[indexPath section]]];
-     
-     NSUInteger row = [indexPath row];
-     
-     NSString *rowValue = [listData objectAtIndex:row];
-     
-     NSString *message = [[NSString alloc] initWithFormat:rowValue];
-     UIAlertView *alert = [[UIAlertView alloc]
-     
-     initWithTitle:@"You selected"
-     
-     message:message delegate:nil
-     
-     cancelButtonTitle:@"OK"
-     
-     otherButtonTitles:nil];
-     
-     [alert show];
-     
-     [alert release];
-     
-     [message release];
-     
-     [tableView deselectRowAtIndexPath:indexPath animated:YES];*/
     
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"toMakeAppointment"]) {
+        MakeAppointmentViewController *destination = [segue destinationViewController];
+        
+        //Get the selected DoctorID and the corresponding doctor reference
+        DoctorModel* doctorModel = [self getDoctorByID:self.selectedDoctorIDforAppointment];
+        //Set the doctor reference for the upcoming View
+        destination.doctor = doctorModel;
+    }
+}
 
+//Creates the FilePath for the Favourite-List
+- (NSString *) saveFilePath
+{
+	NSArray *path =
+	NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+	return [[path objectAtIndex:0] stringByAppendingPathComponent:@"data.archive"];
+    
+}
+
+-(DoctorModel*) getDoctorByID:(NSString*)doctorID
+{
+    //For all Doctors, find the one with the given ID...
+    for(int i=0;i<self.doctorList.count;i++)
+    {
+        DoctorModel* doctor = [self.doctorList objectAtIndex:i];
+        if([[NSString stringWithFormat:@"%d",doctor.idNumber] isEqualToString:doctorID])
+        {
+            return doctor;
+        }
+        
+    }
+    return nil;
+}
 @end
