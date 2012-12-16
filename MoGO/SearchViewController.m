@@ -72,31 +72,11 @@
                                     
                                 }];
     
-    
+    //
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     for (id doctorJson in response) {
-                                        
-                                        CLLocationCoordinate2D location;
-                                        location.latitude = [[doctorJson valueForKeyPath:@"latitude"] floatValue];
-                                        location.longitude = [[doctorJson valueForKeyPath:@"longitude"] floatValue];
-                                        
-                                        AddressModel *address = [[AddressModel alloc] initWithStreet:[doctorJson valueForKeyPath:@"street"]
-                                                                        streetNumber:[[doctorJson valueForKeyPath:@"street_number"] intValue]
-                                                                             zipCode:[doctorJson valueForKeyPath:@"zip_code"]
-                                                                                city:[doctorJson valueForKeyPath:@"city"]
-                                                                            latitude:[doctorJson valueForKeyPath:@"latitude"]
-                                                                           longitude:[doctorJson valueForKeyPath:@"longitude"]];
-                                        
-                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:[[doctorJson valueForKeyPath:@"id"] intValue]
-                                                                                        discipline:[self disciplineIdToString:[[doctorJson valueForKeyPath:@"discipline.id"] intValue]]
-                                                                                             title:[doctorJson valueForKeyPath:@"title"]
-                                                                                            gender:[doctorJson valueForKeyPath:@"gender"]
-                                                                                         firstName:[doctorJson valueForKeyPath:@"firstname"]
-                                                                                          lastName:[doctorJson valueForKeyPath:@"lastname"]
-                                                                                              mail:[doctorJson valueForKeyPath:@"mail"]
-                                                                                         telephone:[doctorJson valueForKeyPath:@"telephone"]
-                                                                                           address:address];
+                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
                                         [self.allDoctors addObject:doctorModel];
                                     }
                                     self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
@@ -231,7 +211,7 @@
     
     DoctorModel *currentDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [[NSString stringWithFormat:@"%@ %@ %@", currentDoctor.title, currentDoctor.firstName, currentDoctor.lastName] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    cell.textLabel.text = [currentDoctor fullName];
     
     return cell;
 }

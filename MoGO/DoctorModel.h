@@ -23,6 +23,8 @@
 
 - (DoctorModel*)initWithId:(NSInteger)idNumber discipline:(NSString*)discipline title:(NSString*)title gender:(NSString*)gender firstName:(NSString*)first lastName:(NSString*)last mail:(NSString*)mail telephone:(NSString*)phone address:(AddressModel*)address;
 
-- (NSString*)description;
+- (DoctorModel*)initWithDictionary:(NSDictionary*)dict;
+
+- (NSString*)fullName;
 
 @end

@@ -24,6 +24,20 @@
     return self;
 }
 
+- (AddressModel*)initWithDictionary:(NSDictionary*)dict {
+    self = [super init];
+    if (self) {
+        self.street = [dict valueForKeyPath:@"street"];
+        self.streetNumber = [[dict valueForKeyPath:@"street_number"] intValue];
+        self.zipCode = [dict valueForKeyPath:@"zip_code"];
+        self.city = [dict valueForKeyPath:@"city"];
+        self.latitude = [dict valueForKeyPath:@"latitude"];
+        self.longitude = [dict valueForKeyPath:@"longitude"];
+    }
+    
+    return self;
+}
+
 - (NSString*)description {
     return [NSString stringWithFormat:@"%@ %d, %@ %@", self.street, self.streetNumber, self.zipCode, self.city];
 }

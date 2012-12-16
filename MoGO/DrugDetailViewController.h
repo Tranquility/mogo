@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PrescriptionModel.h"
 
 @interface DrugDetailViewController : UIViewController
+
+@property (nonatomic) IBOutlet UILabel *medication;
+@property (nonatomic) IBOutlet UILabel *doctor;
+@property (nonatomic) IBOutlet UILabel *date;
+@property (nonatomic) IBOutlet UITextView *note;
+@property (nonatomic) IBOutlet UIImageView *qrcode;
+
+@property (nonatomic) PrescriptionModel *prescription;
 
 @end

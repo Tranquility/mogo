@@ -13,6 +13,14 @@
 #import "AFNetworking.h"
 #import "ApiClient.h"
 #import "MakeAppointmentViewController.h"
+#import "AppointmentDetailViewController.h"
+
+@interface AppointmentViewController ()
+
+@property (nonatomic) DoctorModel *selectedDoctor;
+@property (nonatomic) AppointmentModel *selectedAppointment;
+
+@end
 
 @implementation AppointmentViewController
 
@@ -53,7 +61,7 @@
      
     //For now: Statically create three Appointments and add to the appointmentList:
     DoctorModel* doctor = [[DoctorModel alloc]initWithId:1 discipline:@"Internist" title:@"Dr." gender:@"Male" firstName:@"Ole" lastName:@"Scrum" mail:@"Nothing" telephone:@"Nothing" address:nil];
-    AppointmentModel* appointment = [[AppointmentModel alloc]initWithId:1 doctor:doctor andDate:[[NSDate alloc] init] andNote:@"Nothing"];
+    AppointmentModel* appointment = [[AppointmentModel alloc]initWithId:1 doctor:doctor andDate:[[NSDate alloc] init] andNote:@"Kommen Sie auf nüchternem Magen, da wir ihnen Blut abnehmen müssen."];
     [self.appointmentList addObject:appointment];
     appointment = [[AppointmentModel alloc]initWithId:2 doctor:doctor andDate:[[NSDate alloc] init] andNote:@"Nothing"];
     [self.appointmentList addObject:appointment];
@@ -87,33 +95,10 @@
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     for (id doctorJson in response) {
-                                        
-                                        CLLocationCoordinate2D location;
-                                        location.latitude = [[doctorJson valueForKeyPath:@"latitude"] floatValue];
-                                        location.longitude = [[doctorJson valueForKeyPath:@"longitude"] floatValue];
-                                        
-                                        AddressModel *address = [[AddressModel alloc] initWithStreet:[doctorJson valueForKeyPath:@"street"]
-                                                                        streetNumber:[[doctorJson valueForKeyPath:@"street_number"] intValue]
-                                                                             zipCode:[doctorJson valueForKeyPath:@"zip_code"]
-                                                                                city:[doctorJson valueForKeyPath:@"city"]
-                                                                            latitude:[doctorJson valueForKeyPath:@"latitude"]
-                                                                           longitude:[doctorJson valueForKeyPath:@"longitude"]];
-
-                                        
-                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithId:[[doctorJson valueForKeyPath:@"id"] intValue]
-                                                                                        discipline:[doctorJson valueForKeyPath:@"discipline.name"]
-                                                                                             title:[doctorJson valueForKeyPath:@"title"]
-                                                                                            gender:[doctorJson valueForKeyPath:@"gender"]
-                                                                                         firstName:[doctorJson valueForKeyPath:@"firstname"]
-                                                                                          lastName:[doctorJson valueForKeyPath:@"lastname"]
-                                                                                              mail:[doctorJson valueForKeyPath:@"mail"]
-                                                                                         telephone:[doctorJson valueForKeyPath:@"telephone"]
-                                                                                           address:address];
+                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
                                         [self.doctorList addObject:doctorModel];
                                     }
-     
                                 [self.appointmentsTableView reloadData];
-     
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Error fetching docs!");
@@ -135,6 +120,33 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+//Creates the FilePath for the Favourite-List
+- (NSString *) saveFilePath
+{
+	NSArray *path =
+	NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+	return [[path objectAtIndex:0] stringByAppendingPathComponent:@"data.archive"];
+    
+}
+
+-(DoctorModel*) getDoctorById:(NSString*)doctorId
+{
+    //For all Doctors, find the one with the given ID...
+    for(int i = 0; i < self.doctorList.count; i++)
+    {
+        DoctorModel* doctor = [self.doctorList objectAtIndex:i];
+        if([[NSString stringWithFormat:@"%d",doctor.idNumber] isEqualToString:doctorId])
+        {
+            return doctor;
+        }
+        
+    }
+    return nil;
+}
+
+#pragma mark TableView Delegate and DataSource
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -158,7 +170,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==0)
+    if(indexPath.section == 0)
     {
         return 63;
     }
@@ -184,7 +196,7 @@
         // Configure the cell according to the Appointment-Datamodel-Object
         AppointmentModel *appointment = [self.appointmentList objectAtIndex:indexPath.row];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd.MM. 'um' HH:mm"];
+        [dateFormatter setDateFormat:NSLocalizedString(@"dd.MM. 'um' HH:mm", "DATE_FORMAT")];
 
         cell.DateLabel.text = [dateFormatter stringFromDate:appointment.date];
         cell.doctorDisciplineLabel.text = appointment.doctor.discipline;
@@ -204,13 +216,13 @@
         
         if(indexPath.row==0)
         {
-            cell.textLabel.text = NSLocalizedString(@"+ neuen Arzt suchen", @"neuen Arzt suchen");
+            cell.textLabel.text = NSLocalizedString(@"+ neuen Arzt suchen", @"SEARCH_NEW_DOCTOR");
             cell.detailTextLabel.text = @"";
         }
         else{
             //Offset the array inde by -1 because of the first static entry ("Arzt suchen")
             NSString *doctorID = [self.favouriteDoctorIDList objectAtIndex:[indexPath row]-1];
-            DoctorModel* doctorModel = [self getDoctorByID:doctorID];
+            DoctorModel* doctorModel = [self getDoctorById:doctorID];
                         
             cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", doctorModel.title, doctorModel.firstName,doctorModel.lastName];
             cell.detailTextLabel.text = doctorModel.discipline;
@@ -228,11 +240,11 @@
 - (NSString *) tableView:(UITableView *) tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0)
     {
-        return @"Kommende Termine";
+        return NSLocalizedString(@"Kommende Termine", @"UPCOMING_APPOINTMENTS");
     }
     else
     {
-        return @"Neuen Termin buchen bei";
+        return NSLocalizedString(@"Neuen Termin buchen bei", @"NEW_APPOINTMENT");
     }
 }
 
@@ -240,6 +252,9 @@
     
     if (indexPath.section == 0)
     {
+        //Get the appointment that has been clicked
+        self.selectedAppointment = [self.appointmentList objectAtIndex:indexPath.row];
+        
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self performSegueWithIdentifier:@"toAppointmentDetail" sender:self];
     }
@@ -253,8 +268,9 @@
         else
         {
             //Get the doctor that has been clicked
-            NSString *doctorID = [self.favouriteDoctorIDList objectAtIndex:[indexPath row]-1];
-            self.selectedDoctorIDforAppointment = doctorID;
+            NSString *doctorId = [self.favouriteDoctorIDList objectAtIndex:indexPath.row - 1];
+            self.selectedDoctor = [self getDoctorById:doctorId];
+            
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             [self performSegueWithIdentifier:@"toMakeAppointment" sender:self];
         }
@@ -262,40 +278,20 @@
     
 }
 
+#pragma mark Segue
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"toMakeAppointment"]) {
+    if ([segue.identifier isEqualToString:@"toMakeAppointment"]) {
         MakeAppointmentViewController *destination = [segue destinationViewController];
         
-        //Get the selected DoctorID and the corresponding doctor reference
-        DoctorModel* doctorModel = [self getDoctorByID:self.selectedDoctorIDforAppointment];
         //Set the doctor reference for the upcoming View
-        destination.doctor = doctorModel;
+        destination.doctor = self.selectedDoctor;
+    } else if ([segue.identifier isEqualToString:@"toAppointmentDetail"]) {
+        AppointmentDetailViewController *destination = [segue destinationViewController];
+        destination.appointment = self.selectedAppointment;
     }
 }
 
-//Creates the FilePath for the Favourite-List
-- (NSString *) saveFilePath
-{
-	NSArray *path =
-	NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-	return [[path objectAtIndex:0] stringByAppendingPathComponent:@"data.archive"];
-    
-}
 
--(DoctorModel*) getDoctorByID:(NSString*)doctorID
-{
-    //For all Doctors, find the one with the given ID...
-    for(int i=0;i<self.doctorList.count;i++)
-    {
-        DoctorModel* doctor = [self.doctorList objectAtIndex:i];
-        if([[NSString stringWithFormat:@"%d",doctor.idNumber] isEqualToString:doctorID])
-        {
-            return doctor;
-        }
-        
-    }
-    return nil;
-}
 @end

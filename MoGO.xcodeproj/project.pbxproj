@@ -19,8 +19,6 @@
 		2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */; };
 		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
 		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
-		991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */; };
-		991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */; };
 		2D7CABBC166FB89F008187C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7CABBB166FB89F008187C0 /* LoginViewController.m */; };
 		2D7CABBD166FB89F008187C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7CABBB166FB89F008187C0 /* LoginViewController.m */; };
 		2D95D8BD166E758D000A0122 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8BC166E758D000A0122 /* RegisterViewController.m */; };
@@ -28,7 +26,11 @@
 		2D95D8C1166E7F98000A0122 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D95D8C0166E7F98000A0122 /* MessageUI.framework */; };
 		2D95D8C4166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
 		2D95D8C5166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
+		991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */; };
+		991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */; };
 		BA65DC771667BE80007F7140 /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65DC761667BE80007F7140 /* ApiClient.m */; };
+		DA1DC677167DDBBE00B5D63C /* PrescriptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */; };
+		DA1DC67A167DFDF300B5D63C /* qr.png in Resources */ = {isa = PBXBuildFile; fileRef = DA1DC679167DFDF300B5D63C /* qr.png */; };
 		DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD2D1660E3F300C79B32 /* SearchViewController.m */; };
 		DABBFD341660E52800C79B32 /* AppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD331660E52800C79B32 /* AppointmentViewController.m */; };
 		DAC9BA031660D7FA00C36D2E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
@@ -85,9 +87,6 @@
 		2D163A211660F116000A65A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2D163A231661021D000A65A7 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		2D163A241661021D000A65A7 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
-		991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthTemplateOverviewView.xib; sourceTree = "<group>"; };
-		991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthTemplateOverviewView.h; sourceTree = "<group>"; };
-		991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthTemplateOverviewView.m; sourceTree = "<group>"; };
 		2D7CABBA166FB89F008187C0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		2D7CABBB166FB89F008187C0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		2D95D8BB166E758D000A0122 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -95,9 +94,15 @@
 		2D95D8C0166E7F98000A0122 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2D95D8C2166E80B1000A0122 /* MailManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailManipulator.h; sourceTree = "<group>"; };
 		2D95D8C3166E80B1000A0122 /* MailManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailManipulator.m; sourceTree = "<group>"; };
+		991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthTemplateOverviewView.xib; sourceTree = "<group>"; };
+		991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthTemplateOverviewView.h; sourceTree = "<group>"; };
+		991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthTemplateOverviewView.m; sourceTree = "<group>"; };
 		997A9E158FE6449E91104A0C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BA65DC751667BE80007F7140 /* ApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiClient.h; sourceTree = "<group>"; };
 		BA65DC761667BE80007F7140 /* ApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiClient.m; sourceTree = "<group>"; };
+		DA1DC675167DDBBE00B5D63C /* PrescriptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionModel.h; sourceTree = "<group>"; };
+		DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrescriptionModel.m; sourceTree = "<group>"; };
+		DA1DC679167DFDF300B5D63C /* qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr.png; sourceTree = "<group>"; };
 		DABBFD2C1660E3F300C79B32 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		DABBFD2D1660E3F300C79B32 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		DABBFD321660E52800C79B32 /* AppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentViewController.h; sourceTree = "<group>"; };
@@ -252,57 +257,57 @@
 		DAC9BA081660D7FA00C36D2E /* MoGO */ = {
 			isa = PBXGroup;
 			children = (
-				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
-				F13335F91662317300502A50 /* DataModel */,
-				F16BF10716626675000E5FC0 /* icons */,
-				F1DBD2AE167368010078CF28 /* MakeAppointmentDayViewController.h */,
-				F1DBD2AF167368010078CF28 /* MakeAppointmentDayViewController.m */,
-				F1DBD2B0167368010078CF28 /* MakeAppointmentDayViewController.xib */,
-				F1AB2D6B16788D3D0020D0F1 /* SlotTemplateView.xib */,
-				F1AB2D6816788CF00020D0F1 /* SlotTemplateView.h */,
-				F1AB2D6916788CF00020D0F1 /* SlotTemplateView.m */,
-				F1AB2D6416788CB50020D0F1 /* DaySlotView.xib */,
-				F1AB2D6116788CA40020D0F1 /* DaySlotView.h */,
-				F1AB2D6216788CA40020D0F1 /* DaySlotView.m */,
-				991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */,
-				991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */,
-				991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */,
-				F1E22CCC166CFA490071AA7E /* DayTemplateView.xib */,
-				F1E22CCE166CFB010071AA7E /* DayTemplateView.h */,
-				F1E22CCF166CFB010071AA7E /* DayTemplateView.m */,
-				F16BF0FF16625926000E5FC0 /* MakeAppointmentViewController.h */,
-				F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */,
-				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
-				2D7CABBA166FB89F008187C0 /* LoginViewController.h */,
-				2D7CABBB166FB89F008187C0 /* LoginViewController.m */,
-				2D95D8C2166E80B1000A0122 /* MailManipulator.h */,
-				2D95D8C3166E80B1000A0122 /* MailManipulator.m */,
-				2D95D8BB166E758D000A0122 /* RegisterViewController.h */,
-				2D95D8BC166E758D000A0122 /* RegisterViewController.m */,
-				DAC9BA121660D7FA00C36D2E /* AppDelegate.m */,
 				BA65DC751667BE80007F7140 /* ApiClient.h */,
 				BA65DC761667BE80007F7140 /* ApiClient.m */,
-				25FBF0C9166F79A800E9F129 /* DocumentViewController.h */,
-				25FBF0CA166F79A800E9F129 /* DocumentViewController.m */,
-				25E8BE961670B56600807CC7 /* DrugDetailViewController.h */,
-				25E8BE971670B56600807CC7 /* DrugDetailViewController.m */,
-				2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */,
-				2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */,
-				2D163A231661021D000A65A7 /* MapViewAnnotation.h */,
-				2D163A241661021D000A65A7 /* MapViewAnnotation.m */,
-				DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */,
-				DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */,
-				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
-				DAC9BA1B1660D7FA00C36D2E /* ViewController.m */,
-				DABBFD2C1660E3F300C79B32 /* SearchViewController.h */,
-				DABBFD2D1660E3F300C79B32 /* SearchViewController.m */,
-				DABBFD321660E52800C79B32 /* AppointmentViewController.h */,
-				DABBFD331660E52800C79B32 /* AppointmentViewController.m */,
+				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
+				DAC9BA121660D7FA00C36D2E /* AppDelegate.m */,
 				F133360116623D2800502A50 /* AppointmentDetailViewController.h */,
 				F133360216623D2800502A50 /* AppointmentDetailViewController.m */,
 				F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */,
 				F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */,
+				DABBFD321660E52800C79B32 /* AppointmentViewController.h */,
+				DABBFD331660E52800C79B32 /* AppointmentViewController.m */,
+				F13335F91662317300502A50 /* DataModel */,
+				F1AB2D6116788CA40020D0F1 /* DaySlotView.h */,
+				F1AB2D6216788CA40020D0F1 /* DaySlotView.m */,
+				F1AB2D6416788CB50020D0F1 /* DaySlotView.xib */,
+				F1E22CCE166CFB010071AA7E /* DayTemplateView.h */,
+				F1E22CCF166CFB010071AA7E /* DayTemplateView.m */,
+				F1E22CCC166CFA490071AA7E /* DayTemplateView.xib */,
+				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
+				25FBF0C9166F79A800E9F129 /* DocumentViewController.h */,
+				25FBF0CA166F79A800E9F129 /* DocumentViewController.m */,
+				25E8BE961670B56600807CC7 /* DrugDetailViewController.h */,
+				25E8BE971670B56600807CC7 /* DrugDetailViewController.m */,
+				F16BF10716626675000E5FC0 /* icons */,
+				2D7CABBA166FB89F008187C0 /* LoginViewController.h */,
+				2D7CABBB166FB89F008187C0 /* LoginViewController.m */,
+				2D95D8C2166E80B1000A0122 /* MailManipulator.h */,
+				2D95D8C3166E80B1000A0122 /* MailManipulator.m */,
+				DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */,
+				DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */,
+				F1DBD2AE167368010078CF28 /* MakeAppointmentDayViewController.h */,
+				F1DBD2AF167368010078CF28 /* MakeAppointmentDayViewController.m */,
+				F1DBD2B0167368010078CF28 /* MakeAppointmentDayViewController.xib */,
+				F16BF0FF16625926000E5FC0 /* MakeAppointmentViewController.h */,
+				F16BF10016625926000E5FC0 /* MakeAppointmentViewController.m */,
+				2D163A231661021D000A65A7 /* MapViewAnnotation.h */,
+				2D163A241661021D000A65A7 /* MapViewAnnotation.m */,
+				2D163A1E1660ECCC000A65A7 /* MedicDetailViewController.h */,
+				2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */,
+				991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */,
+				991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */,
+				991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */,
+				2D95D8BB166E758D000A0122 /* RegisterViewController.h */,
+				2D95D8BC166E758D000A0122 /* RegisterViewController.m */,
+				DABBFD2C1660E3F300C79B32 /* SearchViewController.h */,
+				DABBFD2D1660E3F300C79B32 /* SearchViewController.m */,
+				F1AB2D6816788CF00020D0F1 /* SlotTemplateView.h */,
+				F1AB2D6916788CF00020D0F1 /* SlotTemplateView.m */,
+				F1AB2D6B16788D3D0020D0F1 /* SlotTemplateView.xib */,
 				DAC9BA091660D7FA00C36D2E /* Supporting Files */,
+				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
+				DAC9BA1B1660D7FA00C36D2E /* ViewController.m */,
 			);
 			path = MoGO;
 			sourceTree = "<group>";
@@ -337,6 +342,8 @@
 				DAF230DE1667CA2F00AAE358 /* TimeslotModel.m */,
 				DAEB161C1670B88F00665B1F /* DocumentModel.h */,
 				DAEB161D1670B88F00665B1F /* DocumentModel.m */,
+				DA1DC675167DDBBE00B5D63C /* PrescriptionModel.h */,
+				DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -344,6 +351,7 @@
 		F16BF10716626675000E5FC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				DA1DC679167DFDF300B5D63C /* qr.png */,
 				25E2C8441679FD1F004AA1A5 /* sternGelb.jpg */,
 				25E2C8421679FD16004AA1A5 /* sternNormal.jpg */,
 				F18376D716611E98005D03E5 /* detail_disclosure.jpg */,
@@ -445,6 +453,7 @@
 				DAD4F9C11679E4D200E01B4C /* Default-568h@2x.png in Resources */,
 				25E2C8431679FD16004AA1A5 /* sternNormal.jpg in Resources */,
 				25E2C8451679FD1F004AA1A5 /* sternGelb.jpg in Resources */,
+				DA1DC67A167DFDF300B5D63C /* qr.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +536,7 @@
 				2D95D8BD166E758D000A0122 /* RegisterViewController.m in Sources */,
 				2D95D8C4166E80B1000A0122 /* MailManipulator.m in Sources */,
 				2D7CABBC166FB89F008187C0 /* LoginViewController.m in Sources */,
+				DA1DC677167DDBBE00B5D63C /* PrescriptionModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

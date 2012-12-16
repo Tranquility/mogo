@@ -26,7 +26,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:NSLocalizedString(@"dd.MM.yyyy", @"DAY_FORMAT")];
+    NSString *date = [dateFormatter stringFromDate:self.prescription.creationDate];
+    
+    self.medication.text = self.prescription.medication;
+    self.doctor.text = [self.prescription.doctor fullName];
+    self.date.text = date;
+    self.note.text = self.prescription.note;
+    //self.qrcode.image = self.prescription.qrCode;
+    
 }
 
 - (void)didReceiveMemoryWarning
