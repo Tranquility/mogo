@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppointmentModel.h"
 
 @interface AppointmentDetailViewController : UIViewController
+
 @property (nonatomic) IBOutlet UILabel *doctorLabel;
 @property (nonatomic) IBOutlet UILabel *disciplineLabel;
 @property (nonatomic) IBOutlet UILabel *dateLabel;
@@ -16,5 +18,7 @@
 @property (nonatomic) IBOutlet UITextView *noteTextView;
 @property (nonatomic) IBOutlet UIButton *changeButton;
 @property (nonatomic) IBOutlet UIButton *cancelButton;
+
+@property (nonatomic) AppointmentModel *appointment;
 
 @end

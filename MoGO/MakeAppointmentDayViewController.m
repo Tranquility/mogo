@@ -33,8 +33,7 @@
     [super viewDidLoad];
     
     //Set name and discipline of the doctor
-    NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
-    self.doctorLabel.text = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.doctorLabel.text = [self.doctor fullName];
     self.doctorDisciplineLabel.text = self.doctor.discipline;
     
     //Set ContentSitze as needed

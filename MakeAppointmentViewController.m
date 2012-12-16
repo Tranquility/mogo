@@ -55,8 +55,7 @@ This object handles all the workflow for making an appointment.
 {
     [super viewDidLoad];
     //Set name and discipline of the doctor
-    NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
-    self.doctorLabel.text = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.doctorLabel.text = [self.doctor fullName];
     self.doctorDisciplineLabel.text = self.doctor.discipline;
    
     //Set ScrollView width to 4*Size of a calendar. height=height of one calendar

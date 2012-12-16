@@ -39,18 +39,18 @@
     //Set up Favourite-List depending on whether there exists a file or not
 	if ([[NSFileManager defaultManager] fileExistsAtPath:myPath])
 	{
-        self.docFavList = [NSKeyedUnarchiver unarchiveObjectWithFile: myPath];
+        self.favouriteDoctors = [NSKeyedUnarchiver unarchiveObjectWithFile: myPath];
 	}
     else
     {
-        self.docFavList = [[NSMutableArray alloc] init];
+        self.favouriteDoctors = [[NSMutableArray alloc] init];
     }
     
     //get the doctorID as a String
     NSString *idNumber = [NSString stringWithFormat:@"%d", self.doctor.idNumber];
     
     //Check if the current doctor is in Favourite-List
-    if ([self.docFavList containsObject:idNumber])
+    if ([self.favouriteDoctors containsObject:idNumber])
     {
         [self.favouriteButton setSelected:YES];
     }
@@ -63,8 +63,7 @@
     [super viewDidLoad];
     
     //Create and format Doctors name
-	NSString *name = [NSString stringWithFormat:@"%@ %@ %@", self.doctor.title, self.doctor.firstName, self.doctor.lastName];
-    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSString *name = [self.doctor fullName];
     
     //Create and format doctors address
     AddressModel *doctorAddress = self.doctor.address;
@@ -117,10 +116,10 @@
         
         //remove Doctor and switch buttons select status
         [self.favouriteButton setSelected:NO];
-        [self.docFavList removeObject:idNumber];
-        [NSKeyedArchiver archiveRootObject: self.docFavList toFile: self.saveFilePath];
+        [self.favouriteDoctors removeObject:idNumber];
+        [NSKeyedArchiver archiveRootObject: self.favouriteDoctors toFile: self.saveFilePath];
         //Show a notification
-        UIAlertView *removeNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"remove") message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"arzt entfernen") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *removeNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"REMOVED") message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"REMOVE_DOCTOR_FROM_FAV") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [removeNotification show];
         
     }
@@ -129,10 +128,10 @@
         
         //add doctor and switch the Buttons status
         [self.favouriteButton setSelected:YES];
-        [self.docFavList addObject:idNumber];
-        [NSKeyedArchiver archiveRootObject: self.docFavList toFile: self.saveFilePath];
+        [self.favouriteDoctors addObject:idNumber];
+        [NSKeyedArchiver archiveRootObject: self.favouriteDoctors toFile: self.saveFilePath];
         //Show a notification
-        UIAlertView *addNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"added") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"arzt hinzugefügt") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *addNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"ADDED") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"ADD_DOCTOR_TO_FAV") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [addNotification show];
     }
     

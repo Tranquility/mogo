@@ -7,8 +7,12 @@
 //
 
 #import "DocumentViewController.h"
+#import "PrescriptionModel.h"
+#import "DrugDetailViewController.h"
 
 @interface DocumentViewController ()
+
+@property (nonatomic) PrescriptionModel *selectedPrescription;
 
 @end
 
@@ -18,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.prescriptionList = [[NSArray alloc] init];
     }
     return self;
 }
@@ -26,10 +30,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    self.drugList = @[@"HNO", @"Pillen"];
-    self.transferList = @[@"Dr.Scrum", @"Dr.Master"];
-    self.recordList = @[@"Patient X"];
+    
+    NSMutableArray *prescriptionList = [[NSMutableArray alloc] init];
+	PrescriptionModel *prescription = [[PrescriptionModel alloc] initWithId:1 doctorId:21 date:[[NSDate alloc] init] note:@"3x täglich" medication:@"Gelomyrtol" additionalCharge:0 qrCode:[UIImage imageNamed:@"qr.png"]];
+    [prescriptionList addObject:prescription];
+    prescription = [[PrescriptionModel alloc] initWithId:2 doctorId:22 date:[[NSDate alloc] init] note:@"1x täglich" medication:@"ACC Akut 800" additionalCharge:0 qrCode:[UIImage imageNamed:@"qr.png"]];
+    [prescriptionList addObject:prescription];
+    
+    self.prescriptionList = prescriptionList;    
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,16 +46,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark TableViewDelegate/Datasource methods
+
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0)
     {
-        return self.drugList.count;
+        return self.prescriptionList.count;
     }
     
     if (section == 1)
     {
-        return self.transferList.count;
+        return self.referralList.count;
     }
     
     if (section == 2)
@@ -57,6 +67,7 @@
     return 0;
 }
 
+#pragma mark TableViewDelegate/DataSource methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0)
@@ -68,9 +79,17 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         }
         
+        PrescriptionModel *prescription = [self.prescriptionList objectAtIndex:indexPath.row];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:NSLocalizedString(@"dd.MM.yyyy", @"DAY_FORMAT")];
+        NSString *date = [dateFormatter stringFromDate:prescription.creationDate];
+        
+        NSString *doctorName = [prescription.doctor fullName];
+        
         // Configure the cell.
-        cell.textLabel.text = [self.drugList objectAtIndex:[indexPath row]];
-        cell.detailTextLabel.text = @"4.12.12";
+        cell.textLabel.text = prescription.medication;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@", date, doctorName];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         return cell;
@@ -86,7 +105,7 @@
         }
         
         // Configure the cell.
-        cell.textLabel.text = [self.transferList objectAtIndex:[indexPath row]];
+        cell.textLabel.text = [self.referralList objectAtIndex:[indexPath row]];
         cell.detailTextLabel.text = @"1.12.12";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
        
@@ -117,6 +136,8 @@
     
     if (indexPath.section == 0)
     {
+        self.selectedPrescription = [self.prescriptionList objectAtIndex:indexPath.row];
+        
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self performSegueWithIdentifier:@"toDrugDetail" sender:self];
     }
@@ -131,17 +152,27 @@
     
     if (section == 0)
     {
-        return @"Rezepte";
+        return NSLocalizedString(@"Rezepte", @"PRESCRIPTIONS");
     }
     if (section == 1)
     {
-        return @"Überweisungen";
+        return NSLocalizedString(@"Überweisungen", @"REFERRALS");
     }
     if (section == 2)
     {
-        return @"Patientakte";
+        return NSLocalizedString(@"Patientakte", @"PATIENT_FILE");
     }
     return nil;
+}
+
+#pragma mark Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"toDrugDetail"]) {
+        DrugDetailViewController *destination = [segue destinationViewController];
+        destination.prescription = self.selectedPrescription;
+    }
 }
 
 

@@ -20,9 +20,10 @@
 @property (nonatomic) IBOutlet UITextView *addressField;
 @property (nonatomic) IBOutlet UILabel *phoneField;
 @property (nonatomic) IBOutlet UILabel *hoursField;
-@property (nonatomic) DoctorModel *doctor;
 @property (nonatomic) IBOutlet UIButton *favouriteButton;
-@property (nonatomic) NSMutableArray *docFavList;
+
+@property (nonatomic) DoctorModel *doctor;
+@property (nonatomic) NSMutableArray *favouriteDoctors;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 

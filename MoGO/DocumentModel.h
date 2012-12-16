@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DoctorModel.h"
 
 @interface DocumentModel : NSObject
 
 @property (nonatomic) NSInteger documentId;
-@property (nonatomic) NSInteger authorId;
-@property (nonatomic) NSString *authorName;
+@property (nonatomic) NSInteger doctorId;
+@property (nonatomic) DoctorModel *doctor;
 @property (nonatomic) NSDate *creationDate;
 @property (nonatomic) NSString *note;
 
-- (DocumentModel*)initWithId:(NSInteger)document author:(NSInteger)author date:(NSDate*)date note:(NSString*)note;
+- (DocumentModel*)initWithId:(NSInteger)document doctorId:(NSInteger)author date:(NSDate*)date note:(NSString*)note;
 
 @end
