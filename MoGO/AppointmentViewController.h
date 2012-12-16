@@ -18,7 +18,6 @@
 @property (nonatomic) NSMutableArray *appointmentList;
 @property (nonatomic) NSMutableArray *doctorList;
 @property (nonatomic) NSMutableArray *favouriteDoctorIDList;
-@property (nonatomic) NSString* selectedDoctorIDforAppointment;
 
 
 @end

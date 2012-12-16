@@ -20,4 +20,6 @@
 
 - (AddressModel*)initWithStreet:(NSString*)street streetNumber:(NSInteger)number zipCode:(NSString*)zipCode city:(NSString*)city latitude:(NSNumber*)latitude longitude:(NSNumber*)longitude;
 
+- (AddressModel*)initWithDictionary:(NSDictionary*)dict;
+
 @end
