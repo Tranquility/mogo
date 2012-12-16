@@ -28,6 +28,7 @@
 		2D95D8C5166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
 		991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */; };
 		991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */; };
+		BA3E87C8167D0B5E00590DFA /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E87C7167D0B5E00590DFA /* CredentialStore.m */; };
 		BA65DC771667BE80007F7140 /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65DC761667BE80007F7140 /* ApiClient.m */; };
 		DA1DC677167DDBBE00B5D63C /* PrescriptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */; };
 		DA1DC67A167DFDF300B5D63C /* qr.png in Resources */ = {isa = PBXBuildFile; fileRef = DA1DC679167DFDF300B5D63C /* qr.png */; };
@@ -270,6 +271,16 @@
 				DABBFD321660E52800C79B32 /* AppointmentViewController.h */,
 				DABBFD331660E52800C79B32 /* AppointmentViewController.m */,
 				F13335F91662317300502A50 /* DataModel */,
+				F16BF10716626675000E5FC0 /* icons */,
+				F1DBD2AE167368010078CF28 /* MakeAppointmentDayViewController.h */,
+				F1DBD2AF167368010078CF28 /* MakeAppointmentDayViewController.m */,
+				F1DBD2B0167368010078CF28 /* MakeAppointmentDayViewController.xib */,
+				F1AB2D6B16788D3D0020D0F1 /* SlotTemplateView.xib */,
+				BA3E87C6167D0B5E00590DFA /* CredentialStore.h */,
+				BA3E87C7167D0B5E00590DFA /* CredentialStore.m */,
+				F1AB2D6816788CF00020D0F1 /* SlotTemplateView.h */,
+				F1AB2D6916788CF00020D0F1 /* SlotTemplateView.m */,
+				F1AB2D6416788CB50020D0F1 /* DaySlotView.xib */,
 				F1AB2D6116788CA40020D0F1 /* DaySlotView.h */,
 				F1AB2D6216788CA40020D0F1 /* DaySlotView.m */,
 				F1AB2D6416788CB50020D0F1 /* DaySlotView.xib */,
@@ -539,6 +550,7 @@
 				2D95D8C4166E80B1000A0122 /* MailManipulator.m in Sources */,
 				2D7CABBC166FB89F008187C0 /* LoginViewController.m in Sources */,
 				DA1DC677167DDBBE00B5D63C /* PrescriptionModel.m in Sources */,
+				BA3E87C8167D0B5E00590DFA /* CredentialStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
