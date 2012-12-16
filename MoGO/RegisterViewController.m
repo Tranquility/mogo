@@ -52,9 +52,8 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 }
 
 - (IBAction)registerButtonPressed:(id)sender {
-    if([self isInputValid]) //TODO:check for unique mail adress with server
+    if([self isInputValid])
     {
-        //send data to server, wait for confirm
     id params = @{
         @"patient": @{
             @"email": self.mailAddressField.text,
