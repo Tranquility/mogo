@@ -55,20 +55,25 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     if([self isInputValid]) //TODO:check for unique mail adress with server
     {
         //send data to server, wait for confirm
-        
     id params = @{
         @"patient": @{
-    @"email": self.mailAddressField.text,
-    @"password": self.passwordField.text,
-    @"password_confirmation": self.passwordField.text
+            @"email": self.mailAddressField.text,
+            @"password": self.passwordField.text,
+            @"password_confirmation": self.passwordField.text
         }
-        };
+    };
         
     [[ApiClient sharedInstance] postPath:@"/patients.json"
                                 parameters:params
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        [self dismissViewControllerAnimated:YES completion:nil];
                                        NSLog(@"everything alright");
+                                        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Anmeldung erfolgreich", @"REGISTER_SUCCESSFULL")
+                                                                                          message:NSLocalizedString(@"Bestätigungsmail wird versendet. Sie können sich nun einloggen", @"SENT_CONFIRM_MAIL")
+                                                                                         delegate:nil
+                                                                                cancelButtonTitle:@"OK"
+                                                                                otherButtonTitles:nil];
+                                        [message show];
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        if (operation.response.statusCode == 500) {
                                            NSLog(@"Unknown Error");
@@ -83,13 +88,6 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
                                        }
                                    }];
         
-        //send confirmation mail
-//        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Anmeldung erfolgreich", @"REGISTER_SUCCESSFULL")
-//                                                          message:NSLocalizedString(@"Bestätigungsmail wird versendet. Sie können sich nun einloggen", @"SENT_CONFIRM_MAIL")
-//                                                         delegate:nil
-//                                                cancelButtonTitle:@"OK"
-//                                                otherButtonTitles:nil];
-//        [message show];
         //TODO:pushviewzuLogIn
     }
     else
