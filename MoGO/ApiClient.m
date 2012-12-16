@@ -9,7 +9,7 @@
 #import "ApiClient.h"
 #import "CredentialStore.h"
 
-#define APIBaseURLString @"http://localhost:3000"
+#define APIBaseURLString @"mogo.ole-reifschneider.de"
 
 
 @implementation ApiClient
