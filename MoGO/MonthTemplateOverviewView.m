@@ -12,6 +12,8 @@
 
 @implementation MonthTemplateOverviewView
 
+NSInteger const DAY_OFFSET = 1;
+
 - (id)initWithFrame:(CGRect)frame andWithMonth:(NSInteger)currentMonth andWithYear:(NSInteger)currentYear andwithParentVC:(MakeAppointmentViewController*)myParentVC
 {
     
@@ -29,23 +31,20 @@
         NSMutableString *dateString = [NSMutableString stringWithFormat:@"%d/01/%d", currentMonth, currentYear];
         
         //Create the Date-Object
-        NSDate *d = [dateFormatter dateFromString:dateString];
+        NSDate *date = [dateFormatter dateFromString:dateString];
         
         //Find the first weekday of the month
         dateFormatter.dateFormat = @"EEE";
-        NSString *firstDayOfWeek = [dateFormatter stringFromDate:d];
+        NSString *firstDayOfWeek = [dateFormatter stringFromDate:date];
                
         //Create a Calendar-Object for some help...
         NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        [gregorian setFirstWeekday:2]; //Monday = 0, Tuesday = 1
+        [gregorian setFirstWeekday:1 + DAY_OFFSET]; //Tuesday = 1, Wednesday = 2...
         
         //How many Days do we have in the month?
-        NSInteger days = [gregorian rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:d].length;
+        NSInteger daysPerMonth = [gregorian rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:date].length;
         
-        //Helper-Variables
-        NSInteger start;
-        
-        start = [self findIndexOfDay:firstDayOfWeek];
+        NSInteger start = [self findIndexOfDay:firstDayOfWeek];
         
         NSString *path = [NSString stringWithFormat:@"time_slots.json?month=%d&year=%d", currentMonth, currentYear];
         [[ApiClient sharedInstance] getPath:path
@@ -53,7 +52,7 @@
                                     success:^(AFHTTPRequestOperation *operation, id slots) {
                                         NSMutableArray *availableSlots = [self findAvailableSlots:dateFormatter slots:slots];
                                         
-                                        [self generateTilesForEachDay:availableSlots days:days start:start];
+                                        [self generateTilesForEachDay:availableSlots days:daysPerMonth start:start];
                                     }
                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                         NSLog(@"Error fetching docs!");
@@ -71,31 +70,31 @@
     NSInteger start;
     if([day isEqualToString:@"Mon"])
     {
-        start = 0;
+        start = 1 - DAY_OFFSET;
     }
     if([day isEqualToString:@"Tue"])
     {
-        start = 1;
+        start = 2 - DAY_OFFSET;
     }
     if([day isEqualToString:@"Wed"])
     {
-        start = 2;
+        start = 3 - DAY_OFFSET;
     }
     if([day isEqualToString:@"Thu"])
     {
-        start = 3;
+        start = 4 - DAY_OFFSET;
     }
     if([day isEqualToString:@"Fri"])
     {
-        start = 4;
+        start = 5 - DAY_OFFSET;
     }
     if([day isEqualToString:@"Sat"])
     {
-        start = 5;
+        start = 6 - DAY_OFFSET;
     }
     if([day isEqualToString:@"Sun"])
     {
-        start = 6;
+        start = 7 - DAY_OFFSET;
     }
     return start;
 }
@@ -104,7 +103,10 @@
 {
     NSMutableArray *availableSlots = [[NSMutableArray alloc] init];
     
+    //Date formatter for rails timestamps
     dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    
+    //Date formatter for a single day
     NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
     dayFormatter.dateFormat = @"dd";
     
@@ -125,7 +127,7 @@
 - (void)generateTilesForEachDay:(NSMutableArray *)availableSlots days:(NSInteger)days start:(NSInteger)start
 {
     for (int i = 0; i < 6; i++) {
-        for (int j=0; j < 7; j++) {
+        for (int j = 0; j < 7; j++) {
             
             //Split the whole Canvas to tiles with a size of 40px, with a border of 1 px between the tiles
             CGRect r = CGRectMake(j * 40, i * 40, 39, 39);
