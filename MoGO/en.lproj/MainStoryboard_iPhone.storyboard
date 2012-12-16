@@ -834,7 +834,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="ageField" destination="xmC-me-yrj" id="b8W-ms-k3j"/>
-                        <outlet property="mailAdressField" destination="Q8D-Ro-aM2" id="naP-e9-l7J"/>
+                        <outlet property="mailAddressField" destination="Q8D-Ro-aM2" id="jhf-Bg-5Pd"/>
                         <outlet property="passwordConfirmField" destination="ix4-ix-SPd" id="QAJ-qJ-Wv5"/>
                         <outlet property="passwordField" destination="Ie2-ux-Je6" id="FJV-uQ-k6l"/>
                     </connections>
@@ -1056,9 +1056,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="4zZ-Pj-sG2"/>
-        <segue reference="mtb-th-UsI"/>
         <segue reference="G07-vO-8EL"/>
-        <segue reference="4zZ-Pj-sG2"/>
         <segue reference="ims-AM-hPl"/>
     </inferredMetricsTieBreakers>
 </document>
