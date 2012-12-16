@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 #import "MailManipulator.h"
 #import "ApiClient.h"
+#import "SVProgressHUD.h"
 
 #define PASSWORD_MIN_SIZE 6
 
@@ -62,28 +63,22 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
         }
     };
         
-    [[ApiClient sharedInstance] postPath:@"/patients.json"
+        [SVProgressHUD show];
+        [[ApiClient sharedInstance] postPath:@"/patients.json"
                                 parameters:params
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                       [self dismissViewControllerAnimated:YES completion:nil];
-                                       NSLog(@"everything alright");
-                                        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Anmeldung erfolgreich", @"REGISTER_SUCCESSFULL")
-                                                                                          message:NSLocalizedString(@"Bestätigungsmail wird versendet. Sie können sich nun einloggen", @"SENT_CONFIRM_MAIL")
-                                                                                         delegate:nil
-                                                                                cancelButtonTitle:@"OK"
-                                                                                otherButtonTitles:nil];
-                                        [message show];
+                                       [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Bitte bestätigen Sie ihre Email-Adresse", @"PATIENT CREATED")];
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        if (operation.response.statusCode == 500) {
                                            NSLog(@"Unknown Error");
+                                          [SVProgressHUD showErrorWithStatus:@"Something went wrong!"];
                                        } else {
                                            NSData *jsonData = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
                                            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
                                                                                                 options:0
                                                                                                   error:nil];
                                            NSString *errorMessage = [json objectForKey:@"errors"];
-                                           NSLog(@"%@",errorMessage);
-                                           NSLog(@"Eeeeerror");
+                                           [SVProgressHUD showErrorWithStatus:errorMessage];
                                        }
                                    }];
         
