@@ -8,6 +8,8 @@
 
 #import "RegisterViewController.h"
 #import "MailManipulator.h"
+#import "ApiClient.h"
+
 #define PASSWORD_MIN_SIZE 6
 
 //constant vars for scrolling if user changes from textfield to next textfield
@@ -53,13 +55,41 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     if([self isInputValid]) //TODO:check for unique mail adress with server
     {
         //send data to server, wait for confirm
+        
+    id params = @{
+        @"patient": @{
+    @"email": self.mailAddressField.text,
+    @"password": self.passwordField.text,
+    @"password_confirmation": self.passwordField.text
+        }
+        };
+        
+    [[ApiClient sharedInstance] postPath:@"/patients.json"
+                                parameters:params
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       [self dismissViewControllerAnimated:YES completion:nil];
+                                       NSLog(@"everything alright");
+                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       if (operation.response.statusCode == 500) {
+                                           NSLog(@"Unknown Error");
+                                       } else {
+                                           NSData *jsonData = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+                                           NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                                                options:0
+                                                                                                  error:nil];
+                                           NSString *errorMessage = [json objectForKey:@"errors"];
+                                           NSLog(@"%@",errorMessage);
+                                           NSLog(@"Eeeeerror");
+                                       }
+                                   }];
+        
         //send confirmation mail
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Anmeldung erfolgreich", @"REGISTER_SUCCESSFULL")
-                                                          message:NSLocalizedString(@"Bestätigungsmail wird versendet. Sie können sich nun einloggen", @"SENT_CONFIRM_MAIL")
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [message show];
+//        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Anmeldung erfolgreich", @"REGISTER_SUCCESSFULL")
+//                                                          message:NSLocalizedString(@"Bestätigungsmail wird versendet. Sie können sich nun einloggen", @"SENT_CONFIRM_MAIL")
+//                                                         delegate:nil
+//                                                cancelButtonTitle:@"OK"
+//                                                otherButtonTitles:nil];
+//        [message show];
         //TODO:pushviewzuLogIn
     }
     else
