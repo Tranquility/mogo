@@ -15,10 +15,15 @@
 @property (nonatomic) IBOutlet UILabel *dayLabel;
 @property (nonatomic) MakeAppointmentViewController *myParentVC;
 
+typedef enum {
+    HIDDEN = 0,
+    FULLY_BOOKED = 1,
+    FREE_SLOTS = 2,
+} State;
+
 //Action performed whenever a day is touched
 - (IBAction)showDay:(id)sender;
 
-
-- (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day andWithResponder:(MakeAppointmentViewController*)ParentVC;
+- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day responder:(MakeAppointmentViewController*)parentViewController;
 
 @end
