@@ -72,7 +72,6 @@
     };
     
     
-    NSLog(@"test");
     [[ApiClient sharedInstance] postPath:@"/tokens.json"
                                 parameters:params
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
