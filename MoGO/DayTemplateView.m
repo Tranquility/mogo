@@ -12,32 +12,32 @@
 
 @implementation DayTemplateView
 
-- (id)initWithFrame:(CGRect)frame andWithStatus:(NSInteger)status andWithDay:(NSInteger)day andWithResponder:(MakeAppointmentViewController*)ParentVC
+- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day responder:(MakeAppointmentViewController*)parentViewController;
 {
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.myParentVC = ParentVC;
+        self.myParentVC = parentViewController;
         
         //Load the nib-File and set this object as owner
         [[NSBundle mainBundle] loadNibNamed:@"DayTemplateView" owner:self options:nil];
         
-        //Depending on what status this day has, set the color accordingly
-        if (status == 0) //Day disabled; Will not be shown at all
+        //Not a valid day
+        if (state == HIDDEN)
         {
             self.dayLabel.text=@"";
             self.dayLabel.backgroundColor = [UIColor colorWithWhite:1 alpha:1.0];
         }
-        else if(status==1) //Day not available (no appointment slots available)
+        else if (state == FULLY_BOOKED) //Day not available (no appointment slots available)
         {
-            //Appointment SLot available at this day, set color accordingly
+            //Appointments not available at this day, set color accordingly
             self.dayLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1.0];
             self.dayLabel.text = [NSString stringWithFormat:@"%d",day];
         }
-        else
+        else if (state == FREE_SLOTS)
         {
-            //Appointment SLot available at this day, set color accordingly
-            self.dayLabel.backgroundColor = [UIColor colorWithRed:133.0 green:255.0 blue:133.0 alpha:100.0];
+            //Appointments available at this day, set color accordingly
+            //self.dayLabel.backgroundColor = [UIColor colorWithRed:22.0 green:139.0 blue:22.0 alpha:1.0];
             self.dayLabel.text = [NSString stringWithFormat:@"%d",day];
         }
         

@@ -17,4 +17,6 @@
 
 - (PrescriptionModel*)initWithId:(NSInteger)document doctorId:(NSInteger)author date:(NSDate*)date note:(NSString*)note medication:(NSString*)medication additionalCharge:(float)charge qrCode:(UIImage*)code;
 
+- (PrescriptionModel*)initWithDictionary:(NSDictionary*)dict;
+
 @end
