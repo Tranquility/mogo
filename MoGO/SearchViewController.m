@@ -11,6 +11,7 @@
 #import "ApiClient.h"
 #import "DoctorModel.h"
 #import "MedicDetailViewController.h"
+#import "SVProgressHUD.h"
 
 @interface SearchViewController ()
 
@@ -50,8 +51,10 @@
     
     [self.pickerView selectRow:0 inComponent:0 animated:YES];
     
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade Dotorenlisten", @"LOAD DOCTORLIST")];
     [[ApiClient sharedInstance] getPath:@"disciplines.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
+                                    [SVProgressHUD dismiss];
                                     
                                     NSArray *tuple = @[@0, @"Alle Fachbereiche"];
                                     
@@ -67,6 +70,7 @@
                                     [self.pickerView reloadAllComponents];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    [SVProgressHUD dismiss];
                                     NSLog(@"Error fetching Disciplines!");
                                     NSLog(@"%@", error);
                                     
