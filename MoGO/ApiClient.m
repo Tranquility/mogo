@@ -9,7 +9,7 @@
 #import "ApiClient.h"
 #import "CredentialStore.h"
 
-#define APIBaseURLString @"mogo.ole-reifschneider.de"
+#define APIBaseURLString @"http://mogo.ole-reifschneider.de"
 
 
 @implementation ApiClient
