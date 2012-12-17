@@ -11,15 +11,16 @@
 
 @interface DayTemplateView : UIControl
 
-@property (nonatomic) IBOutlet UIView *mainView;
-@property (nonatomic) IBOutlet UILabel *dayLabel;
-@property (nonatomic) MakeAppointmentViewController *myParentVC;
-
 typedef enum {
     HIDDEN = 0,
     FULLY_BOOKED = 1,
     FREE_SLOTS = 2,
 } State;
+
+@property (nonatomic) IBOutlet UIView *mainView;
+@property (nonatomic) IBOutlet UILabel *dayLabel;
+@property (nonatomic) MakeAppointmentViewController *myParentVC;
+@property (nonatomic) State myState;
 
 //Action performed whenever a day is touched
 - (IBAction)showDay:(id)sender;
