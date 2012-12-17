@@ -29,7 +29,7 @@ static NSRegularExpression* URL_WITHOUT_PROTOCOL_PATTERN = nil;
 
 + (void)initialize {
   URL_WITH_PROTOCOL_PATTERN = [[NSRegularExpression alloc] initWithPattern:
-                               [@"^[a-zA-Z0-9]{2,}://" // protocol
+                               [@"^[a-zA-Z0-9]{2,}:(/)*" // protocol
                                 @"[a-zA-Z0-9\\-]+(\\.[a-zA-Z0-9\\-]+)*" // host name elements
                                 stringByAppendingString:PATTERN_END]
                                                                    options:0 error:nil];
@@ -40,12 +40,12 @@ static NSRegularExpression* URL_WITHOUT_PROTOCOL_PATTERN = nil;
 }
 
 - (ZXParsedResult *)parse:(ZXResult *)result {
-  NSString * rawText = [result text];
+  NSString * rawText = [ZXResultParser massagedText:result];
   // We specifically handle the odd "URL" scheme here for simplicity
   if ([rawText hasPrefix:@"URL:"]) {
     rawText = [rawText substringFromIndex:4];
   }
-  rawText = [rawText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+  rawText = [rawText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
   return [[self class] isBasicallyValidURI:rawText] ? [ZXURIParsedResult uriParsedResultWithUri:rawText title:nil] : nil;
 }
 

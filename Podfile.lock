@@ -3,13 +3,13 @@ PODS:
 - AFNetworking (1.0.1)
 - SSKeychain (0.1.4)
 - SVProgressHUD (0.8)
-- ZXingObjC (2.0.1)
+- ZXingObjC (HEAD based on 2.0.1)
 
 DEPENDENCIES:
 - AFNetworking
 - SSKeychain
 - SVProgressHUD
-- ZXingObjC
+- ZXingObjC (HEAD)
 
 SPEC CHECKSUMS:
   AFNetworking: 4c11f857c9a18d65f4257c90a1e74ac49f0ac422

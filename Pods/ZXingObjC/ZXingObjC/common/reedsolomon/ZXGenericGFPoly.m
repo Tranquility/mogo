@@ -106,7 +106,7 @@
 
 - (ZXGenericGFPoly *)addOrSubtract:(ZXGenericGFPoly *)other {
   if (![self.field isEqual:other->field]) {
-    [NSException raise:NSInvalidArgumentException format:@"ZXGenericGFPolys do not have same GenericGF field"];
+    [NSException raise:NSInvalidArgumentException format:@"ZXGenericGFPolys do not have same ZXGenericGF field"];
   }
   if (self.zero) {
     return other;
@@ -201,7 +201,7 @@
 
 - (NSArray *)divide:(ZXGenericGFPoly *)other {
   if (![self.field isEqual:other->field]) {
-    [NSException raise:NSInvalidArgumentException format:@"ZXGenericGFPolys do not have same GenericGF field"];
+    [NSException raise:NSInvalidArgumentException format:@"ZXGenericGFPolys do not have same ZXGenericGF field"];
   }
   if (other.zero) {
     [NSException raise:NSInvalidArgumentException format:@"Divide by 0"];

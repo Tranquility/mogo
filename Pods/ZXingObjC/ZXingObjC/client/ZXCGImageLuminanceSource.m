@@ -14,22 +14,7 @@
  * limitations under the License.
  */
 
-/*
- * Copyright 2011 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+#import <CoreVideo/CoreVideo.h>
 #import "ZXCGImageLuminanceSource.h"
 #import "ZXImage.h"
 
@@ -55,9 +40,9 @@
                                        top:(size_t)top
                                      width:(size_t)width
                                     height:(size_t)height {
-  int bytesPerRow = CVPixelBufferGetBytesPerRow(buffer); 
-  int dataWidth = CVPixelBufferGetWidth(buffer); 
-  int dataHeight = CVPixelBufferGetHeight(buffer); 
+  int bytesPerRow = (int)CVPixelBufferGetBytesPerRow(buffer);
+  int dataWidth = (int)CVPixelBufferGetWidth(buffer);
+  int dataHeight = (int)CVPixelBufferGetHeight(buffer);
 
   if (left + width > dataWidth ||
       top + height > dataHeight) {
@@ -77,7 +62,7 @@
     memcpy(bytes, baseAddress+top*bytesPerRow, size);
   } else {
     for(int y=0; y<height; y++) {
-      memcpy(bytes+y*bytesPerRow,
+      memcpy(bytes+y*newBytesPerRow,
              baseAddress+left*4+(top+y)*bytesPerRow,
              bytesPerRow);
     }
@@ -110,7 +95,7 @@
                   top:(size_t)_top
                 width:(size_t)_width
                height:(size_t)_height {
-  self = [self initWithCGImage:_image.cgimage left:_left top:_top width:_width height:_height];
+  self = [self initWithCGImage:_image.cgimage left:(int)_left top:(int)_top width:(int)_width height:(int)_height];
 
   return self;
 }
@@ -127,14 +112,14 @@
                 width:(size_t)_width
                height:(size_t)_height {
   if (self = [super init]) {
-    [self initializeWithImage:_image left:_left top:_top width:_width height:_height];
+    [self initializeWithImage:_image left:(int)_left top:(int)_top width:(int)_width height:(int)_height];
   }
 
   return self;
 }
 
 - (id)initWithCGImage:(CGImageRef)_image {
-  self = [self initWithCGImage:_image left:0 top:0 width:CGImageGetWidth(_image) height:CGImageGetHeight(_image)];
+  self = [self initWithCGImage:_image left:0 top:0 width:(int)CGImageGetWidth(_image) height:(int)CGImageGetHeight(_image)];
 
   return self;
 }
@@ -144,7 +129,7 @@
                  top:(size_t)_top
                width:(size_t)_width
               height:(size_t)_height {
-  CGImageRef _image = [ZXCGImageLuminanceSource createImageFromBuffer:buffer left:_left top:_top width:_width height:_height];
+  CGImageRef _image = [ZXCGImageLuminanceSource createImageFromBuffer:buffer left:(int)_left top:(int)_top width:(int)_width height:(int)_height];
 
   self = [self initWithCGImage:_image];
 
@@ -212,8 +197,8 @@
   top = _top;
   self->width = _width;
   self->height = _height;
-  dataWidth = CGImageGetWidth(cgimage);
-  dataHeight = CGImageGetHeight(cgimage);
+  dataWidth = (int)CGImageGetWidth(cgimage);
+  dataHeight = (int)CGImageGetHeight(cgimage);
   
   if (left + self.width > dataWidth ||
       top + self.height > dataHeight ||

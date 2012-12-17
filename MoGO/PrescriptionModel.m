@@ -7,6 +7,7 @@
 //
 
 #import "PrescriptionModel.h"
+#import "ZXingObjC.h"
 
 @implementation PrescriptionModel
 

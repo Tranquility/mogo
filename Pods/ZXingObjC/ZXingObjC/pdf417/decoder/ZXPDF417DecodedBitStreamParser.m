@@ -121,6 +121,10 @@ static NSArray* EXP900 = nil;
       return nil;
     }
   }
+  if (!result || result.length == 0) {
+    if (error) *error = NotFoundErrorInstance();
+    return nil;
+  }
   return [[[ZXDecoderResult alloc] initWithRawBytes:NULL length:0 text:result byteSegments:nil ecLevel:nil] autorelease];
 }
 
@@ -132,7 +136,9 @@ static NSArray* EXP900 = nil;
  */
 + (int)textCompaction:(NSArray *)codewords codeIndex:(int)codeIndex result:(NSMutableString *)result {
   int count = [[codewords objectAtIndex:0] intValue] << 1;
+  // 2 character per codeword
   int textCompactionData[count];
+  // Used to hold the byte compaction value if there is a mode shift
   int byteCompactionData[count];
 
   for (int i = 0; i < count; i++) {
@@ -151,8 +157,8 @@ static NSArray* EXP900 = nil;
     } else {
       switch (code) {
       case TEXT_COMPACTION_MODE_LATCH:
-        codeIndex--;
-        end = YES;
+        // reinitialize text compaction mode to alpha sub mode
+        textCompactionData[index++] = TEXT_COMPACTION_MODE_LATCH;
         break;
       case BYTE_COMPACTION_MODE_LATCH:
         codeIndex--;
@@ -192,6 +198,10 @@ static NSArray* EXP900 = nil;
  * switches are defined in 5.4.2.3.
  */
 + (void)decodeTextCompaction:(int*)textCompactionData byteCompactionData:(int*)byteCompactionData length:(unsigned int)length result:(NSMutableString *)result {
+  // Beginning from an initial state of the Alpha sub-mode
+  // The default compaction mode for PDF417 in effect at the start of each symbol shall always be Text
+  // Compaction mode Alpha sub-mode (uppercase alphabetic). A latch codeword from another mode to the Text
+  // Compaction mode shall always switch to the Text Compaction Alpha sub-mode.
   int subMode = ALPHA;
   int priorToShiftMode = ALPHA;
   int i = 0;
@@ -199,97 +209,129 @@ static NSArray* EXP900 = nil;
     int subModeCh = textCompactionData[i];
     unichar ch = 0;
     switch (subMode) {
-    case ALPHA:
-      if (subModeCh < 26) {
-        ch = (unichar)('A' + subModeCh);
-      } else {
-        if (subModeCh == 26) {
-          ch = ' ';
-        } else if (subModeCh == LL) {
-          subMode = LOWER;
-        } else if (subModeCh == ML) {
-          subMode = MIXED;
-        } else if (subModeCh == PS) {
-          priorToShiftMode = subMode;
-          subMode = PUNCT_SHIFT;
-        } else if (subModeCh == MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
-          [result appendFormat:@"%C", (unichar)byteCompactionData[i]];
-        }
-      }
-      break;
-    case LOWER:
-      if (subModeCh < 26) {
-        ch = (unichar)('a' + subModeCh);
-      } else {
-        if (subModeCh == 26) {
-          ch = ' ';
-        } else if (subModeCh == AS) {
-          priorToShiftMode = subMode;
-          subMode = ALPHA_SHIFT;
-        } else if (subModeCh == ML) {
-          subMode = MIXED;
-        } else if (subModeCh == PS) {
-          priorToShiftMode = subMode;
-          subMode = PUNCT_SHIFT;
-        } else if (subModeCh == MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
-          [result appendFormat:@"%C", (unichar)byteCompactionData[i]];
-        }
-      }
-      break;
-    case MIXED:
-      if (subModeCh < PL) {
-        ch = MIXED_CHARS[subModeCh];
-      } else {
-        if (subModeCh == PL) {
-          subMode = PUNCT;
-        } else if (subModeCh == 26) {
-          ch = ' ';
-        } else if (subModeCh == LL) {
-          subMode = LOWER;
-        } else if (subModeCh == AL) {
-          subMode = ALPHA;
-        } else if (subModeCh == PS) {
-          priorToShiftMode = subMode;
-          subMode = PUNCT_SHIFT;
-        } else if (subModeCh == MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
-          [result appendFormat:@"%C", (unichar)byteCompactionData[i]];
-        }
-      }
-      break;
-    case PUNCT:
-      if (subModeCh < PAL) {
-        ch = PUNCT_CHARS[subModeCh];
-      } else {
-        if (subModeCh == PAL) {
-          subMode = ALPHA;
-        } else if (subModeCh == MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
-          [result appendFormat:@"%C", (unichar)byteCompactionData[i]];
-        }
-      }
-      break;
-    case ALPHA_SHIFT:
-      subMode = priorToShiftMode;
-      if (subModeCh < 26) {
-        ch = (unichar)('A' + subModeCh);
-      } else {
-        if (subModeCh == 26) {
-          ch = ' ';
+      case ALPHA:
+        // Alpha (uppercase alphabetic)
+        if (subModeCh < 26) {
+        // Upper case Alpha Character
+          ch = (unichar)('A' + subModeCh);
         } else {
+          if (subModeCh == 26) {
+            ch = ' ';
+          } else if (subModeCh == LL) {
+            subMode = LOWER;
+          } else if (subModeCh == ML) {
+            subMode = MIXED;
+          } else if (subModeCh == PS) {
+            // Shift to punctuation
+            priorToShiftMode = subMode;
+            subMode = PUNCT_SHIFT;
+          } else if (subModeCh == MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
+            [result appendFormat:@"%C", (unichar)byteCompactionData[i]];
+          } else if (subModeCh == TEXT_COMPACTION_MODE_LATCH) {
+            subMode = ALPHA;
+          }
         }
-      }
-      break;
-    case PUNCT_SHIFT:
-      subMode = priorToShiftMode;
-      if (subModeCh < PAL) {
-        ch = PUNCT_CHARS[subModeCh];
-      } else {
-        if (subModeCh == PAL) {
-          subMode = ALPHA;
+        break;
+
+      case LOWER:
+        // Lower (lowercase alphabetic)
+        if (subModeCh < 26) {
+          ch = (unichar)('a' + subModeCh);
+        } else {
+          if (subModeCh == 26) {
+            ch = ' ';
+          } else if (subModeCh == AS) {
+            // Shift to alpha
+            priorToShiftMode = subMode;
+            subMode = ALPHA_SHIFT;
+          } else if (subModeCh == ML) {
+            subMode = MIXED;
+          } else if (subModeCh == PS) {
+            // Shift to punctuation
+            priorToShiftMode = subMode;
+            subMode = PUNCT_SHIFT;
+          } else if (subModeCh == MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
+            [result appendFormat:@"%C", (unichar)byteCompactionData[i]];
+          } else if (subModeCh == TEXT_COMPACTION_MODE_LATCH) {
+            subMode = ALPHA;
+          }
         }
-      }
-      break;
+        break;
+
+      case MIXED:
+        // Mixed (numeric and some punctuation)
+        if (subModeCh < PL) {
+          ch = MIXED_CHARS[subModeCh];
+        } else {
+          if (subModeCh == PL) {
+            subMode = PUNCT;
+          } else if (subModeCh == 26) {
+            ch = ' ';
+          } else if (subModeCh == LL) {
+            subMode = LOWER;
+          } else if (subModeCh == AL) {
+            subMode = ALPHA;
+          } else if (subModeCh == PS) {
+            // Shift to punctuation
+            priorToShiftMode = subMode;
+            subMode = PUNCT_SHIFT;
+          } else if (subModeCh == MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
+            [result appendFormat:@"%C", (unichar)byteCompactionData[i]];
+          } else if (subModeCh == TEXT_COMPACTION_MODE_LATCH) {
+            subMode = ALPHA;
+          }
+        }
+        break;
+
+      case PUNCT:
+        // Punctuation
+        if (subModeCh < PAL) {
+          ch = PUNCT_CHARS[subModeCh];
+        } else {
+          if (subModeCh == PAL) {
+            subMode = ALPHA;
+          } else if (subModeCh == MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
+            [result appendFormat:@"%C", (unichar)byteCompactionData[i]];
+          } else if (TEXT_COMPACTION_MODE_LATCH) {
+            subMode = ALPHA;
+          }
+        }
+        break;
+
+      case ALPHA_SHIFT:
+        // Restore sub-mode
+        subMode = priorToShiftMode;
+        if (subModeCh < 26) {
+          ch = (unichar)('A' + subModeCh);
+        } else {
+          if (subModeCh == 26) {
+            ch = ' ';
+          } else if (subModeCh == TEXT_COMPACTION_MODE_LATCH) {
+            subMode = ALPHA;
+          }
+        }
+        break;
+
+      case PUNCT_SHIFT:
+        // Restore sub-mode
+        subMode = priorToShiftMode;
+        if (subModeCh < PAL) {
+          ch = PUNCT_CHARS[subModeCh];
+        } else {
+          if (subModeCh == PAL) {
+            subMode = ALPHA;
+          } else if (subModeCh == MODE_SHIFT_TO_BYTE_COMPACTION_MODE) {
+            // PS before Shift-to-Byte is used as a padding character,
+            // see 5.4.2.4 of the specification
+            [result appendFormat:@"%C", (unichar)byteCompactionData[i]];
+          } else if (subModeCh == TEXT_COMPACTION_MODE_LATCH) {
+            subMode = ALPHA;
+          }
+        }
+        break;
     }
     if (ch != 0) {
+      // Append decoded character to result
       [result appendFormat:@"%C", ch];
     }
     i++;
@@ -304,43 +346,56 @@ static NSArray* EXP900 = nil;
  */
 + (int)byteCompaction:(int)mode codewords:(NSArray *)codewords codeIndex:(int)codeIndex result:(NSMutableString *)result {
   if (mode == BYTE_COMPACTION_MODE_LATCH) {
+    // Total number of Byte Compaction characters to be encoded
+    // is not a multiple of 6
     int count = 0;
     long long value = 0;
     char decodedData[6] = {0, 0, 0, 0, 0, 0};
     int byteCompactedCodewords[6] = {0, 0, 0, 0, 0, 0};
     BOOL end = NO;
+    int nextCode = [[codewords objectAtIndex:codeIndex++] intValue];
     while ((codeIndex < [[codewords objectAtIndex:0] intValue]) && !end) {
-      int code = [[codewords objectAtIndex:codeIndex++] intValue];
-      if (code < TEXT_COMPACTION_MODE_LATCH) {
-        byteCompactedCodewords[count] = code;
-        count++;
-        value = 900 * value + code;
+      byteCompactedCodewords[count++] = nextCode;
+      // Base 900
+      value = 900 * value + nextCode;
+      nextCode = [[codewords objectAtIndex:codeIndex++] intValue];
+      // perhaps it should be ok to check only nextCode >= TEXT_COMPACTION_MODE_LATCH
+      if (nextCode == TEXT_COMPACTION_MODE_LATCH ||
+          nextCode == BYTE_COMPACTION_MODE_LATCH ||
+          nextCode == NUMERIC_COMPACTION_MODE_LATCH ||
+          nextCode == BYTE_COMPACTION_MODE_LATCH_6 ||
+          nextCode == BEGIN_MACRO_PDF417_CONTROL_BLOCK ||
+          nextCode == BEGIN_MACRO_PDF417_OPTIONAL_FIELD ||
+          nextCode == MACRO_PDF417_TERMINATOR) {
+        end = YES;
       } else {
-        if (code == TEXT_COMPACTION_MODE_LATCH ||
-            code == BYTE_COMPACTION_MODE_LATCH ||
-            code == NUMERIC_COMPACTION_MODE_LATCH ||
-            code == BYTE_COMPACTION_MODE_LATCH_6 ||
-            code == BEGIN_MACRO_PDF417_CONTROL_BLOCK ||
-            code == BEGIN_MACRO_PDF417_OPTIONAL_FIELD ||
-            code == MACRO_PDF417_TERMINATOR) {
-          codeIndex--;
-          end = YES;
+        if ((count % 5 == 0) && (count > 0)) {
+          // Decode every 5 codewords
+          // Convert to Base 256
+          for (int j = 0; j < 6; ++j) {
+            decodedData[5 - j] = (char) (value % 256);
+            value >>= 8;
+          }
+          [result appendString:[NSString stringWithCString:decodedData encoding:NSASCIIStringEncoding]];
+          count = 0;
         }
-      }
-      if ((count % 5 == 0) && (count > 0)) {
-        for (int j = 0; j < 6; ++j) {
-          decodedData[5 - j] = (char) (value % 256);
-          value >>= 8;
-        }
-        [result appendString:[NSString stringWithCString:decodedData encoding:NSASCIIStringEncoding]];
-        count = 0;
       }
     }
 
-    for (int i = (count / 5) * 5; i < count; i++) {
+    // if the end of all codewords is reached the last codeword needs to be added
+    if (codeIndex == [[codewords objectAtIndex:0] intValue] && nextCode < TEXT_COMPACTION_MODE_LATCH) {
+      byteCompactedCodewords[count++] = nextCode;
+    }
+
+    // If Byte Compaction mode is invoked with codeword 901,
+    // the last group of codewords is interpreted directly
+    // as one byte per codeword, without compaction.
+    for (int i = 0; i < count; i++) {
       [result appendFormat:@"%C", (unichar)byteCompactedCodewords[i]];
     }
   } else if (mode == BYTE_COMPACTION_MODE_LATCH_6) {
+    // Total number of Byte Compaction characters to be encoded
+    // is an integer multiple of 6
     int count = 0;
     long value = 0;
     BOOL end = NO;
@@ -348,6 +403,7 @@ static NSArray* EXP900 = nil;
       int code = [[codewords objectAtIndex:codeIndex++] intValue];
       if (code < TEXT_COMPACTION_MODE_LATCH) {
         count++;
+        // Base 900
         value = 900 * value + code;
       } else {
         if (code == TEXT_COMPACTION_MODE_LATCH ||
@@ -362,12 +418,15 @@ static NSArray* EXP900 = nil;
         }
       }
       if ((count % 5 == 0) && (count > 0)) {
+        // Decode every 5 codewords
+        // Convert to Base 256
         NSMutableString *decodedData = [NSMutableString stringWithCapacity:6];
         for (int j = 0; j < 6; ++j) {
           [decodedData replaceCharactersInRange:NSMakeRange(5-j, 1) withString:[NSString stringWithFormat:@"%C", (unichar)(value & 0xFF)]];
           value >>= 8;
         }
         [result appendString:decodedData];
+        count = 0;
       }
     }
   }

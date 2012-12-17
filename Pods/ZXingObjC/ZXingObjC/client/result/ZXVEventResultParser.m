@@ -28,7 +28,7 @@
 @implementation ZXVEventResultParser
 
 - (ZXParsedResult *)parse:(ZXResult *)result {
-  NSString * rawText = result.text;
+  NSString * rawText = [ZXResultParser massagedText:result];
   if (rawText == nil) {
     return nil;
   }
@@ -73,7 +73,7 @@
 }
 
 - (NSString*)matchSingleVCardPrefixedField:(NSString*)prefix rawText:(NSString *)rawText trim:(BOOL)trim {
-  NSArray * values = [ZXVCardResultParser matchSingleVCardPrefixedField:prefix rawText:rawText trim:trim];
+  NSArray * values = [ZXVCardResultParser matchSingleVCardPrefixedField:prefix rawText:rawText trim:trim parseFieldDivider:NO];
   return values == nil || values.count == 0 ? nil : [values objectAtIndex:0];
 }
 

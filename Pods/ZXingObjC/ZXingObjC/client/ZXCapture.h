@@ -14,22 +14,7 @@
  * limitations under the License.
  */
 
-/*
- * Copyright 2011 ZXing authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+#include <QuartzCore/QuartzCore.h>
 #import "ZXCaptureDelegate.h"
 
 @protocol ZXReader;
@@ -44,6 +29,7 @@
 #define ZXQT(x)
 #define ZXCaptureSession AVCaptureSession
 #define ZXCaptureVideoPreviewLayer AVCaptureVideoPreviewLayer
+#define ZXCaptureDevice AVCaptureDevice
 #define ZXCaptureDeviceInput AVCaptureDeviceInput
 #define ZXCaptureVideoOutput AVCaptureVideoDataOutput
 #else
@@ -54,6 +40,7 @@
 #define ZXQT(x) x
 #define ZXCaptureSession QTCaptureSession
 #define ZXCaptureVideoPreviewLayer QTCaptureLayer
+#define ZXCaptureDevice QTCaptureDevice
 #define ZXCaptureDeviceInput QTCaptureDeviceInput
 #define ZXCaptureVideoOutput QTCaptureDecompressedVideoOutput
 #endif
@@ -64,8 +51,9 @@ ZX(<CAAction ZXAVC(AVCaptureVideoDataOutputSampleBufferDelegate)>) {
   ZX(
     ZXCaptureSession* session;
     ZXCaptureVideoPreviewLayer* layer;
-    ZXCaptureVideoOutput* output;
+    ZXCaptureDevice* capture_device;
     ZXCaptureDeviceInput* input;
+    ZXCaptureVideoOutput* output;
     id<ZXCaptureDelegate> delegate;
     )
     
@@ -83,7 +71,8 @@ ZX(<CAAction ZXAVC(AVCaptureVideoDataOutputSampleBufferDelegate)>) {
   BOOL hard_stop;
   int camera;
   BOOL torch;
-  int device;
+  BOOL mirror;
+  int capture_device_index;
   CGAffineTransform transform;
 }
 
@@ -92,6 +81,9 @@ ZX(<CAAction ZXAVC(AVCaptureVideoDataOutputSampleBufferDelegate)>) {
 @property (nonatomic) CGAffineTransform transform;
 @property (nonatomic, readonly) ZXCaptureVideoOutput* output;
 @property (nonatomic, readonly) CALayer* layer;
+@property (nonatomic, retain) ZXCaptureDevice* captureDevice;
+@property (nonatomic, assign) BOOL mirror;
+@property (nonatomic, readonly) BOOL running;
 @property (nonatomic, retain) id<ZXReader> reader;
 @property (nonatomic, retain) ZXDecodeHints* hints;
 @property (nonatomic, assign) CGFloat rotation;
@@ -151,6 +143,8 @@ ZX(<CAAction ZXAVC(AVCaptureVideoDataOutputSampleBufferDelegate)>) {
 
 @property (nonatomic) int camera;
 @property (nonatomic) BOOL torch;
+
+@property (nonatomic, assign) BOOL mirror;
 
 @end
 
