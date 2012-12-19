@@ -16,7 +16,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        self.myState = state;
         self.myParentVC = parentViewController;
         
         //Load the nib-File and set this object as owner
@@ -51,8 +51,9 @@
 }
 
 - (void)showDay:(id)sender {
-    //Tell the parentViewController to open detail view of day x (self.tag)
-    [self.myParentVC showDay:self.tag];
+    if (self.myState == FREE_SLOTS) {
+        [self.myParentVC showDay:self.tag];
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.
