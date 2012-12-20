@@ -7,6 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "CredentialStore.h"
+
+@interface ViewController ()
+@property (nonatomic) CredentialStore *credentialStore;
+@end
 
 @implementation ViewController
 
@@ -23,6 +28,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.credentialStore = [[CredentialStore alloc] init];
+    
+    if ([self.credentialStore isLoggedIn]) {
+        NSLog(@"User is already Logged in");
+    } else {
+        NSLog(@"User is not Logged in");
+        [self.navigationController performSegueWithIdentifier:@"toLogin" sender:self];
+    }
     
 }
 
