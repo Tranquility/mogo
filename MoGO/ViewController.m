@@ -31,6 +31,9 @@
     
     self.credentialStore = [[CredentialStore alloc] init];
     
+    //Für test zwecke
+    [self.credentialStore setAuthToken:nil];
+    
     if ([self.credentialStore isLoggedIn]) {
         NSLog(@"User is already Logged in");
     } else {
