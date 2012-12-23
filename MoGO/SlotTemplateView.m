@@ -10,27 +10,18 @@
 
 @implementation SlotTemplateView
 
-- (id)initWithFrame:(CGRect)frame andStartTime:(NSString*)startTime andEndTime:(NSString*)endTime andParentVC:(MakeAppointmentViewController*)parentVC
+- (id)initWithFrame:(CGRect)frame startTime:(Time*)time parent:(MakeAppointmentViewController*)parentVC;
+
 {
     self = [super initWithFrame:frame];
     if (self) {
         
         self.myParentVC = parentVC;
-        
-        //Save local Variables
-        self.startString = startTime;
-        self.endString = endTime;
 
         //Load the nib-File and set this object as owner
         [[NSBundle mainBundle] loadNibNamed:@"SlotTemplateView" owner:self options:nil];
         
-        //Prepare the string for the Slot-Label (Objective-C is PITA _painInTheAss_)
-        NSMutableString* appointmentText = [NSMutableString stringWithFormat:@""];
-        [appointmentText appendString:startTime];
-        [appointmentText appendString:@" bis "];
-        [appointmentText appendString:endTime];
-        
-        self.appointmentLabel.text = appointmentText;
+        self.appointmentLabel.text = [time description];
         
         //Add this view to the mainView, which will later be added to the Calendar-View
         self.clipsToBounds = NO;

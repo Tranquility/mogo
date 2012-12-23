@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MakeAppointmentViewController.h"
+#import "Time.h"
 
 @interface SlotTemplateView : UIControl
 
@@ -19,9 +20,9 @@
 @property (nonatomic) NSString* endString;
 
 
-- (id)initWithFrame:(CGRect)frame andStartTime:(NSString*)startTime andEndTime:(NSString*)endTime andParentVC:(MakeAppointmentViewController*)parentVC;
+- (id)initWithFrame:(CGRect)frame startTime:(Time*)time parent:(MakeAppointmentViewController*)parentVC;
 
--(IBAction)saveNewAppointment:(id)sender;
+- (IBAction)saveNewAppointment:(id)sender;
 
 
 @end

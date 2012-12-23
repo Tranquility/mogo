@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DaySlotView.h"
 #import "MakeAppointmentViewController.h"
 #import "DoctorModel.h"
 
@@ -22,17 +21,10 @@
 
 @property (nonatomic) MakeAppointmentViewController* myParentVC;
 @property (nonatomic) DoctorModel *doctor;
-@property (nonatomic) DaySlotView* day;
 
-@property (nonatomic) NSInteger currentDay;
-@property (nonatomic) NSInteger currentMonth;
-@property (nonatomic) NSInteger currentYear;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year  parent:(MakeAppointmentViewController*)myParentVC otherAvailableDays:(NSArray*)otherDays;
 
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andDay:(int)startDay andMonth:(int)startMonth andYear:(int)startYear  andParentVC:(MakeAppointmentViewController*)myParentVC;
-
--(IBAction)showNextDay:(id)sender;
--(IBAction)showPreviousDay:(id)sender;
+- (IBAction)showNextDay:(id)sender;
+- (IBAction)showPreviousDay:(id)sender;
 
 @end

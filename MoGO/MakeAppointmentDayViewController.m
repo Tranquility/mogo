@@ -8,23 +8,34 @@
 
 #import "MakeAppointmentDayViewController.h"
 #import "DaySlotView.h"
+#import "ApiClient.h"
+#import "Time.h"
+#import "SVProgressHUD.h"
 
-@interface MakeAppointmentDayViewController() 
+@interface MakeAppointmentDayViewController()
+
+@property (nonatomic) NSInteger currentDay;
+@property (nonatomic) NSInteger currentMonth;
+@property (nonatomic) NSInteger currentYear;
+@property (nonatomic) NSArray *availableDaysInMonth;
+@property (nonatomic) DaySlotView* day;
+
 @end
 
 @implementation MakeAppointmentDayViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andDay:(int)startDay andMonth:(int)startMonth andYear:(int)startYear andParentVC:(MakeAppointmentViewController*)myParentVC
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year  parent:(MakeAppointmentViewController*)myParentVC otherAvailableDays:(NSArray*)otherDays;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
         self.myParentVC = myParentVC;
-        self.currentDay = startDay;
-        self.currentMonth = startMonth;
-        self.currentYear = startYear;
+        self.currentDay = day;
+        self.currentMonth = month;
+        self.currentYear = year;
+        self.availableDaysInMonth = otherDays;
     }
-        
+    
     return self;
 }
 
@@ -36,22 +47,8 @@
     self.doctorLabel.text = [self.doctor fullName];
     self.doctorDisciplineLabel.text = self.doctor.discipline;
     
-    [self updateDateLabel];
+    [self refreshEverything];
     
-    //Set ContentSitze as needed
-    //TODO: This could be done better by calculating the height as heightOfOneSlot*numberOfSLots
-    self.slotsView.contentSize = CGSizeMake(320, 500);
-
-    //Size of one SlotView
-    //Again: this could be set as heightOfOneSlot*numberOfSLots instead of fixed 500px
-    CGRect r = CGRectMake(0, 0, 320, 500);
-        
-    //Create Slot View with the given day/month/year
-    self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
-    
-    //Add Slot View as a subview 
-    [self.slotsView addSubview:self.day.slotView];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,42 +61,85 @@
 //Switches the slotsView to the next day that has available slots open
 -(void)showNextDay:(id)sender
 {
-    //Size of one SlotView
-    CGRect r = CGRectMake(0, 0, 320, 500);
+    //Find the day BEFORE the current day but WITHIN that month which has available slots
+    NSInteger index = MIN([self.availableDaysInMonth indexOfObject:[NSNumber numberWithInteger:self.currentDay]] + 1, self.availableDaysInMonth.count - 1);
     
-    //TODO: Connect this to the dataSource and search for the next day
-    //      that has available slots. Then set self.day,self.month,self.year to the new values
+    self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
     
-    //Set the Title to the new Values:
-    [self updateDateLabel];
-    
-    //Create Slot View with the given day/month/year
-    self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
-    
-    //Add Slot View as a subview
-    [self.slotsView addSubview:self.day];
-
+    [self refreshEverything];
 }
-
 
 //Switches the slotsView to the previous day that has available slots open
 -(void)showPreviousDay:(id)sender
 {
-    //Size of one SlotView
-    CGRect r = CGRectMake(0,0,320,500);
+    //Find the day BEFORE the current day but WITHIN that month which has available slots
+    NSInteger currentIndex = [self.availableDaysInMonth indexOfObject:[NSNumber numberWithInteger:self.currentDay]];
+    NSInteger index = currentIndex > 0 ? currentIndex - 1 : 0;
     
-    //TODO: Connect this to the dataSource and search for the previous day
-    //      that has available slots. Then set self.day,self.month,self.year to the new values
+    self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
     
+    [self refreshEverything];
+    
+}
+
+- (void)refreshEverything
+{
     //Set the Title to the new Values:
     [self updateDateLabel];
     
     //Create Slot View with the given day/month/year
-    self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
+    [self createSlotView];
     
     //Add Slot View as a subview
     [self.slotsView addSubview:self.day.slotView];
+}
+
+- (void)createSlotView
+{
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade alle Termine", @"LOAD_APPOINTMENTS")];
     
+    NSString *path = [NSString stringWithFormat:@"appointments.json?day=%d&month=%d&year=%d&doctor=%d", self.currentDay, self.currentMonth, self.currentYear, self.doctor.idNumber];
+    
+    [[ApiClient sharedInstance] getPath:path
+                             parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id appointments) {
+                                    [SVProgressHUD dismiss];
+                                    
+                                    NSArray *availableAppointments = [self findAvailableAppointments:appointments];
+                                    self.day = [[DaySlotView alloc] initWithFrame:CGRectMake(0,0,320,500) day:self.currentDay month:self.currentMonth year:self.currentYear appointments: availableAppointments parent:self];
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    NSLog(@"Error fetching docs!");
+                                    NSLog(@"%@", error);
+                                }];
+    
+}
+
+- (NSArray*)findAvailableAppointments:(id)appointments {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSMutableArray *availableAppointments = [[NSMutableArray alloc] init];
+    
+    //Date formatter for rails timestamps
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    
+    //Date formatter for a single day
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    for (id appointment in appointments) {
+        
+        NSDate *date = [dateFormatter dateFromString:appointment];
+        //extract the hour of the date
+        formatter.dateFormat = @"HH";
+        NSInteger hour = [[formatter stringFromDate:date] integerValue];
+        
+        //extract the minute of the date
+        formatter.dateFormat = @"mm";
+        NSInteger minute = [[formatter stringFromDate:date] integerValue];
+        Time *time = [[Time alloc] initWithHour:hour andMinute:minute];
+        //Store the day
+        [availableAppointments addObject:time];
+    }
+    return availableAppointments;
 }
 
 //Sets the CalendarTitle for a specific date

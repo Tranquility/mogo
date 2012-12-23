@@ -86,31 +86,6 @@ NSInteger const DAY_OFFSET = 1;
     return start;
 }
 
-- (NSMutableArray *)findAvailableSlots:(NSDateFormatter *)dateFormatter slots:(id)slots
-{
-    NSMutableArray *availableSlots = [[NSMutableArray alloc] init];
-    
-    //Date formatter for rails timestamps
-    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-    
-    //Date formatter for a single day
-    NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
-    dayFormatter.dateFormat = @"dd";
-    
-    for (id slot in slots) {
-        //Convert the string into a date object
-        NSDate *date = [dateFormatter dateFromString:slot];
-        //extract the day of the date
-        NSString *day = [dayFormatter stringFromDate:date];
-        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        NSNumber * dayValue = [numberFormatter numberFromString:day];
-        //Store the day
-        [availableSlots addObject:dayValue];
-    }
-    return availableSlots;
-}
-
 - (void)generateTilesForEachDay:(NSArray *)availableSlots days:(NSInteger)days start:(NSInteger)start
 {
     for (int i = 0; i < 6; i++) {

@@ -36,6 +36,7 @@
 @interface MakeAppointmentViewController ()
 
 @property NSInteger currentOffset;
+@property NSMutableDictionary *slotsPerMonth;
 
 @end
 
@@ -46,12 +47,17 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
+    if (self) {
+    }
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.slotsPerMonth = [NSMutableDictionary dictionary];
     //Set name and discipline of the doctor
     self.doctorLabel.text = [self.doctor fullName];
     self.doctorDisciplineLabel.text = self.doctor.discipline;
@@ -105,7 +111,10 @@
     [[ApiClient sharedInstance] getPath:path
                              parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id slots) {
-                                    NSMutableArray *availableSlots = [self findAvailableSlots:slots];
+                                    NSArray *availableSlots = [self findAvailableSlots:slots];
+                                    NSNumber *monthObj = [NSNumber numberWithInteger:month];
+                                    [self.slotsPerMonth setObject:availableSlots forKey:monthObj];
+                                                                        
                                     //Size of one Calendar
                                     CGRect r = CGRectMake(i * 320, 0, 320, 334);
                                     
@@ -113,7 +122,7 @@
                                     MonthTemplateOverviewView *monthView = [[MonthTemplateOverviewView alloc] initWithFrame:r month:month year:year parent:self slots:availableSlots];
                                     
                                     //Add Calendar View as a subview to the scrollview and tell the buttons which function to call when they are pressed
-                                    [self.calendarScrollView addSubview:monthView.mainView];
+                                    [self.calendarScrollView addSubview:monthView.mainView];                                    
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Error fetching docs!");
@@ -124,7 +133,7 @@
 /**
  * Find the days with available slots and stuff them in an integer array
  */
-- (NSMutableArray *)findAvailableSlots:(id)slots
+- (NSArray *)findAvailableSlots:(id)slots
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSMutableArray *availableSlots = [[NSMutableArray alloc] init];
@@ -192,8 +201,12 @@
 //Navigate to the dayViewController with the given start day/month/year
 -(void)showDay:(int)day
 {
-    MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController" bundle:Nil andDay:day andMonth:self.currentMonth andYear:self.currentYear andParentVC:self];
+    NSArray *otherDays = [self.slotsPerMonth objectForKey:[NSNumber numberWithInteger:self.currentMonth]];
+    
+    MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController" bundle:Nil day:day month:self.currentMonth year:self.currentYear parent:self otherAvailableDays:otherDays];
+    
     dayController.doctor = self.doctor;
+    
     [[self navigationController] pushViewController:dayController animated:YES];
 }
 

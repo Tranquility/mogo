@@ -10,9 +10,6 @@
 
 @interface Time (Private)
 
-@property (nonatomic) NSInteger hour;
-@property (nonatomic) NSInteger minute;
-
 @end
 
 @implementation Time
@@ -21,7 +18,7 @@
 - (Time*)initWithHour:(NSInteger)hour andMinute:(NSInteger)minute {
     self = [super init];
     
-    if (hour <= 0 || hour >= 23 || minute <= 0 || minute >= 59) {
+    if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
         [NSException raise:@"Invalid time value" format:@"Hour (%d) or Minute (%d) is invalid!", hour, minute];
     }
     

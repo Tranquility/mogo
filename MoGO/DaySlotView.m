@@ -11,42 +11,31 @@
 
 @implementation DaySlotView
 
-- (id)initWithFrame:(CGRect)frame andDay:(int)startDay andMonth:(int)startMonth andYear:(int)startYear andParentVC:(MakeAppointmentViewController*)myParentVC;
+- (id)initWithFrame:(CGRect)frame day:(int)day month:(int)month year:(int)year appointments:(NSArray*)appointments parent:(MakeAppointmentDayViewController*)parentViewController;
 {
     self = [super initWithFrame:frame];
     [[NSBundle mainBundle] loadNibNamed:@"DaySlotView" owner:self options:nil];
-    
-    //Set ParentVC to enable notifications
-    self.myParentVC = myParentVC;
-    
-    self.mainView.frame = frame;
-        
+ 
     if (self) {
+        self.myParentVC = parentViewController;
+        self.mainView.frame = frame;
         
-        //TODO: This needs to be connected to the AvailableSlot - Datasource
-        //given the parameters day,month,year to determine the number of free slots
-        //and initialize/display them
-        int numberOfAvailableSlots = 10; //Dummy
-        for (int i = 0; i < numberOfAvailableSlots; i++) {
-               
-                //Each slot width is 320, height 49, with a 1px border between them
-                //Y-Offset is set to i*50
-                CGRect r = CGRectMake(0, i*50, 320,49);
+        NSInteger counter = 0;
+        
+        for (Time *time in appointments) {
+            CGRect r = CGRectMake(0, counter * 50, 320, 49);
+            SlotTemplateView *slot = [[SlotTemplateView alloc] initWithFrame:r startTime:time parent:self.myParentVC.myParentVC];
+            [self.slotView addSubview:slot];
             
-                //TODO: Get start and end Time from DataSource
-                NSString* startTime = @"09:30";
-                NSString* endTime = @"08:45 Uhr";
+            counter++;
+        }
+        
+        self.myParentVC.slotsView.contentSize = CGSizeMake(320, counter * 50);
 
-                //Draw Slot to SlotView (by adding a sub-view)
-                SlotTemplateView *newSlot =[[SlotTemplateView alloc] initWithFrame:r andStartTime:startTime andEndTime:endTime andParentVC:self.myParentVC];
-                [self.slotView addSubview:newSlot];
-            }
 
     }
     
     return self;
-    
-        
 }
 
 

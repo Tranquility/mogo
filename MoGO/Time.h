@@ -10,6 +10,9 @@
 
 @interface Time : NSObject
 
+@property (nonatomic) NSInteger hour;
+@property (nonatomic) NSInteger minute;
+
 - (Time*)initWithHour:(NSInteger)hour andMinute:(NSInteger)minute;
 
 - (Time*)differenceTo:(Time*)time;
