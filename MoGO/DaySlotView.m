@@ -27,7 +27,7 @@
         //given the parameters day,month,year to determine the number of free slots
         //and initialize/display them
         int numberOfAvailableSlots = 10; //Dummy
-        for (int i=0; i<numberOfAvailableSlots; i++) {
+        for (int i = 0; i < numberOfAvailableSlots; i++) {
                
                 //Each slot width is 320, height 49, with a 1px border between them
                 //Y-Offset is set to i*50

@@ -65,10 +65,16 @@ This object handles all the workflow for making an appointment.
     self.currentOffset = 0;
     
     //Initialize the calendar elements with month and year
-    //TODO: this needs to be non-static, by starting with the current month
-    self.currentMonth = 12;
-    self.currentYear = 2012;
-    [self setTitleToMonth:self.currentMonth  andYear:self.currentYear];
+    NSDate *today = [[NSDate alloc] init];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MM";
+    NSString *month = [formatter stringFromDate:today];
+    formatter.dateFormat = @"yyyy";
+    NSString *year = [formatter stringFromDate:today];
+    
+    self.currentMonth = [month integerValue];
+    self.currentYear = [year integerValue];
+    [self updateMonthLabel];
    
     //Set Listener on Buttons
     [self.buttonLeft addTarget:self action:@selector(moveCalendarViewtoLeft) forControlEvents:UIControlEventTouchUpInside];
@@ -77,7 +83,7 @@ This object handles all the workflow for making an appointment.
     //helper variable
     int initMonth = self.currentMonth;
     int initYear = self.currentYear;
-    for(int i=0;i<4;i++)
+    for(int i = 0; i < 4; i++)
     {
         //Size of one Calendar
         CGRect r = CGRectMake(i * 320, 0, 320, 334);
@@ -99,7 +105,10 @@ This object handles all the workflow for making an appointment.
     }
 
 }
--(BOOL)canBecomeFirstResponder{return YES;}
+
+-(BOOL)canBecomeFirstResponder{
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -121,7 +130,7 @@ This object handles all the workflow for making an appointment.
             self.currentYear -= 1;
         }
     }
-    [self setTitleToMonth:self.currentMonth andYear:self.currentYear];
+    [self updateMonthLabel];
 
 }
 
@@ -143,16 +152,20 @@ This object handles all the workflow for making an appointment.
         }
     }
     [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
-    [self setTitleToMonth:self.currentMonth andYear:self.currentYear];
+    [self updateMonthLabel];
 }
 
 //Sets the CalendarTitle for a specific date
--(void)setTitleToMonth:(int)currentMonth andYear:(int)currentYear
+-(void)updateMonthLabel
 {
-    // Set the Title
-    NSMutableString *title = [NSMutableString stringWithFormat:@"%d", currentMonth];
-    [title appendString:[NSString stringWithFormat:@" / %d",currentYear]];
-    self.monthLabel.text = title;
+    NSString *monthString = [NSString stringWithFormat:@"%d", self.currentMonth];
+    if (self.currentMonth < 10) {
+        monthString = [NSString stringWithFormat:@"0%@", monthString];
+    }
+    
+    NSString *yearString = [NSString stringWithFormat:@"%d", self.currentYear];
+    
+    self.monthLabel.text = [NSString stringWithFormat:@"%@ / %@", monthString, yearString];
 }
 
 //Navigate to the dayViewController with the given start day/month/year
