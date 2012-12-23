@@ -36,6 +36,8 @@
     self.doctorLabel.text = [self.doctor fullName];
     self.doctorDisciplineLabel.text = self.doctor.discipline;
     
+    [self updateDateLabel];
+    
     //Set ContentSitze as needed
     //TODO: This could be done better by calculating the height as heightOfOneSlot*numberOfSLots
     self.slotsView.contentSize = CGSizeMake(320, 500);
@@ -69,7 +71,7 @@
     //      that has available slots. Then set self.day,self.month,self.year to the new values
     
     //Set the Title to the new Values:
-    [self setTitleToDay:[NSString stringWithFormat:@"%d",self.currentDay] andMonth:[NSString stringWithFormat:@"%d",self.currentMonth] andYear:[NSString stringWithFormat:@"%d",self.currentYear]];
+    [self updateDateLabel];
     
     //Create Slot View with the given day/month/year
     self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
@@ -90,7 +92,7 @@
     //      that has available slots. Then set self.day,self.month,self.year to the new values
     
     //Set the Title to the new Values:
-    [self setTitleToDay:[NSString stringWithFormat:@"%d",self.currentDay] andMonth:[NSString stringWithFormat:@"%d",self.currentMonth] andYear:[NSString stringWithFormat:@"%d",self.currentYear]];
+    [self updateDateLabel];
     
     //Create Slot View with the given day/month/year
     self.day = [[DaySlotView alloc] initWithFrame:r andDay:self.currentDay andMonth:self.currentMonth andYear:self.currentYear andParentVC:self.myParentVC];
@@ -101,11 +103,21 @@
 }
 
 //Sets the CalendarTitle for a specific date
--(void)setTitleToDay:(NSString*)currentDay andMonth:(NSString*)currentMonth andYear:(NSString*)currentYear
+-(void)updateDateLabel
 {
-    // Set the Title
-    NSString *title = [NSString stringWithFormat:@"%@.%@.%@", currentDay, currentMonth, currentYear];
-    self.dayLabel.text = title;
+    NSString *dayString = [NSString stringWithFormat:@"%d", self.currentDay];
+    if (self.currentDay < 10) {
+        dayString = [NSString stringWithFormat:@"0%@", dayString];
+    }
+    
+    NSString *monthString = [NSString stringWithFormat:@"%d", self.currentMonth];
+    if (self.currentMonth < 10) {
+        monthString = [NSString stringWithFormat:@"0%@", monthString];
+    }
+    
+    NSString *yearString = [NSString stringWithFormat:@"%d", self.currentYear];
+    
+    self.dayLabel.text = [NSString stringWithFormat:@"%@.%@.%@", dayString, monthString, yearString];
 }
 
 @end
