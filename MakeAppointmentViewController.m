@@ -10,12 +10,13 @@
 #import "MonthTemplateOverviewView.h"
 #import "MakeAppointmentDayViewController.h"
 #import "SlotTemplateView.h"
+#import "ApiClient.h"
 
 
 /*
-MakeAppointmentViewController
+ MakeAppointmentViewController
  
-This object handles all the workflow for making an appointment.
+ This object handles all the workflow for making an appointment.
  
  At first it will create a certain number of MonthTemplateOverview's, which will be display in the ScrollView.
  
@@ -29,14 +30,11 @@ This object handles all the workflow for making an appointment.
  
  TODO: This need to be connected to the dataSources for Slots and Appointments, as well as all its connected Classes.
  
- TODO: After a new appointment has been saved, this class needs to pop the navigation stack, and perhaps also move via to the startScreen or the appointmentDetails. 
+ TODO: After a new appointment has been saved, this class needs to pop the navigation stack, and perhaps also move via to the startScreen or the appointmentDetails.
  
-*/
+ */
 @interface MakeAppointmentViewController ()
 
-//Variable for creating one calendar view and add it to the subvie
-@property (nonatomic,strong) MonthTemplateOverviewView *month;
-//The current Offset of the ScrollView (between [0...4*320]
 @property NSInteger currentOffset;
 
 @end
@@ -57,10 +55,10 @@ This object handles all the workflow for making an appointment.
     //Set name and discipline of the doctor
     self.doctorLabel.text = [self.doctor fullName];
     self.doctorDisciplineLabel.text = self.doctor.discipline;
-   
+    
     //Set ScrollView width to 4*Size of a calendar. height=height of one calendar
     self.calendarScrollView.contentSize = CGSizeMake(4 * 320, 334);
-
+    
     //Current offset is 0 (actual month)
     self.currentOffset = 0;
     
@@ -68,42 +66,27 @@ This object handles all the workflow for making an appointment.
     NSDate *today = [[NSDate alloc] init];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MM";
-    NSString *month = [formatter stringFromDate:today];
+    NSString *monthString = [formatter stringFromDate:today];
     formatter.dateFormat = @"yyyy";
-    NSString *year = [formatter stringFromDate:today];
+    NSString *yearString = [formatter stringFromDate:today];
     
-    self.currentMonth = [month integerValue];
-    self.currentYear = [year integerValue];
+    self.currentMonth = [monthString integerValue];
+    self.currentYear = [yearString integerValue];
     [self updateMonthLabel];
-   
+    
     //Set Listener on Buttons
     [self.buttonLeft addTarget:self action:@selector(moveCalendarViewtoLeft) forControlEvents:UIControlEventTouchUpInside];
     [self.buttonRight addTarget:self action:@selector(moveCalendarViewtoRight) forControlEvents:UIControlEventTouchUpInside];
     
     //helper variable
-    int initMonth = self.currentMonth;
-    int initYear = self.currentYear;
-    for(int i = 0; i < 4; i++)
+    int month = self.currentMonth;
+    int year = self.currentYear;
+    for (int i = 0; i < 4; i++)
     {
-        //Size of one Calendar
-        CGRect r = CGRectMake(i * 320, 0, 320, 334);
-        
-        //Create calendarmonth ViewController
-        self.month = [[MonthTemplateOverviewView alloc] initWithFrame:r andWithMonth:initMonth andWithYear:initYear andwithParentVC:self];
-        
-        //Add Calendar View as a subview to the scrollview and tell the buttons which function to call when they are pressed
-        [self.calendarScrollView addSubview:self.month.mainView];
-               
-        //next month
-        initMonth++;
-        if(initMonth == 13)
-        {
-            initMonth = 1;
-            initYear++;
-        }
-        
+        [self generateMonthOverviewWithIndex:i year:year month:month];
+        year += (int) (month / 12);
+        month = month % 12 + 1;
     }
-
 }
 
 -(BOOL)canBecomeFirstResponder{
@@ -116,43 +99,81 @@ This object handles all the workflow for making an appointment.
     // Dispose of any resources that can be recreated.
 }
 
+- (void)generateMonthOverviewWithIndex:(int)i year:(int)year month:(int)month
+{
+    NSString *path = [NSString stringWithFormat:@"time_slots.json?month=%d&year=%d&doctor=%d", month, year, self.doctor.idNumber];
+    [[ApiClient sharedInstance] getPath:path
+                             parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id slots) {
+                                    NSMutableArray *availableSlots = [self findAvailableSlots:slots];
+                                    //Size of one Calendar
+                                    CGRect r = CGRectMake(i * 320, 0, 320, 334);
+                                    
+                                    //Create calendarmonth ViewController
+                                    MonthTemplateOverviewView *monthView = [[MonthTemplateOverviewView alloc] initWithFrame:r month:month year:year parent:self slots:availableSlots];
+                                    
+                                    //Add Calendar View as a subview to the scrollview and tell the buttons which function to call when they are pressed
+                                    [self.calendarScrollView addSubview:monthView.mainView];
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    NSLog(@"Error fetching docs!");
+                                    NSLog(@"%@", error);
+                                }];
+}
+
+/**
+ * Find the days with available slots and stuff them in an integer array
+ */
+- (NSMutableArray *)findAvailableSlots:(id)slots
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSMutableArray *availableSlots = [[NSMutableArray alloc] init];
+    
+    //Date formatter for rails timestamps
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    
+    //Date formatter for a single day
+    NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
+    dayFormatter.dateFormat = @"dd";
+    
+    for (id slot in slots) {
+        //Convert the string into a date object
+        NSDate *date = [dateFormatter dateFromString:slot];
+        //extract the day of the date
+        NSString *day = [dayFormatter stringFromDate:date];
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber * dayValue = [numberFormatter numberFromString:day];
+        //Store the day
+        [availableSlots addObject:dayValue];
+    }
+    return availableSlots;
+}
+
 //Moves the calendarScrollView to the previous month
 -(void) moveCalendarViewtoLeft{
-    if(self.currentOffset != 0)
+    if (self.currentOffset > 0)
     {
         self.currentOffset = self.currentOffset - 320;
+        self.currentMonth = (self.currentMonth + 10) % 12 + 1;
+        self.currentYear -= (int) (self.currentMonth / 12);
+        
         [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
-        //previous month
-        self.currentMonth -= 1;
-        if(self.currentMonth == 0)
-        {
-            self.currentMonth = 12;
-            self.currentYear -= 1;
-        }
+        [self updateMonthLabel];
     }
-    [self updateMonthLabel];
-
 }
 
 //Moves the calendarScrollView to the next month
 -(void) moveCalendarViewtoRight{
-    self.currentOffset = self.currentOffset + 320;
-    if(self.currentOffset > 960)
+    if(self.currentOffset < 960)
     {
-        self.currentOffset = 960;
+        self.currentOffset = self.currentOffset + 320;
+        self.currentYear += (int) (self.currentMonth / 12);
+        self.currentMonth = self.currentMonth % 12 + 1;
         
+        [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
+        [self updateMonthLabel];
     }
-    else{
-        //next month
-        self.currentMonth += 1;
-        if(self.currentMonth == 13)
-        {
-            self.currentMonth = 1;
-            self.currentYear += 1;
-        }
-    }
-    [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
-    [self updateMonthLabel];
 }
 
 //Sets the CalendarTitle for a specific date
@@ -182,7 +203,7 @@ This object handles all the workflow for making an appointment.
     //TODO: Connect DataSource and send the new Appointment Request to the server
     //You can acces properties of the sender by using the following senderObject:
     SlotTemplateView* callerSlot = (SlotTemplateView*)sender;
-
+    
     //Example: Access a member of the sender Object:
     NSLog(@"%@", callerSlot.startString);
 }

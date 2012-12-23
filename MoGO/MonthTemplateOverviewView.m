@@ -14,7 +14,7 @@
 
 NSInteger const DAY_OFFSET = 1;
 
-- (id)initWithFrame:(CGRect)frame andWithMonth:(NSInteger)currentMonth andWithYear:(NSInteger)currentYear andwithParentVC:(MakeAppointmentViewController*)myParentVC
+- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year parent:(MakeAppointmentViewController*)parent slots:(NSArray*)slots;
 {
     
     self = [super initWithFrame:frame];
@@ -23,12 +23,12 @@ NSInteger const DAY_OFFSET = 1;
     
     if (self) {
         self.mainView.frame = frame;
-        self.myParentVC = myParentVC;
+        self.myParentVC = parent;
         
         //Format the Date
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"MM/dd/yyyy";
-        NSMutableString *dateString = [NSMutableString stringWithFormat:@"%d/01/%d", currentMonth, currentYear];
+        NSMutableString *dateString = [NSMutableString stringWithFormat:@"%d/01/%d", month, year];
         
         //Create the Date-Object
         NSDate *date = [dateFormatter dateFromString:dateString];
@@ -36,7 +36,7 @@ NSInteger const DAY_OFFSET = 1;
         //Find the first weekday of the month
         dateFormatter.dateFormat = @"EEE";
         NSString *firstDayOfWeek = [dateFormatter stringFromDate:date];
-               
+        
         //Create a Calendar-Object for some help...
         NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         [gregorian setFirstWeekday:1 + DAY_OFFSET]; //Tuesday = 1, Wednesday = 2...
@@ -46,20 +46,7 @@ NSInteger const DAY_OFFSET = 1;
         
         NSInteger start = [self findIndexOfDay:firstDayOfWeek];
         
-        NSString *path = [NSString stringWithFormat:@"time_slots.json?month=%d&year=%d", currentMonth, currentYear];
-        [[ApiClient sharedInstance] getPath:path
-                                 parameters:nil
-                                    success:^(AFHTTPRequestOperation *operation, id slots) {
-                                        NSMutableArray *availableSlots = [self findAvailableSlots:dateFormatter slots:slots];
-                                        
-                                        [self generateTilesForEachDay:availableSlots days:daysPerMonth start:start];
-                                    }
-                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                        NSLog(@"Error fetching docs!");
-                                        NSLog(@"%@", error);
-                                    }];
-        
-        
+        [self generateTilesForEachDay:slots days:daysPerMonth start:start];   
     }
     return self;
 }
@@ -124,7 +111,7 @@ NSInteger const DAY_OFFSET = 1;
     return availableSlots;
 }
 
-- (void)generateTilesForEachDay:(NSMutableArray *)availableSlots days:(NSInteger)days start:(NSInteger)start
+- (void)generateTilesForEachDay:(NSArray *)availableSlots days:(NSInteger)days start:(NSInteger)start
 {
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 7; j++) {
