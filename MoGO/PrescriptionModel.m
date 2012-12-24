@@ -16,10 +16,33 @@
     if (self) {
         self.medication = medication;
         self.additionalCharge = charge;
-        self.qrCode = code;
+        [self generateQRCode];
     }
     
     return self;
+}
+
+- (void)generateQRCode {
+    NSError* error = nil;
+    ZXMultiFormatWriter* writer = [ZXMultiFormatWriter writer];
+    ZXBitMatrix* result = [writer encode:[self description]
+                                  format:kBarcodeFormatQRCode
+                                   width:110
+                                  height:110
+                                   error:&error];
+    if (result) {
+        CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];
+        
+        self.qrCode = [UIImage imageWithCGImage:image];
+    } else {
+        NSString* errorMessage = [error localizedDescription];
+        NSLog(@"%@", errorMessage);
+    }
+}
+
+- (NSString*)description {
+    return [NSString stringWithFormat:@"doctor: %d patient: 1 date:%@ medication:%@ note:%@ charge:%f",
+            self.doctorId, [self.creationDate description], self.medication, self.note, self.additionalCharge];
 }
 
 @end

@@ -34,7 +34,7 @@
     self.doctor.text = [self.prescription.doctor fullName];
     self.date.text = date;
     self.note.text = self.prescription.note;
-    //self.qrcode.image = self.prescription.qrCode;
+    self.qrcode.image = self.prescription.qrCode;
     
 }
 

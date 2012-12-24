@@ -410,7 +410,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="qr.png" id="4cf-Q1-yuh">
-                                <rect key="frame" x="33" y="255" width="240" height="188"/>
+                                <rect key="frame" x="33" y="228" width="240" height="188"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -1034,11 +1034,6 @@
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
             <relationships>
-                <relationship kind="action" name="chooseDiscipline:"/>
-                <relationship kind="action" name="closeDisciplinePicker:"/>
-                <relationship kind="action" name="closeKeyboard:"/>
-                <relationship kind="action" name="showDisciplinePicker:"/>
-                <relationship kind="action" name="updateNameTextField:"/>
                 <relationship kind="outlet" name="doctorNameField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="subView" candidateClass="UIView"/>
