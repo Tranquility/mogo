@@ -31,10 +31,7 @@
         }
         
         self.myParentVC.slotsView.contentSize = CGSizeMake(320, counter * 50);
-
-
     }
-    
     return self;
 }
 

@@ -89,9 +89,6 @@
     
     //Create Slot View with the given day/month/year
     [self createSlotView];
-    
-    //Add Slot View as a subview
-    [self.slotsView addSubview:self.day.slotView];
 }
 
 - (void)createSlotView
@@ -107,6 +104,9 @@
                                     
                                     NSArray *availableAppointments = [self findAvailableAppointments:appointments];
                                     self.day = [[DaySlotView alloc] initWithFrame:CGRectMake(0,0,320,500) day:self.currentDay month:self.currentMonth year:self.currentYear appointments: availableAppointments parent:self];
+                                    
+                                    //Add Slot View as a subview
+                                    [self.slotsView addSubview:self.day.slotView];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Error fetching docs!");
