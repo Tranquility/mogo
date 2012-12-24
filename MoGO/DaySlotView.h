@@ -15,7 +15,7 @@
 @property (nonatomic) IBOutlet UIView* slotView;
 @property (nonatomic) MakeAppointmentDayViewController* myParentVC;
 
-- (id)initWithFrame:(CGRect)frame day:(int)day month:(int)month year:(int)year appointments:(NSArray*)appointments parent:(MakeAppointmentDayViewController*)parentViewController;
+- (id)initWithFrame:(CGRect)frame day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year appointments:(NSArray*)appointments parent:(MakeAppointmentDayViewController*)parentViewController;
 
 
 @end

@@ -85,12 +85,12 @@
     [self.buttonRight addTarget:self action:@selector(moveCalendarViewtoRight) forControlEvents:UIControlEventTouchUpInside];
     
     //helper variable
-    int month = self.currentMonth;
-    int year = self.currentYear;
-    for (int i = 0; i < 4; i++)
+    NSInteger month = self.currentMonth;
+    NSInteger year = self.currentYear;
+    for (NSInteger i = 0; i < 4; i++)
     {
         [self generateMonthOverviewWithIndex:i year:year month:month];
-        year += (int) (month / 12);
+        year += (NSInteger) (month / 12);
         month = month % 12 + 1;
     }
 }
@@ -172,7 +172,7 @@
     {
         self.currentOffset = self.currentOffset - 320;
         self.currentMonth = (self.currentMonth + 10) % 12 + 1;
-        self.currentYear -= (int) (self.currentMonth / 12);
+        self.currentYear -= (NSInteger) (self.currentMonth / 12);
         
         [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
         [self updateMonthLabel];
@@ -184,7 +184,7 @@
     if(self.currentOffset < 960)
     {
         self.currentOffset = self.currentOffset + 320;
-        self.currentYear += (int) (self.currentMonth / 12);
+        self.currentYear += (NSInteger) (self.currentMonth / 12);
         self.currentMonth = self.currentMonth % 12 + 1;
         
         [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
