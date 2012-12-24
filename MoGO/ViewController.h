@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *checkinButton;
+
+- (IBAction)checkinButtonPressed:(id)sender;
 
 
 @end
