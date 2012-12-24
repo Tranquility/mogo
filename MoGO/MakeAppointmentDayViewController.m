@@ -95,10 +95,17 @@
 {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade alle Termine", @"LOAD_APPOINTMENTS")];
     
-    NSString *path = [NSString stringWithFormat:@"appointments.json?day=%d&month=%d&year=%d&doctor=%d", self.currentDay, self.currentMonth, self.currentYear, self.doctor.idNumber];
+    NSString *path = [NSString stringWithFormat:@"appointments.json"];
+    
+    id params = @{
+    @"day": [NSNumber numberWithInteger:self.currentDay],
+    @"month": [NSNumber numberWithInteger:self.currentMonth],
+    @"year":[NSNumber numberWithInteger:self.currentYear],
+    @"doctor": [NSNumber numberWithInteger:self.doctor.idNumber]
+    };
     
     [[ApiClient sharedInstance] getPath:path
-                             parameters:nil
+                             parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id appointments) {
                                     [SVProgressHUD dismiss];
                                     

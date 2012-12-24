@@ -107,9 +107,16 @@
 
 - (void)generateMonthOverviewWithIndex:(int)i year:(int)year month:(int)month
 {
-    NSString *path = [NSString stringWithFormat:@"time_slots.json?month=%d&year=%d&doctor=%d", month, year, self.doctor.idNumber];
+    NSString *path = [NSString stringWithFormat:@"time_slots.json"];
+    
+    id params = @{
+    @"month": [NSNumber numberWithInteger:self.currentMonth],
+    @"year":[NSNumber numberWithInteger:self.currentYear],
+    @"doctor": [NSNumber numberWithInteger:self.doctor.idNumber]
+    };
+    
     [[ApiClient sharedInstance] getPath:path
-                             parameters:nil
+                             parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id slots) {
                                     NSArray *availableSlots = [self findAvailableSlots:slots];
                                     NSNumber *monthObj = [NSNumber numberWithInteger:month];
