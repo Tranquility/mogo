@@ -15,5 +15,5 @@
 @property (nonatomic) IBOutlet UIView *calendarView;
 @property (nonatomic) MakeAppointmentViewController *myParentVC;
 
-- (id)initWithFrame:(CGRect)frame andWithMonth:(NSInteger)currentMonth andWithYear:(NSInteger)currentYear andwithParentVC:(MakeAppointmentViewController*)myParentVC;
+- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year parent:(MakeAppointmentViewController*)parent slots:(NSArray*)slots;
 @end
