@@ -41,7 +41,7 @@
 }
 
 - (NSString*)description {
-    return [NSString stringWithFormat:@"doctor: %d patient: 1 date:%@ medication:%@ note:%@ charge:%f",
+    return [NSString stringWithFormat:@"doctor: %d\npatient: 1\ndate: %@\nmedication: %@\nnote: %@ charge: %f",
             self.doctorId, [self.creationDate description], self.medication, self.note, self.additionalCharge];
 }
 
