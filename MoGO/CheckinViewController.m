@@ -8,7 +8,8 @@
 
 #import "CheckinViewController.h"
 
-IBOutlet CLLocationManager *locationManager;
+CLLocationManager *locationManager;
+NSString *usersLocation;
 
 @interface CheckinViewController ()
 @end
@@ -19,7 +20,6 @@ IBOutlet CLLocationManager *locationManager;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -31,7 +31,15 @@ IBOutlet CLLocationManager *locationManager;
     //TODO: Unproper use of NSLocalizedString because project isn't localized yet. Fix when changed.
     //(Replace first line with actual key then)
     [self.checkinButton setTitle:NSLocalizedString(@"Anmeldung druchführen", @"Anmeldung durchführen") forState:UIControlStateNormal];
-    NSString *usersLocation = [NSString stringWithFormat:@"lat: %f long: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
+    
+    //init Location Manager
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager startUpdatingLocation];
+
+    sleep(1); //Workaround for locationManager needs some time to come up with first value
+    usersLocation = [self getUsersCurrentPosition];
     [self.currentUserPosition setText:usersLocation];
     
 }
@@ -51,11 +59,13 @@ IBOutlet CLLocationManager *locationManager;
     [super viewDidUnload];
 }
 
--(void) getUsersCurrentPosition {
-
-
+-(NSString*) getUsersCurrentPosition {
+    NSString *theLocation = [NSString stringWithFormat:@"latitude: %f longitude: %f", locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
+    return theLocation;
 }
 
 - (IBAction)checkinPressed:(id)sender {
+    UIAlertView *checkinConfirmed = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Ckeck-In erfolgreich", @"Check-In erfolgreich") message:NSLocalizedString(@"Bei Dr. ermittelter Arzt angemeldet", @"Bei Dr. ermittelter Arzt angemeldet") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [checkinConfirmed show];
 }
 @end
