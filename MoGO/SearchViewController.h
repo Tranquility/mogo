@@ -10,10 +10,9 @@
 
 @interface SearchViewController : UIViewController
 
-@property (nonatomic) IBOutlet UIPickerView* pickerView;
 @property (nonatomic) IBOutlet UITableView* tableView;
 @property (nonatomic) IBOutlet UIView* subView;
-@property (nonatomic) IBOutlet UITextField* doctorNameField;
+@property (nonatomic) IBOutlet UISearchBar* userInput;
 @property (nonatomic) NSMutableArray* chosenDoctors;
 @property (nonatomic) NSMutableArray* allDoctors;
 @property (nonatomic) NSMutableArray* disciplines;

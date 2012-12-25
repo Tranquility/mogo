@@ -49,8 +49,6 @@
     self.allDoctors = [[NSMutableArray alloc] init];
     self.disciplines = [[NSMutableArray alloc] init];
     
-    [self.pickerView selectRow:0 inComponent:0 animated:YES];
-    
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade Dotorenlisten", @"LOAD DOCTORLIST")];
     [[ApiClient sharedInstance] getPath:@"disciplines.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
@@ -67,7 +65,6 @@
                                         tuple = @[ident, discipline];
                                         [self.disciplines addObject:tuple];
                                     }
-                                    [self.pickerView reloadAllComponents];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SVProgressHUD dismiss];
@@ -76,7 +73,6 @@
                                     
                                 }];
     
-    //
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     for (id doctorJson in response) {
@@ -110,7 +106,7 @@
 }
 
 - (IBAction)closeKeyboard:(id)sender {
-    [self.doctorNameField resignFirstResponder];
+    [self.userInput resignFirstResponder];
 }
 
 - (NSString*)disciplineIdToString:(NSInteger)disciplineId {
@@ -124,68 +120,14 @@
     return result;
 }
 
-#pragma mark - UIPickerViewDataSource/Delegate methods
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
-    
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return self.disciplines.count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [[self.disciplines objectAtIndex:row] objectAtIndex:1];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.chosenDiscipline = [self.disciplines objectAtIndex:row];
-}
-
-#pragma mark - UIPickerViewDelegate method
-
-
-- (IBAction)closeDisciplinePicker:(id)sender {
-    self.subView.hidden = YES;
-}
-
-- (IBAction)showDisciplinePicker:(id)sender {
-    self.subView.hidden = NO;
-}
-
-- (IBAction)chooseDiscipline:(id)sender {
-    self.subView.hidden = YES;
-        
-    if ([[self.chosenDiscipline objectAtIndex:0] intValue] == 0) {
-        self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
-    } else {
-        
-        
-        [self.chosenDoctors removeAllObjects];
-        NSString *discipline = [self.chosenDiscipline objectAtIndex:1];
-        
-        for (DoctorModel *doctor in self.allDoctors) {
-            if ([doctor.discipline isEqualToString:discipline]) {
-                [self.chosenDoctors addObject: doctor];
-            }
-        }
-    }
-    
-    self.doctorsForDiscipline = [[NSMutableArray alloc] initWithArray:self.chosenDoctors copyItems:NO];
-    
-    [self.tableView reloadData];
-}
-
 /**
  * This reacts on keyboard input and checks the list of currently chosen doctors (all or of one discipline) if they match the input
  */
-- (IBAction)updateNameTextField:(id)sender {
+- (IBAction)updateSearchBar:(id)sender {
     
     [self.chosenDoctors removeAllObjects];
     
-    NSString* text = [NSString stringWithFormat:@"^%@", [self.doctorNameField.text lowercaseString]];
+    NSString* text = [NSString stringWithFormat:@"^%@", [self.userInput.text lowercaseString]];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
     for (DoctorModel *doctor in self.doctorsForDiscipline) {
         NSString *name = [NSString stringWithFormat:@"%@ %@", [doctor.firstName lowercaseString], [doctor.lastName lowercaseString]];
