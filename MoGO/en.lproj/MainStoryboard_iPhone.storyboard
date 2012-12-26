@@ -183,37 +183,31 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" text="Fachgebiet und/oder Name eingeben" id="C5R-xw-OBa">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IKJ-uQ-u6g">
+                                <rect key="frame" x="0.0" y="44" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="n0S-ah-3IA" id="nh6-OJ-f71"/>
+                                    <outlet property="delegate" destination="n0S-ah-3IA" id="ZKW-8M-SYw"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" placeholder="Fachgebiet und/oder Name eingeben" id="kbT-39-B8P">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="n0S-ah-3IA" id="7rb-mD-Jkq"/>
+                                    <outlet property="delegate" destination="n0S-ah-3IA" id="XFR-HK-UmG"/>
                                 </connections>
                             </searchBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Jee-ca-JUg">
-                                <rect key="frame" x="0.0" y="44" width="320" height="460"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="EtS-g9-fFy">
-                                        <rect key="frame" x="0.0" y="116" width="320" height="344"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="n0S-ah-3IA" id="Mxc-7M-7iW"/>
-                                            <outlet property="delegate" destination="n0S-ah-3IA" id="mpP-uG-Nmx"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Suche" id="yJw-9R-Qi3"/>
                     <connections>
+                        <outlet property="searchBar" destination="kbT-39-B8P" id="Xjh-Ik-Ntu"/>
                         <outlet property="searchDisplayController" destination="eVo-cK-UCF" id="fZq-cZ-80f"/>
-                        <outlet property="tableView" destination="EtS-g9-fFy" id="IQq-gM-cc2"/>
-                        <outlet property="userInput" destination="C5R-xw-OBa" id="7Yn-5A-Sed"/>
+                        <outlet property="tableView" destination="IKJ-uQ-u6g" id="oMK-bX-kbb"/>
                         <segue destination="RWq-Jq-LmT" kind="push" identifier="toDoctorDetail" id="Tqe-dC-Tmn"/>
                     </connections>
                 </viewController>
@@ -229,7 +223,6 @@
                 <searchDisplayController id="eVo-cK-UCF">
                     <connections>
                         <outlet property="delegate" destination="n0S-ah-3IA" id="hxP-xB-8ev"/>
-                        <outlet property="searchBar" destination="C5R-xw-OBa" id="sca-go-3b5"/>
                         <outlet property="searchContentsController" destination="n0S-ah-3IA" id="Dbm-BT-hsr"/>
                         <outlet property="searchResultsDataSource" destination="n0S-ah-3IA" id="ra0-cH-jxz"/>
                         <outlet property="searchResultsDelegate" destination="n0S-ah-3IA" id="Emc-uN-eg1"/>
@@ -962,9 +955,9 @@
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="subView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="userInput" candidateClass="UISearchBar"/>
             </relationships>
         </class>
         <class className="ViewController" superclassName="UIViewController">
@@ -978,7 +971,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="4zZ-Pj-sG2"/>
-        <segue reference="G07-vO-8EL"/>
+        <segue reference="UYi-6G-KtP"/>
         <segue reference="ims-AM-hPl"/>
     </inferredMetricsTieBreakers>
 </document>

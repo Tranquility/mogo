@@ -17,7 +17,7 @@
 
 @property (nonatomic) DoctorModel *chosenDoctor;
 @property (nonatomic) NSArray *chosenDiscipline;
-@property (nonatomic) NSMutableArray *doctorsForDiscipline;
+@property (nonatomic) NSInteger autocompleteIndex;
 
 @end
 
@@ -46,6 +46,7 @@
 {
     [super viewDidLoad];
     
+    self.autocompleteIndex = -1;
     self.allDoctors = [[NSMutableArray alloc] init];
     self.disciplines = [[NSMutableArray alloc] init];
     
@@ -80,7 +81,6 @@
                                         [self.allDoctors addObject:doctorModel];
                                     }
                                     self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
-                                    self.doctorsForDiscipline = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
                                     
                                     [self.tableView reloadData];
                                 }
@@ -105,10 +105,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)closeKeyboard:(id)sender {
-    [self.userInput resignFirstResponder];
-}
-
 - (NSString*)disciplineIdToString:(NSInteger)disciplineId {
     NSString *result;
     
@@ -118,26 +114,6 @@
     }
     
     return result;
-}
-
-/**
- * This reacts on keyboard input and checks the list of currently chosen doctors (all or of one discipline) if they match the input
- */
-- (IBAction)updateSearchBar:(id)sender {
-    
-    [self.chosenDoctors removeAllObjects];
-    
-    NSString* text = [NSString stringWithFormat:@"^%@", [self.userInput.text lowercaseString]];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
-    for (DoctorModel *doctor in self.doctorsForDiscipline) {
-        NSString *name = [NSString stringWithFormat:@"%@ %@", [doctor.firstName lowercaseString], [doctor.lastName lowercaseString]];
-        NSTextCheckingResult *match = [regex firstMatchInString:name options:0 range:NSMakeRange(0, name.length)];
-        if (match) {
-            [self.chosenDoctors addObject:doctor];
-        }
-    }
-    
-    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource/Delegates methods
@@ -177,4 +153,124 @@
     }
 }
 
+#pragma mark - UISearchBarDelegate methods
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchBar.text.length > 0) {
+        NSString *postfix = @"";
+        if ([searchBar.text characterAtIndex:searchBar.text.length - 1] == ' ') {
+            postfix = @" ";
+        }
+        
+        NSString *searchText = searchBar.text;
+        searchText =[searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+        NSArray *userInput = [searchText componentsSeparatedByString:@" "];
+        
+        if (self.autocompleteIndex < 0) {
+            NSString *lastWord = [userInput lastObject];
+            NSString *newLastWord = [self tryToCompleteWord:lastWord];
+            if (![lastWord isEqualToString:newLastWord]) {
+                self.autocompleteIndex = userInput.count - 1;
+            }
+            
+            NSMutableArray *extendedUserInput = [[NSMutableArray alloc] initWithArray:userInput];
+            [extendedUserInput removeLastObject];
+            [extendedUserInput addObject:newLastWord];
+        
+            searchBar.text = [NSString stringWithFormat:@"%@%@", [extendedUserInput componentsJoinedByString:@" "], postfix];
+            userInput = extendedUserInput;
+        }
+        
+        [self.chosenDoctors removeAllObjects];
+        for (DoctorModel *doctor in self.allDoctors) {
+            if ([self matchesDoctor:doctor forInput:userInput]) {
+                [self.chosenDoctors addObject:doctor];
+            }
+        }
+        
+        [self.tableView reloadData];
+    } else {
+        [self resetDataSource];
+    }
+
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.searchBar resignFirstResponder];
+}
+
+#pragma mark Private helper methods
+- (void)resetDataSource {
+    self.autocompleteIndex = -1;
+    self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors];
+    [self.tableView reloadData];
+}
+
+- (NSString*)tryToCompleteWord:(NSString*)word {
+    NSString *result;
+    NSInteger count = 0;
+    
+    NSString *pattern = [NSString stringWithFormat:@"^%@", [word lowercaseString]];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
+    
+    for (NSArray *array in self.disciplines) {
+        NSString *discipline = [array lastObject];
+        NSTextCheckingResult *match = [regex firstMatchInString:[discipline lowercaseString] options:0 range:NSMakeRange(0, discipline.length) ];
+        
+        if (match) {
+            result = discipline;
+            count++;
+        }
+        
+    }
+    return count == 1 ? result : word;
+}
+
+- (BOOL) matchesDoctor:(DoctorModel*)doctor forInput:(NSArray*)input {
+    
+    NSMutableArray *modifiedInput = [[NSMutableArray alloc] initWithArray:input];
+
+    if (self.autocompleteIndex > -1) {
+        NSString *discipline = [modifiedInput objectAtIndex:self.autocompleteIndex];
+        [modifiedInput removeObjectAtIndex:self.autocompleteIndex];
+        
+        if (![self matchesString:discipline withOther:doctor.discipline]) {
+            return NO;
+        } else if (input.count == 1) {
+            return YES;
+        }
+    } else {
+        for (NSString *word in modifiedInput) {
+            if ([self matchesString:word withOther:doctor.discipline]) {
+                return YES;
+            }
+        }
+    }
+    
+    for (NSString *word in modifiedInput) {
+        if ([self matchesString:word withOther:doctor.lastName]) {
+            return YES;
+        }
+    }
+    
+    for (NSString *word in modifiedInput) {
+        if ([self matchesString:word withOther:doctor.lastName]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)matchesString:(NSString*)pattern withOther:(NSString*)other {
+    pattern = [NSString stringWithFormat:@"^%@", [pattern lowercaseString]];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
+    NSTextCheckingResult *match = [regex firstMatchInString:[other lowercaseString] options:0 range:NSMakeRange(0, other.length) ];
+    
+    return match ? YES : NO;
+}
+
 @end
+
+
