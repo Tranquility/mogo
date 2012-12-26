@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G56" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3012" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -183,118 +183,31 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="IjU-5g-4JU">
-                                <rect key="frame" x="20" y="49" width="280" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IKJ-uQ-u6g">
+                                <rect key="frame" x="0.0" y="44" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="n0S-ah-3IA" id="nh6-OJ-f71"/>
+                                    <outlet property="delegate" destination="n0S-ah-3IA" id="ZKW-8M-SYw"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" placeholder="Fachgebiet und/oder Name eingeben" id="kbT-39-B8P">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="closeKeyboard:" destination="n0S-ah-3IA" eventType="editingDidEndOnExit" id="NkY-7P-0r4"/>
-                                    <action selector="updateNameTextField:" destination="n0S-ah-3IA" eventType="editingChanged" id="DW5-mj-2Gq"/>
-                                    <outlet property="delegate" destination="n0S-ah-3IA" id="zpQ-bc-7FW"/>
+                                    <outlet property="delegate" destination="n0S-ah-3IA" id="XFR-HK-UmG"/>
                                 </connections>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name des Arztes" lineBreakMode="tailTruncation" minimumFontSize="10" id="JEE-mX-jj6">
-                                <rect key="frame" x="20" y="20" width="131" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fachgebiet des Arztes" lineBreakMode="tailTruncation" minimumFontSize="10" id="mn3-kA-8sQ">
-                                <rect key="frame" x="20" y="88" width="170" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VwH-qU-sth">
-                                <rect key="frame" x="20" y="117" width="280" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Fachgebiet wählen">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="closeKeyboard:" destination="n0S-ah-3IA" eventType="touchUpInside" id="68m-KE-rOh"/>
-                                    <action selector="showDisciplinePicker:" destination="n0S-ah-3IA" eventType="touchUpInside" id="MGX-Zf-EDx"/>
-                                </connections>
-                            </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Jee-ca-JUg">
-                                <rect key="frame" x="0.0" y="246" width="320" height="258"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="EtS-g9-fFy">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="258"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="n0S-ah-3IA" id="Mxc-7M-7iW"/>
-                                            <outlet property="delegate" destination="n0S-ah-3IA" id="mpP-uG-Nmx"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                            </scrollView>
-                            <view hidden="YES" contentMode="scaleToFill" id="8Xq-LP-jvR">
-                                <rect key="frame" x="0.0" y="158" width="320" height="258"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <pickerView contentMode="scaleToFill" id="Q85-aE-hUG">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="n0S-ah-3IA" id="jkF-5m-UCI"/>
-                                            <outlet property="delegate" destination="n0S-ah-3IA" id="Gid-7n-iai"/>
-                                        </connections>
-                                    </pickerView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l7X-Ol-Ibf">
-                                        <rect key="frame" x="20" y="218" width="120" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Auswählen">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="chooseDiscipline:" destination="n0S-ah-3IA" eventType="touchUpInside" id="0Nq-VR-Z1I"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xNH-Qt-a4B">
-                                        <rect key="frame" x="180" y="218" width="120" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Abbrechen">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="closeDisciplinePicker:" destination="n0S-ah-3IA" eventType="touchUpInside" id="NlV-jK-KO6"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </view>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Suche" id="yJw-9R-Qi3"/>
                     <connections>
-                        <outlet property="doctorNameField" destination="IjU-5g-4JU" id="Vob-E1-hHY"/>
-                        <outlet property="pickerView" destination="Q85-aE-hUG" id="PXU-c4-8AT"/>
-                        <outlet property="searchDisplayController" destination="mop-Zi-uQ1" id="G1d-2L-JE8"/>
-                        <outlet property="subView" destination="8Xq-LP-jvR" id="ebn-RZ-Cfx"/>
-                        <outlet property="tableView" destination="EtS-g9-fFy" id="IQq-gM-cc2"/>
+                        <outlet property="searchBar" destination="kbT-39-B8P" id="Xjh-Ik-Ntu"/>
+                        <outlet property="searchDisplayController" destination="eVo-cK-UCF" id="fZq-cZ-80f"/>
+                        <outlet property="tableView" destination="IKJ-uQ-u6g" id="oMK-bX-kbb"/>
                         <segue destination="RWq-Jq-LmT" kind="push" identifier="toDoctorDetail" id="Tqe-dC-Tmn"/>
                     </connections>
                 </viewController>
@@ -305,6 +218,14 @@
                         <outlet property="searchContentsController" destination="n0S-ah-3IA" id="wcP-4n-kld"/>
                         <outlet property="searchResultsDataSource" destination="n0S-ah-3IA" id="aCq-hl-Cjy"/>
                         <outlet property="searchResultsDelegate" destination="n0S-ah-3IA" id="Mwx-04-UIA"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="eVo-cK-UCF">
+                    <connections>
+                        <outlet property="delegate" destination="n0S-ah-3IA" id="hxP-xB-8ev"/>
+                        <outlet property="searchContentsController" destination="n0S-ah-3IA" id="Dbm-BT-hsr"/>
+                        <outlet property="searchResultsDataSource" destination="n0S-ah-3IA" id="ra0-cH-jxz"/>
+                        <outlet property="searchResultsDelegate" destination="n0S-ah-3IA" id="Emc-uN-eg1"/>
                     </connections>
                 </searchDisplayController>
             </objects>
@@ -1034,13 +955,7 @@
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
             <relationships>
-                <relationship kind="action" name="chooseDiscipline:"/>
-                <relationship kind="action" name="closeDisciplinePicker:"/>
-                <relationship kind="action" name="closeKeyboard:"/>
-                <relationship kind="action" name="showDisciplinePicker:"/>
-                <relationship kind="action" name="updateNameTextField:"/>
-                <relationship kind="outlet" name="doctorNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="subView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -1056,7 +971,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="4zZ-Pj-sG2"/>
-        <segue reference="G07-vO-8EL"/>
+        <segue reference="UYi-6G-KtP"/>
         <segue reference="ims-AM-hPl"/>
     </inferredMetricsTieBreakers>
 </document>
