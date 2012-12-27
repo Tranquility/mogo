@@ -55,20 +55,23 @@ NSString *practiceOwner;
     
     //DB THINGIES
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
-                                success:^(AFHTTPRequestOperation *operation, id response) {
+                                success:^(AFHTTPRequestOperation *operation, id response)
+     {
                                     for (id doctorJson in response) {
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
                                         [self.allDoctors addObject:doctorModel];
                                                                         }
                                     [self checkForDoctorInRange];
-                                    if(practiceOwner == @"NO")
+                                    if([practiceOwner isEqualToString:@"NO"])
                                     {
                                         [self.practiceLabel setText:@"Kein Arzt in der Nähe"];
                                          self.checkinButton.enabled = NO;
                                     }//no doctor around
-                                    [self.practiceLabel setText:practiceOwner];
-                        
-                                                                   }
+                                    else
+                                    {
+                                        [self.practiceLabel setText:practiceOwner];
+                                    }
+        }//success
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Error fetching docs!");
                                     NSLog(@"%@", error);                                    
@@ -84,7 +87,7 @@ NSString *practiceOwner;
                                                              longitude:[doc.address.longitude floatValue]];
         CLLocationDistance meters = [usersGeoLocation distanceFromLocation:docLocation];
         
-        if(meters < 8)
+        if(meters < 6.0)
         {
             practiceOwner = doc.fullName;
             break;
