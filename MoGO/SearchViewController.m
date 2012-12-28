@@ -51,7 +51,7 @@
     
     [self.pickerView selectRow:0 inComponent:0 animated:YES];
     
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade Dotorenlisten", @"LOAD DOCTORLIST")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade alle Ärzte", @"LOAD_MEDICS")];
     [[ApiClient sharedInstance] getPath:@"disciplines.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     [SVProgressHUD dismiss];

@@ -134,10 +134,10 @@
 -(DoctorModel*) getDoctorById:(NSString*)doctorId
 {
     //For all Doctors, find the one with the given ID...
-    for(int i = 0; i < self.doctorList.count; i++)
+    for(NSInteger i = 0; i < self.doctorList.count; i++)
     {
         DoctorModel* doctor = [self.doctorList objectAtIndex:i];
-        if([[NSString stringWithFormat:@"%d",doctor.idNumber] isEqualToString:doctorId])
+        if ([[NSString stringWithFormat:@"%d",doctor.idNumber] isEqualToString:doctorId])
         {
             return doctor;
         }
@@ -150,20 +150,17 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == 0)
+    if (section == 0)
     {
         return self.appointmentList.count;
-    }
-    else
-    {
+    } else {
         //We need to be careful here, because the doctorList gets loaded asynchronously, and it could not be loaded yet
         //resuting in a null reference when updating the tableViewController
-        if(self.doctorList.count>0)
+        if (self.doctorList.count>0)
         {
             //Always add one, because we have a static entry "Doktor suchen"
             return self.favouriteDoctorIDList.count+1;
-        }
-        else{
+        } else {
             return 1;
         }
     }
@@ -214,7 +211,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         }
         
-        if(indexPath.row==0)
+        if(indexPath.row == 0)
         {
             cell.textLabel.text = NSLocalizedString(@"+ neuen Arzt suchen", @"SEARCH_NEW_DOCTOR");
             cell.detailTextLabel.text = @"";
