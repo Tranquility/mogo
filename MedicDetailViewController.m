@@ -144,9 +144,10 @@
     //String for use on real device:
     //(Note: as intended one won't see apple maps opening on simulator because it's not installed there.
     //hence it's right one only sees safari starting. on real device behaviour should be different.
-    NSString *specificDoctor = [NSString stringWithFormat: @"http://maps.apple.com/?q&ll=%@,%@&daddr=%@", self.doctor.address.latitude, self.doctor.address.longitude, self.doctor.address.street];
+    NSString *specificDoctor = [NSString stringWithFormat: @"http://maps.apple.com/?q&ll=%@,%@&daddr=%@,Hamburg", self.doctor.address.latitude, self.doctor.address.longitude, self.doctor.address.street];
     NSURL *url = [NSURL URLWithString:specificDoctor];
                   [[UIApplication sharedApplication] openURL:url];
+    NSLog(@"%@", specificDoctor);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
