@@ -10,7 +10,8 @@
 #import "MakeAppointmentViewController.h"
 #import "MapViewAnnotation.h"
 #import "AddressModel.h"
-
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 @implementation MedicDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -135,6 +136,19 @@
         [addNotification show];
     }
     
+}
+
+//Called whenever the user taps the map
+- (IBAction)mapClicked:(id)sender
+{
+    //String for use on real device:
+    //NSString *specificDoctor = [NSString stringWithFormat: @"http://maps.apple.com/?q&ll=%@,%@&daddr=%@", self.doctor.address.latitude, self.doctor.address.longitude, self.doctor.address.street];
+    
+    //String currently used because iOS simulator doesn't offer oppertunity to run maps app but only maps in safari:
+    NSString *specificDoctor = [NSString stringWithFormat: @"http://maps.apple.com/?ll=%@,%@&daddr=%@", self.doctor.address.latitude, self.doctor.address.longitude, self.doctor.address.street];
+    
+    NSURL *url = [NSURL URLWithString:specificDoctor];
+                  [[UIApplication sharedApplication] openURL:url];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
