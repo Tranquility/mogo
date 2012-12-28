@@ -142,11 +142,9 @@
 - (IBAction)mapClicked:(id)sender
 {
     //String for use on real device:
-    //NSString *specificDoctor = [NSString stringWithFormat: @"http://maps.apple.com/?q&ll=%@,%@&daddr=%@", self.doctor.address.latitude, self.doctor.address.longitude, self.doctor.address.street];
-    
-    //String currently used because iOS simulator doesn't offer oppertunity to run maps app but only maps in safari:
-    NSString *specificDoctor = [NSString stringWithFormat: @"http://maps.apple.com/?ll=%@,%@&daddr=%@", self.doctor.address.latitude, self.doctor.address.longitude, self.doctor.address.street];
-    
+    //(Note: as intended one won't see apple maps opening on simulator because it's not installed there.
+    //hence it's right one only sees safari starting. on real device behaviour should be different.
+    NSString *specificDoctor = [NSString stringWithFormat: @"http://maps.apple.com/?q&ll=%@,%@&daddr=%@", self.doctor.address.latitude, self.doctor.address.longitude, self.doctor.address.street];
     NSURL *url = [NSURL URLWithString:specificDoctor];
                   [[UIApplication sharedApplication] openURL:url];
 }
