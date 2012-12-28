@@ -46,6 +46,13 @@
 {
     [super viewDidLoad];
     
+    UIColor *grey = [UIColor colorWithRed:((float) 39.0f / 255.0f)
+                                    green:((float) 40.0f / 255.0f)
+                                     blue:((float) 55.0f / 255.0f)
+                                    alpha:1.0f];
+    
+    [self.subView setBackgroundColor:grey];
+    
     self.allDoctors = [[NSMutableArray alloc] init];
     self.disciplines = [[NSMutableArray alloc] init];
     
@@ -54,10 +61,8 @@
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade Dotorenlisten", @"LOAD DOCTORLIST")];
     [[ApiClient sharedInstance] getPath:@"disciplines.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
-                                    [SVProgressHUD dismiss];
-                                    
                                     NSArray *tuple = @[@0, @"Alle Fachbereiche"];
-                                    
+
                                     [self.disciplines addObject:tuple];
                                     
                                     //Add all Disciplines from the Backend
@@ -76,7 +81,6 @@
                                     
                                 }];
     
-    //
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     for (id doctorJson in response) {
@@ -86,6 +90,7 @@
                                     self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
                                     self.doctorsForDiscipline = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
                                     
+                                    [SVProgressHUD dismiss];
                                     [self.tableView reloadData];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -110,7 +115,7 @@
 }
 
 - (IBAction)closeKeyboard:(id)sender {
-    [self.doctorNameField resignFirstResponder];
+    [self.searchBar resignFirstResponder];
 }
 
 - (NSString*)disciplineIdToString:(NSInteger)disciplineId {
@@ -127,12 +132,10 @@
 #pragma mark - UIPickerViewDataSource/Delegate methods
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
-    
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     return self.disciplines.count;
 }
 
@@ -185,7 +188,7 @@
     
     [self.chosenDoctors removeAllObjects];
     
-    NSString* text = [NSString stringWithFormat:@"^%@", [self.doctorNameField.text lowercaseString]];
+    NSString* text = [NSString stringWithFormat:@"^%@", [self.searchBar.text lowercaseString]];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
     for (DoctorModel *doctor in self.doctorsForDiscipline) {
         NSString *name = [NSString stringWithFormat:@"%@ %@", [doctor.firstName lowercaseString], [doctor.lastName lowercaseString]];

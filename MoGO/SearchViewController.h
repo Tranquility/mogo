@@ -13,7 +13,9 @@
 @property (nonatomic) IBOutlet UIPickerView* pickerView;
 @property (nonatomic) IBOutlet UITableView* tableView;
 @property (nonatomic) IBOutlet UIView* subView;
-@property (nonatomic) IBOutlet UITextField* doctorNameField;
+@property (nonatomic) IBOutlet UISearchBar* searchBar;
+@property (nonatomic) IBOutlet UIBarButtonItem *disciplineButton;
+
 @property (nonatomic) NSMutableArray* chosenDoctors;
 @property (nonatomic) NSMutableArray* allDoctors;
 @property (nonatomic) NSMutableArray* disciplines;
