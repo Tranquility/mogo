@@ -67,7 +67,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
         [[ApiClient sharedInstance] postPath:@"/patients.json"
                                 parameters:params
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                       [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Bitte bestätigen Sie ihre Email-Adresse", @"PATIENT CREATED")];
+                                       [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Bitte bestätigen Sie Ihre E-Mail-Adresse", @"PATIENT CREATED")];
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        if (operation.response.statusCode == 500) {
                                            NSLog(@"Unknown Error");
