@@ -110,15 +110,16 @@
     NSString *path = [NSString stringWithFormat:@"time_slots.json"];
     
     id params = @{
-    @"month": [NSNumber numberWithInteger:self.currentMonth],
-    @"year":[NSNumber numberWithInteger:self.currentYear],
-    @"doctor": [NSNumber numberWithInteger:self.doctor.idNumber]
+    @"month":[NSNumber numberWithInteger:month],
+    @"year":[NSNumber numberWithInteger:year],
+    @"doctor":[NSNumber numberWithInteger:self.doctor.idNumber]
     };
     
     [[ApiClient sharedInstance] getPath:path
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id slots) {
                                     NSArray *availableSlots = [self findAvailableSlots:slots];
+                                    NSLog(@"%@", availableSlots);
                                     NSNumber *monthObj = [NSNumber numberWithInteger:month];
                                     [self.slotsPerMonth setObject:availableSlots forKey:monthObj];
                                                                         
