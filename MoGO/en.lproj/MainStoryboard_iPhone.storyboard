@@ -244,10 +244,17 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.9960784912109375" green="0.90196084976196289" blue="0.0039215688593685627" alpha="1" colorSpace="deviceRGB"/>
                             </view>
-                            <searchBar contentMode="redraw" placeholder="Namen eingeben" id="lx6-57-1up">
+                            <searchBar contentMode="redraw" placeholder="Namen eingeben" showsCancelButton="YES" id="lx6-57-1up">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="n0S-ah-3IA" id="nyU-Sa-mjo"/>
+                                </connections>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -255,13 +262,14 @@
                     <navigationItem key="navigationItem" title="Suche" id="yJw-9R-Qi3">
                         <barButtonItem key="rightBarButtonItem" title="Fachgebiet" id="fk1-ro-w7X">
                             <connections>
-                                <action selector="showDisciplinePicker:" destination="n0S-ah-3IA" id="YYR-Ql-NgQ"/>
+                                <action selector="showDisciplinePicker:" destination="n0S-ah-3IA" id="Clb-GZ-xDT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="disciplineButton" destination="fk1-ro-w7X" id="z0h-Ed-lE5"/>
                         <outlet property="pickerView" destination="Q85-aE-hUG" id="PXU-c4-8AT"/>
-                        <outlet property="searchBar" destination="lx6-57-1up" id="1Fy-Lv-mSy"/>
+                        <outlet property="searchBar" destination="lx6-57-1up" id="GQP-wL-KRw"/>
                         <outlet property="searchDisplayController" destination="mop-Zi-uQ1" id="G1d-2L-JE8"/>
                         <outlet property="subView" destination="8Xq-LP-jvR" id="ebn-RZ-Cfx"/>
                         <outlet property="tableView" destination="EtS-g9-fFy" id="IQq-gM-cc2"/>
@@ -1004,6 +1012,9 @@
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
             <relationships>
+                <relationship kind="action" name="chooseDiscipline:"/>
+                <relationship kind="action" name="closeDisciplinePicker:"/>
+                <relationship kind="action" name="showDisciplinePicker:"/>
                 <relationship kind="outlet" name="disciplineButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>

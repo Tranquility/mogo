@@ -26,9 +26,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
     return self;
 }
 
@@ -114,21 +111,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)closeKeyboard:(id)sender {
-    [self.searchBar resignFirstResponder];
-}
-
-- (NSString*)disciplineIdToString:(NSInteger)disciplineId {
-    NSString *result;
-    
-    for (NSArray *tuple in self.disciplines) {
-        if ([[tuple objectAtIndex:0] intValue] == disciplineId)
-            result = [tuple objectAtIndex:1];
-    }
-    
-    return result;
-}
-
 #pragma mark - UIPickerViewDataSource/Delegate methods
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
@@ -155,6 +137,7 @@
 }
 
 - (IBAction)showDisciplinePicker:(id)sender {
+    [self.searchBar resignFirstResponder];
     self.subView.hidden = NO;
 }
 
@@ -177,26 +160,6 @@
     }
     
     self.doctorsForDiscipline = [[NSMutableArray alloc] initWithArray:self.chosenDoctors copyItems:NO];
-    
-    [self.tableView reloadData];
-}
-
-/**
- * This reacts on keyboard input and checks the list of currently chosen doctors (all or of one discipline) if they match the input
- */
-- (IBAction)updateNameTextField:(id)sender {
-    
-    [self.chosenDoctors removeAllObjects];
-    
-    NSString* text = [NSString stringWithFormat:@"^%@", [self.searchBar.text lowercaseString]];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
-    for (DoctorModel *doctor in self.doctorsForDiscipline) {
-        NSString *name = [NSString stringWithFormat:@"%@ %@", [doctor.firstName lowercaseString], [doctor.lastName lowercaseString]];
-        NSTextCheckingResult *match = [regex firstMatchInString:name options:0 range:NSMakeRange(0, name.length)];
-        if (match) {
-            [self.chosenDoctors addObject:doctor];
-        }
-    }
     
     [self.tableView reloadData];
 }
@@ -236,6 +199,58 @@
         MedicDetailViewController *destination = [segue destinationViewController];
         destination.doctor = self.chosenDoctor;
     }
+}
+
+#pragma mark UISearchBar Delegate methods
+
+- (void)closeKeyboard {
+    [self.searchBar resignFirstResponder];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self.chosenDoctors removeAllObjects];
+    NSArray *words = [searchText componentsSeparatedByString:@" "];
+    
+    for (DoctorModel *doctor in self.doctorsForDiscipline) {
+        for (NSString *word in words) {
+            NSString* text = [NSString stringWithFormat:@"^%@", [word lowercaseString]];
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
+            NSTextCheckingResult *matchFirst = [regex firstMatchInString:[doctor.firstName lowercaseString] options:0 range:NSMakeRange(0, doctor.firstName.length)];
+            NSTextCheckingResult *matchLast = [regex firstMatchInString:[doctor.lastName lowercaseString] options:0 range:NSMakeRange(0, doctor.lastName.length)];
+            
+            if (matchFirst || matchLast) {
+                [self.chosenDoctors addObject:doctor];
+            }
+
+        }
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self.searchBar resignFirstResponder];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self closeDisciplinePicker:searchBar];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.searchBar resignFirstResponder];
+}
+
+#pragma mark Helper methods
+
+- (NSString*)disciplineIdToString:(NSInteger)disciplineId {
+    NSString *result;
+    
+    for (NSArray *tuple in self.disciplines) {
+        if ([[tuple objectAtIndex:0] intValue] == disciplineId)
+            result = [tuple objectAtIndex:1];
+    }
+    
+    return result;
 }
 
 @end
