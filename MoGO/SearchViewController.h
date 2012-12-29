@@ -16,9 +16,4 @@
 @property (nonatomic) IBOutlet UISearchBar* searchBar;
 @property (nonatomic) IBOutlet UIBarButtonItem *disciplineButton;
 
-@property (nonatomic) NSMutableArray* chosenDoctors;
-@property (nonatomic) NSMutableArray* allDoctors;
-@property (nonatomic) NSMutableArray* disciplines;
-
-
 @end

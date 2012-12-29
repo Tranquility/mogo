@@ -17,7 +17,9 @@
 
 @property (nonatomic) DoctorModel *chosenDoctor;
 @property (nonatomic) NSArray *chosenDiscipline;
-@property (nonatomic) NSMutableArray *doctorsForDiscipline;
+@property (nonatomic) NSArray *chosenDoctors;
+@property (nonatomic) NSArray *allDoctors;
+@property (nonatomic) NSArray *disciplines;
 
 @end
 
@@ -55,20 +57,23 @@
     
     [self.pickerView selectRow:0 inComponent:0 animated:YES];
     
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade Dotorenlisten", @"LOAD DOCTORLIST")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade alle Ärzte", @"LOAD_MEDICLIST")];
     [[ApiClient sharedInstance] getPath:@"disciplines.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     NSArray *tuple = @[@0, @"Alle Fachbereiche"];
-
-                                    [self.disciplines addObject:tuple];
+                                    NSMutableArray *tempDisciplines = [[NSMutableArray alloc] init];
+                                    
+                                    [tempDisciplines addObject:tuple];
                                     
                                     //Add all Disciplines from the Backend
                                     for (id disciplineJson in response) {
                                         NSNumber *ident = [disciplineJson valueForKeyPath:@"id"];
                                         NSString *discipline = [disciplineJson valueForKeyPath:@"name"];
                                         tuple = @[ident, discipline];
-                                        [self.disciplines addObject:tuple];
+                                        [tempDisciplines addObject:tuple];
                                     }
+                                    
+                                    self.disciplines = tempDisciplines;
                                     [self.pickerView reloadAllComponents];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -80,12 +85,14 @@
     
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
+                                    
+                                    NSMutableArray *tempDoctors = [[NSMutableArray alloc] init];
                                     for (id doctorJson in response) {
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
-                                        [self.allDoctors addObject:doctorModel];
+                                        [tempDoctors addObject:doctorModel];
                                     }
-                                    self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
-                                    self.doctorsForDiscipline = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
+                                    self.chosenDoctors = [[NSArray alloc] initWithArray:tempDoctors];
+                                    self.allDoctors = [[NSArray alloc] initWithArray:tempDoctors];
                                     
                                     [SVProgressHUD dismiss];
                                     [self.tableView reloadData];
@@ -143,24 +150,13 @@
 
 - (IBAction)chooseDiscipline:(id)sender {
     self.subView.hidden = YES;
-        
-    if ([[self.chosenDiscipline objectAtIndex:0] intValue] == 0) {
-        self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors copyItems:NO];
-    } else {
-        
-        
-        [self.chosenDoctors removeAllObjects];
-        NSString *discipline = [self.chosenDiscipline objectAtIndex:1];
-        
-        for (DoctorModel *doctor in self.allDoctors) {
-            if ([doctor.discipline isEqualToString:discipline]) {
-                [self.chosenDoctors addObject: doctor];
-            }
-        }
+
+    self.chosenDoctors = [self applyDisciplineFilter:self.chosenDiscipline forArray:self.allDoctors];
+    NSString *nameFilter = self.searchBar.text;
+    if (nameFilter.length > 0) {
+        self.chosenDoctors = [self applyNameFilter:self.searchBar.text forArray:self.chosenDoctors];
     }
-    
-    self.doctorsForDiscipline = [[NSMutableArray alloc] initWithArray:self.chosenDoctors copyItems:NO];
-    
+
     [self.tableView reloadData];
 }
 
@@ -178,11 +174,11 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
+
     DoctorModel *currentDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
-    
+
     cell.textLabel.text = [currentDoctor fullName];
-    
+
     return cell;
 }
 
@@ -208,28 +204,16 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [self.chosenDoctors removeAllObjects];
-    NSArray *words = [searchText componentsSeparatedByString:@" "];
     
-    for (DoctorModel *doctor in self.doctorsForDiscipline) {
-        for (NSString *word in words) {
-            NSString* text = [NSString stringWithFormat:@"^%@", [word lowercaseString]];
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
-            NSTextCheckingResult *matchFirst = [regex firstMatchInString:[doctor.firstName lowercaseString] options:0 range:NSMakeRange(0, doctor.firstName.length)];
-            NSTextCheckingResult *matchLast = [regex firstMatchInString:[doctor.lastName lowercaseString] options:0 range:NSMakeRange(0, doctor.lastName.length)];
-            
-            if (matchFirst || matchLast) {
-                [self.chosenDoctors addObject:doctor];
-            }
-
-        }
-    }
-    
+    self.chosenDoctors = [self applyNameFilter:searchText forArray:self.allDoctors];
+    self.chosenDoctors = [self applyDisciplineFilter:self.chosenDiscipline forArray:self.chosenDoctors];
     [self.tableView reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [self.searchBar resignFirstResponder];
+    self.chosenDoctors = [[NSMutableArray alloc] initWithArray:self.allDoctors];
+    [self.tableView reloadData];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
@@ -249,7 +233,46 @@
         if ([[tuple objectAtIndex:0] intValue] == disciplineId)
             result = [tuple objectAtIndex:1];
     }
-    
+
+    return result;
+}
+
+
+- (NSArray*)applyNameFilter:(NSString*)text forArray:(NSArray*)array {
+    NSArray *words = [text componentsSeparatedByString:@" "];
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+
+    for (DoctorModel *doctor in array) {
+        for (NSString *word in words) {
+            NSString* text = [NSString stringWithFormat:@"^%@", [word lowercaseString]];
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:text options:0 error:NULL];
+            NSTextCheckingResult *matchFirst = [regex firstMatchInString:[doctor.firstName lowercaseString] options:0 range:NSMakeRange(0, doctor.firstName.length)];
+            NSTextCheckingResult *matchLast = [regex firstMatchInString:[doctor.lastName lowercaseString] options:0 range:NSMakeRange(0, doctor.lastName.length)];
+            
+            if (matchFirst || matchLast) {
+                [result addObject:doctor];
+            }
+        }
+    }
+
+    return result;
+}
+
+- (NSArray*)applyDisciplineFilter:(NSArray*)discipline forArray:(NSArray*)array {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+
+    if ([[discipline objectAtIndex:0] intValue] == 0) {
+        result = [[NSMutableArray alloc] initWithArray:array];
+    } else {
+        NSString *disciplineString = [discipline objectAtIndex:1];
+        
+        for (DoctorModel *doctor in array) {
+            if ([doctor.discipline isEqualToString:disciplineString]) {
+                [result addObject: doctor];
+            }
+        }
+    }
+
     return result;
 }
 
