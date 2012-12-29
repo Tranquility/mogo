@@ -80,10 +80,6 @@
     self.currentYear = [yearString integerValue];
     [self updateMonthLabel];
     
-    //Set Listener on Buttons
-    [self.buttonLeft addTarget:self action:@selector(moveCalendarViewtoLeft) forControlEvents:UIControlEventTouchUpInside];
-    [self.buttonRight addTarget:self action:@selector(moveCalendarViewtoRight) forControlEvents:UIControlEventTouchUpInside];
-    
     //helper variable
     NSInteger month = self.currentMonth;
     NSInteger year = self.currentYear;
@@ -167,7 +163,7 @@
 }
 
 //Moves the calendarScrollView to the previous month
--(void) moveCalendarViewtoLeft{
+-(IBAction)moveCalendarViewtoLeft:(id)sender {
     if (self.currentOffset > 0)
     {
         self.currentOffset = self.currentOffset - 320;
@@ -180,8 +176,8 @@
 }
 
 //Moves the calendarScrollView to the next month
--(void) moveCalendarViewtoRight{
-    if(self.currentOffset < 960)
+-(IBAction)moveCalendarViewtoRight:(id)sender {
+    if (self.currentOffset < 960)
     {
         self.currentOffset = self.currentOffset + 320;
         self.currentYear += (NSInteger) (self.currentMonth / 12);
@@ -193,7 +189,7 @@
 }
 
 //Sets the CalendarTitle for a specific date
--(void)updateMonthLabel
+- (void)updateMonthLabel
 {
     NSString *monthString = [NSString stringWithFormat:@"%d", self.currentMonth];
     if (self.currentMonth < 10) {
@@ -206,7 +202,7 @@
 }
 
 //Navigate to the dayViewController with the given start day/month/year
--(void)showDay:(int)day
+- (void)showDay:(int)day
 {
     NSArray *otherDays = [self.slotsPerMonth objectForKey:[NSNumber numberWithInteger:self.currentMonth]];
     

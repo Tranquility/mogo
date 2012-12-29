@@ -23,8 +23,8 @@
 @property (nonatomic) NSInteger currentMonth;
 @property (nonatomic) NSInteger currentYear;
 
-- (void)moveCalendarViewtoLeft;
-- (void)moveCalendarViewtoRight;
+- (IBAction)moveCalendarViewtoLeft:(id)sender;
+- (IBAction)moveCalendarViewtoRight:(id)sender;
 - (void)showDay:(int)sender;
 - (void)saveNewAppointment:(id)sender;
 
