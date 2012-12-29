@@ -119,7 +119,6 @@
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id slots) {
                                     NSArray *availableSlots = [self findAvailableSlots:slots];
-                                    NSLog(@"%@", availableSlots);
                                     NSNumber *monthObj = [NSNumber numberWithInteger:month];
                                     [self.slotsPerMonth setObject:availableSlots forKey:monthObj];
                                                                         
