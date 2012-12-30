@@ -11,6 +11,9 @@
 #import "MakeAppointmentDayViewController.h"
 #import "SlotTemplateView.h"
 #import "ApiClient.h"
+#import "SVProgressHUD.h"
+
+#define RUBY_DATE @"yyyy-MM-dd'T'HH:mm:ss'Z'"
 
 
 /*
@@ -155,7 +158,7 @@
     NSMutableArray *availableSlots = [[NSMutableArray alloc] init];
     
     //Date formatter for rails timestamps
-    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    dateFormatter.dateFormat = RUBY_DATE;
     
     //Date formatter for a single day
     NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
@@ -229,9 +232,37 @@
 //This is called by the SlotTemplateView when a user clicks a slot that he wants to reserve
 - (void)saveNewAppointment:(NSDate*)timeStamp
 {
-    //use self.doctor and timeStamp to make an appointment via post request
-    //find out whether to use patient id or auth token
-    NSLog(@"So you want to make an appointment for the %@?", timeStamp);
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = RUBY_DATE;
+    
+    NSString *timeString = [dateFormatter stringFromDate:timeStamp];
+    id params = @{
+        @"appointment": @{
+            @"doctor_id": [NSNumber numberWithInt:self.doctor.idNumber],
+            @"patient_id": @1,
+            @"start_at": timeString
+        }
+    };
+    
+    [SVProgressHUD show];
+    
+    [[ApiClient sharedInstance] postPath:@"/appointments.json" parameters:params
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                     [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     if (operation.response.statusCode == 500) {
+                                         NSLog(@"Unknown Error");
+                                         [SVProgressHUD showErrorWithStatus:@"Something went wrong!"];
+                                     } else {
+                                         NSData *jsonData = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
+                                         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                                              options:0
+                                                                                                error:nil];
+                                         NSString *errorMessage = [json objectForKey:@"errors"];
+                                         [SVProgressHUD showErrorWithStatus:errorMessage];
+                                     }
+                                 }];
 }
 
 @end
