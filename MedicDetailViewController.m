@@ -135,7 +135,7 @@
         UIAlertView *addNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"ADDED") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"ADD_DOCTOR_TO_FAV") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [addNotification show];
     }
-    
+
 }
 
 //Called whenever the user taps the map
