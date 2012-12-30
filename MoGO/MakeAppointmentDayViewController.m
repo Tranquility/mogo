@@ -150,7 +150,7 @@
 }
 
 //Sets the CalendarTitle for a specific date
--(void)updateDateLabel
+- (void)updateDateLabel
 {
     NSString *dayString = [NSString stringWithFormat:@"%d", self.currentDay];
     if (self.currentDay < 10) {
