@@ -232,7 +232,6 @@
 //This is called by the SlotTemplateView when a user clicks a slot that he wants to reserve
 - (void)saveNewAppointment:(NSDate*)timeStamp
 {
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = RUBY_DATE;
     
