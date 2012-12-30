@@ -19,6 +19,7 @@
 		2D163A201660ECCC000A65A7 /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A1F1660ECCC000A65A7 /* MedicDetailViewController.m */; };
 		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
 		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
+		2D451DC9168FE63A0058A6A7 /* phone.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2D451DC8168FE63A0058A6A7 /* phone.gif */; };
 		2D7CABBC166FB89F008187C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7CABBB166FB89F008187C0 /* LoginViewController.m */; };
 		2D7CABBD166FB89F008187C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7CABBB166FB89F008187C0 /* LoginViewController.m */; };
 		2D95D8BD166E758D000A0122 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8BC166E758D000A0122 /* RegisterViewController.m */; };
@@ -88,6 +89,7 @@
 		2D163A211660F116000A65A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2D163A231661021D000A65A7 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		2D163A241661021D000A65A7 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
+		2D451DC8168FE63A0058A6A7 /* phone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = phone.gif; sourceTree = "<group>"; };
 		2D7CABBA166FB89F008187C0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		2D7CABBB166FB89F008187C0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		2D95D8BB166E758D000A0122 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 		F16BF10716626675000E5FC0 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				2D451DC8168FE63A0058A6A7 /* phone.gif */,
 				DA1DC679167DFDF300B5D63C /* qr.png */,
 				25E2C8441679FD1F004AA1A5 /* sternGelb.jpg */,
 				25E2C8421679FD16004AA1A5 /* sternNormal.jpg */,
@@ -467,6 +470,7 @@
 				25E2C8431679FD16004AA1A5 /* sternNormal.jpg in Resources */,
 				25E2C8451679FD1F004AA1A5 /* sternGelb.jpg in Resources */,
 				DA1DC67A167DFDF300B5D63C /* qr.png in Resources */,
+				2D451DC9168FE63A0058A6A7 /* phone.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
