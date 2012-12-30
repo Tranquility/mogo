@@ -137,6 +137,16 @@
     
 }
 
+//Method which initiates a call to the doctor when invoked
+- (IBAction)initiateCall:(id)sender
+{
+    NSString *callURL = [NSString stringWithFormat:@"tel://%@",self.doctor.telephone];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callURL]];
+    NSLog(@"Initiating a call using the url: %@", callURL);
+    //included NSLog due to the fact the iOS simulator doesn't allow to test methods requiering the phone (intended by apple)
+    //nslog included so one can see something on the simulator. 
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"docDetailToMakeAppointment"]) {
