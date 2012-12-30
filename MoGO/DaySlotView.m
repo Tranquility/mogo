@@ -22,9 +22,9 @@
         
         NSInteger counter = 0;
         
-        for (Time *time in appointments) {
+        for (NSDate *date in appointments) {
             CGRect r = CGRectMake(0, counter * 50, 320, 49);
-            SlotTemplateView *slot = [[SlotTemplateView alloc] initWithFrame:r startTime:time observer:self.observer];
+            SlotTemplateView *slot = [[SlotTemplateView alloc] initWithFrame:r date:date observer:self.observer];
             [self.slotView addSubview:slot];
             
             counter++;

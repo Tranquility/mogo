@@ -35,8 +35,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)notifyFromSender:(Listeners)sender withValue:(id)value {
-    
-}
-
 @end

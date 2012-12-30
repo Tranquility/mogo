@@ -8,16 +8,32 @@
 
 #import "SlotTemplateView.h"
 
+@interface SlotTemplateView ()
+
+@property (nonatomic) NSDate *dateForAppointment;
+@end
+
 @implementation SlotTemplateView
-- (id)initWithFrame:(CGRect)frame startTime:(Time*)time observer:(Observer*)observer
+- (id)initWithFrame:(CGRect)frame date:(NSDate*)date observer:(Observer*)observer
 {
     self = [super initWithFrame:frame];
     if (self) {
         
+        self.dateForAppointment = date;
         self.observer = observer;
 
         //Load the nib-File and set this object as owner
         [[NSBundle mainBundle] loadNibNamed:@"SlotTemplateView" owner:self options:nil];
+        
+        //Date formatter for a single day
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"HH";
+        NSInteger hour = [[formatter stringFromDate:date] integerValue];
+        
+        //extract the minute of the date
+        formatter.dateFormat = @"mm";
+        NSInteger minute = [[formatter stringFromDate:date] integerValue];
+        Time *time = [[Time alloc] initWithHour:hour andMinute:minute];
         
         self.appointmentLabel.text = [time description];
         
@@ -32,18 +48,7 @@
 
 -(void)saveNewAppointment:(id)sender
 {
-    //TODO: Send the actual timestamp of this slot
-    [self.observer notifyFromSender:slotTemplate withValue:[[NSDate alloc] init]];
+    [self.observer notifyFromSender:slotTemplate withValue:self.dateForAppointment];
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

@@ -128,23 +128,10 @@
     
     //Date formatter for rails timestamps
     dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-    
-    //Date formatter for a single day
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
+
     for (id appointment in appointments) {
-        
         NSDate *date = [dateFormatter dateFromString:appointment];
-        //extract the hour of the date
-        formatter.dateFormat = @"HH";
-        NSInteger hour = [[formatter stringFromDate:date] integerValue];
-        
-        //extract the minute of the date
-        formatter.dateFormat = @"mm";
-        NSInteger minute = [[formatter stringFromDate:date] integerValue];
-        Time *time = [[Time alloc] initWithHour:hour andMinute:minute];
-        //Store the day
-        [availableAppointments addObject:time];
+        [availableAppointments addObject:date];
     }
     return availableAppointments;
 }

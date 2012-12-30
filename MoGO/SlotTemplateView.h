@@ -16,11 +16,7 @@
 @property (nonatomic) IBOutlet UILabel* appointmentLabel;
 @property (nonatomic) Observer* observer;
 
-@property (nonatomic) NSString* startString;
-@property (nonatomic) NSString* endString;
-
-
-- (id)initWithFrame:(CGRect)frame startTime:(Time*)time observer:(Observer*)observer;
+- (id)initWithFrame:(CGRect)frame date:(NSDate*)date observer:(Observer*)observer;
 
 - (IBAction)saveNewAppointment:(id)sender;
 

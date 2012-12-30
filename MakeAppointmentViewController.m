@@ -106,10 +106,10 @@
 }
 
 #pragma mark Observer methods
-- (void)notifyWithKey:(Listeners)key andValue:(id)value {
-    if (key == slotTemplate) {
+- (void)notifyFromSender:(Listeners)sender withValue:(id)value {
+    if (sender == slotTemplate) {
         [self saveNewAppointment:value];
-    } else if (key == dayTemplate) {
+    } else if (sender == dayTemplate) {
         [self showDay:[value intValue]];
     }
 }
@@ -231,6 +231,7 @@
 {
     //use self.doctor and timeStamp to make an appointment via post request
     //find out whether to use patient id or auth token
+    NSLog(@"So you want to make an appointment for the %@?", timeStamp);
 }
 
 @end
