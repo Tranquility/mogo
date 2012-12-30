@@ -26,7 +26,5 @@
 
 - (void)moveCalendarViewtoLeft;
 - (void)moveCalendarViewtoRight;
-- (void)showDay:(int)sender;
-- (void)saveNewAppointment:(id)sender;
 
 @end

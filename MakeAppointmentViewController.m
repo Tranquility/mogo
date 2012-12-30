@@ -215,7 +215,7 @@
 }
 
 //Navigate to the dayViewController with the given start day/month/year
--(void)showDay:(int)day
+- (void)showDay:(int)day
 {
     NSArray *otherDays = [self.slotsPerMonth objectForKey:[NSNumber numberWithInteger:self.currentMonth]];
     
@@ -227,7 +227,7 @@
 }
 
 //This is called by the SlotTemplateView when a user clicks a slot that he wants to reserve
--(void)saveNewAppointment:(NSDate*)timeStamp
+- (void)saveNewAppointment:(NSDate*)timeStamp
 {
     //use self.doctor and timeStamp to make an appointment via post request
     //find out whether to use patient id or auth token
