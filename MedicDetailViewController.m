@@ -141,13 +141,33 @@
 //Called whenever the user taps the map
 - (IBAction)mapClicked:(id)sender
 {
-    //String for use on real device:
-    //(Note: as intended one won't see apple maps opening on simulator because it's not installed there.
-    //hence it's right one only sees safari starting. on real device behaviour should be different.
-    NSString *specificDoctor = [NSString stringWithFormat: @"http://maps.apple.com/?q&ll=%@,%@&daddr=%@,Hamburg", self.doctor.address.latitude, self.doctor.address.longitude, self.doctor.address.street];
-    NSURL *url = [NSURL URLWithString:specificDoctor];
-                  [[UIApplication sharedApplication] openURL:url];
-    NSLog(@"%@", specificDoctor);
+    CLLocationCoordinate2D location;
+    location.latitude = [self.doctor.address.latitude floatValue];
+    location.longitude = [self.doctor.address.longitude floatValue];
+    
+    [self openMapsAppWithDestination:location];
+    
+}
+
+- (void)openMapsAppWithDestination:(CLLocationCoordinate2D)destination
+{
+    Class itemClass = [MKMapItem class];
+    if (itemClass && [itemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)])
+    {
+        MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:destination addressDictionary:nil]];
+        toLocation.name = self.doctor.fullName;
+        [MKMapItem openMapsWithItems:[NSArray arrayWithObjects:currentLocation, toLocation, nil]
+                       launchOptions:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:MKLaunchOptionsDirectionsModeDriving, [NSNumber numberWithBool:YES], nil]
+                                                                 forKeys:[NSArray arrayWithObjects:MKLaunchOptionsDirectionsModeKey, MKLaunchOptionsShowsTrafficKey, nil]]];
+    }
+    else //iOS 5 or lower
+    {
+        NSMutableString *url = [NSMutableString stringWithString:@"http://maps.google.com/maps?"];
+        [url appendFormat:@"saddr=Current Location"];
+        [url appendFormat:@"&daddr=%f,%f", destination.latitude, destination.longitude];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
