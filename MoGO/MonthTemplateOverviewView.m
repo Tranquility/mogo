@@ -14,7 +14,7 @@
 
 NSInteger const DAY_OFFSET = 1;
 
-- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year parent:(MakeAppointmentViewController*)parent slots:(NSArray*)slots;
+- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year observer:(Observer*)observer slots:(NSArray*)slots;
 {
     
     self = [super initWithFrame:frame];
@@ -23,7 +23,7 @@ NSInteger const DAY_OFFSET = 1;
     
     if (self) {
         self.mainView.frame = frame;
-        self.myParentVC = parent;
+        self.observer = observer;
         
         //Format the Date
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -117,7 +117,7 @@ NSInteger const DAY_OFFSET = 1;
             }
             
             //Draw Day to Calendar-View (by adding a sub-view)
-            DayTemplateView *newDay = [[DayTemplateView alloc] initWithFrame:r state:state day:dayNumber responder:self.myParentVC];
+            DayTemplateView *newDay = [[DayTemplateView alloc] initWithFrame:r state:state day:dayNumber observer:self.observer];
             [self.calendarView addSubview:newDay];
         }
     }

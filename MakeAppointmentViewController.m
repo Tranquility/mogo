@@ -105,6 +105,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark Observer methods
+- (void)notifyFromSender:(Listeners)sender withValue:(id)value {
+    if (sender == slotTemplate) {
+        [self saveNewAppointment:value];
+    } else if (sender == dayTemplate) {
+        [self showDay:[value intValue]];
+    }
+}
+
 - (void)generateMonthOverviewWithIndex:(int)i year:(int)year month:(int)month
 {
     NSString *path = [NSString stringWithFormat:@"time_slots.json"];
@@ -126,7 +135,7 @@
                                     CGRect r = CGRectMake(i * 320, 0, 320, 334);
                                     
                                     //Create calendarmonth ViewController
-                                    MonthTemplateOverviewView *monthView = [[MonthTemplateOverviewView alloc] initWithFrame:r month:month year:year parent:self slots:availableSlots];
+                                    MonthTemplateOverviewView *monthView = [[MonthTemplateOverviewView alloc] initWithFrame:r month:month year:year observer:self slots:availableSlots];
                                     
                                     //Add Calendar View as a subview to the scrollview and tell the buttons which function to call when they are pressed
                                     [self.calendarScrollView addSubview:monthView.mainView];                                    
@@ -206,11 +215,11 @@
 }
 
 //Navigate to the dayViewController with the given start day/month/year
--(void)showDay:(int)day
+- (void)showDay:(int)day
 {
     NSArray *otherDays = [self.slotsPerMonth objectForKey:[NSNumber numberWithInteger:self.currentMonth]];
     
-    MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController" bundle:Nil day:day month:self.currentMonth year:self.currentYear parent:self otherAvailableDays:otherDays];
+    MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController" bundle:Nil day:day month:self.currentMonth year:self.currentYear observer:self otherAvailableDays:otherDays];
     
     dayController.doctor = self.doctor;
     
@@ -218,14 +227,11 @@
 }
 
 //This is called by the SlotTemplateView when a user clicks a slot that he wants to reserve
--(void)saveNewAppointment:(id)sender
+- (void)saveNewAppointment:(NSDate*)timeStamp
 {
-    //TODO: Connect DataSource and send the new Appointment Request to the server
-    //You can acces properties of the sender by using the following senderObject:
-    SlotTemplateView* callerSlot = (SlotTemplateView*)sender;
-    
-    //Example: Access a member of the sender Object:
-    NSLog(@"%@", callerSlot.startString);
+    //use self.doctor and timeStamp to make an appointment via post request
+    //find out whether to use patient id or auth token
+    NSLog(@"So you want to make an appointment for the %@?", timeStamp);
 }
 
 @end

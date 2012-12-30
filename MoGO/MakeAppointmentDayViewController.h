@@ -19,10 +19,10 @@
 @property (nonatomic) IBOutlet UILabel *dayLabel;
 @property (nonatomic) IBOutlet UIScrollView *slotsView;
 
-@property (nonatomic) MakeAppointmentViewController* myParentVC;
+@property (nonatomic) Observer* observer;
 @property (nonatomic) DoctorModel *doctor;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year  parent:(MakeAppointmentViewController*)myParentVC otherAvailableDays:(NSArray*)otherDays;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year  observer:(Observer*)observer otherAvailableDays:(NSArray*)otherDays;
 
 - (IBAction)showNextDay:(id)sender;
 - (IBAction)showPreviousDay:(id)sender;

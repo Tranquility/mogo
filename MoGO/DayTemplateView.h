@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MakeAppointmentViewController.h"
+#import "Observer.h"
 
 @interface DayTemplateView : UIControl
 
@@ -19,12 +19,13 @@ typedef enum {
 
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UILabel *dayLabel;
-@property (nonatomic) MakeAppointmentViewController *myParentVC;
+@property (nonatomic) Observer *observer;
 @property (nonatomic) State myState;
+@property (nonatomic) NSInteger day;
 
 //Action performed whenever a day is touched
 - (IBAction)showDay:(id)sender;
 
-- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day responder:(MakeAppointmentViewController*)parentViewController;
+- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day observer:(Observer*)observer;
 
 @end

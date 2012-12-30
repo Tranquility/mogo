@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MakeAppointmentViewController.h"
+#import "Observer.h"
 
 @interface MonthTemplateOverviewView : UIView
 
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIView *calendarView;
-@property (nonatomic) MakeAppointmentViewController *myParentVC;
+@property (nonatomic) Observer *observer;
 
-- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year parent:(MakeAppointmentViewController*)parent slots:(NSArray*)slots;
+- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year observer:(Observer*)observer slots:(NSArray*)slots;
 @end

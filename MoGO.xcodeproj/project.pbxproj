@@ -26,6 +26,7 @@
 		2D95D8C1166E7F98000A0122 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D95D8C0166E7F98000A0122 /* MessageUI.framework */; };
 		2D95D8C4166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
 		2D95D8C5166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
+		76B53969168FB9F000BB3254 /* Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B53968168FB9EF00BB3254 /* Observer.m */; };
 		991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */; };
 		991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */; };
 		BA3E87C8167D0B5E00590DFA /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E87C7167D0B5E00590DFA /* CredentialStore.m */; };
@@ -95,6 +96,8 @@
 		2D95D8C0166E7F98000A0122 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2D95D8C2166E80B1000A0122 /* MailManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailManipulator.h; sourceTree = "<group>"; };
 		2D95D8C3166E80B1000A0122 /* MailManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailManipulator.m; sourceTree = "<group>"; };
+		76B53967168FB9EF00BB3254 /* Observer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Observer.h; sourceTree = "<group>"; };
+		76B53968168FB9EF00BB3254 /* Observer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Observer.m; sourceTree = "<group>"; };
 		991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthTemplateOverviewView.xib; sourceTree = "<group>"; };
 		991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthTemplateOverviewView.h; sourceTree = "<group>"; };
 		991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthTemplateOverviewView.m; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 				991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */,
 				991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */,
 				991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */,
+				76B53967168FB9EF00BB3254 /* Observer.h */,
+				76B53968168FB9EF00BB3254 /* Observer.m */,
 				2D95D8BB166E758D000A0122 /* RegisterViewController.h */,
 				2D95D8BC166E758D000A0122 /* RegisterViewController.m */,
 				DABBFD2C1660E3F300C79B32 /* SearchViewController.h */,
@@ -551,6 +556,7 @@
 				2D7CABBC166FB89F008187C0 /* LoginViewController.m in Sources */,
 				DA1DC677167DDBBE00B5D63C /* PrescriptionModel.m in Sources */,
 				BA3E87C8167D0B5E00590DFA /* CredentialStore.m in Sources */,
+				76B53969168FB9F000BB3254 /* Observer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
