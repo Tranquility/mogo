@@ -24,12 +24,12 @@
 
 @implementation MakeAppointmentDayViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year  parent:(MakeAppointmentViewController*)myParentVC otherAvailableDays:(NSArray*)otherDays;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year  observer:(Observer*)observer otherAvailableDays:(NSArray*)otherDays;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        self.myParentVC = myParentVC;
+        self.observer = observer;
         self.currentDay = day;
         self.currentMonth = month;
         self.currentYear = year;
@@ -110,7 +110,7 @@
                                     [SVProgressHUD dismiss];
                                     
                                     NSArray *availableAppointments = [self findAvailableAppointments:appointments];
-                                    self.day = [[DaySlotView alloc] initWithFrame:CGRectMake(0,0,320,500) day:self.currentDay month:self.currentMonth year:self.currentYear appointments: availableAppointments parent:self];
+                                    self.day = [[DaySlotView alloc] initWithFrame:CGRectMake(0,0,320,500) day:self.currentDay month:self.currentMonth year:self.currentYear appointments: availableAppointments observer:self.observer container:self.slotsView];
                                     
                                     //Add Slot View as a subview
                                     [self.slotsView addSubview:self.day.slotView];
@@ -128,23 +128,10 @@
     
     //Date formatter for rails timestamps
     dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-    
-    //Date formatter for a single day
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
+
     for (id appointment in appointments) {
-        
         NSDate *date = [dateFormatter dateFromString:appointment];
-        //extract the hour of the date
-        formatter.dateFormat = @"HH";
-        NSInteger hour = [[formatter stringFromDate:date] integerValue];
-        
-        //extract the minute of the date
-        formatter.dateFormat = @"mm";
-        NSInteger minute = [[formatter stringFromDate:date] integerValue];
-        Time *time = [[Time alloc] initWithHour:hour andMinute:minute];
-        //Store the day
-        [availableAppointments addObject:time];
+        [availableAppointments addObject:date];
     }
     return availableAppointments;
 }

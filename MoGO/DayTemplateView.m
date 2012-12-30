@@ -12,12 +12,13 @@
 
 @implementation DayTemplateView
 
-- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day responder:(MakeAppointmentViewController*)parentViewController;
+- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day observer:(Observer*)observer;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.day = day;
         self.myState = state;
-        self.myParentVC = parentViewController;
+        self.observer = observer;
         
         //Load the nib-File and set this object as owner
         [[NSBundle mainBundle] loadNibNamed:@"DayTemplateView" owner:self options:nil];
@@ -44,7 +45,6 @@
         //Add this view to the mainView, which will later be added to the Calendar-View
         self.clipsToBounds = NO;
         self.mainView.frame = self.bounds;
-        self.tag = day;
         [self addSubview:self.mainView];
     }
     return self;
@@ -52,7 +52,7 @@
 
 - (void)showDay:(id)sender {
     if (self.myState == FREE_SLOTS) {
-        [self.myParentVC showDay:self.tag];
+        [self.observer notifyFromSender:dayTemplate withValue:[NSNumber numberWithInt:self.day]];
     }
 }
 /*

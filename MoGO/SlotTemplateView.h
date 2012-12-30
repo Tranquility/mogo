@@ -7,20 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MakeAppointmentViewController.h"
+#import "Observer.h"
 #import "Time.h"
 
 @interface SlotTemplateView : UIControl
 
 @property (nonatomic) IBOutlet UIView* mainView;
 @property (nonatomic) IBOutlet UILabel* appointmentLabel;
-@property (nonatomic) MakeAppointmentViewController* myParentVC;
+@property (nonatomic) Observer* observer;
 
-@property (nonatomic) NSString* startString;
-@property (nonatomic) NSString* endString;
-
-
-- (id)initWithFrame:(CGRect)frame startTime:(Time*)time parent:(MakeAppointmentViewController*)parentVC;
+- (id)initWithFrame:(CGRect)frame date:(NSDate*)date observer:(Observer*)observer;
 
 - (IBAction)saveNewAppointment:(id)sender;
 
