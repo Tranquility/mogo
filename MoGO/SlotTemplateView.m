@@ -9,14 +9,12 @@
 #import "SlotTemplateView.h"
 
 @implementation SlotTemplateView
-
-- (id)initWithFrame:(CGRect)frame startTime:(Time*)time parent:(MakeAppointmentViewController*)parentVC;
-
+- (id)initWithFrame:(CGRect)frame startTime:(Time*)time observer:(Observer*)observer
 {
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.myParentVC = parentVC;
+        self.observer = observer;
 
         //Load the nib-File and set this object as owner
         [[NSBundle mainBundle] loadNibNamed:@"SlotTemplateView" owner:self options:nil];
@@ -34,9 +32,8 @@
 
 -(void)saveNewAppointment:(id)sender
 {
-    //Slot has been clicked: This will call the saveNewAppointment:sender method in
-    //MakeAppointmentViewController. Sender is set to this Objects reference, so we can access properties at the callee
-    [self.myParentVC saveNewAppointment:self];
+    //TODO: Send the actual timestamp of this slot
+    [self.observer notifyFromSender:slotTemplate withValue:[[NSDate alloc] init]];
 }
 
 

@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MakeAppointmentDayViewController.h"
+#import "Observer.h"
 
 @interface DaySlotView : UIView
 
 @property (nonatomic) IBOutlet UIView* mainView;
 @property (nonatomic) IBOutlet UIView* slotView;
-@property (nonatomic) MakeAppointmentDayViewController* myParentVC;
+@property (nonatomic) Observer* observer;
 
-- (id)initWithFrame:(CGRect)frame day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year appointments:(NSArray*)appointments parent:(MakeAppointmentDayViewController*)parentViewController;
+- (id)initWithFrame:(CGRect)frame day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year appointments:(NSArray*)appointments observer:(Observer*)observer container:(UIScrollView*)container;
 
 
 @end
