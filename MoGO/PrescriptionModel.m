@@ -26,8 +26,9 @@
     self = [super initWithDictionary:dict];
     
     if (self) {
-        self.medication = [dict valueForKeyPath:@"drug"];
-        self.fee = [[dict valueForKeyPath:@"fee"] boolValue];
+        NSDictionary *subDict = [dict valueForKeyPath:@"document"];
+        self.medication = [subDict valueForKeyPath:@"drug"];
+        self.fee = [[subDict valueForKeyPath:@"fee"] boolValue];
         [self generateQRCode];
     }
     
@@ -53,7 +54,7 @@
 }
 
 - (NSString*)description {
-    return [NSString stringWithFormat:@"doctor: %d\npatient: 1\ndate: %@\nmedication: %@\nnote: %@ charge: %d",
+    return [NSString stringWithFormat:@"doctor: %d\npatient: 1\ndate: %@\nmedication: %@\nnote: %@\ncharge: %d",
             self.doctor.idNumber, [self.creationDate description], self.medication, self.note, self.fee];
 }
 

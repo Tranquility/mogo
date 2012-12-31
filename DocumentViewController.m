@@ -51,7 +51,7 @@
                                     
                                     //TODO: Same as before but with other doc types
                                     
-                                    [self.ta]
+                                    [self.tableView reloadData];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Error fetching docs!");
