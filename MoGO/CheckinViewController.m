@@ -9,11 +9,14 @@
 #import "CheckinViewController.h"
 #import "ApiClient.h"
 #import "DoctorModel.h"
+#import "LocationServices.h"
 
-CLLocationManager *locationManager;
-NSString *usersLocation;
+#define NO_DOCTOR_FOUND  @"NO"
+#define MAX_DISTANCE_TO_PRACTICE  6.0
+
 CLLocation *usersGeoLocation;
 NSString *practiceOwner;
+LocationServices *locationService;
 
 
 @interface CheckinViewController ()
@@ -30,13 +33,13 @@ NSString *practiceOwner;
     if (self) {
         usersGeoLocation = [[CLLocation alloc] init];
         practiceOwner = @"NO";
-        
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
     self.allDoctors = [[NSMutableArray alloc] init];
 	// Do any additional setup after loading the view.
@@ -44,25 +47,20 @@ NSString *practiceOwner;
     //(Replace first line with actual key then)
     [self.checkinButton setTitle:NSLocalizedString(@"Anmeldung druchführen", @"Anmeldung durchführen") forState:UIControlStateNormal];
     //init Location Manager
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.distanceFilter = kCLDistanceFilterNone;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
-
-    sleep(1); //Workaround for locationManager needs some time to come up with first value
-    usersLocation = [self getUsersCurrentPosition];
-    
     
     //DB THINGIES
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response)
      {
-                                    for (id doctorJson in response) {
+                                    for (id doctorJson in response)
+                                    {
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
                                         [self.allDoctors addObject:doctorModel];
-                                                                        }
+                                    }//asked for every doctor from DB
+                                    locationService = [[LocationServices alloc] initWithRunningLocationService];
                                     [self checkForDoctorInRange];
-                                    if([practiceOwner isEqualToString:@"NO"])
+         
+                                    if([practiceOwner isEqualToString:NO_DOCTOR_FOUND])
                                     {
                                         [self.practiceLabel setText:@"Kein Arzt in der Nähe"];
                                          self.checkinButton.enabled = NO;
@@ -73,8 +71,12 @@ NSString *practiceOwner;
                                     }
         }//success
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    NSLog(@"Error fetching docs!");
-                                    NSLog(@"%@", error);                                    
+                                    UIAlertView *errorOccurred = [[UIAlertView alloc] initWithTitle:error
+                                                                                               message:@"Das tut uns leid, versuchen Sie es erneut"
+                                                                                               delegate:nil
+                                                                                               cancelButtonTitle:@"Ok"
+                                                                                               otherButtonTitles:nil, nil];
+                                    [errorOccurred show];
                                 }];
     
 }
@@ -83,11 +85,12 @@ NSString *practiceOwner;
 {
     for(DoctorModel* doc in self.allDoctors)
     {
-        CLLocation *docLocation = [[CLLocation alloc] initWithLatitude:[doc.address.latitude floatValue]
-                                                             longitude:[doc.address.longitude floatValue]];
-        CLLocationDistance meters = [usersGeoLocation distanceFromLocation:docLocation];
+        usersGeoLocation = [locationService getUsersCurrentLocation];
+        CLLocation *docLocation = [locationService generateLocation:[doc.address.latitude floatValue]
+                                                          longitude:[doc.address.longitude floatValue]];
+        double distanceInMeters = [locationService distanceBetweenTwoLocations:docLocation andSecondLocation:usersGeoLocation];
         
-        if(meters < 6.0)
+        if(distanceInMeters < MAX_DISTANCE_TO_PRACTICE)
         {
             practiceOwner = doc.fullName;
             break;
@@ -114,13 +117,6 @@ NSString *practiceOwner;
     [super viewDidUnload];
 }
 
--(NSString*) getUsersCurrentPosition {
-    NSString *theLocation = [NSString stringWithFormat:@"latitude: %f longitude: %f",
-                             locationManager.location.coordinate.latitude, locationManager.location.coordinate.longitude];
-    usersGeoLocation = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude
-                                                  longitude:locationManager.location.coordinate.longitude];
-    return theLocation;
-}
 
 - (IBAction)checkinPressed:(id)sender {
     NSString *message = [NSString stringWithFormat:@"Bei %@ angemeldet", practiceOwner];
