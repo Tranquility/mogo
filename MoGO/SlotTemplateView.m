@@ -11,7 +11,7 @@
 @interface SlotTemplateView ()
 
 @property (nonatomic) NSDate *dateForAppointment;
-@property (nonatomic) UIAlertView *alertView;
+
 @end
 
 @implementation SlotTemplateView
@@ -52,14 +52,13 @@
     NSString *dateString = [formatter stringFromDate:self.dateForAppointment];
     NSString *message = [NSString stringWithFormat:@"Wollen Sie %@ verbindlich einen Termin vereinbaren?", dateString];
     
-    self.alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
+    UIAlertView *confirmAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
                                                 message:NSLocalizedString(message, @"ADD_DOCTOR_TO_FAV")
                                                delegate:self
                                       cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
                                       otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
 
-    
-    [self.alertView show];
+    [confirmAppointment show];
 }
 
 #pragma mark UIAlertView Delegate methods
