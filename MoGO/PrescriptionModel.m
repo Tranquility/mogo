@@ -11,11 +11,23 @@
 
 @implementation PrescriptionModel
 
-- (PrescriptionModel*)initWithId:(NSInteger)document doctorId:(NSInteger)author date:(NSDate*)date note:(NSString*)note medication:(NSString*)medication additionalCharge:(float)charge qrCode:(UIImage*)code {
-    self = [super initWithId:document doctorId:author date:date note:note];
+- (PrescriptionModel*)initWithId:(NSInteger)document doctor:(DoctorModel*)author date:(NSDate*)date note:(NSString*)note medication:(NSString*)medication fee:(BOOL)fee {
+    self = [super initWithId:document doctor:author date:date note:note];
     if (self) {
         self.medication = medication;
-        self.additionalCharge = charge;
+        self.fee = fee;
+        [self generateQRCode];
+    }
+    
+    return self;
+}
+
+- (PrescriptionModel*)initWithDictionary:(NSDictionary*)dict {
+    self = [super initWithDictionary:dict];
+    
+    if (self) {
+        self.medication = [dict valueForKeyPath:@"drug"];
+        self.fee = [[dict valueForKeyPath:@"fee"] boolValue];
         [self generateQRCode];
     }
     
@@ -41,8 +53,8 @@
 }
 
 - (NSString*)description {
-    return [NSString stringWithFormat:@"doctor: %d\npatient: 1\ndate: %@\nmedication: %@\nnote: %@ charge: %f",
-            self.doctorId, [self.creationDate description], self.medication, self.note, self.additionalCharge];
+    return [NSString stringWithFormat:@"doctor: %d\npatient: 1\ndate: %@\nmedication: %@\nnote: %@ charge: %d",
+            self.doctor.idNumber, [self.creationDate description], self.medication, self.note, self.fee];
 }
 
 @end

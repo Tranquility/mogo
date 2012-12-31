@@ -12,10 +12,10 @@
 @interface PrescriptionModel : DocumentModel
 
 @property (nonatomic) NSString *medication;
-@property (nonatomic) float additionalCharge;
+@property (nonatomic) BOOL fee;
 @property (nonatomic) UIImage *qrCode;
 
-- (PrescriptionModel*)initWithId:(NSInteger)document doctorId:(NSInteger)author date:(NSDate*)date note:(NSString*)note medication:(NSString*)medication additionalCharge:(float)charge qrCode:(UIImage*)code;
+- (PrescriptionModel*)initWithId:(NSInteger)document doctor:(DoctorModel*)author date:(NSDate*)date note:(NSString*)note medication:(NSString*)medication fee:(BOOL)fee;
 
 - (PrescriptionModel*)initWithDictionary:(NSDictionary*)dict;
 

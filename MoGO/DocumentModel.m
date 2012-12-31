@@ -12,12 +12,11 @@
 
 @implementation DocumentModel
 
-- (DocumentModel*)initWithId:(NSInteger)document doctorId:(NSInteger)author date:(NSDate*)date note:(NSString*)note {
+- (DocumentModel*)initWithId:(NSInteger)document doctor:(DoctorModel*)author date:(NSDate*)date note:(NSString*)note {
     self = [super init];
     if (self) {
         self.documentId = document;
-        self.doctorId = author;
-        [self getDoctorForId:author];
+        self.doctor = author;
         self.creationDate = date;
         self.note = note;
     }
@@ -25,19 +24,22 @@
     return self;
 }
 
-- (void)getDoctorForId:(NSInteger)doctorId {
-    NSString *path = [NSString stringWithFormat:@"doctors/%d.json", doctorId];
+- (DocumentModel*) initWithDictionary:(NSDictionary*)dict {
+    self = [super init];
     
-    [[ApiClient sharedInstance] getPath:path
-                             parameters:nil
-                                success:^(AFHTTPRequestOperation *operation, id doctorJson) {
-                                    self.doctor = [[DoctorModel alloc] initWithDictionary:doctorJson];
-                                }
-                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    NSLog(@"Error fetching docs!");
-                                    NSLog(@"%@", error);
-                                }];
+    if (self) {
+        self.doctor = [[DoctorModel alloc] initWithDictionary:[dict valueForKeyPath:@"doctor"]];
+        
+        self.documentId = [[dict valueForKeyPath:@"document_id"] intValue];
+        self.note = [dict valueForKeyPath:@"content"];
+        
+        NSString *dateString = [dict valueForKeyPath:@"created_at"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+        self.creationDate = [formatter dateFromString:dateString];
+    }
     
+    return self;
 }
 
 @end

@@ -12,11 +12,12 @@
 @interface DocumentModel : NSObject
 
 @property (nonatomic) NSInteger documentId;
-@property (nonatomic) NSInteger doctorId;
 @property (nonatomic) DoctorModel *doctor;
 @property (nonatomic) NSDate *creationDate;
 @property (nonatomic) NSString *note;
 
-- (DocumentModel*)initWithId:(NSInteger)document doctorId:(NSInteger)author date:(NSDate*)date note:(NSString*)note;
+- (DocumentModel*)initWithId:(NSInteger)document doctor:(DoctorModel*)author date:(NSDate*)date note:(NSString*)note;
+
+- (DocumentModel*) initWithDictionary:(NSDictionary*)dict;
 
 @end
