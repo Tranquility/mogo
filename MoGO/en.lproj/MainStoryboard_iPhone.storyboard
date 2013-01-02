@@ -536,6 +536,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="moveCalendarViewtoLeft:" destination="gCb-VM-UNO" eventType="touchUpInside" id="0Dx-cB-gE9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="buttonRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xBJ-hk-f48" userLabel="buttonRight">
                                 <rect key="frame" x="253" y="78" width="33" height="44"/>
@@ -548,6 +551,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="moveCalendarViewtoRight:" destination="gCb-VM-UNO" eventType="touchUpInside" id="QBM-B5-9XY"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mo     Di     Mi     Do     Fr     Sa     So" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ByW-8d-1oc">
                                 <rect key="frame" x="8" y="125" width="305" height="21"/>
@@ -976,6 +982,8 @@
         <class className="MakeAppointmentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MakeAppointmentViewController.h"/>
             <relationships>
+                <relationship kind="action" name="moveCalendarViewtoLeft:"/>
+                <relationship kind="action" name="moveCalendarViewtoRight:"/>
                 <relationship kind="outlet" name="buttonLeft" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="buttonRight" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="calendarScrollView" candidateClass="UIScrollView"/>
