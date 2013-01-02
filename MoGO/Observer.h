@@ -2,7 +2,7 @@
 //  Observer.h
 //  MoGO
 //
-//  Created by Andreas Holtz on 30.12.12.
+//  Created by 0schleew on 30.12.12.
 //
 //
 

@@ -10,7 +10,7 @@
 #import "Observer.h"
 #import "Time.h"
 
-@interface SlotTemplateView : UIControl
+@interface SlotTemplateView : UIControl <UIAlertViewDelegate>
 
 @property (nonatomic) IBOutlet UIView* mainView;
 @property (nonatomic) IBOutlet UILabel* appointmentLabel;
