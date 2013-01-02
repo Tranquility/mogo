@@ -34,6 +34,9 @@
     self.doctor.text = [self.prescription.doctor fullName];
     self.date.text = date;
     self.note.text = self.prescription.note;
+    if (self.prescription.fee) {
+        self.fee.text = NSLocalizedString(@"gebührenpflichtig", @"CHARGEABLE");
+    }
     self.qrcode.image = self.prescription.qrCode;
     
 }
