@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchViewController : UIViewController
+@interface SearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic) IBOutlet UIPickerView* pickerView;
 @property (nonatomic) IBOutlet UITableView* tableView;
 @property (nonatomic) IBOutlet UIView* subView;
-@property (nonatomic) IBOutlet UITextField* doctorNameField;
-@property (nonatomic) NSMutableArray* chosenDoctors;
-@property (nonatomic) NSMutableArray* allDoctors;
-@property (nonatomic) NSMutableArray* disciplines;
-
+@property (nonatomic) IBOutlet UISearchBar* searchBar;
+@property (nonatomic) IBOutlet UIBarButtonItem *disciplineButton;
 
 @end
