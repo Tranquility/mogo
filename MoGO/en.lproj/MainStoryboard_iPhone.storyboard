@@ -468,12 +468,16 @@
                                 <color key="textColor" red="0.24959663722826086" green="0.24959663722826086" blue="0.24959663722826086" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="040 712 24 56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7xq-Qe-ky7" userLabel="doctorphone">
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" text="040 712 24 56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7xq-Qe-ky7" userLabel="doctorphone">
                                 <rect key="frame" x="27" y="261" width="268" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Dun-6E-kBJ" appends="YES" id="nrt-Z7-fhT"/>
+                                </connections>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mo. - Do. 08:00 bis 13:00 Uhr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w6X-ms-Klb" userLabel="doctoropening">
                                 <rect key="frame" x="26" y="319" width="268" height="21"/>
@@ -498,6 +502,14 @@
                                     <outletCollection property="gestureRecognizers" destination="ym7-aS-NJJ" appends="YES" id="iks-ZM-M3q"/>
                                 </connections>
                             </mapView>
+                            <imageView contentMode="scaleToFill" image="phone.gif" id="5IX-pg-9LH">
+                                <rect key="frame" x="229" y="258" width="36" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="A0f-SE-5ih" appends="YES" id="y3d-F5-eZY"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -524,6 +536,16 @@
                 <tapGestureRecognizer id="ym7-aS-NJJ" userLabel="mapTappedRecognizer">
                     <connections>
                         <action selector="mapClicked:" destination="RWq-Jq-LmT" id="3Df-dc-I7S"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="A0f-SE-5ih" userLabel="phoneIconTapped">
+                    <connections>
+                        <action selector="initiateCall:" destination="RWq-Jq-LmT" id="lCy-uL-XCr"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Dun-6E-kBJ" userLabel="phoneLabelTapped">
+                    <connections>
+                        <action selector="initiateCall:" destination="RWq-Jq-LmT" id="jfF-J1-qVQ"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -951,6 +973,7 @@
     </scenes>
     <resources>
         <image name="detail_disclosure.jpg" width="29" height="29"/>
+        <image name="phone.gif" width="43" height="41"/>
         <image name="qr.png" width="120" height="120"/>
         <image name="sternNormal.jpg" width="385" height="369"/>
     </resources>
@@ -960,8 +983,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="4zZ-Pj-sG2"/>
         <segue reference="UYi-6G-KtP"/>
+        <segue reference="4zZ-Pj-sG2"/>
         <segue reference="ims-AM-hPl"/>
     </inferredMetricsTieBreakers>
 </document>

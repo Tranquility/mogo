@@ -29,5 +29,6 @@
 
 - (IBAction)setFavourite:(id)favourite;
 - (IBAction)mapClicked:(id)sender;
+- (IBAction)initiateCall:(id)sender;
 
 @end
