@@ -11,26 +11,25 @@
 @interface SlotTemplateView ()
 
 @property (nonatomic) NSDate *dateForAppointment;
+
 @end
 
 @implementation SlotTemplateView
 - (id)initWithFrame:(CGRect)frame date:(NSDate*)date observer:(Observer*)observer
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        
+    if (self) {        
         self.dateForAppointment = date;
         self.observer = observer;
 
         //Load the nib-File and set this object as owner
         [[NSBundle mainBundle] loadNibNamed:@"SlotTemplateView" owner:self options:nil];
         
-        //Date formatter for a single day
+        //Extract the time from the NSDate
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"HH";
         NSInteger hour = [[formatter stringFromDate:date] integerValue];
         
-        //extract the minute of the date
         formatter.dateFormat = @"mm";
         NSInteger minute = [[formatter stringFromDate:date] integerValue];
         Time *time = [[Time alloc] initWithHour:hour andMinute:minute];
@@ -46,9 +45,28 @@
     return self;
 }
 
--(void)saveNewAppointment:(id)sender
+- (IBAction)saveNewAppointment:(id)sender
 {
-    [self.observer notifyFromSender:slotTemplate withValue:self.dateForAppointment];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'";
+    NSString *dateString = [formatter stringFromDate:self.dateForAppointment];
+    NSString *message = [NSString stringWithFormat:@"Wollen Sie %@ verbindlich einen Termin vereinbaren?", dateString];
+    
+    UIAlertView *confirmAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
+                                                message:NSLocalizedString(message, @"ADD_DOCTOR_TO_FAV")
+                                               delegate:self
+                                      cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                      otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+
+    [confirmAppointment show];
+}
+
+#pragma mark UIAlertView Delegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self.observer notifyFromSender:slotTemplate withValue:self.dateForAppointment];
+    }
 }
 
 @end
