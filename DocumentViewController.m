@@ -9,6 +9,7 @@
 #import "DocumentViewController.h"
 #import "PrescriptionModel.h"
 #import "DrugDetailViewController.h"
+#import "ApiClient.h"
 
 @interface DocumentViewController ()
 
@@ -31,19 +32,42 @@
 {
     [super viewDidLoad];
     
-    NSMutableArray *prescriptionList = [[NSMutableArray alloc] init];
-	PrescriptionModel *prescription = [[PrescriptionModel alloc] initWithId:1 doctorId:21 date:[[NSDate alloc] init] note:@"3x täglich" medication:@"Gelomyrtol" additionalCharge:0 qrCode:[UIImage imageNamed:@"qr.png"]];
-    [prescriptionList addObject:prescription];
-    prescription = [[PrescriptionModel alloc] initWithId:2 doctorId:22 date:[[NSDate alloc] init] note:@"1x täglich" medication:@"ACC Akut 800" additionalCharge:0 qrCode:[UIImage imageNamed:@"qr.png"]];
-    [prescriptionList addObject:prescription];
-    
-    self.prescriptionList = prescriptionList;    
+    [self fetchDocuments];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)fetchDocuments {
+    [[ApiClient sharedInstance] getPath:@"mailings.json" parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id response) {
+                                    NSArray* prescriptions = [response valueForKeyPath:@"Prescription"];
+                                    if (prescriptions != nil) {
+                                        [self fetchPrescriptions:prescriptions];
+                                    }
+                                    
+                                    //TODO: Same as before but with other doc types
+                                    
+                                    [self.tableView reloadData];
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    NSLog(@"Error fetching docs!");
+                                    NSLog(@"%@", error);
+                                    
+                                }];
+    
+}
+
+- (void)fetchPrescriptions:(NSArray*)prescriptionsJson {
+    NSMutableArray *prescriptionArray = [[NSMutableArray alloc] init];
+    for (NSDictionary* dict in prescriptionsJson) {
+        PrescriptionModel *prescription = [[PrescriptionModel alloc] initWithDictionary:dict];
+        [prescriptionArray addObject:prescription];
+    }
+    self.prescriptionList = prescriptionArray;
 }
 
 #pragma mark TableViewDelegate/Datasource methods

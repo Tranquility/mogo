@@ -18,4 +18,6 @@
 
 - (AppointmentModel*)initWithId:(NSInteger)idNumber doctor:(DoctorModel*)doctor andDate:(NSDate*)date andNote:(NSString*)note;
 
+- (AppointmentModel*)initWithDictionary:(NSDictionary*)dictionary;
+
 @end

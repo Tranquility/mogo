@@ -321,6 +321,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Dokumente" id="rrV-4g-E6d"/>
                     <connections>
+                        <outlet property="tableView" destination="7Uj-o8-pod" id="2OP-d1-yn8"/>
                         <outlet property="view" destination="7Uj-o8-pod" id="e3p-dv-bGy"/>
                         <segue destination="hdV-vS-xno" kind="push" identifier="toDrugDetail" id="dsQ-LE-OKB"/>
                     </connections>
@@ -359,28 +360,28 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bemerkung" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jaw-A9-qCI">
-                                <rect key="frame" x="20" y="115" width="95" height="21"/>
+                                <rect key="frame" x="20" y="144" width="95" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dr.Scrum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pjv-Nn-Jl3">
-                                <rect key="frame" x="84" y="57" width="189" height="21"/>
+                                <rect key="frame" x="88" y="57" width="189" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="4.12.12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0qc-za-oTj">
-                                <rect key="frame" x="84" y="86" width="189" height="21"/>
+                                <rect key="frame" x="88" y="86" width="189" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="0wU-cU-Z2S">
-                                <rect key="frame" x="20" y="144" width="280" height="144"/>
+                                <rect key="frame" x="20" y="165" width="280" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
@@ -391,6 +392,20 @@
                                 <rect key="frame" x="33" y="228" width="240" height="188"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Gebühr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KYK-hp-IUw">
+                                <rect key="frame" x="20" y="115" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="gebührenfrei" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7qB-kG-9Sh">
+                                <rect key="frame" x="89" y="115" width="184" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -399,6 +414,7 @@
                     <connections>
                         <outlet property="date" destination="0qc-za-oTj" id="B1e-Jy-D8w"/>
                         <outlet property="doctor" destination="Pjv-Nn-Jl3" id="bbx-Ok-qNN"/>
+                        <outlet property="fee" destination="7qB-kG-9Sh" id="vad-1e-25x"/>
                         <outlet property="medication" destination="klb-vq-fMV" id="GjQ-nQ-mfZ"/>
                         <outlet property="note" destination="0wU-cU-Z2S" id="dud-sk-XFA"/>
                         <outlet property="qrcode" destination="4cf-Q1-yuh" id="eMN-O9-8rn"/>
@@ -960,12 +976,16 @@
         </class>
         <class className="DocumentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="DrugDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DrugDetailViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="date" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="doctor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fee" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="medication" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="note" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="qrcode" candidateClass="UIImageView"/>
@@ -979,7 +999,7 @@
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="MakeAppointmentViewController" superclassName="UIViewController">
+        <class className="MakeAppointmentViewController" superclassName="Observer">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MakeAppointmentViewController.h"/>
             <relationships>
                 <relationship kind="action" name="moveCalendarViewtoLeft:"/>
@@ -1006,6 +1026,9 @@
                 <relationship kind="outlet" name="phoneField" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="typeField" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="Observer" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Observer.h"/>
         </class>
         <class className="RegisterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
