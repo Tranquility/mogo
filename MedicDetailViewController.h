@@ -28,5 +28,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
 - (IBAction)setFavourite:(id)favourite;
+- (IBAction)mapClicked:(id)sender;
 
 @end

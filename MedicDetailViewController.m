@@ -10,7 +10,8 @@
 #import "MakeAppointmentViewController.h"
 #import "MapViewAnnotation.h"
 #import "AddressModel.h"
-
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 @implementation MedicDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -134,7 +135,39 @@
         UIAlertView *addNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"ADDED") message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"ADD_DOCTOR_TO_FAV") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [addNotification show];
     }
+
+}
+
+//Called whenever the user taps the map
+- (IBAction)mapClicked:(id)sender
+{
+    CLLocationCoordinate2D location;
+    location.latitude = [self.doctor.address.latitude floatValue];
+    location.longitude = [self.doctor.address.longitude floatValue];
     
+    [self openMapsAppWithDestination:location];
+    
+}
+
+- (void)openMapsAppWithDestination:(CLLocationCoordinate2D)destination
+{
+    Class itemClass = [MKMapItem class];
+    if (itemClass && [itemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)])
+    {
+        MKMapItem *currentLocation = [MKMapItem mapItemForCurrentLocation];
+        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:destination addressDictionary:nil]];
+        toLocation.name = self.doctor.fullName;
+        [MKMapItem openMapsWithItems:[NSArray arrayWithObjects:currentLocation, toLocation, nil]
+                       launchOptions:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:MKLaunchOptionsDirectionsModeDriving, [NSNumber numberWithBool:YES], nil]
+                                                                 forKeys:[NSArray arrayWithObjects:MKLaunchOptionsDirectionsModeKey, MKLaunchOptionsShowsTrafficKey, nil]]];
+    }
+    else //iOS 5 or lower
+    {
+        NSMutableString *url = [NSMutableString stringWithString:@"http://maps.google.com/maps?"];
+        [url appendFormat:@"saddr=Current Location"];
+        [url appendFormat:@"&daddr=%f,%f", destination.latitude, destination.longitude];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
