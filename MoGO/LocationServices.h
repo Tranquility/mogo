@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 @interface LocationServices : NSObject
+@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) CLLocation *usersGeoLocation;
+
 
 -(LocationServices*)initWithRunningLocationService;
 
@@ -18,7 +21,7 @@
 
 
 //returns the user's current position
--(CLLocation*) getUsersCurrentLocation;
+-(CLLocation*) usersCurrentLocation;
 
 
 //computes the distance between two locations in meter

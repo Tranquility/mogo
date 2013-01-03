@@ -8,17 +8,15 @@
 
 #import "LocationServices.h"
 
-CLLocationManager *locationManager;
-CLLocation *usersGeoLocation;
 @implementation LocationServices
 
 -(LocationServices*)initWithRunningLocationService
 {
     self = [super init];
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.distanceFilter = kCLDistanceFilterNone;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [locationManager startUpdatingLocation];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
     
     return self;
 }
@@ -28,10 +26,10 @@ CLLocation *usersGeoLocation;
     return [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
 }
 
--(CLLocation*) getUsersCurrentLocation
+-(CLLocation*) usersCurrentLocation
 {
-    return [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude
-                                                  longitude:locationManager.location.coordinate.longitude];
+    return [[CLLocation alloc] initWithLatitude:self.locationManager.location.coordinate.latitude
+                                                  longitude:self.locationManager.location.coordinate.longitude];
 
 }
 

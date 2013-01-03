@@ -85,7 +85,7 @@ LocationServices *locationService;
 {
     for(DoctorModel* doc in self.allDoctors)
     {
-        usersGeoLocation = [locationService getUsersCurrentLocation];
+        usersGeoLocation = [locationService usersCurrentLocation];
         CLLocation *docLocation = [locationService generateLocation:[doc.address.latitude floatValue]
                                                           longitude:[doc.address.longitude floatValue]];
         double distanceInMeters = [locationService distanceBetweenTwoLocations:docLocation andSecondLocation:usersGeoLocation];
