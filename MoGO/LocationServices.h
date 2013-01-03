@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-@interface LocationServices : NSObject
+@interface LocationServices : NSObject <CLLocationManagerDelegate>
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *usersGeoLocation;
 
@@ -26,6 +26,8 @@
 
 //computes the distance between two locations in meter
 -(CLLocationDistance) distanceBetweenTwoLocations:(CLLocation*)firstLocation andSecondLocation:(CLLocation*)secondLocation;
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error;
 
 
 

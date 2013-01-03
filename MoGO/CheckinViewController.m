@@ -12,7 +12,7 @@
 #import "LocationServices.h"
 
 #define NO_DOCTOR_FOUND  @"NO"
-#define MAX_DISTANCE_TO_PRACTICE_IN_METERS  6.0
+#define MAX_DISTANCE_TO_PRACTICE_IN_METERS  4.0
 
 
 
@@ -63,7 +63,7 @@
          
                                     if([self.officeOwner isEqualToString:NO_DOCTOR_FOUND])
                                     {
-                                        [self.practiceLabel setText:@"Kein Arzt in der Nähe"];
+                                        [self.practiceLabel setText:NSLocalizedString(@"Kein Arzt in der Nähe", @"Kein Arzt in der Nähe")];
                                          self.checkinButton.enabled = NO;
                                     }//no doctor around
                                     else
@@ -73,10 +73,10 @@
         }//success
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     UIAlertView *errorOccurred = [[UIAlertView alloc] initWithTitle:error
-                                                                                               message:@"Das tut uns leid, versuchen Sie es erneut"
+                                                                                               message:NSLocalizedString(@"Das tut uns leid, versuchen Sie es erneut", @"Das tut uns leid, versuchen Sie es erneut")
                                                                                                delegate:nil
                                                                                                cancelButtonTitle:@"Ok"
-                                                                                               otherButtonTitles:nil, nil];
+                                                                                               otherButtonTitles:nil];
                                     [errorOccurred show];
                                 }];
     
@@ -121,7 +121,7 @@
 
 - (IBAction)checkinPressed:(id)sender {
     NSString *message = [NSString stringWithFormat:@"Bei %@ angemeldet", self.officeOwner];
-    UIAlertView *checkinConfirmed = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Ckeck-In erfolgreich", @"Check-In erfolgreich") message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    UIAlertView *checkinConfirmed = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Ckeck-In erfolgreich", @"Check-In erfolgreich") message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [checkinConfirmed show];
     
 }

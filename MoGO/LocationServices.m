@@ -8,7 +8,7 @@
 
 #import "LocationServices.h"
 
-@implementation LocationServices
+@implementation LocationServices 
 
 -(LocationServices*)initWithRunningLocationService
 {
@@ -37,6 +37,24 @@
 {
     return [firstLocation distanceFromLocation:secondLocation];
 }
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Fehler: %@", error);
+    UIAlertView *errorAlert = [[UIAlertView alloc]
+                               initWithTitle:NSLocalizedString(@"Fehler", @"Fehler") message:NSLocalizedString(@"Position konnte nicht bestimmt werden. Probieren Sie es erneut", @"Position konnte nicht bestimmt werden. Probieren Sie es erneut") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+/*- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil) {
+        
+    }
+}*/
 
 
 @end
