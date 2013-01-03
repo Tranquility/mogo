@@ -14,6 +14,7 @@ CLLocation *usersGeoLocation;
 
 -(LocationServices*)initWithRunningLocationService
 {
+    self = [super init];
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -29,9 +30,9 @@ CLLocation *usersGeoLocation;
 
 -(CLLocation*) getUsersCurrentLocation
 {
-    usersGeoLocation = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude
+    return [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude
                                                   longitude:locationManager.location.coordinate.longitude];
-    return usersGeoLocation;
+
 }
 
 -(CLLocationDistance) distanceBetweenTwoLocations:(CLLocation*)firstLocation andSecondLocation:(CLLocation*)secondLocation
