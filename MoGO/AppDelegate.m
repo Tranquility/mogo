@@ -7,15 +7,36 @@
 //
 
 #import "AppDelegate.h"
+#import "ApiClient.h"
+#import "DoctorModel.h"
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    //Get data from server and save them in classes property
+    [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id response) {
+                                    
+                                    NSMutableArray *tempDoctors = [[NSMutableArray alloc] init];
+                                    for (id doctorJson in response)
+                                    {
+                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
+                                        [tempDoctors addObject:doctorModel];
+                                    }
+                                    self.allDoctors = [[NSArray alloc] initWithArray:tempDoctors];                                    
+                                }//success
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                                    NSLog(@"%@", error);
+                                    
+                                }]; //server request finished
+    
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
@@ -54,5 +75,6 @@
      See also applicationDidEnterBackground:.
      */
 }
+
 
 @end
