@@ -11,5 +11,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic) UIWindow *window;
+//Array which holds all registered doctors, gets filled on startup
+@property (nonatomic)  NSArray *allDoctors;
+
 
 @end
