@@ -12,6 +12,7 @@
 #import "DoctorModel.h"
 #import "MedicDetailViewController.h"
 #import "SVProgressHUD.h"
+#import "AppDelegate.h"
 
 @interface SearchViewController ()
 
@@ -83,7 +84,7 @@
                                     
                                 }];
     
-    [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
+  /*  [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     
                                     NSMutableArray *tempDoctors = [[NSMutableArray alloc] init];
@@ -101,7 +102,12 @@
                                     NSLog(@"Error fetching docs!");
                                     NSLog(@"%@", error);
                                     
-                                }];
+                                }]; */
+    //filling arrays
+    AppDelegate *mainDelegate = [[UIApplication sharedApplication] delegate];
+    self.chosenDoctors = [[NSArray alloc] initWithArray:mainDelegate.allDoctors];
+    self.allDoctors = [[NSArray alloc] initWithArray:mainDelegate.allDoctors];
+    [SVProgressHUD dismiss];
     
 }
 
