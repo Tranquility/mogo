@@ -103,7 +103,7 @@
                                     NSLog(@"%@", error);
                                     
                                 }]; */
-    //filling arrays
+    //fill local arrays
     AppDelegate *mainDelegate = [[UIApplication sharedApplication] delegate];
     self.chosenDoctors = [[NSArray alloc] initWithArray:mainDelegate.allDoctors];
     self.allDoctors = [[NSArray alloc] initWithArray:mainDelegate.allDoctors];
