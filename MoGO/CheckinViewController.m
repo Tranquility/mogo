@@ -12,17 +12,18 @@
 #import "LocationServices.h"
 
 #define NO_DOCTOR_FOUND  @"NO"
-#define MAX_DISTANCE_TO_PRACTICE  6.0
+#define MAX_DISTANCE_TO_PRACTICE_IN_METERS  6.0
 
-CLLocation *usersGeoLocation;
-NSString *practiceOwner;
-LocationServices *locationService;
 
 
 @interface CheckinViewController ()
 @property (nonatomic) DoctorModel *chosenDoctor;
 @property (nonatomic) NSArray *chosenDiscipline;
 @property (nonatomic) NSMutableArray *doctorsForDiscipline;
+@property (nonatomic) CLLocation *usersGeoLocation;
+@property (nonatomic) NSString *officeOwner;
+@property (nonatomic) LocationServices *locationService;
+
 @end
 
 @implementation CheckinViewController
@@ -31,8 +32,8 @@ LocationServices *locationService;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        usersGeoLocation = [[CLLocation alloc] init];
-        practiceOwner = @"NO";
+        self.usersGeoLocation = [[CLLocation alloc] init];
+        self.officeOwner = @"NO";
     }
     return self;
 }
@@ -57,17 +58,17 @@ LocationServices *locationService;
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
                                         [self.allDoctors addObject:doctorModel];
                                     }//asked for every doctor from DB
-                                    locationService = [[LocationServices alloc] initWithRunningLocationService];
+                                    self.locationService = [[LocationServices alloc] initWithRunningLocationService];
                                     [self checkForDoctorInRange];
          
-                                    if([practiceOwner isEqualToString:NO_DOCTOR_FOUND])
+                                    if([self.officeOwner isEqualToString:NO_DOCTOR_FOUND])
                                     {
                                         [self.practiceLabel setText:@"Kein Arzt in der Nähe"];
                                          self.checkinButton.enabled = NO;
                                     }//no doctor around
                                     else
                                     {
-                                        [self.practiceLabel setText:practiceOwner];
+                                        [self.practiceLabel setText:self.officeOwner];
                                     }
         }//success
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -85,19 +86,19 @@ LocationServices *locationService;
 {
     for(DoctorModel* doc in self.allDoctors)
     {
-        usersGeoLocation = [locationService usersCurrentLocation];
-        CLLocation *docLocation = [locationService generateLocation:[doc.address.latitude floatValue]
+        self.usersGeoLocation = [self.locationService usersCurrentLocation];
+        CLLocation *docLocation = [self.locationService generateLocation:[doc.address.latitude floatValue]
                                                           longitude:[doc.address.longitude floatValue]];
-        double distanceInMeters = [locationService distanceBetweenTwoLocations:docLocation andSecondLocation:usersGeoLocation];
+        double distanceInMeters = [self.locationService distanceBetweenTwoLocations:docLocation andSecondLocation:self.usersGeoLocation];
         
-        if(distanceInMeters < MAX_DISTANCE_TO_PRACTICE)
+        if(distanceInMeters < MAX_DISTANCE_TO_PRACTICE_IN_METERS)
         {
-            practiceOwner = doc.fullName;
+            self.officeOwner = doc.fullName;
             break;
         }
         else
         {
-            practiceOwner = @"NO";
+            self.officeOwner = @"NO";
         }
 
     }//queue
@@ -119,7 +120,7 @@ LocationServices *locationService;
 
 
 - (IBAction)checkinPressed:(id)sender {
-    NSString *message = [NSString stringWithFormat:@"Bei %@ angemeldet", practiceOwner];
+    NSString *message = [NSString stringWithFormat:@"Bei %@ angemeldet", self.officeOwner];
     UIAlertView *checkinConfirmed = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Ckeck-In erfolgreich", @"Check-In erfolgreich") message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [checkinConfirmed show];
     
