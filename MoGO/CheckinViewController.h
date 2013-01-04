@@ -13,8 +13,8 @@
 
 @interface CheckinViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextView *descriptionField;
+
 @property (weak, nonatomic) IBOutlet UILabel *actualDoctorLabel;
-@property (weak, nonatomic) IBOutlet UILabel *practiceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *checkinButton;
 - (IBAction)checkinPressed:(id)sender;
 

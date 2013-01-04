@@ -27,7 +27,6 @@
 //computes the distance between two locations in meter
 -(CLLocationDistance) distanceBetweenTwoLocations:(CLLocation*)firstLocation andSecondLocation:(CLLocation*)secondLocation;
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error;
 
 
 

@@ -14,6 +14,7 @@
 {
     self = [super init];
     self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startUpdatingLocation];
@@ -28,9 +29,7 @@
 
 -(CLLocation*) usersCurrentLocation
 {
-    return [[CLLocation alloc] initWithLatitude:self.locationManager.location.coordinate.latitude
-                                                  longitude:self.locationManager.location.coordinate.longitude];
-
+    return self.usersGeoLocation;
 }
 
 -(CLLocationDistance) distanceBetweenTwoLocations:(CLLocation*)firstLocation andSecondLocation:(CLLocation*)secondLocation
@@ -46,7 +45,15 @@
     [errorAlert show];
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocation *currentLocation = newLocation;    
+    if (currentLocation != nil)
+    {
+        self.usersGeoLocation = currentLocation;
+    }
 
+}
 
 
 @end

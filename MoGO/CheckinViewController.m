@@ -6,6 +6,7 @@
 //
 //
 
+#import "AppDelegate.h"
 #import "CheckinViewController.h"
 #import "ApiClient.h"
 #import "DoctorModel.h"
@@ -40,8 +41,10 @@
 
 - (void)viewDidLoad
 {
-
+    self.locationService = [[LocationServices alloc] initWithRunningLocationService];
     [super viewDidLoad];
+
+
     self.allDoctors = [[NSMutableArray alloc] init];
 	// Do any additional setup after loading the view.
     //TODO: Unproper use of NSLocalizedString because project isn't localized yet. Fix when changed.
@@ -49,7 +52,7 @@
     [self.checkinButton setTitle:NSLocalizedString(@"Anmeldung druchführen", @"Anmeldung durchführen") forState:UIControlStateNormal];
     //init Location Manager
     
-    //DB THINGIES
+    //Fetch Doctors from server
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response)
      {
@@ -58,17 +61,17 @@
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
                                         [self.allDoctors addObject:doctorModel];
                                     }//asked for every doctor from DB
-                                    self.locationService = [[LocationServices alloc] initWithRunningLocationService];
+         
                                     [self checkForDoctorInRange];
          
-                                    if([self.officeOwner isEqualToString:NO_DOCTOR_FOUND])
+                                    if([self.officeOwner isEqualToString:NO_DOCTOR_FOUND] || self.usersGeoLocation == nil)
                                     {
-                                        [self.practiceLabel setText:NSLocalizedString(@"Kein Arzt in der Nähe", @"Kein Arzt in der Nähe")];
+                                        [self.actualDoctorLabel setText:NSLocalizedString(@"Kein Arzt in der Nähe", @"Kein Arzt in der Nähe")];
                                          self.checkinButton.enabled = NO;
                                     }//no doctor around
                                     else
                                     {
-                                        [self.practiceLabel setText:self.officeOwner];
+                                        [self.actualDoctorLabel setText:self.officeOwner];
                                     }
         }//success
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -84,9 +87,9 @@
 
 - (void) checkForDoctorInRange
 {
+    self.usersGeoLocation = [self.locationService usersCurrentLocation];
     for(DoctorModel* doc in self.allDoctors)
     {
-        self.usersGeoLocation = [self.locationService usersCurrentLocation];
         CLLocation *docLocation = [self.locationService generateLocation:[doc.address.latitude floatValue]
                                                           longitude:[doc.address.longitude floatValue]];
         double distanceInMeters = [self.locationService distanceBetweenTwoLocations:docLocation andSecondLocation:self.usersGeoLocation];
@@ -101,7 +104,7 @@
             self.officeOwner = @"NO";
         }
 
-    }//queue
+    }//loop
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,8 +116,8 @@
 - (void)viewDidUnload {
     [self setDescriptionField:nil];
     [self setActualDoctorLabel:nil];
-    [self setPracticeLabel:nil];
     [self setCheckinButton:nil];
+    [self setActualDoctorLabel:nil];
     [super viewDidUnload];
 }
 
