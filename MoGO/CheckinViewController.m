@@ -12,7 +12,7 @@
 #import "LocationServices.h"
 
 #define NO_DOCTOR_FOUND  @"NO"
-#define MAX_DISTANCE_TO_PRACTICE_IN_METERS  4.0
+#define MAX_DISTANCE_TO_SURGERY_IN_METERS  25.0
 
 
 
@@ -91,7 +91,7 @@
                                                           longitude:[doc.address.longitude floatValue]];
         double distanceInMeters = [self.locationService distanceBetweenTwoLocations:docLocation andSecondLocation:self.usersGeoLocation];
         
-        if(distanceInMeters < MAX_DISTANCE_TO_PRACTICE_IN_METERS)
+        if(distanceInMeters < MAX_DISTANCE_TO_SURGERY_IN_METERS)
         {
             self.officeOwner = doc.fullName;
             break;
