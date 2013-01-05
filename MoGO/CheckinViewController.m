@@ -41,35 +41,12 @@
 }
 
 - (void)viewDidLoad {
-    self.locationManager = [[CLLocationManager alloc] init];
     [super viewDidLoad];
     
+    self.locationManager = [[CLLocationManager alloc] init];
     self.checkinButton.enabled = NO;
     
-    [[ApiClient sharedInstance] getPath:@"appointments.json?now=true"
-                             parameters:nil
-                                success:^(AFHTTPRequestOperation *operation, id response) {
-                                    if (((NSArray*) response).count> 0) {
-                                        for (NSDictionary *dict in response) {
-                                            DoctorModel *doctor = [[DoctorModel alloc] initWithDictionary:response];
-                                            if ([self isDoctorInRange:doctor]) {
-                                                self.doctorLabel.text = doctor.fullName;
-                                                self.checkinButton.enabled = TRUE;
-                                            }
-                                        }
-                                    }
-                                }
-                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    NSString *title = [NSString stringWithFormat:@"%@", error];
-                                    NSLog(@"%@", title);
-                                    NSString *message = NSLocalizedString(@"Das tut uns leid, versuchen Sie es erneut", @"SRY_TRY_AGAIN");
-                                    UIAlertView *errorOccurred = [[UIAlertView alloc] initWithTitle:title
-                                                                                            message:message
-                                                                                           delegate:nil
-                                                                                  cancelButtonTitle:@"Ok"
-                                                                                  otherButtonTitles:nil];
-                                    [errorOccurred show];
-                                }];
+    [self checkLocationForCurrentAppointment];
     
 }
 
@@ -96,6 +73,33 @@
 }
 
 #pragma mark Private helper methods
+
+- (void)checkLocationForCurrentAppointment {
+    [[ApiClient sharedInstance] getPath:@"appointments.json?now=true"
+                             parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id response) {
+                                    if (((NSArray*) response).count> 0) {
+                                        for (NSDictionary *dict in response) {
+                                            DoctorModel *doctor = [[DoctorModel alloc] initWithDictionary:response];
+                                            if ([self isDoctorInRange:doctor]) {
+                                                self.doctorLabel.text = doctor.fullName;
+                                                self.checkinButton.enabled = TRUE;
+                                            }
+                                        }
+                                    }
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    NSString *title = [NSString stringWithFormat:@"%@", error];
+                                    NSLog(@"%@", title);
+                                    NSString *message = NSLocalizedString(@"Das tut uns leid, versuchen Sie es erneut", @"SRY_TRY_AGAIN");
+                                    UIAlertView *errorOccurred = [[UIAlertView alloc] initWithTitle:title
+                                                                                            message:message
+                                                                                           delegate:nil
+                                                                                  cancelButtonTitle:@"Ok"
+                                                                                  otherButtonTitles:nil];
+                                    [errorOccurred show];
+                                }];
+}
 
 - (BOOL)isDoctorInRange:(DoctorModel*)doctor {
 
