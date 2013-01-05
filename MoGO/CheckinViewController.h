@@ -11,14 +11,12 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface CheckinViewController : UIViewController
+@interface CheckinViewController : UIViewController <CLLocationManagerDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextView *descriptionField;
-
-@property (weak, nonatomic) IBOutlet UILabel *actualDoctorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *doctorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *checkinButton;
+
 - (IBAction)checkinPressed:(id)sender;
-
-@property (nonatomic) NSMutableArray* allDoctors;
-
 
 @end

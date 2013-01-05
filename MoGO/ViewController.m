@@ -25,15 +25,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.checkinButton.titleLabel.textAlignment = UITextAlignmentCenter;
     self.checkinButton.titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
-    //TODO: Unproper use of NSLocalizedString because project isn't localized yet. Fix when changed.
-    //(Replace first line with actual key then)
-    [self.checkinButton setTitle:(@"Anmeldung bei \n Praxis", @"Anmeldung bei \n Praxis")forState:UIControlStateNormal];
+
+    [self.checkinButton setTitle:NSLocalizedString(@"Anmelden bei\nPraxis", @"CHECKIN") forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload
 {
-    [self setCheckinButton:nil];
-    [self setCheckinButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -67,10 +64,5 @@
     } else {
         return YES;
     }
-}
-
-
-
-- (IBAction)checkinButtonPressed:(id)sender {
 }
 @end

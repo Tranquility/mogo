@@ -10,7 +10,6 @@
 #import "CheckinViewController.h"
 #import "ApiClient.h"
 #import "DoctorModel.h"
-#import "LocationServices.h"
 
 #define NO_DOCTOR_FOUND  @"NO"
 #define MAX_DISTANCE_TO_OFFICE_IN_METERS  25.0
@@ -18,12 +17,14 @@
 
 
 @interface CheckinViewController ()
+
 @property (nonatomic) DoctorModel *chosenDoctor;
 @property (nonatomic) NSArray *chosenDiscipline;
 @property (nonatomic) NSMutableArray *doctorsForDiscipline;
 @property (nonatomic) CLLocation *usersGeoLocation;
 @property (nonatomic) NSString *officeOwner;
-@property (nonatomic) LocationServices *locationService;
+@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) CLLocation *location;
 
 @end
 
@@ -33,78 +34,78 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.usersGeoLocation = [[CLLocation alloc] init];
+        self.location = [[CLLocation alloc] init];
         self.officeOwner = @"NO";
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
-    self.locationService = [[LocationServices alloc] initWithRunningLocationService];
+- (void)viewDidLoad {
+    self.locationManager = [[CLLocationManager alloc] init];
     [super viewDidLoad];
-
-
-    self.allDoctors = [[NSMutableArray alloc] init];
-	// Do any additional setup after loading the view.
-    //TODO: Unproper use of NSLocalizedString because project isn't localized yet. Fix when changed.
-    //(Replace first line with actual key then)
-    [self.checkinButton setTitle:NSLocalizedString(@"Anmeldung druchführen", @"Anmeldung durchführen") forState:UIControlStateNormal];
-    //init Location Manager
     
-    //Fetch Doctors from server
-    [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
-                                success:^(AFHTTPRequestOperation *operation, id response)
-     {
-                                    for (id doctorJson in response)
-                                    {
-                                        DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
-                                        [self.allDoctors addObject:doctorModel];
-                                    }//asked for every doctor from DB
-         
-                                    [self checkForDoctorInRange];
-         
-                                    if([self.officeOwner isEqualToString:NO_DOCTOR_FOUND] || self.usersGeoLocation == nil)
-                                    {
-                                        [self.actualDoctorLabel setText:NSLocalizedString(@"Kein Arzt in der Nähe", @"Kein Arzt in der Nähe")];
-                                         self.checkinButton.enabled = NO;
-                                    }//no doctor around
-                                    else
-                                    {
-                                        [self.actualDoctorLabel setText:self.officeOwner];
+    self.checkinButton.enabled = NO;
+    
+    [[ApiClient sharedInstance] getPath:@"appointments.json?now=true"
+                             parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id response) {
+                                    if (((NSArray*) response).count> 0) {
+                                        for (NSDictionary *dict in response) {
+                                            DoctorModel *doctor = [[DoctorModel alloc] initWithDictionary:response];
+                                            if ([self isDoctorInRange:doctor]) {
+                                                self.doctorLabel.text = doctor.fullName;
+                                                self.checkinButton.enabled = TRUE;
+                                            }
+                                        }
                                     }
-        }//success
+                                }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    UIAlertView *errorOccurred = [[UIAlertView alloc] initWithTitle:error
-                                                                                               message:NSLocalizedString(@"Das tut uns leid, versuchen Sie es erneut", @"Das tut uns leid, versuchen Sie es erneut")
-                                                                                               delegate:nil
-                                                                                               cancelButtonTitle:@"Ok"
-                                                                                               otherButtonTitles:nil];
+                                    NSString *title = [NSString stringWithFormat:@"%@", error];
+                                    NSLog(@"%@", title);
+                                    NSString *message = NSLocalizedString(@"Das tut uns leid, versuchen Sie es erneut", @"SRY_TRY_AGAIN");
+                                    UIAlertView *errorOccurred = [[UIAlertView alloc] initWithTitle:title
+                                                                                            message:message
+                                                                                           delegate:nil
+                                                                                  cancelButtonTitle:@"Ok"
+                                                                                  otherButtonTitles:nil];
                                     [errorOccurred show];
                                 }];
     
 }
 
-- (void) checkForDoctorInRange
-{
-    self.usersGeoLocation = [self.locationService usersCurrentLocation];
-    for(DoctorModel* doc in self.allDoctors)
-    {
-        CLLocation *docLocation = [self.locationService generateLocation:[doc.address.latitude floatValue]
-                                                          longitude:[doc.address.longitude floatValue]];
-        double distanceInMeters = [self.locationService distanceBetweenTwoLocations:docLocation andSecondLocation:self.usersGeoLocation];
-        
-        if(distanceInMeters < MAX_DISTANCE_TO_OFFICE_IN_METERS)
-        {
-            self.officeOwner = doc.fullName;
-            break;
-        }
-        else
-        {
-            self.officeOwner = @"NO";
-        }
+#pragma mark - CLLocationManagerDelegate
 
-    }//loop
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                         message:NSLocalizedString(@"Fehler beim Laden Ihres Standorts", @"FAIL_LOADING_LOCATION")
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil) {
+        [self.locationManager stopUpdatingLocation];
+        self.location = currentLocation;
+    }
+}
+
+#pragma mark Private helper methods
+
+- (BOOL)isDoctorInRange:(DoctorModel*)doctor {
+
+        CLLocationDegrees latitude = [doctor.address.latitude floatValue];
+        CLLocationDegrees longitude = [doctor.address.longitude floatValue];
+        CLLocation *doctorLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+        
+        double distanceInMeters = [self.location distanceFromLocation:doctorLocation];
+        
+    return distanceInMeters < MAX_DISTANCE_TO_OFFICE_IN_METERS;
 }
 
 - (void)didReceiveMemoryWarning
@@ -115,16 +116,19 @@
 
 - (void)viewDidUnload {
     [self setDescriptionField:nil];
-    [self setActualDoctorLabel:nil];
+    [self setDoctorLabel:nil];
     [self setCheckinButton:nil];
-    [self setActualDoctorLabel:nil];
     [super viewDidUnload];
 }
 
 
 - (IBAction)checkinPressed:(id)sender {
     NSString *message = [NSString stringWithFormat:@"Bei %@ angemeldet", self.officeOwner];
-    UIAlertView *checkinConfirmed = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Ckeck-In erfolgreich", @"Check-In erfolgreich") message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *checkinConfirmed = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Ckeck-In erfolgreich", @"CHECKIN_SUCCESSFUL")
+                                                               message:message
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"Ok"
+                                                     otherButtonTitles:nil];
     [checkinConfirmed show];
     
 }

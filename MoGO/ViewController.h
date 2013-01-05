@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+
+// Need this because there is a line wrap in the button text
 @property (weak, nonatomic) IBOutlet UIButton *checkinButton;
-
-- (IBAction)checkinButtonPressed:(id)sender;
-
 
 @end

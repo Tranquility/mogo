@@ -29,8 +29,6 @@
 		2D95D8C1166E7F98000A0122 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D95D8C0166E7F98000A0122 /* MessageUI.framework */; };
 		2D95D8C4166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
 		2D95D8C5166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
-		2DB51A0F169105CD000B9D79 /* LocationServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB51A0E169105CD000B9D79 /* LocationServices.m */; };
-		2DB51A10169105CD000B9D79 /* LocationServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB51A0E169105CD000B9D79 /* LocationServices.m */; };
 		991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */; };
 		991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */; };
 		BA3E87C8167D0B5E00590DFA /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E87C7167D0B5E00590DFA /* CredentialStore.m */; };
@@ -103,8 +101,6 @@
 		2D95D8C0166E7F98000A0122 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2D95D8C2166E80B1000A0122 /* MailManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailManipulator.h; sourceTree = "<group>"; };
 		2D95D8C3166E80B1000A0122 /* MailManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailManipulator.m; sourceTree = "<group>"; };
-		2DB51A0D169105CD000B9D79 /* LocationServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationServices.h; sourceTree = "<group>"; };
-		2DB51A0E169105CD000B9D79 /* LocationServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationServices.m; sourceTree = "<group>"; };
 		991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthTemplateOverviewView.xib; sourceTree = "<group>"; };
 		991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthTemplateOverviewView.h; sourceTree = "<group>"; };
 		991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthTemplateOverviewView.m; sourceTree = "<group>"; };
@@ -353,8 +349,6 @@
 		F13335F91662317300502A50 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				2DB51A0D169105CD000B9D79 /* LocationServices.h */,
-				2DB51A0E169105CD000B9D79 /* LocationServices.m */,
 				F13335F516622A1600502A50 /* DoctorModel.h */,
 				F13335F616622A1600502A50 /* DoctorModel.m */,
 				F13335FA166231AA00502A50 /* AppointmentModel.h */,
@@ -530,7 +524,6 @@
 				2D95D8C5166E80B1000A0122 /* MailManipulator.m in Sources */,
 				2D7CABBD166FB89F008187C0 /* LoginViewController.m in Sources */,
 				2D43F64C1687E6720067A7E2 /* CheckinViewController.m in Sources */,
-				2DB51A10169105CD000B9D79 /* LocationServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,7 +563,6 @@
 				DA1DC677167DDBBE00B5D63C /* PrescriptionModel.m in Sources */,
 				BA3E87C8167D0B5E00590DFA /* CredentialStore.m in Sources */,
 				2D43F64B1687E6720067A7E2 /* CheckinViewController.m in Sources */,
-				2DB51A0F169105CD000B9D79 /* LocationServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
