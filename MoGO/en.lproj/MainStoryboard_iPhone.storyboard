@@ -97,8 +97,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="checkinButtonPressed:" destination="2" eventType="touchUpInside" id="nQn-Pa-JTJ"/>
-                                    <segue destination="xcP-fo-ZgD" kind="push" id="kd8-eP-5HC"/>
+                                    <segue destination="xcP-fo-ZgD" kind="push" id="NF6-Oj-4ah"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1142,7 +1141,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="checkinButtonPressed:"/>
                 <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
             </relationships>
         </class>
