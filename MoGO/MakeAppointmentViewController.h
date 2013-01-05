@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DoctorModel.h"
-#import "MoGO/Observer.h"
+#import "Observer.h"
 
 @interface MakeAppointmentViewController : UIViewController <Observer>
 
