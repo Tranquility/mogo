@@ -10,6 +10,7 @@
 #import "CheckinViewController.h"
 #import "ApiClient.h"
 #import "DoctorModel.h"
+#import "SVProgressHUD.h"
 
 #define NO_DOCTOR_FOUND  @"NO"
 #define MAX_DISTANCE_TO_OFFICE_IN_METERS  25.0
@@ -75,18 +76,24 @@
 #pragma mark Private helper methods
 
 - (void)checkLocationForCurrentAppointment {
+    
+    [SVProgressHUD show];
+    
     [[ApiClient sharedInstance] getPath:@"appointments.json?now=true"
                              parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     if (((NSArray*) response).count> 0) {
                                         for (NSDictionary *dict in response) {
-                                            DoctorModel *doctor = [[DoctorModel alloc] initWithDictionary:response];
+                                            NSDictionary *subDict = [dict valueForKey:@"doctor"];
+                                            DoctorModel *doctor = [[DoctorModel alloc] initWithDictionary:subDict];
                                             if ([self isDoctorInRange:doctor]) {
+                                                self.officeOwner = doctor.fullName;
                                                 self.doctorLabel.text = doctor.fullName;
                                                 self.checkinButton.enabled = TRUE;
                                             }
                                         }
                                     }
+                                    [SVProgressHUD dismiss];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSString *title = [NSString stringWithFormat:@"%@", error];

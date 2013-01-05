@@ -228,10 +228,10 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="vjR-uI-CUX" userLabel="explanationTextField">
-                                <rect key="frame" x="20" y="30" width="280" height="139"/>
+                                <rect key="frame" x="25" y="47" width="280" height="121"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Durch das Anmelden bei einer Praxis geben Sie dem behandelnden Arzt die Erlaubnis Ihre Krankendaten einzusehen. Dies verbessert die Effektivität der Behandlung.     
+                                <string key="text">Durch das Anmelden bei einer Praxis geben Sie dem behandelnden Arzt die Erlaubnis Ihre Krankendaten einzusehen.     
   </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
