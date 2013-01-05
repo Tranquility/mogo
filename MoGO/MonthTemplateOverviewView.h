@@ -13,7 +13,7 @@
 
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UIView *calendarView;
-@property (nonatomic) Observer *observer;
+@property (nonatomic) id<Observer> observer;
 
-- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year observer:(Observer*)observer slots:(NSArray*)slots;
+- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year observer:(id<Observer>)observer slots:(NSArray*)slots;
 @end

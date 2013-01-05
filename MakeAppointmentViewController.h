@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DoctorModel.h"
-#import "Observer.h"
+#import "MoGO/Observer.h"
 
-@interface MakeAppointmentViewController : Observer
+@interface MakeAppointmentViewController : UIViewController <Observer>
 
 @property (nonatomic) IBOutlet UILabel *doctorLabel;
 @property (nonatomic) IBOutlet UILabel *doctorDisciplineLabel;
