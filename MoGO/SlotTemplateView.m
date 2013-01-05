@@ -15,7 +15,7 @@
 @end
 
 @implementation SlotTemplateView
-- (id)initWithFrame:(CGRect)frame date:(NSDate*)date observer:(Observer*)observer
+- (id)initWithFrame:(CGRect)frame date:(NSDate*)date observer:(id<Observer>)observer
 {
     self = [super initWithFrame:frame];
     if (self) {        

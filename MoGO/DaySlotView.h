@@ -13,9 +13,9 @@
 
 @property (nonatomic) IBOutlet UIView* mainView;
 @property (nonatomic) IBOutlet UIView* slotView;
-@property (nonatomic) Observer* observer;
+@property (nonatomic) id<Observer> observer;
 
-- (id)initWithFrame:(CGRect)frame day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year appointments:(NSArray*)appointments observer:(Observer*)observer container:(UIScrollView*)container;
+- (id)initWithFrame:(CGRect)frame day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year appointments:(NSArray*)appointments observer:(id<Observer>)observer container:(UIScrollView*)container;
 
 
 @end
