@@ -212,7 +212,7 @@
         cell.detailTextLabel.text = @"";
     }
     else{
-        //Offset the array inde by -1 because of the first static entry ("Arzt suchen")
+        //Offset the array index by -1 because of the first static entry ("Arzt suchen")
         NSString *doctorID = [self.favouriteDoctorIDList objectAtIndex:[indexPath row]-1];
         DoctorModel* doctorModel = [self getDoctorById:doctorID];
         
