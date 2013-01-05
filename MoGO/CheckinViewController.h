@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *descriptionField;
 @property (weak, nonatomic) IBOutlet UILabel *doctorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *checkinButton;
+@property (weak, nonatomic) IBOutlet UILabel *checkinMsgLabel;
 
 - (IBAction)checkinPressed:(id)sender;
 

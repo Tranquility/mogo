@@ -236,7 +236,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sie können sich anmelden bei" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="syy-Dl-1gM" userLabel="loginAtDescriptionLabel">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sie können sich anmelden bei" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="syy-Dl-1gM" userLabel="loginAtDescriptionLabel">
                                 <rect key="frame" x="25" y="200" width="275" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -256,6 +256,7 @@
                     <navigationItem key="navigationItem" title="Bei Praxis anmelden" id="D8k-ie-0LL"/>
                     <connections>
                         <outlet property="checkinButton" destination="E53-4g-gIW" id="QG0-cn-ZrU"/>
+                        <outlet property="checkinMsgLabel" destination="syy-Dl-1gM" id="aNL-Z9-Xt0"/>
                         <outlet property="descriptionField" destination="vjR-uI-CUX" id="01R-PW-q0m"/>
                         <outlet property="doctorLabel" destination="h1U-2Z-3KC" id="Wk3-fw-beh"/>
                     </connections>
@@ -1068,6 +1069,7 @@
             <relationships>
                 <relationship kind="action" name="checkinPressed:"/>
                 <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="checkinMsgLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="descriptionField" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
             </relationships>

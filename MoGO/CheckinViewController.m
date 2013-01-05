@@ -89,9 +89,18 @@
                                             if ([self isDoctorInRange:doctor]) {
                                                 self.officeOwner = doctor.fullName;
                                                 self.doctorLabel.text = doctor.fullName;
+                                                self.checkinMsgLabel.hidden = NO;
                                                 self.checkinButton.enabled = TRUE;
                                             }
                                         }
+                                        
+                                        if (!self.checkinButton.enabled) {
+                                            NSString *message = NSLocalizedString(@"Kein Arzt in Ihrer Nähe", @"NO_MEDIC_IN_RANGE");
+                                            self.doctorLabel.text = message;
+                                        }
+                                    } else {
+                                        NSString *message = NSLocalizedString(@"Sie haben zur Zeit keinen Termin", @"NO_APPOINTMENT_CURRENTLY");
+                                        self.doctorLabel.text = message;
                                     }
                                     [SVProgressHUD dismiss];
                                 }
