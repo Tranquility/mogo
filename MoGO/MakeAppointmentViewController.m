@@ -12,7 +12,6 @@
 #import "AppointmentViewController.h"
 #import "SlotTemplateView.h"
 #import "ApiClient.h"
-#import "SVProgressHUD.h"
 
 #define RUBY_DATE @"yyyy-MM-dd'T'HH:mm:ss'Z'"
 

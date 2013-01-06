@@ -10,7 +10,6 @@
 #import "DaySlotView.h"
 #import "ApiClient.h"
 #import "Time.h"
-#import "SVProgressHUD.h"
 
 @interface MakeAppointmentDayViewController()
 

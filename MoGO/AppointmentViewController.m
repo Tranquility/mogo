@@ -14,7 +14,6 @@
 #import "ApiClient.h"
 #import "MakeAppointmentViewController.h"
 #import "AppointmentDetailViewController.h"
-#import "SVProgressHUD.h"
 
 @interface AppointmentViewController ()
 

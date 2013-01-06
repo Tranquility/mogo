@@ -10,7 +10,6 @@
 #import "PrescriptionModel.h"
 #import "DrugDetailViewController.h"
 #import "ApiClient.h"
-#import "SVProgressHUD.h"
 
 @interface DocumentViewController ()
 

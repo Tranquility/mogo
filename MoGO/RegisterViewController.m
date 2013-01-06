@@ -9,7 +9,6 @@
 #import "RegisterViewController.h"
 #import "MailManipulator.h"
 #import "ApiClient.h"
-#import "SVProgressHUD.h"
 
 #define PASSWORD_MIN_SIZE 6
 

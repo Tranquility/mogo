@@ -10,7 +10,6 @@
 #import "ViewController.h"
 #import "ApiClient.h"
 #import "CredentialStore.h"
-#import "SVProgressHUD.h"
 
 @interface LoginViewController ()
     @property (nonatomic) CredentialStore *credentialStore;
