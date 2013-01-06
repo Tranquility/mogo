@@ -104,6 +104,7 @@ typedef enum {
                                 parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     [SVProgressHUD dismiss];
+                                    [self.navigationController popViewControllerAnimated:YES];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SVProgressHUD dismiss];

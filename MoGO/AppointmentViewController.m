@@ -47,9 +47,14 @@
 {
     [super viewDidLoad];
     
-    [self fetchAppointments];
     [self fetchFavouriteDoctorIds];
     [self fetchDoctorList];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self fetchAppointments];
 }
 
 - (void)viewDidUnload
@@ -103,6 +108,7 @@
 - (void)fetchAppointments
 {
     self.appointmentList = [[NSMutableArray alloc] init];
+    [self.appointmentsTableView reloadData];
     
     [[ApiClient sharedInstance] getPath:@"appointments.json"
                              parameters:nil
