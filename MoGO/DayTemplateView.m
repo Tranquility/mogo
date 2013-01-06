@@ -12,7 +12,7 @@
 
 @implementation DayTemplateView
 
-- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day observer:(Observer*)observer;
+- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day observer:(id<Observer>)observer;
 {
     self = [super initWithFrame:frame];
     if (self) {

@@ -24,7 +24,7 @@
 
 @implementation MakeAppointmentDayViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year  observer:(Observer*)observer otherAvailableDays:(NSArray*)otherDays;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year  observer:(id<Observer>)observer otherAvailableDays:(NSArray*)otherDays;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {

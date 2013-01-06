@@ -14,7 +14,7 @@
 
 NSInteger const DAY_OFFSET = 1;
 
-- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year observer:(Observer*)observer slots:(NSArray*)slots;
+- (id)initWithFrame:(CGRect)frame month:(NSInteger)month year:(NSInteger)year observer:(id<Observer>)observer slots:(NSArray*)slots;
 {
     
     self = [super initWithFrame:frame];

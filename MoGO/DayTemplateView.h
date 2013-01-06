@@ -19,13 +19,13 @@ typedef enum {
 
 @property (nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic) IBOutlet UILabel *dayLabel;
-@property (nonatomic) Observer *observer;
+@property (nonatomic) id<Observer> observer;
 @property (nonatomic) State myState;
 @property (nonatomic) NSInteger day;
 
 //Action performed whenever a day is touched
 - (IBAction)showDay:(id)sender;
 
-- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day observer:(Observer*)observer;
+- (id)initWithFrame:(CGRect)frame state:(State)state day:(NSInteger)day observer:(id<Observer>)observer;
 
 @end

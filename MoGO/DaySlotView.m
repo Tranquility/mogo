@@ -11,7 +11,7 @@
 
 @implementation DaySlotView
 
-- (id)initWithFrame:(CGRect)frame day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year appointments:(NSArray*)appointments observer:(Observer*)observer container:(UIScrollView*)container
+- (id)initWithFrame:(CGRect)frame day:(NSInteger)day month:(NSInteger)month year:(NSInteger)year appointments:(NSArray*)appointments observer:(id<Observer>)observer container:(UIScrollView*)container
 {
     self = [super initWithFrame:frame];
     [[NSBundle mainBundle] loadNibNamed:@"DaySlotView" owner:self options:nil];

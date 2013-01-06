@@ -14,9 +14,9 @@
 
 @property (nonatomic) IBOutlet UIView* mainView;
 @property (nonatomic) IBOutlet UILabel* appointmentLabel;
-@property (nonatomic) Observer* observer;
+@property (nonatomic) id<Observer> observer;
 
-- (id)initWithFrame:(CGRect)frame date:(NSDate*)date observer:(Observer*)observer;
+- (id)initWithFrame:(CGRect)frame date:(NSDate*)date observer:(id<Observer>)observer;
 
 - (IBAction)saveNewAppointment:(id)sender;
 
