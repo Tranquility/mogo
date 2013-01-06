@@ -11,7 +11,6 @@
 #import "ApiClient.h"
 #import "DoctorModel.h"
 #import "MedicDetailViewController.h"
-#import "SVProgressHUD.h"
 
 @interface SearchViewController ()
 

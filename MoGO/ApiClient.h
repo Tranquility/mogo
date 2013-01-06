@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
+#import "SVProgressHUD.h"
 
 @interface ApiClient : AFHTTPClient
 

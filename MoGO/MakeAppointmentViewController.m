@@ -12,7 +12,6 @@
 #import "AppointmentViewController.h"
 #import "SlotTemplateView.h"
 #import "ApiClient.h"
-#import "SVProgressHUD.h"
 
 #define RUBY_DATE @"yyyy-MM-dd'T'HH:mm:ss'Z'"
 
@@ -125,6 +124,8 @@
     @"doctor":[NSNumber numberWithInteger:self.doctor.idNumber]
     };
     
+    [SVProgressHUD show];
+    
     [[ApiClient sharedInstance] getPath:path
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id slots) {
@@ -139,7 +140,9 @@
                                     MonthTemplateOverviewView *monthView = [[MonthTemplateOverviewView alloc] initWithFrame:r month:month year:year observer:self slots:availableSlots];
                                     
                                     //Add Calendar View as a subview to the scrollview and tell the buttons which function to call when they are pressed
-                                    [self.calendarScrollView addSubview:monthView.mainView];                                    
+                                    [self.calendarScrollView addSubview:monthView.mainView];
+                                    
+                                    [SVProgressHUD dismiss];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Error fetching docs!");

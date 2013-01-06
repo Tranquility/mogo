@@ -71,12 +71,15 @@
     @"password": self.passwordField.text
     };
     
-    
+    [SVProgressHUD show];
+
     [[ApiClient sharedInstance] postPath:@"/tokens.json"
                                 parameters:params
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        NSString *authToken = [responseObject objectForKey:@"token"];
                                        [self.credentialStore setAuthToken:authToken];
+                                       
+                                       [SVProgressHUD dismiss];
                                        [self dismissViewControllerAnimated:YES completion:nil];
                                        
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
