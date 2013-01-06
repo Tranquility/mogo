@@ -9,13 +9,9 @@
 #import "AppointmentDetailViewController.h"
 #import "ApiClient.h"
 #import "SVProgressHUD.h"
+#import "MakeAppointmentViewController.h"
 
 @interface AppointmentDetailViewController ()
-
-typedef enum {
-    CANCEL,
-    CHANGE
-} Action;
 
 @property (nonatomic) Action selectedAction;
 
@@ -59,25 +55,34 @@ typedef enum {
 - (IBAction)cancelButton:(id)sender {
     self.selectedAction = CANCEL;
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'";
-    NSString *dateString = [formatter stringFromDate:self.appointment.date];
     NSString *doctorString = self.appointment.doctor.fullName;
     
-    NSString *message = [NSString stringWithFormat:@"Wollen Sie den Termin %@ bei %@ absagen?", dateString, doctorString];
+    NSString *message = [NSString stringWithFormat:@"Wollen Sie den Termin bei %@ absagen?", doctorString];
     
-    UIAlertView *confirmAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
+    UIAlertView *cancelAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
                                                                  message:NSLocalizedString(message, @"CANCEL_APPOINTMENT")
                                                                 delegate:self
                                                        cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
                                                        otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
     
-    [confirmAppointment show];
+    [cancelAppointment show];
     
 }
 
 - (IBAction)changeButton:(id)sender {
     self.selectedAction = CHANGE;
+    
+    NSString *doctorString = self.appointment.doctor.fullName;
+    
+    NSString *message = [NSString stringWithFormat:@"Wollen Sie den Termin bei %@ verschieben?", doctorString];
+    
+    UIAlertView *rescheduleAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
+                                                                message:NSLocalizedString(message, @"RESCHEDULE_APPOINTMENT")
+                                                               delegate:self
+                                                      cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                                      otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+    
+    [rescheduleAppointment show];
 }
 
 #pragma mark UIAlertViewDelegage methods
@@ -87,8 +92,8 @@ typedef enum {
             [self cancelAppointment];
         }
     } else if (self.selectedAction == CHANGE) {
-        if (buttonIndex) {
-            // change appointment
+        if (buttonIndex == 1) {
+            [self changeAppointment];
         }
     }
 }
@@ -112,6 +117,16 @@ typedef enum {
                                     NSLog(@"%@", error);
                                     
                                 }];
+}
+
+- (void)changeAppointment {
+    MakeAppointmentViewController *makeAppointment = [self.storyboard instantiateViewControllerWithIdentifier:@"MakeAppointmentViewController"];
+    
+    makeAppointment.doctor = self.appointment.doctor;
+    makeAppointment.selectedAction = self.selectedAction;
+    makeAppointment.idNumber = self.appointment.idNumber;
+    
+    [self.navigationController pushViewController:makeAppointment animated:YES];
 }
 
 @end

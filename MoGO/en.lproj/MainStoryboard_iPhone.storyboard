@@ -115,7 +115,7 @@
         <!--Appointment View Controller - Termine-->
         <scene sceneID="NxR-UI-Rog">
             <objects>
-                <viewController id="JKN-HO-f9c" customClass="AppointmentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppointmentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JKN-HO-f9c" customClass="AppointmentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dev-xL-IVv">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -641,10 +641,10 @@
             </objects>
             <point key="canvasLocation" x="1823" y="452"/>
         </scene>
-        <!--Make Appointment View Controller - Termin vereinbaren-->
+        <!--Make Appointment View Controller - MakeAppointmentViewController-->
         <scene sceneID="jRv-Pa-rxy">
             <objects>
-                <viewController id="gCb-VM-UNO" customClass="MakeAppointmentViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MakeAppointmentViewController" title="MakeAppointmentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gCb-VM-UNO" customClass="MakeAppointmentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sZJ-Ck-s2G">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -732,7 +732,7 @@
         <!--Appointment Detail View Controller - Termindetail-->
         <scene sceneID="V93-fu-UUn">
             <objects>
-                <viewController id="wEp-Bs-d7t" customClass="AppointmentDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppointmentDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wEp-Bs-d7t" customClass="AppointmentDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nwb-py-SvJ">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1199,8 +1199,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="UYi-6G-KtP"/>
-        <segue reference="4zZ-Pj-sG2"/>
-        <segue reference="ims-AM-hPl"/>
+        <segue reference="mtb-th-UsI"/>
+        <segue reference="G07-vO-8EL"/>
+        <segue reference="1Fk-rt-SPK"/>
     </inferredMetricsTieBreakers>
 </document>
