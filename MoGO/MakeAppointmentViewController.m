@@ -251,7 +251,7 @@
                                          [self deleteAppointment];
                                      } else {
                                          [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
-                                         [self performSelector:@selector(popToAppointmentView) withObject:nil afterDelay:1.5];
+                                         [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
                                      }
                                      
                                      
@@ -278,7 +278,7 @@
                                 parameters:nil
                                    success:^(AFHTTPRequestOperation *operation, id response) {
                                        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde verschoben", @"APPOINTMENT_RESCHEDULED")];
-                                       [self performSelector:@selector(popToAppointmentView) withObject:nil afterDelay:1.5];
+                                       [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
                                    }
                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        [SVProgressHUD dismiss];
@@ -287,10 +287,8 @@
                                    }];
 }
 
-- (void)popToAppointmentView {
-    AppointmentViewController *appointmentVC = [self.navigationController.viewControllers objectAtIndex:1];
-    
-    [self.navigationController popToViewController:appointmentVC animated:YES];
+- (void)popToRootView {    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end
