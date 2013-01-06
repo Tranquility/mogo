@@ -108,8 +108,9 @@
     [[ApiClient sharedInstance] deletePath:path
                                 parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
-                                    [SVProgressHUD dismiss];
-                                    [self.navigationController popViewControllerAnimated:YES];
+                                    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde abgesagt", @"APPOINTMENT_CANCELED")];
+                                    
+                                    [self performSelector:@selector(popToParentController) withObject:nil afterDelay:1.5];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     [SVProgressHUD dismiss];
@@ -127,6 +128,10 @@
     makeAppointment.idNumber = self.appointment.idNumber;
     
     [self.navigationController pushViewController:makeAppointment animated:YES];
+}
+
+- (void)popToParentController {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

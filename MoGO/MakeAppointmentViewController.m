@@ -247,14 +247,11 @@
     [[ApiClient sharedInstance] postPath:@"appointments.json"
                               parameters:params
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                     [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
-                                     
                                      if (self.selectedAction == CHANGE) {
                                          [self deleteAppointment];
                                      } else {
-                                         AppointmentViewController *appointmentVC = [self.navigationController.viewControllers objectAtIndex:1];
-                                         
-                                         [self.navigationController popToViewController:appointmentVC animated:YES];
+                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
+                                         [self performSelector:@selector(popToAppointmentView) withObject:nil afterDelay:1.5];
                                      }
                                      
                                      
@@ -280,16 +277,20 @@
     [[ApiClient sharedInstance] deletePath:path
                                 parameters:nil
                                    success:^(AFHTTPRequestOperation *operation, id response) {
-                                       [SVProgressHUD dismiss];
-                                       AppointmentViewController *appointmentVC = [self.navigationController.viewControllers objectAtIndex:1];
-                                       
-                                       [self.navigationController popToViewController:appointmentVC animated:YES];
+                                       [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde verschoben", @"APPOINTMENT_RESCHEDULED")];
+                                       [self performSelector:@selector(popToAppointmentView) withObject:nil afterDelay:1.5];
                                    }
                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        [SVProgressHUD dismiss];
                                        NSLog(@"Error deleting appointment");
                                        NSLog(@"%@", error);
                                    }];
+}
+
+- (void)popToAppointmentView {
+    AppointmentViewController *appointmentVC = [self.navigationController.viewControllers objectAtIndex:1];
+    
+    [self.navigationController popToViewController:appointmentVC animated:YES];
 }
 
 @end
