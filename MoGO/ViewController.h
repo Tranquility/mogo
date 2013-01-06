@@ -10,5 +10,7 @@
 
 @interface ViewController : UIViewController
 
+// Need this because there is a line wrap in the button text
+@property (weak, nonatomic) IBOutlet UIButton *checkinButton;
 
 @end

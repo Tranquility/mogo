@@ -17,6 +17,9 @@
 		25FAB33A16661B62008EB8CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25FAB33816661B62008EB8CF /* InfoPlist.strings */; };
 		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
 		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
+		2D43F64B1687E6720067A7E2 /* CheckinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D43F64A1687E6720067A7E2 /* CheckinViewController.m */; };
+		2D43F64C1687E6720067A7E2 /* CheckinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D43F64A1687E6720067A7E2 /* CheckinViewController.m */; };
+		2D43F64F1687EA650067A7E2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D43F64E1687EA650067A7E2 /* CoreLocation.framework */; };
 		2D451DC9168FE63A0058A6A7 /* phone.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2D451DC8168FE63A0058A6A7 /* phone.gif */; };
 		2D7CABBC166FB89F008187C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7CABBB166FB89F008187C0 /* LoginViewController.m */; };
 		2D7CABBD166FB89F008187C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7CABBB166FB89F008187C0 /* LoginViewController.m */; };
@@ -85,6 +88,9 @@
 		2D163A211660F116000A65A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2D163A231661021D000A65A7 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		2D163A241661021D000A65A7 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
+		2D43F6491687E6720067A7E2 /* CheckinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckinViewController.h; sourceTree = "<group>"; };
+		2D43F64A1687E6720067A7E2 /* CheckinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckinViewController.m; sourceTree = "<group>"; };
+		2D43F64E1687EA650067A7E2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2D451DC8168FE63A0058A6A7 /* phone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = phone.gif; sourceTree = "<group>"; };
 		2D7CABBA166FB89F008187C0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		2D7CABBB166FB89F008187C0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D43F64F1687EA650067A7E2 /* CoreLocation.framework in Frameworks */,
 				2D95D8C1166E7F98000A0122 /* MessageUI.framework in Frameworks */,
 				2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */,
 				DAC9BA031660D7FA00C36D2E /* UIKit.framework in Frameworks */,
@@ -263,6 +270,7 @@
 		DAC9BA011660D7FA00C36D2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D43F64E1687EA650067A7E2 /* CoreLocation.framework */,
 				2D95D8C0166E7F98000A0122 /* MessageUI.framework */,
 				2D163A211660F116000A65A7 /* MapKit.framework */,
 				DAC9BA021660D7FA00C36D2E /* UIKit.framework */,
@@ -293,6 +301,8 @@
 				F1DBD2AF167368010078CF28 /* MakeAppointmentDayViewController.m */,
 				F1DBD2B0167368010078CF28 /* MakeAppointmentDayViewController.xib */,
 				F1AB2D6B16788D3D0020D0F1 /* SlotTemplateView.xib */,
+				2D43F6491687E6720067A7E2 /* CheckinViewController.h */,
+				2D43F64A1687E6720067A7E2 /* CheckinViewController.m */,
 				BA3E87C6167D0B5E00590DFA /* CredentialStore.h */,
 				BA3E87C7167D0B5E00590DFA /* CredentialStore.m */,
 				F1AB2D6816788CF00020D0F1 /* SlotTemplateView.h */,
@@ -517,6 +527,7 @@
 				2D95D8BE166E758D000A0122 /* RegisterViewController.m in Sources */,
 				2D95D8C5166E80B1000A0122 /* MailManipulator.m in Sources */,
 				2D7CABBD166FB89F008187C0 /* LoginViewController.m in Sources */,
+				2D43F64C1687E6720067A7E2 /* CheckinViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +566,7 @@
 				BAA674A91698EEAB0081594D /* DocumentViewController.m in Sources */,
 				BAA674AC1698EEC40081594D /* MakeAppointmentViewController.m in Sources */,
 				BAA674AF1698EEDB0081594D /* MedicDetailViewController.m in Sources */,
+				2D43F64B1687E6720067A7E2 /* CheckinViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+    self.checkinButton.titleLabel.textAlignment = UITextAlignmentCenter;
+    self.checkinButton.titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+
+    [self.checkinButton setTitle:NSLocalizedString(@"Anmelden bei\nPraxis", @"CHECKIN") forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload
@@ -62,7 +65,4 @@
         return YES;
     }
 }
-
-
-
 @end
