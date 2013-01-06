@@ -748,6 +748,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="changeButton:" destination="wEp-Bs-d7t" eventType="touchUpInside" id="E48-pg-2Jp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dSI-UN-mX9">
                                 <rect key="frame" x="20" y="352" width="280" height="44"/>
@@ -760,6 +763,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancelButton:" destination="wEp-Bs-d7t" eventType="touchUpInside" id="pIw-bt-Ivj"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dr. Ole Scrum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5QR-7v-fde" userLabel="doctorLabel">
                                 <rect key="frame" x="20" y="20" width="280" height="35"/>
@@ -811,10 +817,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="oBZ-Bn-oaC" userLabel="noteTextView">
-                                <rect key="frame" x="131" y="156" width="169" height="97"/>
+                                <rect key="frame" x="131" y="156" width="169" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -823,8 +828,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Termindetail" id="EQq-eb-AHb"/>
                     <connections>
-                        <outlet property="cancelButton" destination="dSI-UN-mX9" id="6Uo-qX-bwd"/>
-                        <outlet property="changeButton" destination="jvq-5K-TrD" id="Ytf-EZ-2rJ"/>
+                        <outlet property="cancelButton" destination="dSI-UN-mX9" id="1sx-Ur-erc"/>
+                        <outlet property="changeButton" destination="jvq-5K-TrD" id="hQ5-Cm-onC"/>
                         <outlet property="dateLabel" destination="oBH-OR-spK" id="QkQ-40-zXH"/>
                         <outlet property="disciplineLabel" destination="Yp0-2y-03E" id="yAN-j5-pQR"/>
                         <outlet property="doctorLabel" destination="5QR-7v-fde" id="joG-Gs-Cde"/>
@@ -1071,6 +1076,8 @@
         <class className="AppointmentDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelButton:"/>
+                <relationship kind="action" name="changeButton:"/>
                 <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="changeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
@@ -1129,7 +1136,7 @@
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="MakeAppointmentViewController" superclassName="Observer">
+        <class className="MakeAppointmentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MakeAppointmentViewController.h"/>
             <relationships>
                 <relationship kind="action" name="moveCalendarViewtoLeft:"/>
@@ -1159,9 +1166,6 @@
                 <relationship kind="outlet" name="typeField" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="Observer" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Observer.h"/>
-        </class>
         <class className="RegisterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
             <relationships>
@@ -1176,7 +1180,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="disciplineButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="doctorNameField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="subView" candidateClass="UIView"/>

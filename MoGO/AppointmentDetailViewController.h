@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppointmentModel.h"
 
-@interface AppointmentDetailViewController : UIViewController
+@interface AppointmentDetailViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic) IBOutlet UILabel *doctorLabel;
 @property (nonatomic) IBOutlet UILabel *disciplineLabel;
@@ -20,5 +20,9 @@
 @property (nonatomic) IBOutlet UIButton *cancelButton;
 
 @property (nonatomic) AppointmentModel *appointment;
+
+- (IBAction)cancelButton:(id)sender;
+
+- (IBAction)changeButton:(id)sender;
 
 @end
