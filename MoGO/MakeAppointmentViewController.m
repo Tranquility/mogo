@@ -251,7 +251,7 @@
                                      
                                      if (self.selectedAction == CHANGE) {
                                          [self deleteAppointment];
-                                     } else if (self.selectedAction == NEW) {
+                                     } else {
                                          AppointmentViewController *appointmentVC = [self.navigationController.viewControllers objectAtIndex:1];
                                          
                                          [self.navigationController popToViewController:appointmentVC animated:YES];
