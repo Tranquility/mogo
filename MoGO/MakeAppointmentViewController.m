@@ -9,6 +9,7 @@
 #import "MakeAppointmentViewController.h"
 #import "MonthTemplateOverviewView.h"
 #import "MakeAppointmentDayViewController.h"
+#import "AppointmentViewController.h"
 #import "SlotTemplateView.h"
 #import "ApiClient.h"
 #import "SVProgressHUD.h"
@@ -36,10 +37,11 @@
  TODO: After a new appointment has been saved, this class needs to pop the navigation stack, and perhaps also move via to the startScreen or the appointmentDetails.
  
  */
+
 @interface MakeAppointmentViewController ()
 
-@property NSInteger currentOffset;
-@property NSMutableDictionary *slotsPerMonth;
+@property (nonatomic) NSInteger currentOffset;
+@property (nonatomic) NSMutableDictionary *slotsPerMonth;
 
 @end
 
@@ -242,9 +244,17 @@
     
     [SVProgressHUD show];
     
-    [[ApiClient sharedInstance] postPath:@"/appointments.json" parameters:params
+    [[ApiClient sharedInstance] postPath:@"appointments.json"
+                              parameters:params
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                     [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
+                                     if (self.selectedAction == CHANGE) {
+                                         [self deleteAppointment];
+                                     } else {
+                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
+                                         [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
+                                     }
+                                     
+                                     
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      if (operation.response.statusCode == 500) {
                                          NSLog(@"Unknown Error");
@@ -258,6 +268,27 @@
                                          [SVProgressHUD showErrorWithStatus:errorMessage];
                                      }
                                  }];
+}
+
+- (void)deleteAppointment {
+    
+    NSString *path = [NSString stringWithFormat:@"appointments/%d.json", self.idNumber];
+    
+    [[ApiClient sharedInstance] deletePath:path
+                                parameters:nil
+                                   success:^(AFHTTPRequestOperation *operation, id response) {
+                                       [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde verschoben", @"APPOINTMENT_RESCHEDULED")];
+                                       [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
+                                   }
+                                   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       [SVProgressHUD dismiss];
+                                       NSLog(@"Error deleting appointment");
+                                       NSLog(@"%@", error);
+                                   }];
+}
+
+- (void)popToRootView {    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

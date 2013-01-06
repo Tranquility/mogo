@@ -14,6 +14,7 @@
 #import "ApiClient.h"
 #import "MakeAppointmentViewController.h"
 #import "AppointmentDetailViewController.h"
+#import "SVProgressHUD.h"
 
 @interface AppointmentViewController ()
 
@@ -47,9 +48,14 @@
 {
     [super viewDidLoad];
     
-    [self fetchAppointments];
     [self fetchFavouriteDoctorIds];
     [self fetchDoctorList];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self fetchAppointments];
 }
 
 - (void)viewDidUnload
@@ -69,12 +75,16 @@
 {
     self.doctorList = [[NSMutableArray alloc] init];
     
+    [SVProgressHUD show];
+    
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     for (id doctorJson in response) {
                                         DoctorModel *doctorModel = [[DoctorModel alloc] initWithDictionary:doctorJson];
                                         [self.doctorList addObject:doctorModel];
                                     }
+                                    
+                                    [SVProgressHUD dismiss];
                                     [self.appointmentsTableView reloadData];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -103,7 +113,8 @@
 - (void)fetchAppointments
 {
     self.appointmentList = [[NSMutableArray alloc] init];
-    
+
+    [SVProgressHUD show];
     [[ApiClient sharedInstance] getPath:@"appointments.json"
                              parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
@@ -111,6 +122,7 @@
                                         AppointmentModel *appointment = [[AppointmentModel alloc] initWithDictionary:dict];
                                         [self.appointmentList addObject:appointment];
                                     }
+                                    [SVProgressHUD dismiss];
                                     
                                     [self.appointmentsTableView reloadData];
                                 }

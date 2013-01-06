@@ -7,8 +7,13 @@
 //
 
 #import "AppointmentDetailViewController.h"
+#import "ApiClient.h"
+#import "SVProgressHUD.h"
+#import "MakeAppointmentViewController.h"
 
 @interface AppointmentDetailViewController ()
+
+@property (nonatomic) Action selectedAction;
 
 @end
 
@@ -45,6 +50,88 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)cancelButton:(id)sender {
+    self.selectedAction = CANCEL;
+    
+    NSString *doctorString = self.appointment.doctor.fullName;
+    
+    NSString *message = [NSString stringWithFormat:@"Wollen Sie den Termin bei %@ absagen?", doctorString];
+    
+    UIAlertView *cancelAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
+                                                                 message:NSLocalizedString(message, @"CANCEL_APPOINTMENT")
+                                                                delegate:self
+                                                       cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                                       otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+    
+    [cancelAppointment show];
+    
+}
+
+- (IBAction)changeButton:(id)sender {
+    self.selectedAction = CHANGE;
+    
+    NSString *doctorString = self.appointment.doctor.fullName;
+    
+    NSString *message = [NSString stringWithFormat:@"Wollen Sie den Termin bei %@ verschieben?", doctorString];
+    
+    UIAlertView *rescheduleAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
+                                                                message:NSLocalizedString(message, @"RESCHEDULE_APPOINTMENT")
+                                                               delegate:self
+                                                      cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                                      otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+    
+    [rescheduleAppointment show];
+}
+
+#pragma mark UIAlertViewDelegage methods
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (self.selectedAction == CANCEL) {
+        if (buttonIndex == 1) {
+            [self cancelAppointment];
+        }
+    } else if (self.selectedAction == CHANGE) {
+        if (buttonIndex == 1) {
+            [self changeAppointment];
+        }
+    }
+}
+
+#pragma mark Private helper methods
+
+- (void)cancelAppointment {
+    [SVProgressHUD show];
+    
+    NSString *path = [NSString stringWithFormat:@"appointments/%d.json", self.appointment.idNumber];
+    
+    [[ApiClient sharedInstance] deletePath:path
+                                parameters:nil
+                                success:^(AFHTTPRequestOperation *operation, id response) {
+                                    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde abgesagt", @"APPOINTMENT_CANCELED")];
+                                    
+                                    [self performSelector:@selector(popToParentController) withObject:nil afterDelay:1.5];
+                                }
+                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                    [SVProgressHUD dismiss];
+                                    NSLog(@"Error fetching Disciplines!");
+                                    NSLog(@"%@", error);
+                                    
+                                }];
+}
+
+- (void)changeAppointment {
+    MakeAppointmentViewController *makeAppointment = [self.storyboard instantiateViewControllerWithIdentifier:@"MakeAppointmentViewController"];
+    
+    makeAppointment.doctor = self.appointment.doctor;
+    makeAppointment.selectedAction = self.selectedAction;
+    makeAppointment.idNumber = self.appointment.idNumber;
+    
+    [self.navigationController pushViewController:makeAppointment animated:YES];
+}
+
+- (void)popToParentController {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -12,6 +12,12 @@
 
 @interface MakeAppointmentViewController : UIViewController <Observer>
 
+typedef enum {
+    CANCEL,
+    CHANGE,
+    NEW
+} Action;
+
 @property (nonatomic) IBOutlet UILabel *doctorLabel;
 @property (nonatomic) IBOutlet UILabel *doctorDisciplineLabel;
 @property (nonatomic) IBOutlet UIScrollView *calendarScrollView;
@@ -20,9 +26,10 @@
 @property (nonatomic) IBOutlet UIButton *buttonRight;
 
 @property (nonatomic) DoctorModel *doctor;
-
+@property (nonatomic) Action selectedAction;
 @property (nonatomic) NSInteger currentMonth;
 @property (nonatomic) NSInteger currentYear;
+@property (nonatomic) NSInteger idNumber;
 
 - (IBAction)moveCalendarViewtoLeft:(id)sender;
 - (IBAction)moveCalendarViewtoRight:(id)sender;
