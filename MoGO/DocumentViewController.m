@@ -10,6 +10,7 @@
 #import "PrescriptionModel.h"
 #import "DrugDetailViewController.h"
 #import "ApiClient.h"
+#import "SVProgressHUD.h"
 
 @interface DocumentViewController ()
 
@@ -42,6 +43,9 @@
 }
 
 - (void)fetchDocuments {
+    
+    [SVProgressHUD show];
+    
     [[ApiClient sharedInstance] getPath:@"mailings.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     NSArray* prescriptions = [response valueForKeyPath:@"Prescription"];
@@ -51,6 +55,7 @@
                                     
                                     //TODO: Same as before but with other doc types
                                     
+                                    [SVProgressHUD dismiss];
                                     [self.tableView reloadData];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
