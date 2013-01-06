@@ -29,7 +29,9 @@
         self.doctor = [[DoctorModel alloc] initWithDictionary:[dict valueForKeyPath:@"doctor"]];
         
         self.idNumber = [[dict valueForKeyPath:@"id"] intValue];
-        self.note = [dict valueForKeyPath:@"note"];
+        if ([[dict valueForKeyPath:@"note"] isKindOfClass:[NSNull class]]) {
+            self.note = @"";
+        }
         
         NSString *dateString = [dict valueForKeyPath:@"start_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
