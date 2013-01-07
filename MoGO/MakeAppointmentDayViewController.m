@@ -18,6 +18,9 @@
 @property (nonatomic) NSInteger currentYear;
 @property (nonatomic) NSArray *availableDaysInMonth;
 @property (nonatomic) DaySlotView* day;
+@property (nonatomic) NSArray* availableAppointments;
+@property (nonatomic) NSDate* selectedDate;
+
 
 @end
 
@@ -86,11 +89,15 @@
     //Set the Title to the new Values:
     [self updateDateLabel];
     
-    //Create Slot View with the given day/month/year
-    [self createSlotView];
+    //Updte TableView with the given day/month/year
+    //explicitly set this to null, to force the table to be reduced to 0 items
+    self.availableAppointments = NULL;
+    //then load the new Data
+    [self loadAppointmentData];
+    
 }
 
-- (void)createSlotView
+- (void)loadAppointmentData
 {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade alle Termine", @"LOAD_APPOINTMENTS")];
     
@@ -108,11 +115,12 @@
                                 success:^(AFHTTPRequestOperation *operation, id appointments) {
                                     [SVProgressHUD dismiss];
                                     
-                                    NSArray *availableAppointments = [self findAvailableAppointments:appointments];
-                                    self.day = [[DaySlotView alloc] initWithFrame:CGRectMake(0,0,320,500) day:self.currentDay month:self.currentMonth year:self.currentYear appointments: availableAppointments observer:self.observer container:self.slotsView];
+                                    //Save the list in the property (we need this to be a property because we have to access it in the Delegate methods for the TableViewCells)
+                                    self.availableAppointments = [self findAvailableAppointments:appointments];
                                     
-                                    //Add Slot View as a subview
-                                    [self.slotsView addSubview:self.day.slotView];
+                                    //Reload the table with the received data
+                                    [self.appointmentsTableView reloadData];
+                                    
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                     NSLog(@"Error fetching docs!");
@@ -121,6 +129,7 @@
     
 }
 
+//Generates all available appointments for the day
 - (NSArray*)findAvailableAppointments:(id)appointments {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSMutableArray *availableAppointments = [[NSMutableArray alloc] init];
@@ -152,5 +161,82 @@
     
     self.dayLabel.text = [NSString stringWithFormat:@"%@.%@.%@", dayString, monthString, yearString];
 }
+
+/*
+//Implement the DataSource protocol for the AppointmentTable (we need 2 Methods, numberOfSections is 1 by default, which is fine)
+*/
+
+//1) return a cell for a given indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellIdentifier = @"viewcell1";
+    
+    //Create Cell if necessary
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    
+    // Configure the cell according to the Date
+    NSDate *appointmentDate = [self.availableAppointments objectAtIndex:indexPath.row];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:NSLocalizedString(@"HH:mm", "DATE_FORMAT")];
+    
+    //Update the Text-Label
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:appointmentDate]];
+    
+    //This activates the small arrow to indicate that you can accept the date
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    
+    return cell;
+}
+//2) return the number of items - This needs to be 0 if we have not received the availableAppointments yet
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //Check if we have the available Appointments
+    if(self.availableAppointments==NULL)
+    {
+        return 0;
+    }
+    else //return how many appointments we have
+    {
+        return self.availableAppointments.count;
+    }
+}
+
+/*
+ //Implement some methods of the Delegate protocol for the AppointmentTable
+ */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //Save the selected Date globally (needed for the alertView protocol method)
+    self.selectedDate = [self.availableAppointments objectAtIndex:indexPath.row];
+    
+    //Format and stuff...print message etc.
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'";
+    NSString *dateString = [formatter stringFromDate:self.selectedDate];
+    NSString *message = [NSString stringWithFormat:@"Wollen Sie %@ verbindlich einen Termin vereinbaren?", dateString];
+    
+    UIAlertView *confirmAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
+                                                                 message:NSLocalizedString(message, @"ADD_DOCTOR_TO_FAV")
+                                                                delegate:self
+                                                       cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                                       otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+    
+    [confirmAppointment show];
+    
+    //Deselect Row when finished
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark UIAlertView Delegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self.observer notifyFromSender:slotTemplate withValue:self.selectedDate];
+    }
+}
+
 
 @end

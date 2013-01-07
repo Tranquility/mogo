@@ -7,7 +7,6 @@
 //
 
 #import "AppointmentViewController.h"
-#import "AppointmentTableViewCell.h"
 #import "AppointmentModel.h"
 #import "DoctorModel.h"
 #import "AFNetworking.h"
@@ -179,23 +178,16 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0)
-    {
-        return 63;
-    }
-    else
-    {
-        return 45;
-    }
+    return 50;
 }
 
 
-- (AppointmentTableViewCell *)makeAppointmentCell:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = @"AppointmentTableViewCell";
+- (UITableViewCell *)makeAppointmentCell:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath {
+    NSString *cellIdentifier = @"viewcell1";
     
-    AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[AppointmentTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
     // Configure the cell according to the Appointment-Datamodel-Object
@@ -203,9 +195,19 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:NSLocalizedString(@"dd.MM. 'um' HH:mm", "DATE_FORMAT")];
     
-    cell.DateLabel.text = [dateFormatter stringFromDate:appointment.date];
-    cell.doctorDisciplineLabel.text = appointment.doctor.discipline;
-    cell.doctorLabel.text = [NSString stringWithFormat:@"%@ %@ %@", appointment.doctor.title, appointment.doctor.firstName,appointment.doctor.lastName];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", appointment.doctor.title, appointment.doctor.firstName,appointment.doctor.lastName];
+    
+    //If we have not loaded the discipline yet, check this and change discipline accordingly
+    NSString* disciplineString = @"";
+    if(appointment.doctor.discipline!=NULL)
+    {
+        disciplineString = [NSString stringWithFormat:@"(%@)",appointment.doctor.discipline];
+    }
+    //Update the detailText label
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@",[dateFormatter stringFromDate:appointment.date],disciplineString];
+    
+    //This activates the small arrow to indicate that you can click on it
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
@@ -230,6 +232,10 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", doctorModel.title, doctorModel.firstName,doctorModel.lastName];
         cell.detailTextLabel.text = doctorModel.discipline;
     }
+    
+    //This activates the small arrow to indicate that you can click on it
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     return cell;
 }
 

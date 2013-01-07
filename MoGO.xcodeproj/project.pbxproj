@@ -64,7 +64,6 @@
 		F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F133360216623D2800502A50 /* AppointmentDetailViewController.m */; };
 		F16BF10616626669000E5FC0 /* arztsuche.png in Resources */ = {isa = PBXBuildFile; fileRef = F16BF10516626669000E5FC0 /* arztsuche.png */; };
 		F16BF10916626811000E5FC0 /* accessories-date.png in Resources */ = {isa = PBXBuildFile; fileRef = F16BF10816626811000E5FC0 /* accessories-date.png */; };
-		F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */; };
 		F1AB2D6316788CA40020D0F1 /* DaySlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AB2D6216788CA40020D0F1 /* DaySlotView.m */; };
 		F1AB2D6516788CB50020D0F1 /* DaySlotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1AB2D6416788CB50020D0F1 /* DaySlotView.xib */; };
 		F1AB2D6A16788CF00020D0F1 /* SlotTemplateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AB2D6916788CF00020D0F1 /* SlotTemplateView.m */; };
@@ -163,8 +162,6 @@
 		F133360216623D2800502A50 /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
 		F16BF10516626669000E5FC0 /* arztsuche.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arztsuche.png; sourceTree = "<group>"; };
 		F16BF10816626811000E5FC0 /* accessories-date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accessories-date.png"; sourceTree = "<group>"; };
-		F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
-		F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
 		F1AB2D6116788CA40020D0F1 /* DaySlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySlotView.h; sourceTree = "<group>"; };
 		F1AB2D6216788CA40020D0F1 /* DaySlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySlotView.m; sourceTree = "<group>"; };
 		F1AB2D6416788CB50020D0F1 /* DaySlotView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DaySlotView.xib; sourceTree = "<group>"; };
@@ -291,8 +288,6 @@
 				DAC9BA121660D7FA00C36D2E /* AppDelegate.m */,
 				F133360116623D2800502A50 /* AppointmentDetailViewController.h */,
 				F133360216623D2800502A50 /* AppointmentDetailViewController.m */,
-				F18376D416611D49005D03E5 /* AppointmentTableViewCell.h */,
-				F18376D516611D49005D03E5 /* AppointmentTableViewCell.m */,
 				DABBFD321660E52800C79B32 /* AppointmentViewController.h */,
 				DABBFD331660E52800C79B32 /* AppointmentViewController.m */,
 				F13335F91662317300502A50 /* DataModel */,
@@ -540,7 +535,6 @@
 				DAC9BA1C1660D7FA00C36D2E /* ViewController.m in Sources */,
 				DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */,
 				DABBFD341660E52800C79B32 /* AppointmentViewController.m in Sources */,
-				F18376D616611D49005D03E5 /* AppointmentTableViewCell.m in Sources */,
 				2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */,
 				F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */,
 				F13335F716622A1600502A50 /* DoctorModel.m in Sources */,
