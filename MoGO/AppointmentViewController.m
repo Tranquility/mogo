@@ -197,14 +197,8 @@
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", appointment.doctor.title, appointment.doctor.firstName,appointment.doctor.lastName];
     
-    //If we have not loaded the discipline yet, check this and change discipline accordingly
-    NSString* disciplineString = @"";
-    if(appointment.doctor.discipline!=NULL)
-    {
-        disciplineString = [NSString stringWithFormat:@"(%@)",appointment.doctor.discipline];
-    }
-    //Update the detailText label
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@",[dateFormatter stringFromDate:appointment.date],disciplineString];
+     //Update the detailText label
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %(@)",[dateFormatter stringFromDate:appointment.date],appointment.doctor.discipline];
     
     //This activates the small arrow to indicate that you can click on it
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
