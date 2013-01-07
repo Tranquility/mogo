@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2515CF09169AF8B500A03959 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2515CF08169AF8B500A03959 /* ProfileEditViewController.m */; };
 		25872568C99647269B8F4825 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B5E67D3F6E46409EA1866E /* libPods.a */; };
 		25E2C8431679FD16004AA1A5 /* sternNormal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25E2C8421679FD16004AA1A5 /* sternNormal.jpg */; };
 		25E2C8451679FD1F004AA1A5 /* sternGelb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25E2C8441679FD1F004AA1A5 /* sternGelb.jpg */; };
@@ -76,6 +77,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2515CF07169AF8B500A03959 /* ProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditViewController.h; sourceTree = "<group>"; };
+		2515CF08169AF8B500A03959 /* ProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileEditViewController.m; sourceTree = "<group>"; };
 		25E2C8421679FD16004AA1A5 /* sternNormal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sternNormal.jpg; sourceTree = "<group>"; };
 		25E2C8441679FD1F004AA1A5 /* sternGelb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sternGelb.jpg; sourceTree = "<group>"; };
 		25E8BE961670B56600807CC7 /* DrugDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrugDetailViewController.h; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
 				DAC9BA1B1660D7FA00C36D2E /* ViewController.m */,
 				76E77C9116989C21004CBA8C /* Observer.h */,
+				2515CF07169AF8B500A03959 /* ProfileEditViewController.h */,
+				2515CF08169AF8B500A03959 /* ProfileEditViewController.m */,
 			);
 			path = MoGO;
 			sourceTree = "<group>";
@@ -567,6 +572,7 @@
 				BAA674AC1698EEC40081594D /* MakeAppointmentViewController.m in Sources */,
 				BAA674AF1698EEDB0081594D /* MedicDetailViewController.m in Sources */,
 				2D43F64B1687E6720067A7E2 /* CheckinViewController.m in Sources */,
+				2515CF09169AF8B500A03959 /* ProfileEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
