@@ -198,7 +198,7 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", appointment.doctor.title, appointment.doctor.firstName,appointment.doctor.lastName];
     
      //Update the detailText label
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %(@)",[dateFormatter stringFromDate:appointment.date],appointment.doctor.discipline];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)",[dateFormatter stringFromDate:appointment.date],appointment.doctor.discipline];
     
     //This activates the small arrow to indicate that you can click on it
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

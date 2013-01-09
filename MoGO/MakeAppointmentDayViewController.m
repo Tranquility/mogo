@@ -7,7 +7,6 @@
 //
 
 #import "MakeAppointmentDayViewController.h"
-#import "DaySlotView.h"
 #import "ApiClient.h"
 #import "Time.h"
 
@@ -17,7 +16,6 @@
 @property (nonatomic) NSInteger currentMonth;
 @property (nonatomic) NSInteger currentYear;
 @property (nonatomic) NSArray *availableDaysInMonth;
-@property (nonatomic) DaySlotView* day;
 @property (nonatomic) NSArray* availableAppointments;
 @property (nonatomic) NSDate* selectedDate;
 

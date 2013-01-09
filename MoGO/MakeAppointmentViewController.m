@@ -10,7 +10,6 @@
 #import "MonthTemplateOverviewView.h"
 #import "MakeAppointmentDayViewController.h"
 #import "AppointmentViewController.h"
-#import "SlotTemplateView.h"
 #import "ApiClient.h"
 
 #define RUBY_DATE @"yyyy-MM-dd'T'HH:mm:ss'Z'"
