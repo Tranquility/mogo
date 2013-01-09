@@ -39,6 +39,11 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 {
     [super viewDidLoad];
     [self setTitle:@"Registrieren"];
+    
+    //Adding a tap recognizer to react on tap events on the screen
+    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
+    tapRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -186,6 +191,11 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
     [self.view setFrame:viewFrame];
     [UIView commitAnimations];
+}
+
+-(void)closeKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 

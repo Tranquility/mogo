@@ -38,7 +38,14 @@
         NSLog(@"User is not Logged in");
     }
     
-    [self setTitle:@"LogIn"];
+    [self setTitle:@"Login"];
+    
+    //Adding a tap recognizer to react on tap events on the screen
+    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
+    tapRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapRecognizer];
+    
+    
 //    Later: Check if already logged in
 //    TODO: Improve sequirity
     
@@ -128,6 +135,11 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+-(void)closeKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 
