@@ -93,6 +93,18 @@
         year += (NSInteger) (month / 12);
         month = month % 12 + 1;
     }
+    
+    /*
+    // This adds GestureRecognizing to this View
+    */
+    // Add swipeGestures (the selector will be the moveCalendarViewtoLeft and moveCalendarViewtoRight)
+    UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveCalendarViewtoRight:)];
+    [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [[self view] addGestureRecognizer:oneFingerSwipeLeft];
+    
+    UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveCalendarViewtoLeft:)];
+    [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [[self view] addGestureRecognizer:oneFingerSwipeRight];
 }
 
 -(BOOL)canBecomeFirstResponder{
@@ -189,6 +201,15 @@
         
         [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
         [self updateMonthLabel];
+        
+        //Show the Button if we are not at the end yet
+        [self.buttonRight setHidden:FALSE];
+        
+        //Hide Button if we reached the end
+        if(self.currentOffset==0)
+        {
+            [self.buttonLeft setHidden:TRUE];
+        }
     }
 }
 
@@ -202,7 +223,17 @@
         
         [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
         [self updateMonthLabel];
+        
+        //Show the Button if we are not at the end yet
+        [self.buttonLeft setHidden:FALSE];
     }
+    
+    //Hide Button if we reached the end
+    if(self.currentOffset==960)
+    {
+        [self.buttonRight setHidden:TRUE];
+    }
+
 }
 
 //Sets the CalendarTitle for a specific date
