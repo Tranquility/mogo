@@ -43,6 +43,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //Adding a tap recognizer to react on tap events on the screen
+    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
+    tapRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapRecognizer];
     
     UIColor *grey = [UIColor colorWithRed:((float) 39.0f / 255.0f)
                                     green:((float) 40.0f / 255.0f)
@@ -198,9 +202,11 @@
 
 #pragma mark UISearchBar Delegate methods
 
-- (void)closeKeyboard {
-    [self.searchBar resignFirstResponder];
+-(void)closeKeyboard
+{
+    [self.view endEditing:YES];
 }
+
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
