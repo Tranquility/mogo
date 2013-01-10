@@ -59,7 +59,7 @@
     UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPreviousDay:)];
     [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [[self view] addGestureRecognizer:oneFingerSwipeRight];
-
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,11 +77,7 @@
     
     self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
     
-    //Hide/show the buttons whenever necessary
-    if (index == self.availableDaysInMonth.count-1) {
-        [self.buttonRight setHidden:TRUE];
-    }
-    [self.buttonLeft setHidden:FALSE];
+    self.buttonRight.hidden = index == self.availableDaysInMonth.count - 1;
     
     //Refresh table
     [self refreshEverything];
@@ -93,18 +89,13 @@
     //Find the day BEFORE the current day but WITHIN that month which has available slots
     NSInteger currentIndex = [self.availableDaysInMonth indexOfObject:[NSNumber numberWithInteger:self.currentDay]];
     NSInteger index = currentIndex > 0 ? currentIndex - 1 : 0;
-    
-    //Hide/show the buttons whenever necessary
-    if (index == 0) {
-        [self.buttonLeft setHidden:TRUE];
-    }
-    [self.buttonRight setHidden:FALSE];
-    
+        
     self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
+    
+    self.buttonLeft.hidden = index == 0;
     
     //Refresh table
     [self refreshEverything];
-    
 }
 
 - (void)refreshEverything
@@ -153,7 +144,7 @@
     
     //Date formatter for rails timestamps
     dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-
+    
     for (id appointment in appointments) {
         NSDate *date = [dateFormatter dateFromString:appointment];
         [availableAppointments addObject:date];
