@@ -48,7 +48,21 @@
     self.doctorLabel.text = [self.doctor fullName];
     self.doctorDisciplineLabel.text = self.doctor.discipline;
     
-    [self refreshEverything];
+    NSInteger index = [self.availableDaysInMonth indexOfObject:[NSNumber numberWithInteger:self.currentDay]];
+    
+    [self refreshEverything:index];
+    
+    /*
+     // This adds GestureRecognizing to this View
+     */
+    // Add swipeGestures (the selector will be the moveCalendarViewtoLeft and moveCalendarViewtoRight)
+    UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showNextDay:)];
+    [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [[self view] addGestureRecognizer:oneFingerSwipeLeft];
+    
+    UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPreviousDay:)];
+    [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [[self view] addGestureRecognizer:oneFingerSwipeRight];
     
 }
 
@@ -66,8 +80,8 @@
     NSInteger index = MIN([self.availableDaysInMonth indexOfObject:[NSNumber numberWithInteger:self.currentDay]] + 1, self.availableDaysInMonth.count - 1);
     
     self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
-    
-    [self refreshEverything];
+
+    [self refreshEverything:index];
 }
 
 //Switches the slotsView to the previous day that has available slots open
@@ -76,14 +90,13 @@
     //Find the day BEFORE the current day but WITHIN that month which has available slots
     NSInteger currentIndex = [self.availableDaysInMonth indexOfObject:[NSNumber numberWithInteger:self.currentDay]];
     NSInteger index = currentIndex > 0 ? currentIndex - 1 : 0;
-    
+        
     self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
-    
-    [self refreshEverything];
-    
+
+    [self refreshEverything:index];
 }
 
-- (void)refreshEverything
+- (void)refreshEverything:(NSInteger)index
 {
     //Set the Title to the new Values:
     [self updateDateLabel];

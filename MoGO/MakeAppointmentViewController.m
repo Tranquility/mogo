@@ -98,6 +98,15 @@
     {
         self.navigationItem.title = @"Termin verschieben";
     }
+    // This adds GestureRecognizing to this View
+    // Add swipeGestures (the selector will be the moveCalendarViewtoLeft and moveCalendarViewtoRight)
+    UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveCalendarViewtoRight:)];
+    [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [[self view] addGestureRecognizer:oneFingerSwipeLeft];
+    
+    UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveCalendarViewtoLeft:)];
+    [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [[self view] addGestureRecognizer:oneFingerSwipeRight];
 }
 
 -(BOOL)canBecomeFirstResponder{
@@ -137,7 +146,7 @@
                                     NSArray *availableSlots = [self findAvailableSlots:slots];
                                     NSNumber *monthObj = [NSNumber numberWithInteger:month];
                                     [self.slotsPerMonth setObject:availableSlots forKey:monthObj];
-                                                                        
+                                    
                                     //Size of one Calendar
                                     CGRect r = CGRectMake(i * 320, 0, 320, 334);
                                     
@@ -194,6 +203,9 @@
         
         [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
         [self updateMonthLabel];
+        
+        self.buttonRight.hidden = NO;
+        self.buttonLeft.hidden = self.currentOffset == 0;
     }
 }
 
@@ -207,7 +219,16 @@
         
         [self.calendarScrollView setContentOffset:CGPointMake((float)self.currentOffset, 0) animated:YES];
         [self updateMonthLabel];
+        
+        //Show the Button if we are not at the end yet
+        self.buttonLeft.hidden = NO;
+        self.buttonRight.hidden = self.currentOffset == 960;
     }
+    
+    //Hide Button if we reached the end
+    
+    
+    
 }
 
 //Sets the CalendarTitle for a specific date
@@ -243,11 +264,11 @@
     
     NSString *timeString = [dateFormatter stringFromDate:timeStamp];
     id params = @{
-        @"appointment": @{
-            @"doctor_id": [NSNumber numberWithInt:self.doctor.idNumber],
-            @"patient_id": @1,
-            @"start_at": timeString
-        }
+    @"appointment": @{
+    @"doctor_id": [NSNumber numberWithInt:self.doctor.idNumber],
+    @"patient_id": @1,
+    @"start_at": timeString
+    }
     };
     
     [SVProgressHUD show];
@@ -295,7 +316,7 @@
                                    }];
 }
 
-- (void)popToRootView {    
+- (void)popToRootView {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
