@@ -48,6 +48,18 @@
     
     [self refreshEverything];
     
+    /*
+     // This adds GestureRecognizing to this View
+     */
+    // Add swipeGestures (the selector will be the moveCalendarViewtoLeft and moveCalendarViewtoRight)
+    UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showNextDay:)];
+    [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [[self view] addGestureRecognizer:oneFingerSwipeLeft];
+    
+    UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showPreviousDay:)];
+    [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [[self view] addGestureRecognizer:oneFingerSwipeRight];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,6 +77,13 @@
     
     self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
     
+    //Hide/show the buttons whenever necessary
+    if (index == self.availableDaysInMonth.count-1) {
+        [self.buttonRight setHidden:TRUE];
+    }
+    [self.buttonLeft setHidden:FALSE];
+    
+    //Refresh table
     [self refreshEverything];
 }
 
@@ -75,8 +94,15 @@
     NSInteger currentIndex = [self.availableDaysInMonth indexOfObject:[NSNumber numberWithInteger:self.currentDay]];
     NSInteger index = currentIndex > 0 ? currentIndex - 1 : 0;
     
+    //Hide/show the buttons whenever necessary
+    if (index == 0) {
+        [self.buttonLeft setHidden:TRUE];
+    }
+    [self.buttonRight setHidden:FALSE];
+    
     self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
     
+    //Refresh table
     [self refreshEverything];
     
 }
