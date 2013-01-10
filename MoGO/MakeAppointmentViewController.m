@@ -283,7 +283,6 @@
                                          [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
                                      }
                                      
-                                     
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                      if (operation.response.statusCode == 500) {
                                          NSLog(@"Unknown Error");
@@ -297,6 +296,10 @@
                                          [SVProgressHUD showErrorWithStatus:errorMessage];
                                      }
                                  }];
+    
+    //Add this doctor to the fav. list
+    [self addDoctorToFavList:self.doctor.idNumber];
+    
 }
 
 - (void)deleteAppointment {
@@ -318,6 +321,38 @@
 
 - (void)popToRootView {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+//Creates the FilePath for the Favourite-List
+- (NSString *) saveFilePath
+{
+	NSArray *path =	NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+	return [[path objectAtIndex:0] stringByAppendingPathComponent:@"data.archive"];
+    
+}
+
+-(void) addDoctorToFavList:(int)doctorID
+{
+    NSString *myPath = [self saveFilePath];
+    
+    //Set up Favourite-List depending on whether there exists a file or not
+    if ([[NSFileManager defaultManager] fileExistsAtPath:myPath])
+    {
+        self.favouriteDoctors = [NSKeyedUnarchiver unarchiveObjectWithFile: myPath];
+    }
+    else
+    {
+        self.favouriteDoctors = [[NSMutableArray alloc] init];
+    }
+    
+    //get the doctorID as a String
+    NSString *idNumber = [NSString stringWithFormat:@"%d", self.doctor.idNumber];
+    //If this doctor is not a favourite, add it
+    if (![self.favouriteDoctors containsObject:idNumber]) {
+        [self.favouriteDoctors addObject:idNumber];
+    }
+    [NSKeyedArchiver archiveRootObject: self.favouriteDoctors toFile:self.saveFilePath];
 }
 
 @end
