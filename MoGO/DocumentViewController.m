@@ -43,7 +43,7 @@
 
 - (void)fetchDocuments {
     
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade Dokumente", @"LOAD_DOCUMENTS")];
     
     [[ApiClient sharedInstance] getPath:@"mailings.json" parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
@@ -58,9 +58,7 @@
                                     [self.tableView reloadData];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    NSLog(@"Error fetching docs!");
-                                    NSLog(@"%@", error);
-                                    
+                                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
                                 }];
     
 }

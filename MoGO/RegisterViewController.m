@@ -59,32 +59,22 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 - (IBAction)registerButtonPressed:(id)sender {
     if([self isInputValid])
     {
-    id params = @{
+        id params = @{
         @"patient": @{
-            @"email": self.mailAddressField.text,
-            @"password": self.passwordField.text,
-            @"password_confirmation": self.passwordField.text
+        @"email": self.mailAddressField.text,
+        @"password": self.passwordField.text,
+        @"password_confirmation": self.passwordField.text
         }
-    };
+        };
         
-        [SVProgressHUD show];
+        [SVProgressHUD showWithStatus:NSLocalizedString(@"Lege Account an", @"REGISTER_ACCOUNT")];
         [[ApiClient sharedInstance] postPath:@"/patients.json"
-                                parameters:params
-                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                       [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Bitte bestätigen Sie Ihre E-Mail-Adresse", @"PATIENT CREATED")];
-                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                       if (operation.response.statusCode == 500) {
-                                           NSLog(@"Unknown Error");
-                                          [SVProgressHUD showErrorWithStatus:@"Something went wrong!"];
-                                       } else {
-                                           NSData *jsonData = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
-                                           NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                                                                options:0
-                                                                                                  error:nil];
-                                           NSString *errorMessage = [json objectForKey:@"errors"];
-                                           [SVProgressHUD showErrorWithStatus:errorMessage];
-                                       }
-                                   }];
+                                  parameters:params
+                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Bitte bestätigen Sie Ihre E-Mail-Adresse", @"PATIENT_CREATED")];
+                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_ERROR")];
+                                     }];
         
         //TODO:pushviewzuLogIn
     }

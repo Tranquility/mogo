@@ -112,7 +112,7 @@
 {
     self.appointmentList = [[NSMutableArray alloc] init];
 
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade Termine", @"LOAD_APPOINTMENTS")];
     [[ApiClient sharedInstance] getPath:@"appointments.json"
                              parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
@@ -125,9 +125,7 @@
                                     [self.appointmentsTableView reloadData];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    NSLog(@"Error fetching docs!");
-                                    NSLog(@"%@", error);
-                                    
+                                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];                                    
                                 }];
     
 }

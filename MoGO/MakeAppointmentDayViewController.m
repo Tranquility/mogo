@@ -107,9 +107,7 @@
 }
 
 - (void)loadAppointmentData
-{
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade alle Termine", @"LOAD_APPOINTMENTS")];
-    
+{    
     NSString *path = [NSString stringWithFormat:@"appointments.json"];
     
     id params = @{
@@ -118,6 +116,8 @@
     @"year":[NSNumber numberWithInteger:self.currentYear],
     @"doctor": [NSNumber numberWithInteger:self.doctor.idNumber]
     };
+    
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade freie Termine", @"LOAD_APPOINTMENTS")];
     
     [[ApiClient sharedInstance] getPath:path
                              parameters:params
@@ -132,8 +132,7 @@
                                     
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    NSLog(@"Error fetching docs!");
-                                    NSLog(@"%@", error);
+                                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
                                 }];
     
 }

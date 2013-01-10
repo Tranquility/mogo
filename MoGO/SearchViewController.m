@@ -77,13 +77,11 @@
                                     }
                                     
                                     self.disciplines = tempDisciplines;
+                                    self.disciplineButton.enabled = YES;
                                     [self.pickerView reloadAllComponents];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    [SVProgressHUD dismiss];
-                                    NSLog(@"Error fetching Disciplines!");
-                                    NSLog(@"%@", error);
-                                    
+                                    [SVProgressHUD showErrorWithStatus:@"Verbindungsfehler"];
                                 }];
     
     [[ApiClient sharedInstance] getPath:@"doctors.json" parameters:nil
@@ -101,9 +99,7 @@
                                     [self.tableView reloadData];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    NSLog(@"Error fetching docs!");
-                                    NSLog(@"%@", error);
-                                    
+                                    [SVProgressHUD showErrorWithStatus:@"Verbindungsfehler"];
                                 }];
     
 }

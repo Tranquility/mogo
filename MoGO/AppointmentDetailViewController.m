@@ -99,10 +99,10 @@
 
 #pragma mark Private helper methods
 
-- (void)cancelAppointment {
-    [SVProgressHUD show];
-    
+- (void)cancelAppointment {    
     NSString *path = [NSString stringWithFormat:@"appointments/%d.json", self.appointment.idNumber];
+    
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Sage Termin ab", @"CANCEL_APPOINTMENT")];
     
     [[ApiClient sharedInstance] deletePath:path
                                 parameters:nil
@@ -112,10 +112,7 @@
                                     [self performSelector:@selector(popToParentController) withObject:nil afterDelay:1.5];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    [SVProgressHUD dismiss];
-                                    NSLog(@"Error fetching Disciplines!");
-                                    NSLog(@"%@", error);
-                                    
+                                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
                                 }];
 }
 

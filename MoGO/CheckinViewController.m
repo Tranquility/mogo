@@ -47,7 +47,6 @@
     self.checkinButton.enabled = NO;
     
     [self checkLocationForCurrentAppointment];
-    
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -76,7 +75,7 @@
 
 - (void)checkLocationForCurrentAppointment {
     
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Überprüfe Standort", @"CHECK_LOCATION")];
     
     [[ApiClient sharedInstance] getPath:@"appointments.json?now=true"
                              parameters:nil
@@ -89,7 +88,7 @@
                                                 self.officeOwner = doctor.fullName;
                                                 self.doctorLabel.text = doctor.fullName;
                                                 self.checkinMsgLabel.hidden = NO;
-                                                self.checkinButton.enabled = TRUE;
+                                                self.checkinButton.enabled = YES;
                                             }
                                         }
                                         
@@ -101,30 +100,11 @@
                                         NSString *message = NSLocalizedString(@"Sie haben zur Zeit keinen Termin", @"NO_APPOINTMENT_CURRENTLY");
                                         self.doctorLabel.text = message;
                                     }
-                                    [SVProgressHUD dismiss];
+                                    [SVProgressHUD dismiss ];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    NSString *title = [NSString stringWithFormat:@"%@", error];
-                                    NSLog(@"%@", title);
-                                    NSString *message = NSLocalizedString(@"Das tut uns leid, versuchen Sie es erneut", @"SRY_TRY_AGAIN");
-                                    UIAlertView *errorOccurred = [[UIAlertView alloc] initWithTitle:title
-                                                                                            message:message
-                                                                                           delegate:nil
-                                                                                  cancelButtonTitle:@"Ok"
-                                                                                  otherButtonTitles:nil];
-                                    [errorOccurred show];
+                                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
                                 }];
-}
-
-- (BOOL)isDoctorInRange:(DoctorModel*)doctor {
-
-        CLLocationDegrees latitude = [doctor.address.latitude floatValue];
-        CLLocationDegrees longitude = [doctor.address.longitude floatValue];
-        CLLocation *doctorLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-        
-        double distanceInMeters = [self.location distanceFromLocation:doctorLocation];
-        
-    return distanceInMeters < MAX_DISTANCE_TO_OFFICE_IN_METERS;
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,6 +120,20 @@
     [super viewDidUnload];
 }
 
+- (BOOL)isDoctorInRange:(DoctorModel*)doctor {
+    
+    CLLocationDegrees latitude = [doctor.address.latitude floatValue];
+    CLLocationDegrees longitude = [doctor.address.longitude floatValue];
+    CLLocation *doctorLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    
+    double distanceInMeters = [self.location distanceFromLocation:doctorLocation];
+    
+    return distanceInMeters < MAX_DISTANCE_TO_OFFICE_IN_METERS;
+}
+
+-(void)popToRootView {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 - (IBAction)checkinPressed:(id)sender {
     NSString *message = [NSString stringWithFormat:@"Bei %@ angemeldet", self.officeOwner];
