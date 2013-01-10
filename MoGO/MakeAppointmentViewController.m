@@ -129,18 +129,16 @@
 }
 
 - (void)generateMonthOverviewWithIndex:(int)i year:(int)year month:(int)month
-{
-    NSString *path = [NSString stringWithFormat:@"time_slots.json"];
-    
+{   
     id params = @{
     @"month":[NSNumber numberWithInteger:month],
     @"year":[NSNumber numberWithInteger:year],
     @"doctor":[NSNumber numberWithInteger:self.doctor.idNumber]
     };
     
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lade Kalenderansicht", @"LOAD_CALENDAR")];
     
-    [[ApiClient sharedInstance] getPath:path
+    [[ApiClient sharedInstance] getPath:@"time_slots.json"
                              parameters:params
                                 success:^(AFHTTPRequestOperation *operation, id slots) {
                                     NSArray *availableSlots = [self findAvailableSlots:slots];
@@ -159,8 +157,7 @@
                                     [SVProgressHUD dismiss];
                                 }
                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    NSLog(@"Error fetching docs!");
-                                    NSLog(@"%@", error);
+                                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
                                 }];
 }
 
@@ -249,7 +246,13 @@
 {
     NSArray *otherDays = [self.slotsPerMonth objectForKey:[NSNumber numberWithInteger:self.currentMonth]];
     
-    MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController" bundle:Nil day:day month:self.currentMonth year:self.currentYear observer:self otherAvailableDays:otherDays];
+    MakeAppointmentDayViewController *dayController = [[MakeAppointmentDayViewController alloc]initWithNibName:@"MakeAppointmentDayViewController"
+                                                                                                        bundle:Nil
+                                                                                                           day:day
+                                                                                                         month:self.currentMonth
+                                                                                                          year:self.currentYear
+                                                                                                      observer:self
+                                                                                            otherAvailableDays:otherDays];
     
     dayController.doctor = self.doctor;
     
@@ -271,7 +274,7 @@
     }
     };
     
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Lege Termin an", @"MAKE_APPOINTMENT")];
     
     [[ApiClient sharedInstance] postPath:@"appointments.json"
                               parameters:params
@@ -284,17 +287,7 @@
                                      }
                                      
                                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     if (operation.response.statusCode == 500) {
-                                         NSLog(@"Unknown Error");
-                                         [SVProgressHUD showErrorWithStatus:@"Something went wrong!"];
-                                     } else {
-                                         NSData *jsonData = [operation.responseString dataUsingEncoding:NSUTF8StringEncoding];
-                                         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                                                              options:0
-                                                                                                error:nil];
-                                         NSString *errorMessage = [json objectForKey:@"errors"];
-                                         [SVProgressHUD showErrorWithStatus:errorMessage];
-                                     }
+                                         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
                                  }];
     
     //Add this doctor to the fav. list
@@ -306,6 +299,8 @@
     
     NSString *path = [NSString stringWithFormat:@"appointments/%d.json", self.idNumber];
     
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Sage Termin ab", @"CANCEL_APPOINTMENT")];
+    
     [[ApiClient sharedInstance] deletePath:path
                                 parameters:nil
                                    success:^(AFHTTPRequestOperation *operation, id response) {
@@ -313,9 +308,7 @@
                                        [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
                                    }
                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                       [SVProgressHUD dismiss];
-                                       NSLog(@"Error deleting appointment");
-                                       NSLog(@"%@", error);
+                                       [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
                                    }];
 }
 
