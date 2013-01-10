@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Startscreen-->
+        <!--View Controller - Willkommen-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
@@ -100,25 +100,16 @@
                                     <segue destination="xcP-fo-ZgD" kind="push" id="NF6-Oj-4ah"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MgB-j3-QZc">
-                                <rect key="frame" x="125" y="383" width="71" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Profile">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="baS-YK-H0j" kind="push" id="iTw-Y0-3n0"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Startscreen" id="gIH-Td-vuO"/>
+                    <navigationItem key="navigationItem" title="Willkommen" id="gIH-Td-vuO">
+                        <barButtonItem key="rightBarButtonItem" title="Profil" id="t73-0c-wUa">
+                            <connections>
+                                <segue destination="baS-YK-H0j" kind="push" id="MoH-Kf-F63"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="checkinButton" destination="EWm-uB-9kj" id="6E4-a9-enp"/>
                     </connections>
@@ -1536,7 +1527,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1Fk-rt-SPK"/>
+        <segue reference="4zZ-Pj-sG2"/>
         <segue reference="G07-vO-8EL"/>
         <segue reference="mtb-th-UsI"/>
     </inferredMetricsTieBreakers>

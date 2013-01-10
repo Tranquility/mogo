@@ -37,6 +37,7 @@
     [self.subViewDate setBackgroundColor:grey];
     [self.subView setBackgroundColor:grey];
     
+    //später die insurence von benutzer
     [self.pickerView selectRow:0 inComponent:0 animated:NO];
 }
 
