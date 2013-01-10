@@ -36,6 +36,8 @@
 		BAA674A91698EEAB0081594D /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA674A81698EEAB0081594D /* DocumentViewController.m */; };
 		BAA674AC1698EEC40081594D /* MakeAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA674AB1698EEC40081594D /* MakeAppointmentViewController.m */; };
 		BAA674AF1698EEDB0081594D /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA674AE1698EEDB0081594D /* MedicDetailViewController.m */; };
+		BAE73620169F0CBC00AC69E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE7361F169F0CBC00AC69E4 /* Default.png */; };
+		BAE73623169F0CC500AC69E4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE73622169F0CC500AC69E4 /* Default@2x.png */; };
 		DA1DC677167DDBBE00B5D63C /* PrescriptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */; };
 		DA1DC67A167DFDF300B5D63C /* qr.png in Resources */ = {isa = PBXBuildFile; fileRef = DA1DC679167DFDF300B5D63C /* qr.png */; };
 		DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD2D1660E3F300C79B32 /* SearchViewController.m */; };
@@ -110,6 +112,8 @@
 		BAA674AB1698EEC40081594D /* MakeAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeAppointmentViewController.m; sourceTree = "<group>"; };
 		BAA674AD1698EEDB0081594D /* MedicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicDetailViewController.h; sourceTree = "<group>"; };
 		BAA674AE1698EEDB0081594D /* MedicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicDetailViewController.m; sourceTree = "<group>"; };
+		BAE7361F169F0CBC00AC69E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BAE73622169F0CC500AC69E4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DA1DC675167DDBBE00B5D63C /* PrescriptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionModel.h; sourceTree = "<group>"; };
 		DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrescriptionModel.m; sourceTree = "<group>"; };
 		DA1DC679167DFDF300B5D63C /* qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr.png; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 		DAC9B9F31660D7F900C36D2E = {
 			isa = PBXGroup;
 			children = (
+				BAE73622169F0CC500AC69E4 /* Default@2x.png */,
+				BAE7361F169F0CBC00AC69E4 /* Default.png */,
 				DAD4F9C01679E4D200E01B4C /* Default-568h@2x.png */,
 				DAC9BA081660D7FA00C36D2E /* MoGO */,
 				25FAB33516661B62008EB8CF /* MoGOTests */,
@@ -452,6 +458,8 @@
 				DA1DC67A167DFDF300B5D63C /* qr.png in Resources */,
 				BA97E14816946D0900FAD418 /* Icon.png in Resources */,
 				2D451DC9168FE63A0058A6A7 /* phone.gif in Resources */,
+				BAE73620169F0CBC00AC69E4 /* Default.png in Resources */,
+				BAE73623169F0CC500AC69E4 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
