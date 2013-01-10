@@ -43,6 +43,7 @@
 {
     [super viewDidLoad];
     
+    self.availableAppointments = [[NSArray alloc] init];
     //Set name and discipline of the doctor
     self.doctorLabel.text = [self.doctor fullName];
     self.doctorDisciplineLabel.text = self.doctor.discipline;
@@ -86,10 +87,7 @@
 {
     //Set the Title to the new Values:
     [self updateDateLabel];
-    
-    //Updte TableView with the given day/month/year
-    //explicitly set this to null, to force the table to be reduced to 0 items
-    self.availableAppointments = NULL;
+
     //then load the new Data
     [self loadAppointmentData];
     
@@ -134,7 +132,7 @@
     
     //Date formatter for rails timestamps
     dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-
+    
     for (id appointment in appointments) {
         NSDate *date = [dateFormatter dateFromString:appointment];
         [availableAppointments addObject:date];
@@ -161,8 +159,8 @@
 }
 
 /*
-//Implement the DataSource protocol for the AppointmentTable (we need 2 Methods, numberOfSections is 1 by default, which is fine)
-*/
+ //Implement the DataSource protocol for the AppointmentTable (we need 2 Methods, numberOfSections is 1 by default, which is fine)
+ */
 
 //1) return a cell for a given indexPath
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -191,15 +189,7 @@
 //2) return the number of items - This needs to be 0 if we have not received the availableAppointments yet
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //Check if we have the available Appointments
-    if(self.availableAppointments==NULL)
-    {
-        return 0;
-    }
-    else //return how many appointments we have
-    {
-        return self.availableAppointments.count;
-    }
+    return self.availableAppointments.count;
 }
 
 /*
