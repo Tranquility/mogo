@@ -46,7 +46,9 @@
     self.doctorLabel.text = [self.doctor fullName];
     self.doctorDisciplineLabel.text = self.doctor.discipline;
     
-    [self refreshEverything];
+    NSInteger index = [self.availableDaysInMonth indexOfObject:[NSNumber numberWithInteger:self.currentDay]];
+    
+    [self refreshEverything:index];
     
     /*
      // This adds GestureRecognizing to this View
@@ -76,11 +78,8 @@
     NSInteger index = MIN([self.availableDaysInMonth indexOfObject:[NSNumber numberWithInteger:self.currentDay]] + 1, self.availableDaysInMonth.count - 1);
     
     self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
-    
-    self.buttonRight.hidden = index == self.availableDaysInMonth.count - 1;
-    
-    //Refresh table
-    [self refreshEverything];
+
+    [self refreshEverything:index];
 }
 
 //Switches the slotsView to the previous day that has available slots open
@@ -91,20 +90,21 @@
     NSInteger index = currentIndex > 0 ? currentIndex - 1 : 0;
         
     self.currentDay = [[self.availableDaysInMonth objectAtIndex:index] intValue];
-    
-    self.buttonLeft.hidden = index == 0;
-    
-    //Refresh table
-    [self refreshEverything];
+
+    [self refreshEverything:index];
 }
 
-- (void)refreshEverything
+- (void)refreshEverything:(NSInteger)index
 {
     //Set the Title to the new Values:
     [self updateDateLabel];
     
     //Create Slot View with the given day/month/year
     [self createSlotView];
+    
+    //Update buttons
+    self.buttonRight.hidden = index == self.availableDaysInMonth.count - 1;
+    self.buttonLeft.hidden = index == 0;
 }
 
 - (void)createSlotView
