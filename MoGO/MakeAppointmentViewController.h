@@ -31,8 +31,6 @@ typedef enum {
 @property (nonatomic) NSInteger currentYear;
 @property (nonatomic) NSInteger idNumber;
 
-@property (nonatomic) NSMutableArray *favouriteDoctors;
-
 - (IBAction)moveCalendarViewtoLeft:(id)sender;
 - (IBAction)moveCalendarViewtoRight:(id)sender;
 - (void)showDay:(int)sender;
