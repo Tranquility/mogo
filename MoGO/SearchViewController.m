@@ -181,6 +181,8 @@
     DoctorModel *currentDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
 
     cell.textLabel.text = [currentDoctor fullName];
+    cell.detailTextLabel.text = currentDoctor.discipline;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
@@ -198,6 +200,11 @@
         MedicDetailViewController *destination = [segue destinationViewController];
         destination.doctor = self.chosenDoctor;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
 }
 
 #pragma mark UISearchBar Delegate methods
