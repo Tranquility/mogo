@@ -34,19 +34,14 @@ NSInteger const DAY_OFFSET = 1;
         NSDate *date = [dateFormatter dateFromString:dateString];
         
         //Find the first weekday of the month
-        dateFormatter.dateFormat = @"EEE";
-        NSString *firstDayOfWeek = [dateFormatter stringFromDate:date];
-        
-        //Create a Calendar-Object for some help...
         NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        [gregorian setFirstWeekday:1 + DAY_OFFSET]; //Tuesday = 1, Wednesday = 2...
+        [gregorian setFirstWeekday:3]; //Tuesday = 1, Wednesday = 2...
+        NSUInteger adjustedWeekdayOrdinal = [gregorian ordinalityOfUnit:NSWeekdayCalendarUnit inUnit:NSWeekCalendarUnit forDate:date];
         
         //How many Days do we have in the month?
         NSInteger daysPerMonth = [gregorian rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:date].length;
         
-        NSInteger start = [self findIndexOfDay:firstDayOfWeek];
-        
-        [self generateTilesForEachDay:slots days:daysPerMonth start:start];   
+        [self generateTilesForEachDay:slots days:daysPerMonth start:adjustedWeekdayOrdinal];
     }
     return self;
 }
@@ -88,6 +83,7 @@ NSInteger const DAY_OFFSET = 1;
 
 - (void)generateTilesForEachDay:(NSArray *)availableSlots days:(NSInteger)days start:(NSInteger)start
 {
+    start = start % 7;
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 7; j++) {
             
@@ -100,8 +96,7 @@ NSInteger const DAY_OFFSET = 1;
             //A day is disabled if it is before the first Day of the Week
             // _or_ if it is beyond the last day of the week
             State state;
-            if((i == 0 && j < start) || dayNumber > days)
-            {
+            if ((i == 0 && j < start) || dayNumber > days) {
                 state = HIDDEN; //Do not show the day at all
             } else {
                 NSNumber *currentDay = [NSNumber numberWithInt:dayNumber];
