@@ -92,6 +92,12 @@
         year += (NSInteger) (month / 12);
         month = month % 12 + 1;
     }
+    
+    //Adjust the title depending on whether we want to reschedule or make a new apointment
+    if (self.selectedAction == CHANGE)
+    {
+        self.navigationItem.title = @"Termin verschieben";
+    }
 }
 
 -(BOOL)canBecomeFirstResponder{
