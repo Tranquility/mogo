@@ -94,13 +94,9 @@
     }
     
     //Adjust the title depending on whether we want to reschedule or make a new apointment
-    if(self.selectedAction==CHANGE)
+    if (self.selectedAction == CHANGE)
     {
-        self.navigationItem.title=@"Termin verschieben";
-    }
-    else
-    {
-        self.navigationItem.title=@"Termin vereinbaren";
+        self.navigationItem.title = @"Termin verschieben";
     }
 }
 
