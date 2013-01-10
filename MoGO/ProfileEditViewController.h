@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ProfileEditViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+{
+    CGFloat scrollDistance;
+    CGFloat animatedDistance;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *birthDate;
 @property (weak, nonatomic) IBOutlet UILabel *insurenceLabel;
@@ -23,7 +27,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *streetText;
 @property (weak, nonatomic) IBOutlet UITextField *streetNr;
 
--(IBAction)textFieldDoneEditing:(id)sender;
+- (IBAction)textFieldDoneEditing:(id)sender;
+- (IBAction)saveProfile:(id)sender;
 
 @property  NSMutableArray *insurence;
 

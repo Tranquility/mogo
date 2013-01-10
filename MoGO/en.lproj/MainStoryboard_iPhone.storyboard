@@ -1028,6 +1028,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ort/Stadt:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UMN-WX-h6s">
+                                <rect key="frame" x="20" y="163" width="73" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Straße:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PGc-xi-02c">
+                                <rect key="frame" x="20" y="201" width="56" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UJz-fn-7eb">
                                 <rect key="frame" x="274" y="269" width="26" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1079,6 +1093,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="baS-YK-H0j" eventType="editingDidEndOnExit" id="zrQ-DZ-lpD"/>
+                                    <outlet property="delegate" destination="baS-YK-H0j" id="gIr-XH-VpB"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="U6e-t9-eNO">
@@ -1088,22 +1103,9 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="baS-YK-H0j" eventType="editingDidEndOnExit" id="qZg-WY-XTC"/>
+                                    <outlet property="delegate" destination="baS-YK-H0j" id="HMW-OR-LAC"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ort/Stadt:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UMN-WX-h6s">
-                                <rect key="frame" x="20" y="163" width="73" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Straße:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PGc-xi-02c">
-                                <rect key="frame" x="20" y="201" width="56" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2aS-zl-niv">
                                 <rect key="frame" x="159" y="121" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1111,6 +1113,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="baS-YK-H0j" eventType="editingDidEndOnExit" id="bms-50-vPg"/>
+                                    <outlet property="delegate" destination="baS-YK-H0j" id="JgZ-EB-oaW"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="tDH-XQ-3ZA">
@@ -1120,6 +1123,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="baS-YK-H0j" eventType="editingDidEndOnExit" id="E6p-Hj-NWl"/>
+                                    <outlet property="delegate" destination="baS-YK-H0j" id="gZw-Qy-dQc"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="sFo-Xa-wNj">
@@ -1129,6 +1133,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textFieldDoneEditing:" destination="baS-YK-H0j" eventType="editingDidEndOnExit" id="zha-8X-naH"/>
+                                    <outlet property="delegate" destination="baS-YK-H0j" id="FHf-Br-jN2"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="0h0-jA-hbu">
@@ -1136,19 +1141,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="baS-YK-H0j" eventType="editingDidEndOnExit" id="MqZ-s8-V2z"/>
+                                    <outlet property="delegate" destination="baS-YK-H0j" id="E8t-Xq-C5T"/>
+                                </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B6M-Ur-mce">
-                                <rect key="frame" x="111" y="320" width="97" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Speichern">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <view hidden="YES" contentMode="scaleToFill" id="YOQ-JU-08D">
                                 <rect key="frame" x="0.0" y="154" width="320" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1262,7 +1259,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ojK-Es-bow"/>
+                    <navigationItem key="navigationItem" id="ojK-Es-bow">
+                        <barButtonItem key="rightBarButtonItem" title="Speichern" id="HIO-3H-ldI">
+                            <connections>
+                                <action selector="saveProfile:" destination="baS-YK-H0j" id="he0-UN-YeY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="birthDate" destination="Ql4-bX-mjL" id="aAu-8Q-cJO"/>
                         <outlet property="cityText" destination="tDH-XQ-3ZA" id="LZD-iY-9ez"/>
@@ -1279,6 +1282,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bFX-HW-KvS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="7wu-RL-uVv">
+                    <connections>
+                        <outlet property="delegate" destination="baS-YK-H0j" id="RMV-Gi-aJK"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="662" y="-531"/>
         </scene>
@@ -1479,6 +1487,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="ProfileEditViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileEditViewController.h"/>
             <relationships>
+                <relationship kind="action" name="saveProfile:"/>
                 <relationship kind="action" name="textFieldDoneEditing:"/>
                 <relationship kind="outlet" name="birthDate" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="cityText" candidateClass="UITextField"/>
