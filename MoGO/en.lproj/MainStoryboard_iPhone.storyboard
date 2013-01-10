@@ -1136,7 +1136,7 @@
                                     <outlet property="delegate" destination="baS-YK-H0j" id="FHf-Br-jN2"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Straße nr." minimumFontSize="17" id="0h0-jA-hbu">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Haus nr." minimumFontSize="17" id="0h0-jA-hbu">
                                 <rect key="frame" x="126" y="235" width="174" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
