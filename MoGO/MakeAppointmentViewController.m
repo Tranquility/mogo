@@ -298,7 +298,7 @@
                                  }];
     
     //Add this doctor to the fav. list
-    [self addDoctorToFavList:self.doctor.idNumber];
+    [self addDoctorToFavList];
     
 }
 
@@ -332,27 +332,25 @@
     
 }
 
--(void) addDoctorToFavList:(int)doctorID
-{
+-(void) addDoctorToFavList {
     NSString *myPath = [self saveFilePath];
+    
+    NSMutableArray *favouriteDoctors = [[NSMutableArray alloc] init];
     
     //Set up Favourite-List depending on whether there exists a file or not
     if ([[NSFileManager defaultManager] fileExistsAtPath:myPath])
     {
-        self.favouriteDoctors = [NSKeyedUnarchiver unarchiveObjectWithFile: myPath];
-    }
-    else
-    {
-        self.favouriteDoctors = [[NSMutableArray alloc] init];
+        favouriteDoctors = [NSKeyedUnarchiver unarchiveObjectWithFile: myPath];
     }
     
     //get the doctorID as a String
     NSString *idNumber = [NSString stringWithFormat:@"%d", self.doctor.idNumber];
+    
     //If this doctor is not a favourite, add it
-    if (![self.favouriteDoctors containsObject:idNumber]) {
-        [self.favouriteDoctors addObject:idNumber];
+    if (![favouriteDoctors containsObject:idNumber]) {
+        [favouriteDoctors addObject:idNumber];
     }
-    [NSKeyedArchiver archiveRootObject: self.favouriteDoctors toFile:self.saveFilePath];
+    [NSKeyedArchiver archiveRootObject: favouriteDoctors toFile:self.saveFilePath];
 }
 
 @end
