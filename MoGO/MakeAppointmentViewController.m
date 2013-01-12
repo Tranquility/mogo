@@ -11,6 +11,7 @@
 #import "MakeAppointmentDayViewController.h"
 #import "AppointmentViewController.h"
 #import "ApiClient.h"
+#import <EventKit/EventKit.h>
 
 #define RUBY_DATE @"yyyy-MM-dd'T'HH:mm:ss'Z'"
 
@@ -40,6 +41,9 @@
 
 @property (nonatomic) NSInteger currentOffset;
 @property (nonatomic) NSMutableDictionary *slotsPerMonth;
+@property (nonatomic) NSDate *timeStamp;
+
+
 
 @end
 
@@ -59,6 +63,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //ask for user permission to use calendar. Only called at first startup of the app
+    [self askForCalendarPermissionOnce];
+    
     
     self.slotsPerMonth = [NSMutableDictionary dictionary];
     //Set name and discipline of the doctor
@@ -129,7 +137,7 @@
 }
 
 - (void)generateMonthOverviewWithIndex:(int)i year:(int)year month:(int)month
-{   
+{
     id params = @{
     @"month":[NSNumber numberWithInteger:month],
     @"year":[NSNumber numberWithInteger:year],
@@ -264,6 +272,7 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = RUBY_DATE;
+    self.timeStamp = timeStamp;
     
     NSString *timeString = [dateFormatter stringFromDate:timeStamp];
     id params = @{
@@ -281,18 +290,58 @@
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                      if (self.selectedAction == CHANGE) {
                                          [self deleteAppointment];
-                                     } else {
-                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
-                                         [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
                                      }
+                                     else
+                                     {
+                                         //TODO: Replace condition with check for user setting about saving into calendar
+                                         if(YES)
+                                         {
+                                             //User doesn't have a appointment yet
+                                             if([self checkForUserAppointmentsAtTime:timeStamp] == nil )
+                                             {
+                                                 [self saveAppointmentToCalendar:timeStamp];
+                                                 [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
+                                             }
+                                             else
+                                             {
+                                                 EKEvent *firstEvent = [self checkForUserAppointmentsAtTime:timeStamp];
+                                                 UIAlertView *confirmAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sie haben bereits einen Termin", @"HAS_TITLE")
+                                                                                                              message:[NSString stringWithFormat:@"Termin: %@ \n Soll der Termin trotzdem gebucht werden?", firstEvent.title]
+                                                                                                             delegate:self
+                                                                                                    cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                                                                                    otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+                                                 
+                                                 [confirmAppointment show];
+                                             }//else
+                                         }//if
+                                         
+                                     }//else
                                      
-                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
+                                     
+                                     [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
+                                 }//success
+     
+                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
                                  }];
     
     //Add this doctor to the fav. list
     [self addDoctorToFavList];
     
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if(buttonIndex == 0)
+    {
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Termin wurde nicht gespeichert", @"APPOINTMENT_NOT_SAVED")];
+    }
+    else if (buttonIndex == 1)
+    {
+        [self saveAppointmentToCalendar:self.timeStamp];
+        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
+        
+    }
 }
 
 - (void)deleteAppointment {
@@ -345,5 +394,71 @@
     }
     [NSKeyedArchiver archiveRootObject: favouriteDoctors toFile:self.saveFilePath];
 }
+
+//Calendar related methods
+
+-(void)saveAppointmentToCalendar:(NSDate*)startDate
+{
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        
+        EKEvent *event  = [EKEvent eventWithEventStore:eventStore];
+        event.title     = [NSString stringWithFormat:@"Termin bei %@",self.doctor.fullName];
+        event.startDate = startDate;
+        //we save a appointment with 30 minutes duration by default
+        //TODO: can probably fetch the lenght of the selected slot from server somehow
+        event.endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:event.startDate];
+        event.notes = NSLocalizedString(@"Mit MoGo erstellter Termin", @"CREATED_WITH_MOGO");
+        
+        [event setCalendar:[eventStore defaultCalendarForNewEvents]];
+        NSError *err;
+        [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+        
+        
+    }];
+    
+}
+
+-(EKEvent*)checkForUserAppointmentsAtTime:(NSDate*)dateToCheck
+{
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    //we check a certain time
+    NSDate *endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:dateToCheck];
+    
+    NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:dateToCheck
+                                                                 endDate:endDate
+                                                               calendars:nil];
+    NSArray *usersAppointmentsInRange = [[NSArray alloc]init];
+    
+    usersAppointmentsInRange = [eventStore eventsMatchingPredicate:predicate];
+    if([usersAppointmentsInRange count] > 0)
+    {
+        return [usersAppointmentsInRange objectAtIndex:0];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+-(void)askForCalendarPermissionOnce
+{
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        
+        if(!granted)
+        {
+            UIAlertView *notGrantedAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Rechte zur Kalendernutzung nicht gewährt", @"CALENDAR_NOT_GRANTED")
+                                                                      message:NSLocalizedString(@"MoGo kann keine Termine n Ihren Kalender speichern. Sie können die Rechte in den Systemeinstellungen gewähren", @"GRANT_CALENDAR_IN_OPTIONS")
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Ok"
+                                                            otherButtonTitles:nil, nil];
+            [notGrantedAlert show];
+        }
+        
+    }];
+}
+
+
 
 @end

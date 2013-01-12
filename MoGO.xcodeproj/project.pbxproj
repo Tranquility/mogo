@@ -28,6 +28,7 @@
 		2D95D8C1166E7F98000A0122 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D95D8C0166E7F98000A0122 /* MessageUI.framework */; };
 		2D95D8C4166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
 		2D95D8C5166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
+		2DCA4AA016A21C9D002830EE /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCA4A9F16A21C9D002830EE /* EventKit.framework */; };
 		991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */; };
 		991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */; };
 		BA3E87C8167D0B5E00590DFA /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E87C7167D0B5E00590DFA /* CredentialStore.m */; };
@@ -96,6 +97,7 @@
 		2D95D8C0166E7F98000A0122 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2D95D8C2166E80B1000A0122 /* MailManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailManipulator.h; sourceTree = "<group>"; };
 		2D95D8C3166E80B1000A0122 /* MailManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailManipulator.m; sourceTree = "<group>"; };
+		2DCA4A9F16A21C9D002830EE /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		76E77C9116989C21004CBA8C /* Observer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Observer.h; sourceTree = "<group>"; };
 		991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthTemplateOverviewView.xib; sourceTree = "<group>"; };
 		991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthTemplateOverviewView.h; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DCA4AA016A21C9D002830EE /* EventKit.framework in Frameworks */,
 				2D43F64F1687EA650067A7E2 /* CoreLocation.framework in Frameworks */,
 				2D95D8C1166E7F98000A0122 /* MessageUI.framework in Frameworks */,
 				2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */,
@@ -262,6 +265,7 @@
 		DAC9BA011660D7FA00C36D2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2DCA4A9F16A21C9D002830EE /* EventKit.framework */,
 				2D43F64E1687EA650067A7E2 /* CoreLocation.framework */,
 				2D95D8C0166E7F98000A0122 /* MessageUI.framework */,
 				2D163A211660F116000A65A7 /* MapKit.framework */,
