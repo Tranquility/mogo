@@ -29,7 +29,7 @@
  
  When the user clicks a slot to book it, this object is informed by using the "saveNewAppointment" method.
  
- 
+ Also manages the in-app calendar manipulation related to appointments
  
  TODO: This need to be connected to the dataSources for Slots and Appointments, as well as all its connected Classes.
  
@@ -330,6 +330,9 @@
     
 }
 
+//AlertView for asking the user if he still wants to safe although he does already have an appointment
+//TODO: If user choses no, the appointment isn't createt in the calendar, but still in the app
+//modify safeNewAppointment accordingly
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if(buttonIndex == 0)
@@ -407,6 +410,7 @@
         event.startDate = startDate;
         //we save a appointment with 30 minutes duration by default
         //TODO: can probably fetch the lenght of the selected slot from server somehow
+        //(or we do it that way so the user has a little time buffer)
         event.endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:event.startDate];
         event.notes = NSLocalizedString(@"Mit MoGo erstellter Termin", @"CREATED_WITH_MOGO");
         
@@ -419,6 +423,8 @@
     
 }
 
+//Checks if the user already hase an appointment in the time from dateToCheck to dateToCheck+30Min
+//returns one of these appointments if any, nil if he doesn't have an appointment
 -(EKEvent*)checkForUserAppointmentsAtTime:(NSDate*)dateToCheck
 {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
@@ -441,6 +447,8 @@
     }
 }
 
+//Asks for permission to accecc the users data
+//this will only happen at the first app start ever
 -(void)askForCalendarPermissionOnce
 {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
