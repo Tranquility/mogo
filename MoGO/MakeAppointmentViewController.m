@@ -104,7 +104,7 @@
     //Adjust the title depending on whether we want to reschedule or make a new apointment
     if (self.selectedAction == CHANGE)
     {
-        self.navigationItem.title = @"Termin verschieben";
+        self.navigationItem.title = NSLocalizedString(@"Termin verschieben", @"RESCHEDULE_APPOINTMENT");
     }
     // This adds GestureRecognizing to this View
     // Add swipeGestures (the selector will be the moveCalendarViewtoLeft and moveCalendarViewtoRight)
@@ -296,7 +296,7 @@
                                          //TODO: Replace condition with check for user setting about saving into calendar
                                          if(YES)
                                          {
-                                             //User doesn't have a appointment yet
+                                             //User doesn't have an appointment yet
                                              if([self checkForUserAppointmentsAtTime:timeStamp] == nil )
                                              {
                                                  [self saveAppointmentToCalendar:timeStamp];
@@ -330,7 +330,7 @@
     
 }
 
-//AlertView for asking the user if he still wants to safe although he does already have an appointment
+//Reactions to AlertView for asking the user if he still wants to safe although he does already have an appointment
 //TODO: If user choses no, the appointment isn't createt in the calendar, but still in the app
 //modify safeNewAppointment accordingly
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -406,7 +406,7 @@
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
         
         EKEvent *event  = [EKEvent eventWithEventStore:eventStore];
-        event.title     = [NSString stringWithFormat:@"Termin bei %@",self.doctor.fullName];
+        event.title = [NSLocalizedString(@"Termin bei: ", @"APPOINTMENT_AT") stringByAppendingString:self.doctor.fullName];
         event.startDate = startDate;
         //we save a appointment with 30 minutes duration by default
         //TODO: can probably fetch the lenght of the selected slot from server somehow
@@ -447,7 +447,7 @@
     }
 }
 
-//Asks for permission to accecc the users data
+//Asks for permission to access the users data
 //this will only happen at the first app start ever
 -(void)askForCalendarPermissionOnce
 {
