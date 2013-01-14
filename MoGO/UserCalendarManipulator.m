@@ -58,7 +58,6 @@
         NSError *err;
         [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
         
-        
     }];
     
 }
@@ -94,7 +93,7 @@
     //we check a certain time
     NSDate *endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:appointment];
     NSLog(@"TAppointment to be deledet: %@", appointment);
-    NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:[appointment dateByAddingTimeInterval:-60]
+    NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:appointment 
                                                                  endDate:endDate
                                                                calendars:nil];
     
