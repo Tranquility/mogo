@@ -9,6 +9,8 @@
 #import "MakeAppointmentDayViewController.h"
 #import "ApiClient.h"
 #import "Time.h"
+#import <EventKit/EventKit.h>
+
 
 @interface MakeAppointmentDayViewController()
 
@@ -192,6 +194,15 @@
     
     //Update the Text-Label
     cell.textLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:appointmentDate]];
+   
+    if([self checkForUserAppointmentsAtTime:appointmentDate] != nil)
+    {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Konflikt: %@", [self checkForUserAppointmentsAtTime:appointmentDate].title];
+    }
+    else
+    {
+        cell.detailTextLabel.text = @"";
+    }
     
     //This activates the small arrow to indicate that you can accept the date
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -235,6 +246,30 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         [self.observer notifyFromSender:slotTemplate withValue:self.selectedDate];
+    }
+}
+
+//Checks if the user already hase an appointment in the time from dateToCheck to dateToCheck+30Min
+//returns one of these appointments if any, nil if he doesn't have an appointment
+-(EKEvent*)checkForUserAppointmentsAtTime:(NSDate*)dateToCheck
+{
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    //we check a certain time
+    NSDate *endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:dateToCheck];
+    
+    NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:dateToCheck
+                                                                 endDate:endDate
+                                                               calendars:nil];
+    NSArray *usersAppointmentsInRange = [[NSArray alloc]init];
+    
+    usersAppointmentsInRange = [eventStore eventsMatchingPredicate:predicate];
+    if([usersAppointmentsInRange count] > 0)
+    {
+        return [usersAppointmentsInRange objectAtIndex:0];
+    }
+    else
+    {
+        return nil;
     }
 }
 
