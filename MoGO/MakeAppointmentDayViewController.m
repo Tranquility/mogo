@@ -195,9 +195,10 @@
     //Update the Text-Label
     cell.textLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:appointmentDate]];
    
+    //check for overlapping appointments with user's calendar, adding a hint to cell if any
     if([self checkForUserAppointmentsAtTime:appointmentDate] != nil)
     {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Konflikt: %@", [self checkForUserAppointmentsAtTime:appointmentDate].title];
+        cell.detailTextLabel.text = [NSLocalizedString(@"Konflikt: ", @"CONFLICT") stringByAppendingString:[self checkForUserAppointmentsAtTime:appointmentDate].title];
     }
     else
     {
