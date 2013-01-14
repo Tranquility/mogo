@@ -19,6 +19,8 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 
 @interface ProfileEditViewController ()
 
+@property  NSArray *insurence;
+
 @end
 
 @implementation ProfileEditViewController
@@ -36,7 +38,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.insurence = [[NSMutableArray alloc] initWithObjects:@"Allianz", @"Technische", @"Meine", nil];
+    self.insurence = [[NSArray alloc] initWithObjects:@"Allianz", @"Technische", @"Meine", nil];
     
     UIColor *grey = [UIColor colorWithRed:((float) 39.0f / 255.0f)
                                     green:((float) 40.0f / 255.0f)
@@ -60,11 +62,11 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     [self setBirthDate:nil];
     [self setPickerView:nil];
     [self setInsurence:nil];
-    [self setInsurenceLabel:nil];
+    [self setInsuranceLabel:nil];
     [self setSubView:nil];
     [self setFirstnameText:nil];
     [self setSurenameText:nil];
-    [self setPlzText:nil];
+    [self setZipCodeText:nil];
     [self setCityText:nil];
     [self setStreetText:nil];
     [self setSubViewDate:nil];
@@ -104,7 +106,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 
 - (IBAction)chooseDiscipline:(id)sender {
     self.subView.hidden = YES;
-    self.insurenceLabel.text = [self.insurence objectAtIndex: [self.pickerView selectedRowInComponent:0]];
+    self.insuranceLabel.text = [self.insurence objectAtIndex: [self.pickerView selectedRowInComponent:0]];
 }
 
 //Date picker Action
@@ -134,7 +136,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 //Save Button
 
 - (IBAction)saveProfile:(id)sender{
-    AddressModel *adress = [[AddressModel alloc] initWithStreet:self.streetText.text streetNumber:[self.streetNr.text intValue] zipCode:self.plzText.text city:self.cityText.text latitude:nil longitude:nil];
+    AddressModel *adress = [[AddressModel alloc] initWithStreet:self.streetText.text streetNumber:[self.streetNr.text intValue] zipCode:self.zipCodeText.text city:self.cityText.text latitude:nil longitude:nil];
     
     UIAlertView *saveProfile = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Gespeichert", @"SAVED") message:NSLocalizedString(@"Ihre Daten wurden gespeichert", @"SAVE_DATE_PROFILE") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [saveProfile show];
