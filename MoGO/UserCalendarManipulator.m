@@ -91,7 +91,7 @@
 {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     //we check a certain time
-    NSDate *endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:appointment];
+    NSDate *endDate   = [[NSDate alloc] initWithTimeInterval:300 sinceDate:appointment];
     NSLog(@"TAppointment to be deledet: %@", appointment);
     NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:appointment 
                                                                  endDate:endDate
@@ -107,6 +107,7 @@
         {
             NSError *error;
             [eventStore removeEvent:event span:EKSpanThisEvent error:&error];
+            break;
         }
     }
     
