@@ -11,8 +11,7 @@
 #import "MakeAppointmentDayViewController.h"
 #import "AppointmentViewController.h"
 #import "ApiClient.h"
-#import <EventKit/EventKit.h>
-
+#import "UserCalendarManipulator.h";
 #define RUBY_DATE @"yyyy-MM-dd'T'HH:mm:ss'Z'"
 
 
@@ -63,11 +62,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //ask for user permission to use calendar. Only called at first startup of the app
-    [self askForCalendarPermissionOnce];
-    
-    
+
     self.slotsPerMonth = [NSMutableDictionary dictionary];
     //Set name and discipline of the doctor
     self.doctorLabel.text = [self.doctor fullName];
@@ -283,17 +278,21 @@
     }
     };
     
+    UserCalendarManipulator *manipulator = [[UserCalendarManipulator alloc] init];
+    
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Lege Termin an", @"MAKE_APPOINTMENT")];
     
     [[ApiClient sharedInstance] postPath:@"appointments.json"
                               parameters:params
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                      if (self.selectedAction == CHANGE) {
-                                         [self deleteAppointment];
+                                         [manipulator deleteCalendarAppointment:timeStamp ];
+                                         
+                                          [self deleteAppointment];
                                      }
                                      else
                                      {
-                                         [self saveAppointmentToCalendar:timeStamp];
+                                         [manipulator saveAppointmentToCalendar:timeStamp withDoctorName:self.doctor.fullName];
                                          [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
                                      }//if
                                      
@@ -320,6 +319,7 @@
                                 parameters:nil
                                    success:^(AFHTTPRequestOperation *operation, id response) {
                                        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde verschoben", @"APPOINTMENT_RESCHEDULED")];
+                                                                              
                                        [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
                                    }
                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -360,76 +360,6 @@
     }
     [NSKeyedArchiver archiveRootObject: favouriteDoctors toFile:self.saveFilePath];
 }
-
-//Calendar related methods
-
--(void)saveAppointmentToCalendar:(NSDate*)startDate
-{
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        
-        EKEvent *event  = [EKEvent eventWithEventStore:eventStore];
-        event.title = [NSLocalizedString(@"Termin bei: ", @"APPOINTMENT_AT") stringByAppendingString:self.doctor.fullName];
-        event.startDate = startDate;
-        //we save a appointment with 30 minutes duration by default
-        //TODO: can probably fetch the lenght of the selected slot from server somehow
-        //(or we do it that way so the user has a little time buffer)
-        event.endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:event.startDate];
-        event.notes = NSLocalizedString(@"Mit MoGo erstellter Termin", @"CREATED_WITH_MOGO");
-        
-        [event setCalendar:[eventStore defaultCalendarForNewEvents]];
-        NSError *err;
-        [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
-        
-        
-    }];
-    
-}
-
-//Checks if the user already hase an appointment in the time from dateToCheck to dateToCheck+30Min
-//returns one of these appointments if any, nil if he doesn't have an appointment
--(EKEvent*)checkForUserAppointmentsAtTime:(NSDate*)dateToCheck
-{
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    //we check a certain time
-    NSDate *endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:dateToCheck];
-    
-    NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:dateToCheck
-                                                                 endDate:endDate
-                                                               calendars:nil];
-    NSArray *usersAppointmentsInRange = [[NSArray alloc]init];
-    
-    usersAppointmentsInRange = [eventStore eventsMatchingPredicate:predicate];
-    if([usersAppointmentsInRange count] > 0)
-    {
-        return [usersAppointmentsInRange objectAtIndex:0];
-    }
-    else
-    {
-        return nil;
-    }
-}
-
-//Asks for permission to access the users data
-//this will only happen at the first app start ever
--(void)askForCalendarPermissionOnce
-{
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        
-        if(!granted)
-        {
-            UIAlertView *notGrantedAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Rechte zur Kalendernutzung nicht gewährt", @"CALENDAR_NOT_GRANTED")
-                                                                      message:NSLocalizedString(@"MoGo kann keine Termine n Ihren Kalender speichern. Sie können die Rechte in den Systemeinstellungen gewähren", @"GRANT_CALENDAR_IN_OPTIONS")
-                                                                     delegate:self
-                                                            cancelButtonTitle:@"Ok"
-                                                            otherButtonTitles:nil, nil];
-            [notGrantedAlert show];
-        }
-        
-    }];
-}
-
 
 
 @end

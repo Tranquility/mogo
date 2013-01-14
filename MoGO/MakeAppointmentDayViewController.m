@@ -9,8 +9,7 @@
 #import "MakeAppointmentDayViewController.h"
 #import "ApiClient.h"
 #import "Time.h"
-#import <EventKit/EventKit.h>
-
+#import "UserCalendarManipulator.h"
 
 @interface MakeAppointmentDayViewController()
 
@@ -20,6 +19,7 @@
 @property (nonatomic) NSArray *availableDaysInMonth;
 @property (nonatomic) NSArray* availableAppointments;
 @property (nonatomic) NSDate* selectedDate;
+@property (nonatomic) UserCalendarManipulator *manipulator;
 
 
 @end
@@ -44,6 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.manipulator = [[UserCalendarManipulator alloc]init];
     
     self.availableAppointments = [[NSArray alloc] init];
     //Set name and discipline of the doctor
@@ -196,9 +197,9 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:appointmentDate]];
    
     //check for overlapping appointments with user's calendar, adding a hint to cell if any
-    if([self checkForUserAppointmentsAtTime:appointmentDate] != nil)
+    if([self.manipulator checkForUserAppointmentsAtTime:appointmentDate] != nil)
     {
-        cell.detailTextLabel.text = [NSLocalizedString(@"Konflikt: ", @"CONFLICT") stringByAppendingString:[self checkForUserAppointmentsAtTime:appointmentDate].title];
+        cell.detailTextLabel.text = [NSLocalizedString(@"Konflikt: ", @"CONFLICT") stringByAppendingString:[self.manipulator checkForUserAppointmentsAtTime:appointmentDate].title];
     }
     else
     {
@@ -229,9 +230,9 @@
     formatter.dateFormat = @"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'";
     NSString *dateString = [formatter stringFromDate:self.selectedDate];
     NSString *message = [NSString stringWithFormat:@"Wollen Sie %@ verbindlich einen Termin vereinbaren?\n", dateString];
-    if([self checkForUserAppointmentsAtTime:self.selectedDate] != nil)
+    if([self.manipulator checkForUserAppointmentsAtTime:self.selectedDate] != nil)
     {
-        message = [NSString stringWithFormat:@"%@ %@ \n\"%@\"", message, NSLocalizedString(@"Achtung: Sie haben zur selben Zeit den Termin: ", @"APPOINTMENT_SAME_TIME"), [self checkForUserAppointmentsAtTime:self.selectedDate].title];
+        message = [NSString stringWithFormat:@"%@ %@ \n\"%@\"", message, NSLocalizedString(@"Achtung: Sie haben zur selben Zeit den Termin: ", @"APPOINTMENT_SAME_TIME"), [self.manipulator checkForUserAppointmentsAtTime:self.selectedDate].title];
     }
     
     UIAlertView *confirmAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
@@ -254,29 +255,6 @@
     }
 }
 
-//Checks if the user already hase an appointment in the time from dateToCheck to dateToCheck+30Min
-//returns one of these appointments if any, nil if he doesn't have an appointment
--(EKEvent*)checkForUserAppointmentsAtTime:(NSDate*)dateToCheck
-{
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    //we check a certain time
-    NSDate *endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:dateToCheck];
-    
-    NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:dateToCheck
-                                                                 endDate:endDate
-                                                               calendars:nil];
-    NSArray *usersAppointmentsInRange = [[NSArray alloc]init];
-    
-    usersAppointmentsInRange = [eventStore eventsMatchingPredicate:predicate];
-    if([usersAppointmentsInRange count] > 0)
-    {
-        return [usersAppointmentsInRange objectAtIndex:0];
-    }
-    else
-    {
-        return nil;
-    }
-}
 
 
 @end

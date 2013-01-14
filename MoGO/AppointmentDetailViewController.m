@@ -9,7 +9,7 @@
 #import "AppointmentDetailViewController.h"
 #import "ApiClient.h"
 #import "MakeAppointmentViewController.h"
-
+#import "UserCalendarManipulator.h"
 @interface AppointmentDetailViewController ()
 
 @property (nonatomic) Action selectedAction;
@@ -108,6 +108,8 @@
                                 parameters:nil
                                 success:^(AFHTTPRequestOperation *operation, id response) {
                                     [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde abgesagt", @"APPOINTMENT_CANCELED")];
+                                    UserCalendarManipulator *calendarManipulator = [[UserCalendarManipulator alloc] init];
+                                    [calendarManipulator deleteCalendarAppointment:self.appointment.date];
                                     
                                     [self performSelector:@selector(popToParentController) withObject:nil afterDelay:1.5];
                                 }
@@ -129,5 +131,7 @@
 - (void)popToParentController {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 @end
