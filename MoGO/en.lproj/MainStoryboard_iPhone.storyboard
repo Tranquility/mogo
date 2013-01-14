@@ -870,15 +870,6 @@
                                     <outlet property="delegate" destination="VQk-9r-EJ1" id="39n-be-iTf"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="xmC-me-yrj">
-                                <rect key="frame" x="20" y="269" width="61" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <outlet property="delegate" destination="VQk-9r-EJ1" id="uxb-hf-MPx"/>
-                                </connections>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Passwort bestätigen" minimumFontSize="17" clearButtonMode="whileEditing" id="ix4-ix-SPd">
                                 <rect key="frame" x="20" y="195" width="234" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -897,13 +888,6 @@
                                     <outlet property="delegate" destination="VQk-9r-EJ1" id="m0M-zV-xDQ"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Alter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IHT-f5-3wU">
-                                <rect key="frame" x="20" y="238" width="40" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -915,7 +899,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="ageField" destination="xmC-me-yrj" id="b8W-ms-k3j"/>
                         <outlet property="mailAddressField" destination="Q8D-Ro-aM2" id="jhf-Bg-5Pd"/>
                         <outlet property="passwordConfirmField" destination="ix4-ix-SPd" id="QAJ-qJ-Wv5"/>
                         <outlet property="passwordField" destination="Ie2-ux-Je6" id="FJV-uQ-k6l"/>
@@ -1128,9 +1111,6 @@
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
             <relationships>
-                <relationship kind="action" name="chooseDiscipline:"/>
-                <relationship kind="action" name="closeDisciplinePicker:"/>
-                <relationship kind="action" name="showDisciplinePicker:"/>
                 <relationship kind="outlet" name="disciplineButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
