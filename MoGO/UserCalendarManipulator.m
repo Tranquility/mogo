@@ -39,6 +39,7 @@
     }];
 }
 
+//Saves an appointment consisting of a given date and the full name of the doctor to the calendar
 -(void)saveAppointmentToCalendar:(NSDate*)startDate withDoctorName:(NSString*)doctorFullName
 {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
