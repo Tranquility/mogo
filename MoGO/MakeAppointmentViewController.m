@@ -309,22 +309,6 @@
     
 }
 
-//Reactions to AlertView for asking the user if he still wants to safe although he does already have an appointment
-//TODO: If user choses no, the appointment isn't createt in the calendar, but still in the app
-//modify safeNewAppointment accordingly
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if(buttonIndex == 0)
-    {
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Termin wurde nicht gespeichert", @"APPOINTMENT_NOT_SAVED")];
-    }
-    else if (buttonIndex == 1)
-    {
-        [self saveAppointmentToCalendar:self.timeStamp];
-        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
-        
-    }
-}
 
 - (void)deleteAppointment {
     
