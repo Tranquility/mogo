@@ -228,7 +228,11 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'";
     NSString *dateString = [formatter stringFromDate:self.selectedDate];
-    NSString *message = [NSString stringWithFormat:@"Wollen Sie %@ verbindlich einen Termin vereinbaren?", dateString];
+    NSString *message = [NSString stringWithFormat:@"Wollen Sie %@ verbindlich einen Termin vereinbaren?\n", dateString];
+    if([self checkForUserAppointmentsAtTime:self.selectedDate] != nil)
+    {
+        message = [NSString stringWithFormat:@"%@ %@ \n\"%@\"", message, NSLocalizedString(@"Achtung: Sie haben zur selben Zeit den Termin: ", @"APPOINTMENT_SAME_TIME"), [self checkForUserAppointmentsAtTime:self.selectedDate].title];
+    }
     
     UIAlertView *confirmAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
                                                                  message:NSLocalizedString(message, @"ADD_DOCTOR_TO_FAV")

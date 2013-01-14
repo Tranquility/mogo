@@ -293,30 +293,9 @@
                                      }
                                      else
                                      {
-                                         //TODO: Replace condition with check for user setting about saving into calendar
-                                         if(YES)
-                                         {
-                                             //User doesn't have an appointment yet
-                                             if([self checkForUserAppointmentsAtTime:timeStamp] == nil )
-                                             {
-                                                 [self saveAppointmentToCalendar:timeStamp];
-                                                 [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
-                                             }
-                                             else
-                                             {
-                                                 EKEvent *firstEvent = [self checkForUserAppointmentsAtTime:timeStamp];
-                                                 UIAlertView *confirmAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sie haben bereits einen Termin", @"HAS_TITLE")
-                                                                                                              message:[NSString stringWithFormat:@"Termin: %@ \n Soll der Termin trotzdem gebucht werden?", firstEvent.title]
-                                                                                                             delegate:self
-                                                                                                    cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
-                                                                                                    otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
-                                                 
-                                                 [confirmAppointment show];
-                                             }//else
-                                         }//if
-                                         
-                                     }//else
-                                     
+                                         [self saveAppointmentToCalendar:timeStamp];
+                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
+                                     }//if
                                      
                                      [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
                                  }//success
