@@ -67,7 +67,7 @@
 -(EKEvent*)checkForUserAppointmentsAtTime:(NSDate*)dateToCheck
 {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
-    //we check a certain time
+    //we check a certain time - timeframe from dateToCheck to DateToCheck+30
     NSDate *endDate   = [[NSDate alloc] initWithTimeInterval:1800 sinceDate:dateToCheck];
     
     NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:dateToCheck
@@ -92,7 +92,6 @@
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     //we check a certain time
     NSDate *endDate   = [[NSDate alloc] initWithTimeInterval:300 sinceDate:appointment];
-    NSLog(@"TAppointment to be deledet: %@", appointment);
     NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:appointment 
                                                                  endDate:endDate
                                                                calendars:nil];
