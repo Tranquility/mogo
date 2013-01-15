@@ -11,7 +11,7 @@
 #import "MakeAppointmentDayViewController.h"
 #import "AppointmentViewController.h"
 #import "ApiClient.h"
-#import "UserCalendarManipulator.h";
+#import "UserCalendarManipulator.h"
 #define RUBY_DATE @"yyyy-MM-dd'T'HH:mm:ss'Z'"
 
 
@@ -40,7 +40,6 @@
 
 @property (nonatomic) NSInteger currentOffset;
 @property (nonatomic) NSMutableDictionary *slotsPerMonth;
-@property (nonatomic) NSDate *timeStamp;
 
 
 
@@ -267,7 +266,7 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = RUBY_DATE;
-    self.timeStamp = timeStamp;
+    //self.timeStamp = timeStamp;
     
     NSString *timeString = [dateFormatter stringFromDate:timeStamp];
     id params = @{
@@ -286,7 +285,8 @@
                               parameters:params
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                      if (self.selectedAction == CHANGE) {
-                                         [manipulator deleteCalendarAppointment:timeStamp ];
+                                         [manipulator deleteCalendarAppointment:self.timeStamp ];
+                                         [manipulator saveAppointmentToCalendar:timeStamp withDoctorName:self.doctor.fullName];
                                          
                                           [self deleteAppointment];
                                      }
@@ -319,7 +319,8 @@
                                 parameters:nil
                                    success:^(AFHTTPRequestOperation *operation, id response) {
                                        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde verschoben", @"APPOINTMENT_RESCHEDULED")];
-                                                                              
+                                       UserCalendarManipulator *manipulator = [[UserCalendarManipulator alloc] init];
+                                       [manipulator deleteCalendarAppointment:self.timeStamp];
                                        [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
                                    }
                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {

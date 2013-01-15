@@ -124,6 +124,7 @@
     makeAppointment.doctor = self.appointment.doctor;
     makeAppointment.selectedAction = self.selectedAction;
     makeAppointment.idNumber = self.appointment.idNumber;
+    makeAppointment.timeStamp = self.appointment.date;
     
     [self.navigationController pushViewController:makeAppointment animated:YES];
 }
