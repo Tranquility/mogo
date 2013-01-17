@@ -45,6 +45,7 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.checkinButton.enabled = NO;
+    self.locationManager.delegate = self;
     [self.locationManager startUpdatingLocation];
     
     [self checkLocationForCurrentAppointment];
@@ -69,6 +70,7 @@
     if (currentLocation != nil) {
         [self.locationManager stopUpdatingLocation];
         self.location = currentLocation;
+        
     }
 }
 
@@ -85,6 +87,7 @@
                                         for (NSDictionary *dict in response) {
                                             NSDictionary *subDict = [dict valueForKey:@"doctor"];
                                             DoctorModel *doctor = [[DoctorModel alloc] initWithDictionary:subDict];
+                                                                                        
                                             if ([self isDoctorInRange:doctor]) {
                                                 self.officeOwner = doctor.fullName;
                                                 self.doctorLabel.text = doctor.fullName;
