@@ -45,6 +45,7 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.checkinButton.enabled = NO;
+    [self.locationManager startUpdatingLocation];
     
     [self checkLocationForCurrentAppointment];
 }
