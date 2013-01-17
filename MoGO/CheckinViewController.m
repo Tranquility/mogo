@@ -12,7 +12,7 @@
 #import "DoctorModel.h"
 
 #define NO_DOCTOR_FOUND  @"NO"
-#define MAX_DISTANCE_TO_OFFICE_IN_METERS  25.0
+#define MAX_DISTANCE_TO_OFFICE_IN_METERS  35.0
 
 
 
