@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2515CF09169AF8B500A03959 /* ProfileEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2515CF08169AF8B500A03959 /* ProfileEditViewController.m */; };
+		2502DD0416A830B4004E9FF1 /* Zahnrad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2502DD0316A830B4004E9FF1 /* Zahnrad.png */; };
 		25872568C99647269B8F4825 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B5E67D3F6E46409EA1866E /* libPods.a */; };
 		25DD0E1816A4502500D03609 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25DD0E1716A4502500D03609 /* SettingsViewController.m */; };
 		25E2C8431679FD16004AA1A5 /* sternNormal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25E2C8421679FD16004AA1A5 /* sternNormal.jpg */; };
@@ -78,8 +78,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2515CF07169AF8B500A03959 /* ProfileEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditViewController.h; sourceTree = "<group>"; };
-		2515CF08169AF8B500A03959 /* ProfileEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileEditViewController.m; sourceTree = "<group>"; };
+		2502DD0316A830B4004E9FF1 /* Zahnrad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Zahnrad.png; sourceTree = "<group>"; };
 		25DD0E1616A4502500D03609 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		25DD0E1716A4502500D03609 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		25E2C8421679FD16004AA1A5 /* sternNormal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sternNormal.jpg; sourceTree = "<group>"; };
@@ -241,6 +240,7 @@
 		BA765FDC1694A5C400DC6AC5 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				2502DD0316A830B4004E9FF1 /* Zahnrad.png */,
 				BA97E14716946D0900FAD418 /* Icon.png */,
 				2D451DC8168FE63A0058A6A7 /* phone.gif */,
 				DA1DC679167DFDF300B5D63C /* qr.png */,
@@ -353,8 +353,6 @@
 				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
 				DAC9BA1B1660D7FA00C36D2E /* ViewController.m */,
 				76E77C9116989C21004CBA8C /* Observer.h */,
-				2515CF07169AF8B500A03959 /* ProfileEditViewController.h */,
-				2515CF08169AF8B500A03959 /* ProfileEditViewController.m */,
 				25DD0E1616A4502500D03609 /* SettingsViewController.h */,
 				25DD0E1716A4502500D03609 /* SettingsViewController.m */,
 			);
@@ -491,6 +489,7 @@
 				DA1DC67A167DFDF300B5D63C /* qr.png in Resources */,
 				BA97E14816946D0900FAD418 /* Icon.png in Resources */,
 				2D451DC9168FE63A0058A6A7 /* phone.gif in Resources */,
+				2502DD0416A830B4004E9FF1 /* Zahnrad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,7 +576,6 @@
 				BAA674AC1698EEC40081594D /* MakeAppointmentViewController.m in Sources */,
 				BAA674AF1698EEDB0081594D /* MedicDetailViewController.m in Sources */,
 				2D43F64B1687E6720067A7E2 /* CheckinViewController.m in Sources */,
-				2515CF09169AF8B500A03959 /* ProfileEditViewController.m in Sources */,
 				25DD0E1816A4502500D03609 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
