@@ -304,6 +304,24 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSString *doctorId = [self.favouriteDoctorIDList objectAtIndex:indexPath.row - 1];
+                
+        [self.favouriteDoctorIDList removeObject:doctorId];
+        [NSKeyedArchiver archiveRootObject: self.favouriteDoctorIDList toFile: self.saveFilePath];
+        //Show a notification
+        UIAlertView *removeNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"REMOVED")
+                                                                     message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"REMOVE_DOCTOR_FROM_FAV")
+                                                                    delegate:nil cancelButtonTitle:@"Ok"
+                                                           otherButtonTitles:nil];
+        [removeNotification show];
+    }
+    //updating view
+    [self viewDidLoad];
+}
+
 #pragma mark Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
