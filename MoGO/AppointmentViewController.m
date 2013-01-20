@@ -175,16 +175,10 @@
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
     // we only want our recently used doctors to be editable, but not the first entry
-    if (indexPath.section == 1 && indexPath.row != 0)
-    {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
+    return  indexPath.section == 1 && indexPath.row != 0;
 }
 
 
