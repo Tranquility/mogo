@@ -12,7 +12,7 @@
 #import "DoctorModel.h"
 
 #define NO_DOCTOR_FOUND  @"NO"
-#define MAX_DISTANCE_TO_OFFICE_IN_METERS  25.0
+#define MAX_DISTANCE_TO_OFFICE_IN_METERS  35.0
 
 
 
@@ -45,6 +45,8 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.checkinButton.enabled = NO;
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
     
     [self checkLocationForCurrentAppointment];
 }
@@ -68,6 +70,7 @@
     if (currentLocation != nil) {
         [self.locationManager stopUpdatingLocation];
         self.location = currentLocation;
+        
     }
 }
 
@@ -84,6 +87,7 @@
                                         for (NSDictionary *dict in response) {
                                             NSDictionary *subDict = [dict valueForKey:@"doctor"];
                                             DoctorModel *doctor = [[DoctorModel alloc] initWithDictionary:subDict];
+                                                                                        
                                             if ([self isDoctorInRange:doctor]) {
                                                 self.officeOwner = doctor.fullName;
                                                 self.doctorLabel.text = doctor.fullName;
