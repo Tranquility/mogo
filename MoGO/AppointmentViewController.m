@@ -322,6 +322,11 @@
     [self viewDidLoad];
 }
 
+-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLocalizedString(@"Favorit entfernen", @"REMOVE_FAVORIT");
+}
+
 #pragma mark Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
