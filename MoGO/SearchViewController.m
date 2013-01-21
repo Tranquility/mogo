@@ -178,7 +178,7 @@
 
     cell.textLabel.text = [currentDoctor fullName];
     cell.detailTextLabel.text = currentDoctor.discipline;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 
     return cell;
 }
