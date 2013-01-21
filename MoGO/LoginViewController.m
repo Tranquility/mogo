@@ -86,7 +86,8 @@
                                        NSString *authToken = [responseObject objectForKey:@"token"];
                                        [self.credentialStore setAuthToken:authToken];
                                        
-                                       [SVProgressHUD dismiss];
+                                       [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Login erfolgreich", @"LOGIN_SUCCESSFUL")];
+                                       [[self navigationController] popToRootViewControllerAnimated:YES];
                                        [self dismissViewControllerAnimated:YES completion:nil];
                                        
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -119,7 +120,6 @@
 //        [message show];
 //        
 //    }
-    [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 

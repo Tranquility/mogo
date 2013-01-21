@@ -44,11 +44,7 @@
 
 - (IBAction)logoutButton:(id)sender {
     [self.credentialStore clearSavedCredentials];
-    // Get the reference to the current toolbar buttons
-     NSMutableArray *toolbarButtons = [self.navigationItem.leftBarButtonItems mutableCopy];
-    //remove the button from the toolbar and animate it
-    [toolbarButtons removeObject:self.navigationItem.leftBarButtonItem];
-    [self.navigationItem setLeftBarButtonItems:toolbarButtons animated:YES];
+    [self performSegueWithIdentifier:@"mainToLogin" sender:self];
 }
 
 - (void)viewDidUnload
