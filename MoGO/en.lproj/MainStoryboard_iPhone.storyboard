@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C2034" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -66,21 +66,6 @@
                                     <segue destination="h7E-97-Ext" kind="push" id="Aes-Qk-xH0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HTT-z8-DOb">
-                                <rect key="frame" x="128" y="305" width="65" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="fLP-dx-LhD" kind="push" id="5Y0-S3-ROu"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EWm-uB-9kj">
                                 <rect key="frame" x="10" y="156" width="140" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -106,6 +91,7 @@
                     <navigationItem key="navigationItem" title="Startscreen" id="gIH-Td-vuO"/>
                     <connections>
                         <outlet property="checkinButton" destination="EWm-uB-9kj" id="6E4-a9-enp"/>
+                        <segue destination="fLP-dx-LhD" kind="push" identifier="mainToLogin" id="0IH-98-nUA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -971,7 +957,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YfL-oC-ICq">
-                                <rect key="frame" x="89" y="356" width="165" height="44"/>
+                                <rect key="frame" x="78" y="324" width="165" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Einloggen">
@@ -1029,122 +1015,6 @@
         <image name="qr.png" width="120" height="120"/>
         <image name="sternNormal.jpg" width="385" height="369"/>
     </resources>
-    <classes>
-        <class className="AppointmentDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButton:"/>
-                <relationship kind="action" name="changeButton:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="changeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="disciplineLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noteTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="AppointmentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="appointmentsTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="CheckinViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CheckinViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="checkinPressed:"/>
-                <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="checkinMsgLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="descriptionField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DocumentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="DrugDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DrugDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doctor" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fee" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="medication" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="note" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="qrcode" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonPressed:"/>
-                <relationship kind="outlet" name="mailAdressField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MakeAppointmentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MakeAppointmentViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="moveCalendarViewtoLeft:"/>
-                <relationship kind="action" name="moveCalendarViewtoRight:"/>
-                <relationship kind="outlet" name="buttonLeft" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="buttonRight" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="calendarScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="doctorDisciplineLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="monthLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MedicDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="initiateCall:"/>
-                <relationship kind="action" name="mapClicked:"/>
-                <relationship kind="action" name="setFavourite:"/>
-                <relationship kind="outlet" name="addFavourite" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="addressField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="hoursField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="makeAppointment" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phoneField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="typeField" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RegisterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="registerButtonPressed:"/>
-                <relationship kind="outlet" name="ageField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="mailAddressField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordConfirmField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="chooseDiscipline:"/>
-                <relationship kind="action" name="closeDisciplinePicker:"/>
-                <relationship kind="action" name="showDisciplinePicker:"/>
-                <relationship kind="outlet" name="disciplineButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="subView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -1152,7 +1022,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="4zZ-Pj-sG2"/>
-        <segue reference="mtb-th-UsI"/>
         <segue reference="UYi-6G-KtP"/>
+        <segue reference="mtb-th-UsI"/>
     </inferredMetricsTieBreakers>
 </document>

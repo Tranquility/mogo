@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.navigationItem.hidesBackButton = YES;
     self.credentialStore = [[CredentialStore alloc] init];
     
     if ([self.credentialStore isLoggedIn]) {
@@ -119,6 +119,7 @@
 //        [message show];
 //        
 //    }
+    [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 
