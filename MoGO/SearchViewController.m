@@ -184,9 +184,22 @@
     }
 
     DoctorModel *currentDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
+    CLLocationDegrees latitude = [currentDoctor.address.latitude floatValue];
+    CLLocationDegrees longitude = [currentDoctor.address.longitude floatValue];
+    CLLocation *doctorLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    
+    CLLocationDistance distanceInMeters = [self.userLocation distanceFromLocation:doctorLocation];
+    CLLocationDistance distanceInkilometers = distanceInMeters / 1000.0;
 
     cell.textLabel.text = [currentDoctor fullName];
-    cell.detailTextLabel.text = currentDoctor.discipline;
+    if(self.userLocation != nil)
+    {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@ km %@)", currentDoctor.discipline, [NSString stringWithFormat:@"%.2f",distanceInkilometers], NSLocalizedString(@"entfernt", @"DISTANCE_AWAY")];
+    }
+    else
+    {
+        cell.detailTextLabel.text = currentDoctor.discipline;
+    }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
