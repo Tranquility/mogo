@@ -117,7 +117,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 
 -(BOOL) isEveryFieldFilled
 {
-    return (self.mailAddressField.text.length > 0) && (self.passwordField.text.length > 0) && (self.ageField.text.length > 0);
+    return (self.mailAddressField.text.length > 0) && (self.passwordField.text.length > 0);
 }
 
 -(BOOL) isInputValid
