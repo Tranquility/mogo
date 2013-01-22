@@ -19,6 +19,9 @@
 @property (nonatomic) NSArray *chosenDoctors;
 @property (nonatomic) NSArray *allDoctors;
 @property (nonatomic) NSArray *disciplines;
+@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) CLLocation *userLocation;
+
 
 @end
 
@@ -27,6 +30,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.userLocation = [[CLLocation alloc] init];
     return self;
 }
 
@@ -47,6 +51,11 @@
     UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
     tapRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapRecognizer];
+    
+    //start asking for the users location
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
     
     UIColor *grey = [UIColor colorWithRed:((float) 39.0f / 255.0f)
                                     green:((float) 40.0f / 255.0f)
@@ -175,9 +184,22 @@
     }
 
     DoctorModel *currentDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
+    CLLocationDegrees latitude = [currentDoctor.address.latitude floatValue];
+    CLLocationDegrees longitude = [currentDoctor.address.longitude floatValue];
+    CLLocation *doctorLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    
+    CLLocationDistance distanceInMeters = [self.userLocation distanceFromLocation:doctorLocation];
+    CLLocationDistance distanceInkilometers = distanceInMeters / 1000.0;
 
     cell.textLabel.text = [currentDoctor fullName];
-    cell.detailTextLabel.text = currentDoctor.discipline;
+    if(self.userLocation != nil)
+    {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@ km %@)", currentDoctor.discipline, [NSString stringWithFormat:@"%.2f",distanceInkilometers], NSLocalizedString(@"entfernt", @"DISTANCE_AWAY")];
+    }
+    else
+    {
+        cell.detailTextLabel.text = currentDoctor.discipline;
+    }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
@@ -282,6 +304,29 @@
     }
 
     return result;
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                         message:NSLocalizedString(@"Fehler beim Laden Ihres Standorts", @"FAIL_LOADING_LOCATION")
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil) {
+        [self.locationManager stopUpdatingLocation];
+        self.userLocation = currentLocation;
+        
+    }
 }
 
 @end
