@@ -11,7 +11,7 @@
 #import "MakeAppointmentDayViewController.h"
 #import "AppointmentViewController.h"
 #import "ApiClient.h"
-
+#import "UserCalendarManipulator.h"
 #define RUBY_DATE @"yyyy-MM-dd'T'HH:mm:ss'Z'"
 
 
@@ -28,7 +28,7 @@
  
  When the user clicks a slot to book it, this object is informed by using the "saveNewAppointment" method.
  
- 
+ Also manages the in-app calendar manipulation related to appointments
  
  TODO: This need to be connected to the dataSources for Slots and Appointments, as well as all its connected Classes.
  
@@ -40,6 +40,8 @@
 
 @property (nonatomic) NSInteger currentOffset;
 @property (nonatomic) NSMutableDictionary *slotsPerMonth;
+
+
 
 @end
 
@@ -59,7 +61,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.slotsPerMonth = [NSMutableDictionary dictionary];
     //Set name and discipline of the doctor
     self.doctorLabel.text = [self.doctor fullName];
@@ -96,7 +98,7 @@
     //Adjust the title depending on whether we want to reschedule or make a new apointment
     if (self.selectedAction == CHANGE)
     {
-        self.navigationItem.title = @"Termin verschieben";
+        self.navigationItem.title = NSLocalizedString(@"Termin verschieben", @"RESCHEDULE_APPOINTMENT");
     }
     // This adds GestureRecognizing to this View
     // Add swipeGestures (the selector will be the moveCalendarViewtoLeft and moveCalendarViewtoRight)
@@ -129,7 +131,7 @@
 }
 
 - (void)generateMonthOverviewWithIndex:(int)i year:(int)year month:(int)month
-{   
+{
     id params = @{
     @"month":[NSNumber numberWithInteger:month],
     @"year":[NSNumber numberWithInteger:year],
@@ -264,6 +266,7 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = RUBY_DATE;
+    //self.timeStamp = timeStamp;
     
     NSString *timeString = [dateFormatter stringFromDate:timeStamp];
     id params = @{
@@ -274,26 +277,37 @@
     }
     };
     
+    UserCalendarManipulator *manipulator = [[UserCalendarManipulator alloc] init];
+    
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Lege Termin an", @"MAKE_APPOINTMENT")];
     
     [[ApiClient sharedInstance] postPath:@"appointments.json"
                               parameters:params
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                      if (self.selectedAction == CHANGE) {
-                                         [self deleteAppointment];
-                                     } else {
-                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
-                                         [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
+                                         [manipulator deleteCalendarAppointment:self.timeStamp ];
+                                         [manipulator saveAppointmentToCalendar:timeStamp withDoctorName:self.doctor.fullName];
+                                         
+                                          [self deleteAppointment];
                                      }
+                                     else
+                                     {
+                                         [manipulator saveAppointmentToCalendar:timeStamp withDoctorName:self.doctor.fullName];
+                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde gespeichert", @"APPOINTMENT_SAVED")];
+                                     }//if
                                      
-                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
+                                     [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
+                                 }//success
+     
+                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
                                  }];
     
     //Add this doctor to the fav. list
     [self addDoctorToFavList];
     
 }
+
 
 - (void)deleteAppointment {
     
@@ -305,6 +319,8 @@
                                 parameters:nil
                                    success:^(AFHTTPRequestOperation *operation, id response) {
                                        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Termin wurde verschoben", @"APPOINTMENT_RESCHEDULED")];
+                                       UserCalendarManipulator *manipulator = [[UserCalendarManipulator alloc] init];
+                                       [manipulator deleteCalendarAppointment:self.timeStamp];
                                        [self performSelector:@selector(popToRootView) withObject:nil afterDelay:1.5];
                                    }
                                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -345,5 +361,6 @@
     }
     [NSKeyedArchiver archiveRootObject: favouriteDoctors toFile:self.saveFilePath];
 }
+
 
 @end
