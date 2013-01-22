@@ -72,13 +72,12 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
                                   parameters:params
                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                          [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Bitte bestätigen Sie Ihre E-Mail-Adresse", @"PATIENT_CREATED")];
-                                         [[self navigationController] popToViewController:self.parentViewController animated:YES];
+                                         [self.navigationController popViewControllerAnimated:YES];
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"%@", error);
                                          [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_ERROR")];
                                      }];
         
-        //TODO:pushviewzuLogIn
     }
     else
     {
