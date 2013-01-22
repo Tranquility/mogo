@@ -11,6 +11,7 @@
 #import "ApiClient.h"
 #import "DoctorModel.h"
 #import "MedicDetailViewController.h"
+#import <math.h>
 
 @interface SearchViewController ()
 
@@ -21,7 +22,6 @@
 @property (nonatomic) NSArray *disciplines;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *userLocation;
-
 
 @end
 
@@ -189,12 +189,19 @@
     CLLocation *doctorLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
     
     CLLocationDistance distanceInMeters = [self.userLocation distanceFromLocation:doctorLocation];
-    CLLocationDistance distanceInkilometers = distanceInMeters / 1000.0;
-
     cell.textLabel.text = [currentDoctor fullName];
+    
     if(self.userLocation != nil)
     {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@ km %@)", currentDoctor.discipline, [NSString stringWithFormat:@"%.2f",distanceInkilometers], NSLocalizedString(@"entfernt", @"DISTANCE_AWAY")];
+        if(distanceInMeters < 50)
+        {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)", currentDoctor.discipline,
+                                         NSLocalizedString(@"Direkt in der Nähe", @"DOCTOR_CLOSE")];
+        }
+        else
+        {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@ %@)", currentDoctor.discipline, [self formatDistance:distanceInMeters], NSLocalizedString(@"entfernt", @"DISTANCE_AWAY")];
+        }
     }
     else
     {
@@ -304,6 +311,16 @@
     }
 
     return result;
+}
+
+- (NSString *)formatDistance:(NSInteger)distance
+{
+    if (distance < 1000)
+        return [NSString stringWithFormat:@"%g m", roundf(distance)];
+    else if(distance < 10000)
+        return [NSString stringWithFormat:@"%g km", roundf(distance/100)/10];
+    else
+        return [NSString stringWithFormat:@"%g km", roundf(distance/1000)];
 }
 
 #pragma mark - CLLocationManagerDelegate
