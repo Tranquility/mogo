@@ -207,7 +207,7 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)",[dateFormatter stringFromDate:appointment.date],appointment.doctor.discipline];
     
     //This activates the small arrow to indicate that you can click on it
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     return cell;
 }
 
@@ -234,7 +234,7 @@
     }
     
     //This activates the small arrow to indicate that you can click on it
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 
     return cell;
 }

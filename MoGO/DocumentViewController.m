@@ -116,7 +116,7 @@
         // Configure the cell.
         cell.textLabel.text = prescription.medication;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@", date, doctorName];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         
         return cell;
     }
