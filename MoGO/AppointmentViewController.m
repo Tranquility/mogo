@@ -208,6 +208,7 @@
     
     //This activates the small arrow to indicate that you can click on it
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    
     return cell;
 }
 
@@ -223,6 +224,7 @@
     {
         cell.textLabel.text = NSLocalizedString(@"+ neuen Arzt suchen", @"SEARCH_NEW_DOCTOR");
         cell.detailTextLabel.text = @"";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else{
         //Offset the array index by -1 because of the first static entry ("Arzt suchen")
@@ -231,10 +233,10 @@
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", doctorModel.title, doctorModel.firstName,doctorModel.lastName];
         cell.detailTextLabel.text = doctorModel.discipline;
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
     
     //This activates the small arrow to indicate that you can click on it
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 
     return cell;
 }
