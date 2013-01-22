@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.navigationItem.hidesBackButton = YES;
     self.credentialStore = [[CredentialStore alloc] init];
     
     if ([self.credentialStore isLoggedIn]) {
@@ -86,7 +86,8 @@
                                        NSString *authToken = [responseObject objectForKey:@"token"];
                                        [self.credentialStore setAuthToken:authToken];
                                        
-                                       [SVProgressHUD dismiss];
+                                       [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Login erfolgreich", @"LOGIN_SUCCESSFUL")];
+                                       [[self navigationController] popToRootViewControllerAnimated:YES];
                                        [self dismissViewControllerAnimated:YES completion:nil];
                                        
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

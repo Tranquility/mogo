@@ -7,10 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "CredentialStore.h"
+@interface ViewController ()
+ @property (nonatomic) CredentialStore *credentialStore;
+@end
 
 @implementation ViewController
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -27,6 +29,22 @@
     self.checkinButton.titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
 
     [self.checkinButton setTitle:NSLocalizedString(@"Anmelden bei\nPraxis", @"CHECKIN") forState:UIControlStateNormal];
+    
+    self.credentialStore = [[CredentialStore alloc] init];
+    
+    if ([self.credentialStore isLoggedIn]) {
+        NSLog(@"User is already Logged in");
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutButton:)];
+    }else {
+        NSLog(@"User is not Logged in");
+        [self performSegueWithIdentifier:@"mainToLogin" sender:self];
+    }
+    
+}
+
+- (IBAction)logoutButton:(id)sender {
+    [self.credentialStore clearSavedCredentials];
+    [self performSegueWithIdentifier:@"mainToLogin" sender:self];
 }
 
 - (void)viewDidUnload
@@ -36,14 +54,16 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
+    if ([self.credentialStore isLoggedIn]) {
+        NSLog(@"User is already Logged in");
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutButton:)];
+    }else {
+        NSLog(@"User is not Logged in");
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
