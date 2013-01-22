@@ -9,6 +9,7 @@
 #import "MakeAppointmentDayViewController.h"
 #import "ApiClient.h"
 #import "Time.h"
+#import "UserCalendarManipulator.h"
 
 @interface MakeAppointmentDayViewController()
 
@@ -18,6 +19,7 @@
 @property (nonatomic) NSArray *availableDaysInMonth;
 @property (nonatomic) NSArray* availableAppointments;
 @property (nonatomic) NSDate* selectedDate;
+@property (nonatomic) UserCalendarManipulator *manipulator;
 
 
 @end
@@ -42,6 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.manipulator = [[UserCalendarManipulator alloc]init];
     
     self.availableAppointments = [[NSArray alloc] init];
     //Set name and discipline of the doctor
@@ -192,6 +195,16 @@
     
     //Update the Text-Label
     cell.textLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:appointmentDate]];
+   
+    //check for overlapping appointments with user's calendar, adding a hint to cell if any
+    if([self.manipulator checkForUserAppointmentsAtTime:appointmentDate] != nil)
+    {
+        cell.detailTextLabel.text = [NSLocalizedString(@"Konflikt: ", @"CONFLICT") stringByAppendingString:[self.manipulator checkForUserAppointmentsAtTime:appointmentDate].title];
+    }
+    else
+    {
+        cell.detailTextLabel.text = @"";
+    }
     
     //This activates the small arrow to indicate that you can accept the date
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
@@ -216,7 +229,11 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'";
     NSString *dateString = [formatter stringFromDate:self.selectedDate];
-    NSString *message = [NSString stringWithFormat:@"Wollen Sie %@ verbindlich einen Termin vereinbaren?", dateString];
+    NSString *message = [NSString stringWithFormat:@"Wollen Sie %@ verbindlich einen Termin vereinbaren?\n", dateString];
+    if([self.manipulator checkForUserAppointmentsAtTime:self.selectedDate] != nil)
+    {
+        message = [NSString stringWithFormat:@"%@ %@ \n\"%@\"", message, NSLocalizedString(@"Achtung: Sie haben zur selben Zeit den Termin: ", @"APPOINTMENT_SAME_TIME"), [self.manipulator checkForUserAppointmentsAtTime:self.selectedDate].title];
+    }
     
     UIAlertView *confirmAppointment = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
                                                                  message:NSLocalizedString(message, @"ADD_DOCTOR_TO_FAV")
@@ -237,6 +254,7 @@
         [self.observer notifyFromSender:slotTemplate withValue:self.selectedDate];
     }
 }
+
 
 
 @end

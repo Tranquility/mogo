@@ -28,6 +28,9 @@
 		2D95D8C1166E7F98000A0122 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D95D8C0166E7F98000A0122 /* MessageUI.framework */; };
 		2D95D8C4166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
 		2D95D8C5166E80B1000A0122 /* MailManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8C3166E80B1000A0122 /* MailManipulator.m */; };
+		2DCA4AA016A21C9D002830EE /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCA4A9F16A21C9D002830EE /* EventKit.framework */; };
+		2DF8B3A516A4824000AFC50D /* UserCalendarManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8B3A416A4824000AFC50D /* UserCalendarManipulator.m */; };
+		2DF8B3A616A4824000AFC50D /* UserCalendarManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8B3A416A4824000AFC50D /* UserCalendarManipulator.m */; };
 		991F16FD1668D94A008DBAC7 /* MonthTemplateOverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */; };
 		991F17011668DE69008DBAC7 /* MonthTemplateOverviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */; };
 		BA3E87C8167D0B5E00590DFA /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E87C7167D0B5E00590DFA /* CredentialStore.m */; };
@@ -96,6 +99,9 @@
 		2D95D8C0166E7F98000A0122 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2D95D8C2166E80B1000A0122 /* MailManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailManipulator.h; sourceTree = "<group>"; };
 		2D95D8C3166E80B1000A0122 /* MailManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailManipulator.m; sourceTree = "<group>"; };
+		2DCA4A9F16A21C9D002830EE /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		2DF8B3A316A4824000AFC50D /* UserCalendarManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCalendarManipulator.h; sourceTree = "<group>"; };
+		2DF8B3A416A4824000AFC50D /* UserCalendarManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCalendarManipulator.m; sourceTree = "<group>"; };
 		76E77C9116989C21004CBA8C /* Observer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Observer.h; sourceTree = "<group>"; };
 		991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthTemplateOverviewView.xib; sourceTree = "<group>"; };
 		991F16FF1668DE69008DBAC7 /* MonthTemplateOverviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthTemplateOverviewView.h; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DCA4AA016A21C9D002830EE /* EventKit.framework in Frameworks */,
 				2D43F64F1687EA650067A7E2 /* CoreLocation.framework in Frameworks */,
 				2D95D8C1166E7F98000A0122 /* MessageUI.framework in Frameworks */,
 				2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */,
@@ -262,6 +269,7 @@
 		DAC9BA011660D7FA00C36D2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2DCA4A9F16A21C9D002830EE /* EventKit.framework */,
 				2D43F64E1687EA650067A7E2 /* CoreLocation.framework */,
 				2D95D8C0166E7F98000A0122 /* MessageUI.framework */,
 				2D163A211660F116000A65A7 /* MapKit.framework */,
@@ -322,6 +330,8 @@
 				2D95D8BC166E758D000A0122 /* RegisterViewController.m */,
 				DABBFD2C1660E3F300C79B32 /* SearchViewController.h */,
 				DABBFD2D1660E3F300C79B32 /* SearchViewController.m */,
+				2DF8B3A316A4824000AFC50D /* UserCalendarManipulator.h */,
+				2DF8B3A416A4824000AFC50D /* UserCalendarManipulator.m */,
 				DAC9BA091660D7FA00C36D2E /* Supporting Files */,
 				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
 				DAC9BA1B1660D7FA00C36D2E /* ViewController.m */,
@@ -507,6 +517,7 @@
 				2D95D8C5166E80B1000A0122 /* MailManipulator.m in Sources */,
 				2D7CABBD166FB89F008187C0 /* LoginViewController.m in Sources */,
 				2D43F64C1687E6720067A7E2 /* CheckinViewController.m in Sources */,
+				2DF8B3A616A4824000AFC50D /* UserCalendarManipulator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +554,7 @@
 				BAA674AC1698EEC40081594D /* MakeAppointmentViewController.m in Sources */,
 				BAA674AF1698EEDB0081594D /* MedicDetailViewController.m in Sources */,
 				2D43F64B1687E6720067A7E2 /* CheckinViewController.m in Sources */,
+				2DF8B3A516A4824000AFC50D /* UserCalendarManipulator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,6 +30,8 @@ typedef enum {
 @property (nonatomic) NSInteger currentMonth;
 @property (nonatomic) NSInteger currentYear;
 @property (nonatomic) NSInteger idNumber;
+@property (nonatomic) NSDate *timeStamp;
+
 
 - (IBAction)moveCalendarViewtoLeft:(id)sender;
 - (IBAction)moveCalendarViewtoRight:(id)sender;
