@@ -43,6 +43,7 @@
 		BA3E87C8167D0B5E00590DFA /* CredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3E87C7167D0B5E00590DFA /* CredentialStore.m */; };
 		BA65DC771667BE80007F7140 /* ApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65DC761667BE80007F7140 /* ApiClient.m */; };
 		BA97E14816946D0900FAD418 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA97E14716946D0900FAD418 /* Icon.png */; };
+		BA9BF7A716B04FE3005C2C2B /* WaitingRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9BF7A616B04FE3005C2C2B /* WaitingRoomViewController.m */; };
 		BAA674A91698EEAB0081594D /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA674A81698EEAB0081594D /* DocumentViewController.m */; };
 		BAA674AC1698EEC40081594D /* MakeAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA674AB1698EEC40081594D /* MakeAppointmentViewController.m */; };
 		BAA674AF1698EEDB0081594D /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA674AE1698EEDB0081594D /* MedicDetailViewController.m */; };
@@ -128,6 +129,8 @@
 		BA65DC751667BE80007F7140 /* ApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiClient.h; sourceTree = "<group>"; };
 		BA65DC761667BE80007F7140 /* ApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiClient.m; sourceTree = "<group>"; };
 		BA97E14716946D0900FAD418 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		BA9BF7A516B04FE3005C2C2B /* WaitingRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingRoomViewController.h; sourceTree = "<group>"; };
+		BA9BF7A616B04FE3005C2C2B /* WaitingRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingRoomViewController.m; sourceTree = "<group>"; };
 		BAA674A71698EEAB0081594D /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
 		BAA674A81698EEAB0081594D /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
 		BAA674AA1698EEC40081594D /* MakeAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeAppointmentViewController.h; sourceTree = "<group>"; };
@@ -339,6 +342,8 @@
 				2D95D8C3166E80B1000A0122 /* MailManipulator.m */,
 				DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */,
 				DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */,
+				BA9BF7A516B04FE3005C2C2B /* WaitingRoomViewController.h */,
+				BA9BF7A616B04FE3005C2C2B /* WaitingRoomViewController.m */,
 				F1DBD2AE167368010078CF28 /* MakeAppointmentDayViewController.h */,
 				F1DBD2AF167368010078CF28 /* MakeAppointmentDayViewController.m */,
 				F1DBD2B0167368010078CF28 /* MakeAppointmentDayViewController.xib */,
@@ -593,6 +598,7 @@
 				2DF8B3A516A4824000AFC50D /* UserCalendarManipulator.m in Sources */,
 				25DD0E1816A4502500D03609 /* SettingsViewController.m in Sources */,
 				C8FCA2DD16B1600900238F6F /* DisplayInsurancesViewController.m in Sources */,
+				BA9BF7A716B04FE3005C2C2B /* WaitingRoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

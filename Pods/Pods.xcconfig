@@ -1,7 +1,7 @@
 ALWAYS_SEARCH_USER_PATHS = YES
-OTHER_LDFLAGS = -ObjC -framework AVFoundation -framework AudioToolbox -framework CoreGraphics -framework CoreMedia -framework CoreVideo -framework ImageIO -framework MobileCoreServices -framework QuartzCore -framework Security -framework SystemConfiguration
 HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
-PODS_ROOT = ${SRCROOT}/Pods
-PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/AFNetworking" "${PODS_ROOT}/BuildHeaders/SSKeychain" "${PODS_ROOT}/BuildHeaders/SVProgressHUD" "${PODS_ROOT}/BuildHeaders/ZXingObjC"
-PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/SSKeychain" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/ZXingObjC"
+OTHER_LDFLAGS = -ObjC -licucore -framework AVFoundation -framework AudioToolbox -framework CFNetwork -framework CoreGraphics -framework CoreMedia -framework CoreVideo -framework ImageIO -framework MobileCoreServices -framework QuartzCore -framework Security -framework SystemConfiguration
+PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/AFNetworking" "${PODS_ROOT}/BuildHeaders/SSKeychain" "${PODS_ROOT}/BuildHeaders/SVProgressHUD" "${PODS_ROOT}/BuildHeaders/SocketRocket" "${PODS_ROOT}/BuildHeaders/ZXingObjC" "${PODS_ROOT}/BuildHeaders/socket.IO"
 PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
+PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/SSKeychain" "${PODS_ROOT}/Headers/SVProgressHUD" "${PODS_ROOT}/Headers/SocketRocket" "${PODS_ROOT}/Headers/ZXingObjC" "${PODS_ROOT}/Headers/socket.IO"
+PODS_ROOT = ${SRCROOT}/Pods
