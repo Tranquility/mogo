@@ -236,8 +236,6 @@
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
     
-    //This activates the small arrow to indicate that you can click on it
-
     return cell;
 }
 
@@ -272,6 +270,40 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [self performAction:indexPath tableView:tableView];
+    
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performAction:indexPath tableView:tableView];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSString *doctorId = [self.favouriteDoctorIDList objectAtIndex:indexPath.row - 1];
+                
+        [self.favouriteDoctorIDList removeObject:doctorId];
+        [NSKeyedArchiver archiveRootObject: self.favouriteDoctorIDList toFile: self.saveFilePath];
+        //Show a notification
+        UIAlertView *removeNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"REMOVED")
+                                                                     message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"REMOVE_DOCTOR_FROM_FAV")
+                                                                    delegate:nil cancelButtonTitle:@"Ok"
+                                                           otherButtonTitles:nil];
+        [removeNotification show];
+    }
+    //updating view
+    [self viewDidLoad];
+}
+
+-(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NSLocalizedString(@"Favorit entfernen", @"REMOVE_FAVORIT");
+}
+
+//Helper: Performs the action (show appointment detail or make appointment) when the tableCell or the disclosure Button is pressed
+- (void)performAction:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
     if (indexPath.section == 0)
     {
         //Get the appointment that has been clicked
@@ -297,30 +329,6 @@
             [self performSegueWithIdentifier:@"toMakeAppointment" sender:self];
         }
     }
-    
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        NSString *doctorId = [self.favouriteDoctorIDList objectAtIndex:indexPath.row - 1];
-                
-        [self.favouriteDoctorIDList removeObject:doctorId];
-        [NSKeyedArchiver archiveRootObject: self.favouriteDoctorIDList toFile: self.saveFilePath];
-        //Show a notification
-        UIAlertView *removeNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"REMOVED")
-                                                                     message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"REMOVE_DOCTOR_FROM_FAV")
-                                                                    delegate:nil cancelButtonTitle:@"Ok"
-                                                           otherButtonTitles:nil];
-        [removeNotification show];
-    }
-    //updating view
-    [self viewDidLoad];
-}
-
--(NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NSLocalizedString(@"Favorit entfernen", @"REMOVE_FAVORIT");
 }
 
 #pragma mark Segue

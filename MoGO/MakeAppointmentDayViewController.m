@@ -222,6 +222,20 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self performBooking:indexPath];
+    
+    //Deselect Row when finished
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performBooking:indexPath];
+}
+
+//Helper: this performs the booking when the user touched the tablecell or pressed the blue arrow
+- (void)performBooking:(NSIndexPath *)indexPath
+{
     //Save the selected Date globally (needed for the alertView protocol method)
     self.selectedDate = [self.availableAppointments objectAtIndex:indexPath.row];
     
@@ -242,9 +256,6 @@
                                                        otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
     
     [confirmAppointment show];
-    
-    //Deselect Row when finished
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark UIAlertView Delegate methods
