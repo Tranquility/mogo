@@ -10,17 +10,13 @@
 #import "AddressModel.h"
 #import "PatientModel.h"
 
-//constant vars for scrolling if user changes from textfield to next textfield
-static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
-static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
-static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
-static const CGFloat PORTRAIT_KEYBOARD_HIGHT = 215;
-static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
+#import "UserDefaultConstants.h"
+
+
+
 
 @interface SettingsViewController ()
-
-@property  NSArray *insurence;
-
+@property(nonatomic) UIDatePicker *datePicker;
 
 @end
 
@@ -28,7 +24,8 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    //self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self =  [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         // Custom initialization
     }
@@ -39,22 +36,29 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.scroller setScrollEnabled:YES];
-    [self.scroller setContentSize:CGSizeMake(320, 850)];
+    //Adding a tap recognizer to react on tap events on the screen
+    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
+    tapRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapRecognizer];
     
-    self.insurence = [[NSArray alloc] initWithObjects:@"Allianz", @"Technische", @"Meine", nil];
-    
-    UIColor *grey = [UIColor colorWithRed:((float) 39.0f / 255.0f)
-                                    green:((float) 40.0f / 255.0f)
-                                     blue:((float) 55.0f / 255.0f)
-                                    alpha:1.0f];
-    
-    [self.subViewDate setBackgroundColor:grey];
-    [self.subView setBackgroundColor:grey];
-    
-    //später die insurence von benutzer
-    [self.pickerView selectRow:0 inComponent:0 animated:NO];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.savePasswordSwitch.on = [userDefaults boolForKey:UD_SYSTEM_SAVE_PASSWORD];
+    self.saveToCalendarSwitch.on = [userDefaults boolForKey:UD_SYSTEM_SAVE_TO_CALENDAR];
+    self.nameField.text = [userDefaults stringForKey:UD_USER_NAME];
+    self.surnameField.text = [userDefaults stringForKey:UD_USER_SURNAME];
+    self.streetField.text = [userDefaults stringForKey:UD_USER_STREET];
+    self.streetnumberField.text = [userDefaults stringForKey:UD_USER_STREET_NR];
+    self.zipField.text = [userDefaults stringForKey:UD_USER_ZIP];
+    self.townField.text = [userDefaults stringForKey:UD_USER_TOWN];
+    self.birthdayText.text = [userDefaults stringForKey:UD_USER_BIRTHDATE];
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults]; 
+    self.insuranceField.text = [userDefaults stringForKey:UD_USER_INSURANCE];
+    self.birthdayText.text = [userDefaults stringForKey:UD_USER_BIRTHDATE];
+    [self checkForCompleteUserData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,121 +67,95 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     // Dispose of any resources that can be recreated.
 }
 
-//Picker Delegate
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.insurence.count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [self.insurence objectAtIndex:row];
-}
-
-//- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-//    self.insurenceLabel.text = [self.insurence objectAtIndex:row];
-//
-//}
-
-//Picker Action
-
-- (IBAction)closeDisciplinePicker:(id)sender {
-    self.subView.hidden = YES;
-}
-
-- (IBAction)showDisciplinePicker:(id)sender {
-    self.subView.hidden = NO;
-}
-
-- (IBAction)chooseDiscipline:(id)sender {
-    self.subView.hidden = YES;
-    self.insuranceLabel.text = [self.insurence objectAtIndex: [self.pickerView selectedRowInComponent:0]];
-}
-
-//Date picker Action
-
-- (IBAction)closeDatePicker:(id)sender {
-    self.subViewDate.hidden = YES;
-}
-
-- (IBAction)showDatePicker:(id)sender {
-    self.subViewDate.hidden = NO;
-}
-
-- (IBAction)chooseDate:(id)sender {
-    self.subViewDate.hidden = YES;
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateStyle = NSDateFormatterMediumStyle;
-    self.birthDate.text = [NSString stringWithFormat:@"%@",[df stringFromDate:self.pickerDate.date]];
-}
-
-//Keys ausblenden
-
-- (IBAction)textFieldDoneEditing:(id)sender{
-    [sender resignFirstResponder];
-}
-
-//Save Button
-
-- (IBAction)saveProfile:(id)sender{
-    AddressModel *adress = [[AddressModel alloc] initWithStreet:self.streetText.text streetNumber:[self.streetNr.text intValue] zipCode:self.zipCodeText.text city:self.cityText.text latitude:nil longitude:nil];
-    
-    UIAlertView *saveProfile = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Gespeichert", @"SAVED") message:NSLocalizedString(@"Ihre Daten wurden gespeichert", @"SAVE_DATE_PROFILE") delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [saveProfile show];
-}
-
-//scroll down after tabbing from textfield to next textfield below
--(void) textFieldDidBeginEditing:(UITextField *)textField
+-(void)closeKeyboard
 {
-    CGRect textFieldRect = [self.view.window convertRect:textField.bounds fromView:textField];
-    CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
-    CGFloat midLine = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
-    CGFloat numerator = midLine - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
-    CGFloat denominator = (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION) * viewRect.size.height;
-    CGFloat heightFraction = numerator / denominator;
+    [self.view endEditing:YES];
+    //handle closing of datePicker
+    if([self.view.subviews containsObject:self.datePicker])
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+        NSString *dateString = [dateFormatter stringFromDate:self.datePicker.date];
+        [[NSUserDefaults standardUserDefaults] setValue:dateString forKey:UD_USER_BIRTHDATE];
+        [self.datePicker removeFromSuperview];
+        self.navigationItem.backBarButtonItem.enabled =  YES;
+         [(UIScrollView*)[self view] setScrollEnabled:YES];
+        [self.view endEditing:YES];
+        [self viewDidAppear:NO];
+    }
     
-    if (heightFraction < 0.0)
+}
+
+//save current options when user leaves the settings screen   
+-(void) viewWillDisappear:(BOOL)animated
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:self.saveToCalendarSwitch.isOn forKey:UD_SYSTEM_SAVE_TO_CALENDAR];
+    [userDefaults setBool:self.savePasswordSwitch.isOn forKey:UD_SYSTEM_SAVE_PASSWORD];
+    [userDefaults setObject:self.nameField.text forKey:UD_USER_NAME];
+    [userDefaults setObject:self.surnameField.text forKey:UD_USER_SURNAME];
+    [userDefaults setObject:self.streetField.text forKey:UD_USER_STREET];
+    [userDefaults setObject:self.streetnumberField.text forKey:UD_USER_STREET_NR];
+    [userDefaults setObject:self.zipField.text forKey:UD_USER_ZIP];
+    [userDefaults setObject:self.townField.text forKey:UD_USER_TOWN];
+}
+
+- (void)viewDidUnload {
+    [self setSaveToCalendarSwitch:nil];
+    [self setSavePasswordSwitch:nil];
+    [self setNameField:nil];
+    [self setSurnameField:nil];
+    [self setStreetnumberField:nil];
+    [self setZipField:nil];
+    [self setTownField:nil];
+    [self setStreetField:nil];
+    [self setInsuranceField:nil];
+ 
+    [self setBirthdayText:nil];
+    [self setDatePicker:nil];
+    [super viewDidUnload];
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    //display Picker
+    self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0,245,0,0)];
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    
+    NSDate *loadedDate = [dateFormatter dateFromString:[[NSUserDefaults standardUserDefaults] objectForKey:UD_USER_BIRTHDATE]];
+    if(loadedDate != nil)
     {
-        heightFraction = 0.0;
-    }
-    else if (heightFraction > 1.0)
-    {
-        heightFraction = 1.0;
-    }
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
-    {
-        animatedDistance = floor(PORTRAIT_KEYBOARD_HIGHT * heightFraction);
+        self.datePicker.date = loadedDate;
     }
     else
     {
-        animatedDistance = floor(LANDSCPE_KEYBOARD_HIGHT * heightFraction);
+        NSDateComponents *comp = [[NSDateComponents alloc] init];
+        [comp setDay:1];
+        [comp setMonth:1];
+        [comp setYear: 1970];
+        NSDate *defaultDate = [[NSCalendar currentCalendar] dateFromComponents:comp];
+        self.datePicker.date = defaultDate;
     }
-    CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y -= animatedDistance;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    [self.view setFrame:viewFrame];
-    [UIView commitAnimations];
-    
+    [self.view addSubview:self.datePicker];
+    self.navigationItem.backBarButtonItem.enabled =  NO;
+    [(UIScrollView*)[self view] setScrollEnabled:NO];
+    return NO;
 }
 
-//Scroll up after leaving textField if necessarry
--(void)textFieldDidEndEditing:(UITextField *)textField
+-(void)checkForCompleteUserData
 {
-    CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y += animatedDistance;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    [self.view setFrame:viewFrame];
-    [UIView commitAnimations];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if(![self.nameField.text isEqualToString:@""] && ![self.surnameField.text isEqualToString:@""] && ![self.birthdayText.text isEqualToString:@""])
+    {
+        [defaults setBool:YES forKey:UD_USER_DATA_COMPLETE];
+    }
+    else
+    {
+        [defaults setBool:NO forKey:UD_USER_DATA_COMPLETE];
+    }
 }
-
 
 @end
