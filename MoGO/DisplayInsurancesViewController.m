@@ -58,7 +58,11 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    cell.accessoryType = UITableViewCellAccessoryNone;
     cell.textLabel.text = [self.insuranceList objectAtIndex:indexPath.row];
+    if ([[[NSUserDefaults standardUserDefaults] stringForKey:UD_USER_INSURANCE] isEqualToString:cell.textLabel.text])
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
     
     return cell;
 }
@@ -102,15 +106,6 @@
     [self setInsuranceTableView:nil];
     [super viewDidUnload];
 }
-
-#pragma mark - UIPickerViewDataSource/Delegate methods
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
-    return 1;
-}
-
-
-
 
 
 @end

@@ -78,7 +78,6 @@
         NSString *dateString = [dateFormatter stringFromDate:self.datePicker.date];
         [[NSUserDefaults standardUserDefaults] setValue:dateString forKey:UD_USER_BIRTHDATE];
         [self.datePicker removeFromSuperview];
-        NSLog(@"Date we safe: %@", dateString);
         self.navigationItem.backBarButtonItem.enabled =  YES;
          [(UIScrollView*)[self view] setScrollEnabled:YES];
         [self.view endEditing:YES];
@@ -144,6 +143,5 @@
     [(UIScrollView*)[self view] setScrollEnabled:NO];
     return NO;
 }
-
 
 @end
