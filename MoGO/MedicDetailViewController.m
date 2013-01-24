@@ -74,7 +74,6 @@
     self.nameField.text = name;
     self.typeField.text = self.doctor.discipline;
     self.addressField.text = address;
-    self.phoneField.text = self.doctor.telephone;
     
     CLLocationCoordinate2D location;
     location.latitude = [doctorAddress.latitude floatValue];
@@ -183,6 +182,24 @@
     NSLog(@"Initiating a call using the url: %@", callURL);
     //included NSLog due to the fact the iOS simulator doesn't allow to test methods requiering the phone (intended by apple)
     //nslog included so one can see something on the simulator. 
+}
+//Method to Send Email from Iphone
+- (IBAction)sendEmail:(id)sender
+{
+    MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+    mailer.mailComposeDelegate = self;
+    [mailer setSubject:@""];
+     NSArray *toRecipients = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@", self.doctor.mail], nil];
+    [mailer setToRecipients:toRecipients];
+    NSString *emailBody = [NSString stringWithFormat:@"Guten Tag %@", self.doctor.fullName];
+    [mailer setMessageBody:emailBody isHTML:NO];
+    [self presentModalViewController:mailer animated:YES];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    // Remove the mail view
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
