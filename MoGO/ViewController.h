@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIAlertViewDelegate>
 
 // Need this because there is a line wrap in the button text
 @property (weak, nonatomic) IBOutlet UIButton *checkinButton;

@@ -43,8 +43,12 @@
 }
 
 - (IBAction)logoutButton:(id)sender {
-    [self.credentialStore clearSavedCredentials];
-    [self performSegueWithIdentifier:@"mainToLogin" sender:self];
+    UIAlertView *logout = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bitte bestätigen", @"PLEASE_COMFIRM")
+                                                                message:NSLocalizedString(@"Möchten sie sich wirklich abmelden?", @"LOGOUT_PATIENT")
+                                                               delegate:self
+                                                      cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                                      otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+    [logout show];
 }
 
 - (void)viewDidUnload
@@ -83,6 +87,15 @@
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     } else {
         return YES;
+    }
+}
+
+#pragma mark UIAlertViewDelegage methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self.credentialStore clearSavedCredentials];
+        [self performSegueWithIdentifier:@"mainToLogin" sender:self];
     }
 }
 @end
