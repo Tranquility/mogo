@@ -41,8 +41,8 @@
     [self.view addGestureRecognizer:tapRecognizer];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.savePasswordSwitch.on = [userDefaults boolForKey:UD_SAVE_TO_CALENDAR];
-    self.saveToCalendarSwitch.on = [userDefaults boolForKey:UD_SAVE_PASSWORD];
+    self.savePasswordSwitch.on = [userDefaults boolForKey:UD_SAVE_PASSWORD];
+    self.saveToCalendarSwitch.on = [userDefaults boolForKey:UD_SAVE_TO_CALENDAR];
     self.nameField.text = [userDefaults stringForKey:UD_USER_NAME];
     self.surnameField.text = [userDefaults stringForKey:UD_USER_SURNAME];
     self.streetField.text = [userDefaults stringForKey:UD_USER_STREET];
@@ -90,10 +90,5 @@
     [super viewDidUnload];
 }
 
-#ifndef MoGO_UserDefaultConstants_h
-#define MoGO_UserDefaultConstants_h
 
-
-
-#endif
 @end
