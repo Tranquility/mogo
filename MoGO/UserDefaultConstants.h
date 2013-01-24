@@ -4,10 +4,13 @@
 //
 //  Created by 0weislow on 24.01.13.
 //
-//
+//  Use these keys when accessing user defaults
 
-#define UD_SAVE_TO_CALENDAR  @"SAVE_TO_CALENDAR"
-#define UD_SAVE_PASSWORD  @"SAVE_PASSWORD"
+//system settings
+#define UD_SYSTEM_SAVE_TO_CALENDAR  @"SAVE_TO_CALENDAR"
+#define UD_SYSTEM_SAVE_PASSWORD  @"SAVE_PASSWORD"
+
+//user profile
 #define UD_USER_NAME  @"USER_NAME"
 #define UD_USER_SURNAME  @"USER_SURNAME"
 #define UD_USER_STREET  @"USER_STREET"

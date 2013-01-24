@@ -17,7 +17,6 @@
 
 @interface SettingsViewController ()
 @property(nonatomic) UIDatePicker *datePicker;
-@property(nonatomic) NSDate *birthdate;
 
 @end
 
@@ -43,8 +42,8 @@
     [self.view addGestureRecognizer:tapRecognizer];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.savePasswordSwitch.on = [userDefaults boolForKey:UD_SAVE_PASSWORD];
-    self.saveToCalendarSwitch.on = [userDefaults boolForKey:UD_SAVE_TO_CALENDAR];
+    self.savePasswordSwitch.on = [userDefaults boolForKey:UD_SYSTEM_SAVE_PASSWORD];
+    self.saveToCalendarSwitch.on = [userDefaults boolForKey:UD_SYSTEM_SAVE_TO_CALENDAR];
     self.nameField.text = [userDefaults stringForKey:UD_USER_NAME];
     self.surnameField.text = [userDefaults stringForKey:UD_USER_SURNAME];
     self.streetField.text = [userDefaults stringForKey:UD_USER_STREET];
@@ -58,6 +57,7 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults]; 
     self.insuranceField.text = [userDefaults stringForKey:UD_USER_INSURANCE];
+    self.birthdayText.text = [userDefaults stringForKey:UD_USER_BIRTHDATE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +70,7 @@
 -(void)closeKeyboard
 {
     [self.view endEditing:YES];
+    //handle closing of datePicker
     if([self.view.subviews containsObject:self.datePicker])
     {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -80,7 +81,8 @@
         NSLog(@"Date we safe: %@", dateString);
         self.navigationItem.backBarButtonItem.enabled =  YES;
          [(UIScrollView*)[self view] setScrollEnabled:YES];
-        [self viewDidLoad];
+        [self.view endEditing:YES];
+        [self viewDidAppear:NO];
     }
     
 }
@@ -89,8 +91,8 @@
 -(void) viewWillDisappear:(BOOL)animated
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:self.saveToCalendarSwitch.isOn forKey:UD_SAVE_TO_CALENDAR];
-    [userDefaults setBool:self.savePasswordSwitch.isOn forKey:UD_SAVE_PASSWORD];
+    [userDefaults setBool:self.saveToCalendarSwitch.isOn forKey:UD_SYSTEM_SAVE_TO_CALENDAR];
+    [userDefaults setBool:self.savePasswordSwitch.isOn forKey:UD_SYSTEM_SAVE_PASSWORD];
     [userDefaults setObject:self.nameField.text forKey:UD_USER_NAME];
     [userDefaults setObject:self.surnameField.text forKey:UD_USER_SURNAME];
     [userDefaults setObject:self.streetField.text forKey:UD_USER_STREET];
