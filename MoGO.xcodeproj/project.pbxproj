@@ -125,6 +125,7 @@
 		BAA674AE1698EEDB0081594D /* MedicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicDetailViewController.m; sourceTree = "<group>"; };
 		BAE7361F169F0CBC00AC69E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BAE73622169F0CC500AC69E4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		C8FCA2D916B1558600238F6F /* UserDefaultConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultConstants.h; sourceTree = "<group>"; };
 		DA1DC675167DDBBE00B5D63C /* PrescriptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionModel.h; sourceTree = "<group>"; };
 		DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrescriptionModel.m; sourceTree = "<group>"; };
 		DA1DC679167DFDF300B5D63C /* qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr.png; sourceTree = "<group>"; };
@@ -344,6 +345,7 @@
 				76E77C9116989C21004CBA8C /* Observer.h */,
 				25DD0E1616A4502500D03609 /* SettingsViewController.h */,
 				25DD0E1716A4502500D03609 /* SettingsViewController.m */,
+				C8FCA2D916B1558600238F6F /* UserDefaultConstants.h */,
 			);
 			path = MoGO;
 			sourceTree = "<group>";
