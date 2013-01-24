@@ -58,6 +58,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults]; 
     self.insuranceField.text = [userDefaults stringForKey:UD_USER_INSURANCE];
     self.birthdayText.text = [userDefaults stringForKey:UD_USER_BIRTHDATE];
+    [self checkForCompleteUserData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,6 +143,19 @@
     self.navigationItem.backBarButtonItem.enabled =  NO;
     [(UIScrollView*)[self view] setScrollEnabled:NO];
     return NO;
+}
+
+-(void)checkForCompleteUserData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if(self.nameField.text != @"" && self.surnameField.text != @"" && self.birthdayText.text != @"")
+    {
+        [defaults setBool:YES forKey:UD_USER_DATA_COMPLETE];
+    }
+    else
+    {
+        [defaults setBool:NO forKey:UD_USER_DATA_COMPLETE];
+    }
 }
 
 @end

@@ -20,4 +20,7 @@
 #define UD_USER_INSURANCE @"USER_INSURANCE"
 #define UD_USER_BIRTHDATE @"USER_BIRTHDATE"
 
+//stores if the user inserted all required data to book an appointment in settings
+#define UD_USER_DATA_COMPLETE @"DATA_COMPLETE"
+
 
