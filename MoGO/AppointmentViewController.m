@@ -161,7 +161,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0)
     {
-        return self.appointmentList.count;
+        //If there are no appointments, we show the static entry
+        if(self.appointmentList.count==0)
+        {
+            return 1;
+        }
+        else{
+            return self.appointmentList.count;
+        }
+        
     } else {
         //We need to be careful here, because the doctorList gets loaded asynchronously, and it could not be loaded yet
         //resuting in a null reference when updating the tableViewController
@@ -246,7 +254,22 @@
     //Show the Appointments
     if (indexPath.section == 0)
     {
-        return [self makeAppointmentCell:tableView indexPath:indexPath];
+        //If we have no appointments: show the static entry
+        if(self.appointmentList.count==0)
+        {
+            NSString *cellIdentifier = @"staticCell";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            }
+            cell.textLabel.text = @"Keine Termine vorhanden";
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone; 
+            return cell;
+        }
+        else{
+            return [self makeAppointmentCell:tableView indexPath:indexPath];
+        }
     }
     else //Show the Doctors
     {
@@ -274,11 +297,15 @@
     
     if (indexPath.section == 0)
     {
-        //Get the appointment that has been clicked
-        self.selectedAppointment = [self.appointmentList objectAtIndex:indexPath.row];
+        //Only respond if the clicked cell is not the static cell (= we have appointments)
+        if(self.appointmentList.count!=0)
+        {
+            //Get the appointment that has been clicked
+            self.selectedAppointment = [self.appointmentList objectAtIndex:indexPath.row];
         
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self performSegueWithIdentifier:@"toAppointmentDetail" sender:self];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [self performSegueWithIdentifier:@"toAppointmentDetail" sender:self];
+        }
     }
     else
     {
