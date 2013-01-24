@@ -39,7 +39,10 @@
     UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
     tapRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapRecognizer];
-    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     self.savePasswordSwitch.on = [userDefaults boolForKey:UD_SAVE_PASSWORD];
     self.saveToCalendarSwitch.on = [userDefaults boolForKey:UD_SAVE_TO_CALENDAR];
@@ -49,7 +52,9 @@
     self.streetnumberField.text = [userDefaults stringForKey:UD_USER_STREET_NR];
     self.zipField.text = [userDefaults stringForKey:UD_USER_ZIP];
     self.townField.text = [userDefaults stringForKey:UD_USER_TOWN];
-    
+    self.insuranceField.text = [userDefaults stringForKey:UD_USER_INSURANCE];
+    NSLog(@"TEST");
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,6 +92,7 @@
     [self setZipField:nil];
     [self setTownField:nil];
     [self setStreetField:nil];
+    [self setInsuranceField:nil];
     [super viewDidUnload];
 }
 

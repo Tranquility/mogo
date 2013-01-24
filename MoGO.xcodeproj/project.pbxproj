@@ -43,6 +43,7 @@
 		BAA674AF1698EEDB0081594D /* MedicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA674AE1698EEDB0081594D /* MedicDetailViewController.m */; };
 		BAE73620169F0CBC00AC69E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE7361F169F0CBC00AC69E4 /* Default.png */; };
 		BAE73623169F0CC500AC69E4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BAE73622169F0CC500AC69E4 /* Default@2x.png */; };
+		C8FCA2DD16B1600900238F6F /* DisplayInsurancesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FCA2DC16B1600900238F6F /* DisplayInsurancesViewController.m */; };
 		DA1DC677167DDBBE00B5D63C /* PrescriptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */; };
 		DA1DC67A167DFDF300B5D63C /* qr.png in Resources */ = {isa = PBXBuildFile; fileRef = DA1DC679167DFDF300B5D63C /* qr.png */; };
 		DABBFD2F1660E3F300C79B32 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DABBFD2D1660E3F300C79B32 /* SearchViewController.m */; };
@@ -126,6 +127,8 @@
 		BAE7361F169F0CBC00AC69E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BAE73622169F0CC500AC69E4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C8FCA2D916B1558600238F6F /* UserDefaultConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultConstants.h; sourceTree = "<group>"; };
+		C8FCA2DB16B1600900238F6F /* DisplayInsurancesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayInsurancesViewController.h; sourceTree = "<group>"; };
+		C8FCA2DC16B1600900238F6F /* DisplayInsurancesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayInsurancesViewController.m; sourceTree = "<group>"; };
 		DA1DC675167DDBBE00B5D63C /* PrescriptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionModel.h; sourceTree = "<group>"; };
 		DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrescriptionModel.m; sourceTree = "<group>"; };
 		DA1DC679167DFDF300B5D63C /* qr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qr.png; sourceTree = "<group>"; };
@@ -327,6 +330,7 @@
 				BAA674AA1698EEC40081594D /* MakeAppointmentViewController.h */,
 				BAA674AB1698EEC40081594D /* MakeAppointmentViewController.m */,
 				2D163A231661021D000A65A7 /* MapViewAnnotation.h */,
+				2D95D8BC166E758D000A0122 /* RegisterViewController.m */,
 				2D163A241661021D000A65A7 /* MapViewAnnotation.m */,
 				BAA674AD1698EEDB0081594D /* MedicDetailViewController.h */,
 				BAA674AE1698EEDB0081594D /* MedicDetailViewController.m */,
@@ -334,17 +338,18 @@
 				991F17001668DE69008DBAC7 /* MonthTemplateOverviewView.m */,
 				991F16FC1668D94A008DBAC7 /* MonthTemplateOverviewView.xib */,
 				2D95D8BB166E758D000A0122 /* RegisterViewController.h */,
-				2D95D8BC166E758D000A0122 /* RegisterViewController.m */,
 				DABBFD2C1660E3F300C79B32 /* SearchViewController.h */,
 				DABBFD2D1660E3F300C79B32 /* SearchViewController.m */,
 				2DF8B3A316A4824000AFC50D /* UserCalendarManipulator.h */,
+				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
 				2DF8B3A416A4824000AFC50D /* UserCalendarManipulator.m */,
 				DAC9BA091660D7FA00C36D2E /* Supporting Files */,
-				DAC9BA1A1660D7FA00C36D2E /* ViewController.h */,
 				DAC9BA1B1660D7FA00C36D2E /* ViewController.m */,
 				76E77C9116989C21004CBA8C /* Observer.h */,
 				25DD0E1616A4502500D03609 /* SettingsViewController.h */,
 				25DD0E1716A4502500D03609 /* SettingsViewController.m */,
+				C8FCA2DB16B1600900238F6F /* DisplayInsurancesViewController.h */,
+				C8FCA2DC16B1600900238F6F /* DisplayInsurancesViewController.m */,
 				C8FCA2D916B1558600238F6F /* UserDefaultConstants.h */,
 			);
 			path = MoGO;
@@ -567,6 +572,7 @@
 				2D43F64B1687E6720067A7E2 /* CheckinViewController.m in Sources */,
 				2DF8B3A516A4824000AFC50D /* UserCalendarManipulator.m in Sources */,
 				25DD0E1816A4502500D03609 /* SettingsViewController.m in Sources */,
+				C8FCA2DD16B1600900238F6F /* DisplayInsurancesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

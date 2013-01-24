@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *streetnumberField;
 @property (weak, nonatomic) IBOutlet UITextField *zipField;
 @property (weak, nonatomic) IBOutlet UITextField *townField;
+@property (weak, nonatomic) IBOutlet UILabel *insuranceField;
 
 
 @end
