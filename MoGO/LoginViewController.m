@@ -91,7 +91,16 @@
                                        [self dismissViewControllerAnimated:YES completion:nil];
                                        
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                       [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
+                                                                      
+                                       if([[error domain] isEqualToString:@"AFNetworkingErrorDomain"] && ([error code]==-1011))
+                                       {
+                                           [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Logindaten nicht korrekt", @"CONNECTION_FAIL")];
+                                       }
+                                       else
+                                       {
+                                           [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
+                                       }
+                                       
                                    }];
     
 //    if (YES) //change with server confirms account
