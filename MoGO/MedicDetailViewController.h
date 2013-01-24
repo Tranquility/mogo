@@ -9,17 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "DoctorModel.h"
+#import <MessageUI/MessageUI.h>
 
-@interface MedicDetailViewController : UIViewController
+@interface MedicDetailViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
 @property (nonatomic) IBOutlet UIButton *addFavourite;
 @property (nonatomic) IBOutlet UIBarButtonItem *makeAppointment;
 @property (nonatomic) IBOutlet MKMapView *mapOutlet;
 @property (nonatomic) IBOutlet UILabel *nameField;
 @property (nonatomic) IBOutlet UILabel *typeField;
-@property (nonatomic) IBOutlet UITextView *addressField;
-@property (nonatomic) IBOutlet UILabel *phoneField;
-@property (nonatomic) IBOutlet UILabel *hoursField;
+@property (nonatomic) IBOutlet UITextView *addressField;@property (nonatomic) IBOutlet UILabel *hoursField;
 @property (nonatomic) IBOutlet UIButton *favouriteButton;
 
 @property (nonatomic) DoctorModel *doctor;
@@ -30,5 +29,6 @@
 - (IBAction)setFavourite:(id)favourite;
 - (IBAction)mapClicked:(id)sender;
 - (IBAction)initiateCall:(id)sender;
+- (IBAction)sendEmail:(id)sender;
 
 @end
