@@ -30,6 +30,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    //Adding a tap recognizer to react on tap events on the screen
+    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
+    tapRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,5 +43,9 @@
 }
 
 
+-(void)closeKeyboard
+{
+    [self.view endEditing:YES];
+}
 
 @end
