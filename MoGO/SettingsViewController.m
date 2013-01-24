@@ -148,7 +148,7 @@
 -(void)checkForCompleteUserData
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if(self.nameField.text != @"" && self.surnameField.text != @"" && self.birthdayText.text != @"")
+    if(![self.nameField.text isEqualToString:@""] && ![self.surnameField.text isEqualToString:@""] && ![self.birthdayText.text isEqualToString:@""])
     {
         [defaults setBool:YES forKey:UD_USER_DATA_COMPLETE];
     }
