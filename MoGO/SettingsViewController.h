@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UITableViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UISwitch *saveToCalendarSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *savePasswordSwitch;
@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *zipField;
 @property (weak, nonatomic) IBOutlet UITextField *townField;
 @property (weak, nonatomic) IBOutlet UILabel *insuranceField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdayText;
+
+
 
 
 @end

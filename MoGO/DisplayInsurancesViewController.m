@@ -64,7 +64,6 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSLog(@"%@", [self.insuranceList objectAtIndex:indexPath.row]);
     cell.textLabel.text = [self.insuranceList objectAtIndex:indexPath.row];
     
     return cell;
@@ -78,23 +77,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString* selectedInsurance = [self.insuranceList objectAtIndex:indexPath.row];
     [[NSUserDefaults standardUserDefaults] setObject:selectedInsurance forKey:UD_USER_INSURANCE];
 
-    
     [self.navigationController popViewControllerAnimated:YES];
-
-    
-    
 }
 
 -(void) initInsurances
@@ -123,4 +111,15 @@
     [self setInsuranceTableView:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - UIPickerViewDataSource/Delegate methods
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
+    return 1;
+}
+
+
+
+
+
 @end
