@@ -5,6 +5,8 @@
 //  Created by 0schleew on 24.11.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+// TODO: Fix move of last row
+// TODO: Fix safe
 
 #import "AppointmentViewController.h"
 #import "AppointmentModel.h"
@@ -58,6 +60,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchFavouriteDoctorIds];
+    [self fetchAppointments];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     [self fetchAppointments];
 }
 
@@ -358,9 +365,18 @@
     if(destinationIndexPath.row < [self.favouriteDoctorIDList count])
     {
         NSString *stringToMove = [self.favouriteDoctorIDList objectAtIndex:sourceIndexPath.row];
-        [self.favouriteDoctorIDList removeObjectAtIndex:sourceIndexPath.row];
+        NSString *toReplace = [self.favouriteDoctorIDList objectAtIndex:destinationIndexPath.row];
+       //replace dragged row with target row
+        [self.favouriteDoctorIDList removeObject:stringToMove];
         [self.favouriteDoctorIDList insertObject:stringToMove atIndex:destinationIndexPath.row];
-        NSLog(@"moveRow called");
+
+     //   [self.favouriteDoctorIDList replaceObjectAtIndex:destinationIndexPath.row withObject:stringToMove];
+        [NSKeyedArchiver archiveRootObject: self.favouriteDoctorIDList toFile: self.saveFilePath];
+        
+    }
+    else
+    {
+        
     }
 }
 
@@ -402,12 +418,14 @@
 
 -(void)longPressed:(UILongPressGestureRecognizer *)sender
 {
-    [self.appointmentsTableView setEditing:YES animated:YES];
+    if(self.appointmentsTableView.isEditing == NO)
+        [self.appointmentsTableView setEditing:YES animated:YES];
 }
 
 -(void)tapped
 {
-    [self.appointmentsTableView setEditing:NO animated:YES];
+    if(self.appointmentsTableView.isEditing)
+        [self.appointmentsTableView setEditing:NO animated:YES];
 }
 
 
