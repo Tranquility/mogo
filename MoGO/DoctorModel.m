@@ -38,7 +38,7 @@
         self.gender = [dict valueForKeyPath:@"gender"];
         self.firstName = [dict valueForKeyPath:@"firstname"];
         self.lastName = [dict valueForKeyPath:@"lastname"];
-        self.mail = [dict valueForKeyPath:@"mail"];
+        self.mail = [dict valueForKeyPath:@"email"];
         self.telephone = [dict valueForKeyPath:@"telephone"];
         self.address = address;
     }
