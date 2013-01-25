@@ -41,7 +41,7 @@ NSInteger const DAY_OFFSET = 1;
         //How many Days do we have in the month?
         NSInteger daysPerMonth = [gregorian rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:date].length;
         
-        [self generateTilesForEachDay:slots days:daysPerMonth start:adjustedWeekdayOrdinal];
+        [self generateTilesForEachDay:slots days:daysPerMonth start:adjustedWeekdayOrdinal forDate:date];
     }
     return self;
 }
@@ -81,9 +81,12 @@ NSInteger const DAY_OFFSET = 1;
     return start;
 }
 
-- (void)generateTilesForEachDay:(NSArray *)availableSlots days:(NSInteger)days start:(NSInteger)start
+- (void)generateTilesForEachDay:(NSArray *)availableSlots days:(NSInteger)days start:(NSInteger)start forDate:(NSDate*)date
 {
     start = start % 7;
+    
+    NSDate* currentDateDay = date;
+    
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 7; j++) {
             
@@ -109,7 +112,16 @@ NSInteger const DAY_OFFSET = 1;
                 {
                     state = FULLY_BOOKED;
                 }
+                
+                //Check if this day is in the past, then it gets a different color no matter if it has a slot or not
+                if([currentDateDay compare:[[NSDate alloc] init]] == NSOrderedAscending)
+                {
+                    state = DISABLED;
+                }
+                
             }
+            
+            currentDateDay = [currentDateDay dateByAddingTimeInterval:60*60*24];
             
             //Draw Day to Calendar-View (by adding a sub-view)
             DayTemplateView *newDay = [[DayTemplateView alloc] initWithFrame:r state:state day:dayNumber observer:self.observer];

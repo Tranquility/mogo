@@ -15,6 +15,7 @@ typedef enum {
     HIDDEN = 0,
     FULLY_BOOKED = 1,
     FREE_SLOTS = 2,
+    DISABLED = 3
 } State;
 
 @property (nonatomic) IBOutlet UIView *mainView;
