@@ -5,8 +5,6 @@
 //  Created by 0schleew on 24.11.12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-// TODO: Fix move of last row
-// TODO: Fix safe
 
 #import "AppointmentViewController.h"
 #import "AppointmentModel.h"
@@ -71,7 +69,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [NSKeyedArchiver archiveRootObject: self.favouriteDoctorIDList toFile: self.saveFilePath];
-    NSLog(@"Called");
 }
 
 - (void)viewDidUnload
@@ -364,20 +361,15 @@
 {
     if(destinationIndexPath.row < [self.favouriteDoctorIDList count])
     {
-        NSString *stringToMove = [self.favouriteDoctorIDList objectAtIndex:sourceIndexPath.row];
-        NSString *toReplace = [self.favouriteDoctorIDList objectAtIndex:destinationIndexPath.row];
+        NSString *stringToMove = [self.favouriteDoctorIDList objectAtIndex:sourceIndexPath.row - 1];
        //replace dragged row with target row
         [self.favouriteDoctorIDList removeObject:stringToMove];
-        [self.favouriteDoctorIDList insertObject:stringToMove atIndex:destinationIndexPath.row];
+        [self.favouriteDoctorIDList insertObject:stringToMove atIndex:destinationIndexPath.row - 1];
 
-     //   [self.favouriteDoctorIDList replaceObjectAtIndex:destinationIndexPath.row withObject:stringToMove];
         [NSKeyedArchiver archiveRootObject: self.favouriteDoctorIDList toFile: self.saveFilePath];
         
     }
-    else
-    {
-        
-    }
+
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
