@@ -49,10 +49,7 @@
     [self fetchFavouriteDoctorIds];
     [self fetchDoctorList];
     
-    UITapGestureRecognizer *tapped =
-    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped)];
-    
-    [self.view addGestureRecognizer:tapped];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
