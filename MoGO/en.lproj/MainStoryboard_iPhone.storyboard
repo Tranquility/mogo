@@ -473,21 +473,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dr. Arzt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AXA-et-fif" userLabel="Doctorname">
-                                <rect key="frame" x="21" y="148" width="279" height="21"/>
+                                <rect key="frame" x="21" y="149" width="279" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Öffnungszeiten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sY7-3A-p9Y" userLabel="lOpeningHours">
-                                <rect key="frame" x="98" y="290" width="124" height="21"/>
+                                <rect key="frame" x="99" y="249" width="124" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TX7-hY-Kz5" userLabel="bBookButton">
-                                <rect key="frame" x="130" y="355" width="62" height="54"/>
+                                <rect key="frame" x="130" y="353" width="62" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="sternNormal.jpg">
@@ -509,14 +509,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mo. - Do. 08:00 bis 13:00 Uhr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w6X-ms-Klb" userLabel="doctoropening">
-                                <rect key="frame" x="26" y="319" width="268" height="21"/>
+                                <rect key="frame" x="26" y="278" width="268" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Toaststraße 12                                   22111 Hamburg" textAlignment="center" id="GzA-SS-O6Z" userLabel="doctoradress">
-                                <rect key="frame" x="26" y="197" width="268" height="56"/>
+                                <rect key="frame" x="26" y="188" width="268" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -532,7 +532,7 @@
                                 </connections>
                             </mapView>
                             <imageView contentMode="scaleToFill" image="phone.gif" id="5IX-pg-9LH">
-                                <rect key="frame" x="186" y="256" width="36" height="32"/>
+                                <rect key="frame" x="187" y="313" width="36" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -540,7 +540,7 @@
                                 </connections>
                             </imageView>
                             <imageView contentMode="scaleToFill" image="email.png" id="RAl-m1-xiU">
-                                <rect key="frame" x="98" y="250" width="43" height="43"/>
+                                <rect key="frame" x="99" y="307" width="43" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
@@ -1376,14 +1376,152 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="qr.png" width="120" height="120"/>
         <image name="sternNormal.jpg" width="385" height="369"/>
     </resources>
+    <classes>
+        <class className="AppointmentDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButton:"/>
+                <relationship kind="action" name="changeButton:"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="changeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="disciplineLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="noteTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="AppointmentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="appointmentsTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="CheckinViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CheckinViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="checkinPressed:"/>
+                <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="checkinMsgLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descriptionField" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DocumentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="DrugDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DrugDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="doctor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fee" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="medication" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="note" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="qrcode" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginButtonPressed:"/>
+                <relationship kind="outlet" name="mailAdressField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="MakeAppointmentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MakeAppointmentViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="moveCalendarViewtoLeft:"/>
+                <relationship kind="action" name="moveCalendarViewtoRight:"/>
+                <relationship kind="outlet" name="buttonLeft" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="buttonRight" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="calendarScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="doctorDisciplineLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="monthLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MedicDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="initiateCall:"/>
+                <relationship kind="action" name="mapClicked:"/>
+                <relationship kind="action" name="sendEmail:"/>
+                <relationship kind="action" name="setFavourite:"/>
+                <relationship kind="outlet" name="addFavourite" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addressField" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="hoursField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="makeAppointment" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="nameField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="typeField" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RegisterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="registerButtonPressed:"/>
+                <relationship kind="outlet" name="mailAddressField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordConfirmField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="disciplineButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="subView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="chooseDate:"/>
+                <relationship kind="action" name="chooseDiscipline:"/>
+                <relationship kind="action" name="closeDatePicker:"/>
+                <relationship kind="action" name="closeDisciplinePicker:"/>
+                <relationship kind="action" name="saveProfile:"/>
+                <relationship kind="action" name="showDatePicker:"/>
+                <relationship kind="action" name="showDisciplinePicker:"/>
+                <relationship kind="action" name="textFieldDoneEditing:"/>
+                <relationship kind="outlet" name="birthDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cityText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstnameText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="insuranceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pickerDate" candidateClass="UIDatePicker"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="scroller" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="streetNr" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="streetText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="subView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="subViewDate" candidateClass="UIView"/>
+                <relationship kind="outlet" name="surenameText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="zipCodeText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="4zZ-Pj-sG2"/>
         <segue reference="mtb-th-UsI"/>
+        <segue reference="1Fk-rt-SPK"/>
         <segue reference="UYi-6G-KtP"/>
     </inferredMetricsTieBreakers>
 </document>
