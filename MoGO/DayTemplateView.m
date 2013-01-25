@@ -32,13 +32,19 @@
         else if (state == FULLY_BOOKED) //Day not available (no appointment slots available)
         {
             //Appointments not available at this day, set color accordingly
-            self.dayLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+            self.dayLabel.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
             self.dayLabel.text = [NSString stringWithFormat:@"%d",day];
         }
         else if (state == FREE_SLOTS)
         {
             //Appointments available at this day, set color accordingly
             //self.dayLabel.backgroundColor = [UIColor colorWithRed:22.0 green:139.0 blue:22.0 alpha:1.0];
+            self.dayLabel.text = [NSString stringWithFormat:@"%d",day];
+        }
+        else if (state == DISABLED) //Day not available (it is in the past)
+        {
+            //Day is in the past, show darker than other days
+            self.dayLabel.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1.0];
             self.dayLabel.text = [NSString stringWithFormat:@"%d",day];
         }
         
