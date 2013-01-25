@@ -355,10 +355,13 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    NSString *stringToMove = [self.favouriteDoctorIDList objectAtIndex:sourceIndexPath.row];
-    [self.favouriteDoctorIDList removeObjectAtIndex:sourceIndexPath.row];
-    [self.favouriteDoctorIDList insertObject:stringToMove atIndex:destinationIndexPath.row];
-    NSLog(@"moveRow called");
+    if(destinationIndexPath.row < [self.favouriteDoctorIDList count])
+    {
+        NSString *stringToMove = [self.favouriteDoctorIDList objectAtIndex:sourceIndexPath.row];
+        [self.favouriteDoctorIDList removeObjectAtIndex:sourceIndexPath.row];
+        [self.favouriteDoctorIDList insertObject:stringToMove atIndex:destinationIndexPath.row];
+        NSLog(@"moveRow called");
+    }
 }
 
 
