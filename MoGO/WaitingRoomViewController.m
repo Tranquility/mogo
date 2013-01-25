@@ -43,15 +43,19 @@
 }
 
 
-- (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
+- (void)socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
     NSLog(@"message: %@", packet.data);
     
 }
 
-- (void) socketIO:(SocketIO *)socket onError:(NSError *)error
+- (void)socketIO:(SocketIO *)socket onError:(NSError *)error
 {
     NSLog(@"error >>> data: %@", error);
 }
+
+//- (void)sendChat {
+//    
+//}
 
 @end
