@@ -28,7 +28,7 @@
     self.checkinButton.titleLabel.textAlignment = UITextAlignmentCenter;
     self.checkinButton.titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
 
-    [self.checkinButton setTitle:NSLocalizedString(@"Praxis betretten", @"CHECKIN") forState:UIControlStateNormal];
+    [self.checkinButton setTitle:NSLocalizedString(@"Praxis betreten", @"CHECKIN") forState:UIControlStateNormal];
     
     self.credentialStore = [[CredentialStore alloc] init];
     
