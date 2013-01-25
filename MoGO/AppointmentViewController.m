@@ -364,6 +364,15 @@
     }
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+    if (proposedDestinationIndexPath.row == 0) {
+        return sourceIndexPath;
+    }
+    else {
+        return proposedDestinationIndexPath;
+    }
+}
+
 
 
 
