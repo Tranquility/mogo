@@ -11,6 +11,7 @@
 #import "ApiClient.h"
 #import "DoctorModel.h"
 #import "MedicDetailViewController.h"
+#import <math.h>
 
 @interface SearchViewController ()
 
@@ -19,6 +20,8 @@
 @property (nonatomic) NSArray *chosenDoctors;
 @property (nonatomic) NSArray *allDoctors;
 @property (nonatomic) NSArray *disciplines;
+@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) CLLocation *userLocation;
 
 @end
 
@@ -27,6 +30,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.userLocation = [[CLLocation alloc] init];
     return self;
 }
 
@@ -47,6 +51,11 @@
     UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
     tapRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapRecognizer];
+    
+    //start asking for the users location
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdatingLocation];
     
     UIColor *grey = [UIColor colorWithRed:((float) 39.0f / 255.0f)
                                     green:((float) 40.0f / 255.0f)
@@ -175,10 +184,32 @@
     }
 
     DoctorModel *currentDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
-
+    CLLocationDegrees latitude = [currentDoctor.address.latitude floatValue];
+    CLLocationDegrees longitude = [currentDoctor.address.longitude floatValue];
+    CLLocation *doctorLocation = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    
+    CLLocationDistance distanceInMeters = [self.userLocation distanceFromLocation:doctorLocation];
     cell.textLabel.text = [currentDoctor fullName];
     cell.detailTextLabel.text = currentDoctor.discipline;
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    
+    if(self.userLocation != nil)
+    {
+        if(distanceInMeters < 50)
+        {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)", currentDoctor.discipline,
+                                         NSLocalizedString(@"Direkt in der Nähe", @"DOCTOR_CLOSE")];
+        }
+        else
+        {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@ %@)", currentDoctor.discipline, [self formatDistance:distanceInMeters], NSLocalizedString(@"entfernt", @"DISTANCE_AWAY")];
+        }
+    }
+    else
+    {
+        cell.detailTextLabel.text = currentDoctor.discipline;
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
@@ -282,6 +313,35 @@
     }
 
     return result;
+}
+
+- (NSString *)formatDistance:(NSInteger)distance
+{
+    if (distance < 1000)
+        return [NSString stringWithFormat:@"%g m", roundf(distance)];
+    else if(distance < 10000)
+        return [NSString stringWithFormat:@"%g km", roundf(distance/100)/10];
+    else
+        return [NSString stringWithFormat:@"%g km", roundf(distance/1000)];
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    self.userLocation = nil;
+    [self.locationManager stopUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil) {
+        [self.locationManager stopUpdatingLocation];
+        self.userLocation = currentLocation;
+        
+    }
 }
 
 @end
