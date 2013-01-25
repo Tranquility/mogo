@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 #import "MailManipulator.h"
 #import "ApiClient.h"
+#import "CredentialStore.h"
 
 #define PASSWORD_MIN_SIZE 6
 
@@ -21,6 +22,7 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 
 
 @interface RegisterViewController ()
+@property (nonatomic) CredentialStore *credentialStore;
 
 @end
 
@@ -44,6 +46,9 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
     UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
     tapRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapRecognizer];
+    
+    self.credentialStore = [[CredentialStore alloc] init];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,12 +72,60 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
         }
         };
         
+        //Perform Registration
         [SVProgressHUD showWithStatus:NSLocalizedString(@"Lege Account an", @"REGISTER_ACCOUNT")];
         [[ApiClient sharedInstance] postPath:@"/patients.json"
                                   parameters:params
                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Bitte bestätigen Sie Ihre E-Mail-Adresse", @"PATIENT_CREATED")];
-                                         [self.navigationController popViewControllerAnimated:YES];
+                                         
+                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Sie werden angemeldet...", @"PATIENT_CREATED")];
+                                         
+                                         //Wait for 3 seconds and then perform login
+                                         NSDate *future = [NSDate dateWithTimeIntervalSinceNow:3];
+                                         [NSThread sleepUntilDate:future];
+                                         
+                                         //Login Query starts here
+                                         id loginParams = @{
+                                         @"email": self.mailAddressField.text,
+                                         @"password": self.passwordField.text
+                                         };
+                                         
+                                         [[ApiClient sharedInstance] postPath:@"/tokens.json"
+                                                                   parameters:loginParams
+                                                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                                          NSString *authToken = [responseObject objectForKey:@"token"];
+                                                                          [self.credentialStore setAuthToken:authToken];
+                                                                          
+                                                                          [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Login erfolgreich", @"LOGIN_SUCCESSFUL")];
+                                                                         
+                                                                          //Wait for 2 seconds
+                                                                          NSDate *future = [NSDate dateWithTimeIntervalSinceNow:2];
+                                                                          [NSThread sleepUntilDate:future];
+                                                                          
+                                                                          [[self navigationController] popToRootViewControllerAnimated:YES];
+                                                                          [self dismissViewControllerAnimated:YES completion:nil];
+                                                                          
+                                                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                                          
+                                                                          //If there is an error, show appropriate message and wait 2 seconds, then redirect to login view
+                                                                          if([[error domain] isEqualToString:@"AFNetworkingErrorDomain"] && ([error code]==-1011))
+                                                                          {
+                                                                              [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Logindaten nicht korrekt", @"CONNECTION_FAIL")];
+                                                                              NSDate *future = [NSDate dateWithTimeIntervalSinceNow:2];
+                                                                              [NSThread sleepUntilDate:future];
+                                                                              [self.navigationController popViewControllerAnimated:YES];
+                                                                          }
+                                                                          else
+                                                                          {
+                                                                              [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
+                                                                              NSDate *future = [NSDate dateWithTimeIntervalSinceNow:2];
+                                                                              [NSThread sleepUntilDate:future];
+                                                                              [self.navigationController popViewControllerAnimated:YES];
+                                                                          }
+                                                                          
+                                                                      }];
+
+                                         
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"%@", error);
                                          [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_ERROR")];
