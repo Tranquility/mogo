@@ -48,12 +48,23 @@
     
     [self fetchFavouriteDoctorIds];
     [self fetchDoctorList];
+    
+    UITapGestureRecognizer *tapped =
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped)];
+    
+    [self.view addGestureRecognizer:tapped];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchFavouriteDoctorIds];
     [self fetchAppointments];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [NSKeyedArchiver archiveRootObject: self.favouriteDoctorIDList toFile: self.saveFilePath];
+    NSLog(@"Called");
 }
 
 - (void)viewDidUnload
@@ -234,6 +245,7 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", doctorModel.title, doctorModel.firstName,doctorModel.lastName];
         cell.detailTextLabel.text = doctorModel.discipline;
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        [self addTouchRecognizerForCell:cell];
     }
     
     return cell;
@@ -331,6 +343,28 @@
     }
 }
 
+//moving the cells
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0 || indexPath.section == 0)
+        return NO;
+    
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    NSString *stringToMove = [self.favouriteDoctorIDList objectAtIndex:sourceIndexPath.row];
+    [self.favouriteDoctorIDList removeObjectAtIndex:sourceIndexPath.row];
+    [self.favouriteDoctorIDList insertObject:stringToMove atIndex:destinationIndexPath.row];
+    NSLog(@"moveRow called");
+}
+
+
+
+
+
 #pragma mark Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -344,6 +378,24 @@
         AppointmentDetailViewController *destination = [segue destinationViewController];
         destination.appointment = self.selectedAppointment;
     }
+}
+
+
+-(void)addTouchRecognizerForCell:(UITableViewCell*)cell
+{
+    UILongPressGestureRecognizer *longPress =
+    [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
+    [cell addGestureRecognizer:longPress];
+}
+
+-(void)longPressed:(UILongPressGestureRecognizer *)sender
+{
+    [self.appointmentsTableView setEditing:YES animated:YES];
+}
+
+-(void)tapped
+{
+    [self.appointmentsTableView setEditing:NO animated:YES];
 }
 
 
