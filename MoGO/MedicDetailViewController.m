@@ -119,12 +119,12 @@
         [self.favouriteButton setSelected:NO];
         [self.favouriteDoctors removeObject:idNumber];
         [NSKeyedArchiver archiveRootObject: self.favouriteDoctors toFile: self.saveFilePath];
-        //Show a notification
-        UIAlertView *removeNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"REMOVED")
-                                                                     message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"REMOVE_DOCTOR_FROM_FAV")
-                                                                    delegate:nil cancelButtonTitle:@"Ok"
-                                                           otherButtonTitles:nil];
-        [removeNotification show];
+        //Show no notification
+        //        UIAlertView *removeNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Entfernt", @"REMOVED")
+        //                                                                     message:NSLocalizedString(@"Arzt aus den Favoriten entfernt", @"REMOVE_DOCTOR_FROM_FAV")
+        //                                                                    delegate:nil cancelButtonTitle:@"Ok"
+        //                                                           otherButtonTitles:nil];
+        //        [removeNotification show];
         
     }
     else {
@@ -134,12 +134,12 @@
         [self.favouriteButton setSelected:YES];
         [self.favouriteDoctors addObject:idNumber];
         [NSKeyedArchiver archiveRootObject: self.favouriteDoctors toFile: self.saveFilePath];
-        //Show a notification
-        UIAlertView *addNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"ADDED")
-                                                                  message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"ADD_DOCTOR_TO_FAV")
-                                                                 delegate:nil cancelButtonTitle:@"Ok"
-                                                        otherButtonTitles:nil];
-        [addNotification show];
+        //Show no notification
+        //        UIAlertView *addNotification = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinzugefügt", @"ADDED")
+        //                                                                  message:NSLocalizedString(@"Arzt zu den Favoriten hinzugefügt", @"ADD_DOCTOR_TO_FAV")
+        //                                                                 delegate:nil cancelButtonTitle:@"Ok"
+        //                                                        otherButtonTitles:nil];
+        //        [addNotification show];
     }
 
 }
