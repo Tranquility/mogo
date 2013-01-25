@@ -64,72 +64,10 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 - (IBAction)registerButtonPressed:(id)sender {
     if([self isInputValid])
     {
-        id params = @{
-        @"patient": @{
-        @"email": self.mailAddressField.text,
-        @"password": self.passwordField.text,
-        @"password_confirmation": self.passwordField.text
-        }
-        };
-        
         //Perform Registration
-        [SVProgressHUD showWithStatus:NSLocalizedString(@"Lege Account an", @"REGISTER_ACCOUNT")];
-        [[ApiClient sharedInstance] postPath:@"/patients.json"
-                                  parameters:params
-                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         
-                                         [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Sie werden angemeldet...", @"PATIENT_CREATED")];
-                                         
-                                         //Wait for 3 seconds and then perform login
-                                         NSDate *future = [NSDate dateWithTimeIntervalSinceNow:3];
-                                         [NSThread sleepUntilDate:future];
-                                         
-                                         //Login Query starts here
-                                         id loginParams = @{
-                                         @"email": self.mailAddressField.text,
-                                         @"password": self.passwordField.text
-                                         };
-                                         
-                                         [[ApiClient sharedInstance] postPath:@"/tokens.json"
-                                                                   parameters:loginParams
-                                                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                                          NSString *authToken = [responseObject objectForKey:@"token"];
-                                                                          [self.credentialStore setAuthToken:authToken];
-                                                                          
-                                                                          [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Login erfolgreich", @"LOGIN_SUCCESSFUL")];
-                                                                         
-                                                                          //Wait for 2 seconds
-                                                                          NSDate *future = [NSDate dateWithTimeIntervalSinceNow:2];
-                                                                          [NSThread sleepUntilDate:future];
-                                                                          
-                                                                          [[self navigationController] popToRootViewControllerAnimated:YES];
-                                                                          [self dismissViewControllerAnimated:YES completion:nil];
-                                                                          
-                                                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                                          
-                                                                          //If there is an error, show appropriate message and wait 2 seconds, then redirect to login view
-                                                                          if([[error domain] isEqualToString:@"AFNetworkingErrorDomain"] && ([error code]==-1011))
-                                                                          {
-                                                                              [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Logindaten nicht korrekt", @"CONNECTION_FAIL")];
-                                                                              NSDate *future = [NSDate dateWithTimeIntervalSinceNow:2];
-                                                                              [NSThread sleepUntilDate:future];
-                                                                              [self.navigationController popViewControllerAnimated:YES];
-                                                                          }
-                                                                          else
-                                                                          {
-                                                                              [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
-                                                                              NSDate *future = [NSDate dateWithTimeIntervalSinceNow:2];
-                                                                              [NSThread sleepUntilDate:future];
-                                                                              [self.navigationController popViewControllerAnimated:YES];
-                                                                          }
-                                                                          
-                                                                      }];
-
-                                         
-                                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"%@", error);
-                                         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_ERROR")];
-                                     }];
+        [SVProgressHUD showWithStatus:NSLocalizedString(@"Lege Account an.", @"REGISTER_ACCOUNT")];
+        
+        [self performSelector:@selector(performRegistration) withObject:nil afterDelay:2.0];
         
     }
     else
@@ -240,6 +178,72 @@ static const CGFloat LANDSCPE_KEYBOARD_HIGHT = 140;
 -(void)closeKeyboard
 {
     [self.view endEditing:YES];
+}
+
+- (void)performRegistration {
+    id params = @{
+    @"patient": @{
+    @"email": self.mailAddressField.text,
+    @"password": self.passwordField.text,
+    @"password_confirmation": self.passwordField.text
+    }
+    };
+       
+    [[ApiClient sharedInstance] postPath:@"/patients.json"
+                              parameters:params
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                     
+                                     [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Account angelegt! Sie werden angemeldet.", @"PATIENT_CREATED")];
+                                     
+                                     [self performSelector:@selector(performLogin) withObject:nil afterDelay:2.0];
+                                     
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     NSLog(@"%@", error);
+                                     [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_ERROR")];
+                                 }];
+}
+
+- (void)performLogin {
+    //Login Query starts here
+    id loginParams = @{
+    @"email": self.mailAddressField.text,
+    @"password": self.passwordField.text
+    };
+    
+    [[ApiClient sharedInstance] postPath:@"/tokens.json"
+                              parameters:loginParams
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                     NSString *authToken = [responseObject objectForKey:@"token"];
+                                     [self.credentialStore setAuthToken:authToken];
+                                     
+                                     [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Login erfolgreich", @"LOGIN_SUCCESSFUL")];
+                                     
+                                     [self performSelector:@selector(navigateToMain) withObject:nil afterDelay:2.0];
+                                     
+                                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     
+                                     //If there is an error, show appropriate message and wait 2 seconds, then redirect to login view
+                                     if([[error domain] isEqualToString:@"AFNetworkingErrorDomain"] && ([error code]==-1011))
+                                     {
+                                         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Logindaten nicht korrekt", @"CONNECTION_FAIL")];
+                                         NSDate *future = [NSDate dateWithTimeIntervalSinceNow:2];
+                                         [NSThread sleepUntilDate:future];
+                                         [self.navigationController popViewControllerAnimated:YES];
+                                     }
+                                     else
+                                     {
+                                         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"Verbindungsfehler", @"CONNECTION_FAIL")];
+                                         NSDate *future = [NSDate dateWithTimeIntervalSinceNow:2];
+                                         [NSThread sleepUntilDate:future];
+                                         [self.navigationController popViewControllerAnimated:YES];
+                                     }
+                                     
+                                 }];
+}
+
+- (void)navigateToMain {
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
