@@ -209,16 +209,16 @@
     {
         cell.detailTextLabel.text = currentDoctor.discipline;
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    self.chosenDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"toDoctorDetail" sender:self];
+    [self performSegueForTable:indexPath tableView:tableView];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueForTable:indexPath tableView:tableView];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -232,6 +232,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
+}
+
+//Performs the segue for the click on the cell or the disclosure button
+- (void)performSegueForTable:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    self.chosenDoctor = [self.chosenDoctors objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"toDoctorDetail" sender:self];
 }
 
 #pragma mark UISearchBar Delegate methods
