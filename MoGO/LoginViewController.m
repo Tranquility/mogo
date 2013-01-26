@@ -40,6 +40,8 @@
     
     [self setTitle:@"Login"];
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStylePlain target:self action:@selector(startButton:)];
+    
     //Adding a tap recognizer to react on tap events on the screen
     UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard)];
     tapRecognizer.cancelsTouchesInView = NO;
@@ -69,6 +71,12 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+}
+
+- (IBAction)startButton:(id)sender
+{
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)loginButtonPressed:(id)sender {

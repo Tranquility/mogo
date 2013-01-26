@@ -99,6 +99,7 @@
     [userDefaults setObject:self.streetnumberField.text forKey:UD_USER_STREET_NR];
     [userDefaults setObject:self.zipField.text forKey:UD_USER_ZIP];
     [userDefaults setObject:self.townField.text forKey:UD_USER_TOWN];
+    [self checkForCompleteUserData];
 }
 
 - (void)viewDidUnload {
@@ -115,6 +116,8 @@
     [self setBirthdayText:nil];
     [self setDatePicker:nil];
     [super viewDidUnload];
+    [self checkForCompleteUserData];
+
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -155,6 +158,7 @@
     else
     {
         [defaults setBool:NO forKey:UD_USER_DATA_COMPLETE];
+
     }
 }
 

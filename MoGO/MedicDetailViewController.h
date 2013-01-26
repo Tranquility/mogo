@@ -20,6 +20,10 @@
 @property (nonatomic) IBOutlet UILabel *typeField;
 @property (nonatomic) IBOutlet UITextView *addressField;@property (nonatomic) IBOutlet UILabel *hoursField;
 @property (nonatomic) IBOutlet UIButton *favouriteButton;
+@property (nonatomic) IBOutlet UIBarButtonItem *appointmentItem;
+
+
+
 
 @property (nonatomic) DoctorModel *doctor;
 @property (nonatomic) NSMutableArray *favouriteDoctors;
@@ -30,5 +34,5 @@
 - (IBAction)mapClicked:(id)sender;
 - (IBAction)initiateCall:(id)sender;
 - (IBAction)sendEmail:(id)sender;
-
+-(IBAction)appointmentClicked:(id)sender;
 @end

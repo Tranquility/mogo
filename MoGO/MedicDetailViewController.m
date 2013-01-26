@@ -10,8 +10,15 @@
 #import "MakeAppointmentViewController.h"
 #import "MapViewAnnotation.h"
 #import "AddressModel.h"
+#import "CredentialStore.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "UserDefaultConstants.h"
+
+@interface MedicDetailViewController ()
+@property (nonatomic) CredentialStore *credentialStore;
+@end
+
 @implementation MedicDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -80,6 +87,9 @@
     location.longitude = [doctorAddress.longitude floatValue];
     [self drawMapWithCoordinate:location andString:name];
     [self.mapOutlet setMapType:MKMapTypeStandard];
+    
+    self.credentialStore = [[CredentialStore alloc] init];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,6 +103,7 @@
 
     [self setMapOutlet:nil];
     [self setFavouriteButton:nil];
+    [self setAppointmentItem:nil];
     [super viewDidUnload];
 }
 
@@ -208,6 +219,53 @@
         MakeAppointmentViewController *destination = [segue destinationViewController];
         destination.doctor = self.doctor;
     }
+}
+
+-(IBAction)appointmentClicked:(id)sender
+{
+    
+    if ([self.credentialStore isLoggedIn]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if([defaults boolForKey:UD_USER_DATA_COMPLETE])
+        {
+            [self performSegueWithIdentifier:@"docDetailToMakeAppointment" sender:self];
+        }
+        else{
+            UIAlertView *redirect = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profil nicht ausreichend ausgefüllt", @"UNCOMPLETE_PROFILE")
+                                                             message:NSLocalizedString(@"Möchten Sie zu den Einstellungen weitergeleitet werden?", @"REDIRECT_SETTINGS")
+                                                            delegate:self
+                                                   cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                                   otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+            
+            [redirect show];
+        }
+
+        
+    } else {
+        UIAlertView *login = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Nur mit Anmeldung Möglich", @"ONLY_LOGGEDIN")
+                                                         message:NSLocalizedString(@"Möchten Sie zur Anmeldung weitergeleitet werden?", @"REDIRECT_LOGIN")
+                                                        delegate:self
+                                               cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                               otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+        
+        [login show];
+    }
+
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if([alertView.title isEqualToString:NSLocalizedString(@"Profil nicht ausreichend ausgefüllt", @"UNCOMPLETE_PROFILE")])
+    {
+        if (buttonIndex == 1) {
+            [self performSegueWithIdentifier:@"ToSettings" sender:self];
+        }
+    }
+    else{
+        if (buttonIndex == 1) {
+            [self performSegueWithIdentifier:@"ToLogin" sender:self];
+        }
+    }
+    
 }
 
 //Creates the FilePath for the Favourite-List
