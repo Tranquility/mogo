@@ -1405,7 +1405,9 @@
         <class className="AppointmentViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentViewController.h"/>
             <relationships>
+                <relationship kind="action" name="editFavorites:"/>
                 <relationship kind="outlet" name="appointmentsTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="editFavoriteButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="CheckinViewController" superclassName="UIViewController">

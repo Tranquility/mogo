@@ -49,7 +49,7 @@
     [self fetchFavouriteDoctorIds];
     [self fetchDoctorList];
     
-
+    [self buttonVisible];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,7 +58,7 @@
     [self fetchAppointments];
     [self.editFavoriteButton setTitle: @"Favoriten bearbeiten" forState: UIControlStateNormal];
 
-
+    [self buttonVisible];
 
 }
 
@@ -310,6 +310,10 @@
                                                                     delegate:nil cancelButtonTitle:@"Ok"
                                                            otherButtonTitles:nil];
         [removeNotification show];
+        if(self.favouriteDoctorIDList.count < 1)
+        {
+            self.appointmentsTableView.editing = NO;
+        }
     }
     //updating view
     [self viewDidLoad];
@@ -402,8 +406,6 @@
     }
 }
 
-
-
  
 - (IBAction)editFavorites:(id)sender {
     if(!self.appointmentsTableView.editing)
@@ -417,5 +419,17 @@
         [self.appointmentsTableView setEditing:NO animated:YES];
     }
 
+}
+
+-(void)buttonVisible
+{
+    if([self.favouriteDoctorIDList count] < 1)
+    {
+        self.editFavoriteButton.hidden = YES;
+    }
+    else
+    {
+        self.editFavoriteButton.hidden = NO;
+    }
 }
 @end
