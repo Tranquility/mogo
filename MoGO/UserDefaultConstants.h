@@ -8,7 +8,7 @@
 
 //system settings
 #define UD_SYSTEM_SAVE_TO_CALENDAR  @"SAVE_TO_CALENDAR"
-#define UD_SYSTEM_SAVE_PASSWORD  @"SAVE_PASSWORD"
+#define UD_SYSTEM_SAVE_LOGIN  @"SAVE_LOGIN"
 
 //user profile
 #define UD_USER_NAME  @"USER_NAME"

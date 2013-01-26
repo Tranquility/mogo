@@ -42,7 +42,7 @@
     [self.view addGestureRecognizer:tapRecognizer];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.savePasswordSwitch.on = [userDefaults boolForKey:UD_SYSTEM_SAVE_PASSWORD];
+    self.savePasswordSwitch.on = [userDefaults boolForKey:UD_SYSTEM_SAVE_LOGIN];
     self.saveToCalendarSwitch.on = [userDefaults boolForKey:UD_SYSTEM_SAVE_TO_CALENDAR];
     self.nameField.text = [userDefaults stringForKey:UD_USER_NAME];
     self.surnameField.text = [userDefaults stringForKey:UD_USER_SURNAME];
@@ -92,7 +92,7 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:self.saveToCalendarSwitch.isOn forKey:UD_SYSTEM_SAVE_TO_CALENDAR];
-    [userDefaults setBool:self.savePasswordSwitch.isOn forKey:UD_SYSTEM_SAVE_PASSWORD];
+    [userDefaults setBool:self.savePasswordSwitch.isOn forKey:UD_SYSTEM_SAVE_LOGIN];
     [userDefaults setObject:self.nameField.text forKey:UD_USER_NAME];
     [userDefaults setObject:self.surnameField.text forKey:UD_USER_SURNAME];
     [userDefaults setObject:self.streetField.text forKey:UD_USER_STREET];
