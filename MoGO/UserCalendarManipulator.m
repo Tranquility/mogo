@@ -7,6 +7,7 @@
 //
 
 #import "UserCalendarManipulator.h"
+#import "UserDefaultConstants.h"
 
 @implementation UserCalendarManipulator
 
@@ -42,8 +43,11 @@
 //Saves an appointment consisting of a given date and the full name of the doctor to the calendar
 -(void)saveAppointmentToCalendar:(NSDate*)startDate withDoctorName:(NSString*)doctorFullName
 {
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+    //if user doesn't want mogo appointments to be saved in his calendar
+    if([[NSUserDefaults standardUserDefaults] boolForKey:UD_SYSTEM_SAVE_TO_CALENDAR])
+    {
+        EKEventStore *eventStore = [[EKEventStore alloc] init];
+        [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
         
         EKEvent *event  = [EKEvent eventWithEventStore:eventStore];
         event.title = [NSLocalizedString(@"Termin bei: ", @"APPOINTMENT_AT") stringByAppendingString:doctorFullName];
@@ -58,8 +62,8 @@
         NSError *err;
         [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
         
-    }];
-    
+        }];
+    }//if
 }
 
 //Checks if the user already has an appointment in the time from dateToCheck to dateToCheck+30Min
