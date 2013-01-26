@@ -6,7 +6,9 @@
 //
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "DrugDetailViewController.h"
+#import "QrDetailViewController.h"
 
 @interface DrugDetailViewController ()
 
@@ -37,7 +39,11 @@
     if (self.prescription.fee) {
         self.fee.text = NSLocalizedString(@"gebührenpflichtig", @"CHARGEABLE");
     }
-    self.qrcode.image = self.prescription.qrCode;
+    
+    [self.qrButton setImage:self.prescription.qrCode forState:UIControlStateNormal];
+    self.qrButton.layer.borderWidth = 1.4;
+    self.qrButton.layer.cornerRadius = 3;
+    self.qrButton.layer.borderColor = [UIColor grayColor].CGColor;
     
 }
 
@@ -45,6 +51,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    QrDetailViewController *destination = [segue destinationViewController];
+    destination.qrcode = self.prescription.qrCode;
+    destination.sender = Prescription;
 }
 
 @end

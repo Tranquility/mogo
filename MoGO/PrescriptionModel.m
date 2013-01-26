@@ -40,8 +40,8 @@
     ZXMultiFormatWriter* writer = [ZXMultiFormatWriter writer];
     ZXBitMatrix* result = [writer encode:[self description]
                                   format:kBarcodeFormatQRCode
-                                   width:110
-                                  height:110
+                                   width:200
+                                  height:200
                                    error:&error];
     if (result) {
         CGImageRef image = [[ZXImage imageWithMatrix:result] cgimage];

@@ -16,7 +16,7 @@
 @property (nonatomic) IBOutlet UILabel *date;
 @property (nonatomic) IBOutlet UILabel *fee;
 @property (nonatomic) IBOutlet UITextView *note;
-@property (nonatomic) IBOutlet UIImageView *qrcode;
+@property (nonatomic) IBOutlet UIButton *qrButton;
 
 @property (nonatomic) PrescriptionModel *prescription;
 

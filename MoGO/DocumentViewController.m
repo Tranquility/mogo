@@ -10,10 +10,18 @@
 #import "PrescriptionModel.h"
 #import "DrugDetailViewController.h"
 #import "ApiClient.h"
+#import "ReferralModel.h"
+#import "ReferralDetailViewController.h"
 
 @interface DocumentViewController ()
 
 @property (nonatomic) PrescriptionModel *selectedPrescription;
+@property (nonatomic) ReferralModel *selectedReferral;
+@property (nonatomic, copy) NSArray *referralList;
+@property (nonatomic, copy) NSArray *prescriptionList;
+@property (nonatomic, copy) NSArray *recordList;
+
+
 
 @end
 
@@ -24,6 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.prescriptionList = [[NSArray alloc] init];
+        self.referralList = [[NSArray alloc] init];
     }
     return self;
 }
@@ -52,8 +61,10 @@
                                         [self fetchPrescriptions:prescriptions];
                                     }
                                     
-                                    //TODO: Same as before but with other doc types
-                                    
+                                    NSArray *referrals = [response valueForKeyPath:@"Referral"];
+                                    if (referrals != nil) {
+                                        [self fetchReferrals:referrals];
+                                    }
                                     [SVProgressHUD dismiss];
                                     [self.tableView reloadData];
                                 }
@@ -70,6 +81,15 @@
         [prescriptionArray addObject:prescription];
     }
     self.prescriptionList = prescriptionArray;
+}
+
+- (void)fetchReferrals:(NSArray*)referralsJson {
+    NSMutableArray *referralArray = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in referralsJson) {
+        ReferralModel *referral = [[ReferralModel alloc] initWithDictionary:dict];
+        [referralArray addObject:referral];
+    }
+    self.referralList = referralArray;
 }
 
 #pragma mark TableViewDelegate/Datasource methods
@@ -131,9 +151,10 @@
         }
         
         // Configure the cell.
-        cell.textLabel.text = [self.referralList objectAtIndex:[indexPath row]];
-        cell.detailTextLabel.text = @"1.12.12";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        ReferralModel *referral = [self.referralList objectAtIndex:indexPath.row];
+        cell.textLabel.text = referral.target;
+        cell.detailTextLabel.text = referral.reasonString;
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
        
         return cell;
     }
@@ -150,7 +171,7 @@
         // Configure the cell.
         cell.textLabel.text = [self.recordList objectAtIndex:[indexPath row]];
         cell.detailTextLabel.text = @"1.1.89";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         
         return cell;
     }
@@ -166,6 +187,10 @@
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self performSegueWithIdentifier:@"toDrugDetail" sender:self];
+    } else if (indexPath.section == 1) {
+        self.selectedReferral = [self.referralList objectAtIndex:indexPath.row];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self performSegueWithIdentifier:@"toReferralDetail" sender:self];
     }
 }
 
@@ -198,6 +223,9 @@
     if ([[segue identifier] isEqualToString:@"toDrugDetail"]) {
         DrugDetailViewController *destination = [segue destinationViewController];
         destination.prescription = self.selectedPrescription;
+    } else if ([[segue identifier] isEqualToString:@"toReferralDetail"]) {
+        ReferralDetailViewController *destination = [segue destinationViewController];
+        destination.referral = self.selectedReferral;
     }
 }
 
