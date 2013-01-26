@@ -10,10 +10,6 @@
 
 @interface DocumentViewController : UIViewController
 
-@property (nonatomic, copy) NSArray *prescriptionList;
-@property (nonatomic, copy) NSArray *referralList;
-@property (nonatomic) NSArray *recordList;
-
 @property (nonatomic) IBOutlet UITableView *tableView;
 
 @end

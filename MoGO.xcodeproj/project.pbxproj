@@ -72,6 +72,9 @@
 		DAF677F61667887E0074EDAC /* PatientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F51667887E0074EDAC /* PatientModel.m */; };
 		DAF677F9166798A20074EDAC /* DoctorAddressTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677F8166798A20074EDAC /* DoctorAddressTest.m */; };
 		DAF677FC16679AF60074EDAC /* PatientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF677FB16679AF60074EDAC /* PatientTest.m */; };
+		DC7F09F016B3E2E200A84617 /* ReferralModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7F09EF16B3E2E200A84617 /* ReferralModel.m */; };
+		DC7F09F616B3ED0C00A84617 /* ReferralDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7F09F516B3ED0C00A84617 /* ReferralDetailViewController.m */; };
+		DC7F09F916B4108000A84617 /* QrDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7F09F816B4108000A84617 /* QrDetailViewController.m */; };
 		F13335F716622A1600502A50 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335F616622A1600502A50 /* DoctorModel.m */; };
 		F13335FC166231AA00502A50 /* AppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F13335FB166231AA00502A50 /* AppointmentModel.m */; };
 		F133360316623D2800502A50 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F133360216623D2800502A50 /* AppointmentDetailViewController.m */; };
@@ -179,6 +182,12 @@
 		DAF677F8166798A20074EDAC /* DoctorAddressTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorAddressTest.m; sourceTree = "<group>"; };
 		DAF677FA16679AF60074EDAC /* PatientTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientTest.h; sourceTree = "<group>"; };
 		DAF677FB16679AF60074EDAC /* PatientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientTest.m; sourceTree = "<group>"; };
+		DC7F09EE16B3E2E200A84617 /* ReferralModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralModel.h; sourceTree = "<group>"; };
+		DC7F09EF16B3E2E200A84617 /* ReferralModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralModel.m; sourceTree = "<group>"; };
+		DC7F09F416B3ED0C00A84617 /* ReferralDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferralDetailViewController.h; sourceTree = "<group>"; };
+		DC7F09F516B3ED0C00A84617 /* ReferralDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferralDetailViewController.m; sourceTree = "<group>"; };
+		DC7F09F716B4108000A84617 /* QrDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QrDetailViewController.h; sourceTree = "<group>"; };
+		DC7F09F816B4108000A84617 /* QrDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QrDetailViewController.m; sourceTree = "<group>"; };
 		F13335F516622A1600502A50 /* DoctorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorModel.h; sourceTree = "<group>"; };
 		F13335F616622A1600502A50 /* DoctorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorModel.m; sourceTree = "<group>"; };
 		F13335FA166231AA00502A50 /* AppointmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentModel.h; sourceTree = "<group>"; };
@@ -366,6 +375,10 @@
 				C8FCA2DB16B1600900238F6F /* DisplayInsurancesViewController.h */,
 				C8FCA2DC16B1600900238F6F /* DisplayInsurancesViewController.m */,
 				C8FCA2D916B1558600238F6F /* UserDefaultConstants.h */,
+				DC7F09F416B3ED0C00A84617 /* ReferralDetailViewController.h */,
+				DC7F09F516B3ED0C00A84617 /* ReferralDetailViewController.m */,
+				DC7F09F716B4108000A84617 /* QrDetailViewController.h */,
+				DC7F09F816B4108000A84617 /* QrDetailViewController.m */,
 			);
 			path = MoGO;
 			sourceTree = "<group>";
@@ -402,6 +415,8 @@
 				DAEB161D1670B88F00665B1F /* DocumentModel.m */,
 				DA1DC675167DDBBE00B5D63C /* PrescriptionModel.h */,
 				DA1DC676167DDBBE00B5D63C /* PrescriptionModel.m */,
+				DC7F09EE16B3E2E200A84617 /* ReferralModel.h */,
+				DC7F09EF16B3E2E200A84617 /* ReferralModel.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -593,6 +608,9 @@
 				2DF8B3A516A4824000AFC50D /* UserCalendarManipulator.m in Sources */,
 				25DD0E1816A4502500D03609 /* SettingsViewController.m in Sources */,
 				C8FCA2DD16B1600900238F6F /* DisplayInsurancesViewController.m in Sources */,
+				DC7F09F016B3E2E200A84617 /* ReferralModel.m in Sources */,
+				DC7F09F616B3ED0C00A84617 /* ReferralDetailViewController.m in Sources */,
+				DC7F09F916B4108000A84617 /* QrDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
