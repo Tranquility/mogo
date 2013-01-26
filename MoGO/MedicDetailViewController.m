@@ -27,8 +27,8 @@
 {
     
     //Set up images
-    UIImage *btnImageYellow = [UIImage imageNamed:@"sternGelb.jpg"];
-    UIImage *btnImageNormal = [UIImage imageNamed:@"sternNormal.jpg"];
+    UIImage *btnImageYellow = [UIImage imageNamed:@"sternGelb.png"];
+    UIImage *btnImageNormal = [UIImage imageNamed:@"sternNormal.png"];
     
     //Set up Buttons depending on States
     [self.favouriteButton setImage:btnImageYellow forState:UIControlStateSelected];
