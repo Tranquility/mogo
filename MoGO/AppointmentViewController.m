@@ -48,16 +48,34 @@
     
     [self fetchFavouriteDoctorIds];
     [self fetchDoctorList];
+    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchFavouriteDoctorIds];
     [self fetchAppointments];
+    [self.editFavoriteButton setTitle: @"Favoriten bearbeiten" forState: UIControlStateNormal];
+
+
+
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self fetchAppointments];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [NSKeyedArchiver archiveRootObject: self.favouriteDoctorIDList toFile: self.saveFilePath];
 }
 
 - (void)viewDidUnload
 {
+    
+    [self setEditFavoriteButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -331,6 +349,44 @@
     }
 }
 
+//moving the cells
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0 || indexPath.section == 0)
+        return NO;
+    
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    if(destinationIndexPath.row < [self.favouriteDoctorIDList count])
+    {
+        NSString *stringToMove = [self.favouriteDoctorIDList objectAtIndex:sourceIndexPath.row - 1];
+       //replace dragged row with target row
+        [self.favouriteDoctorIDList removeObject:stringToMove];
+        [self.favouriteDoctorIDList insertObject:stringToMove atIndex:destinationIndexPath.row - 1];
+
+        [NSKeyedArchiver archiveRootObject: self.favouriteDoctorIDList toFile: self.saveFilePath];
+        
+    }
+
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+    if (proposedDestinationIndexPath.row == 0) {
+        return sourceIndexPath;
+    }
+    else {
+        return proposedDestinationIndexPath;
+    }
+}
+
+
+
+
+
 #pragma mark Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -347,4 +403,19 @@
 }
 
 
+
+ 
+- (IBAction)editFavorites:(id)sender {
+    if(!self.appointmentsTableView.editing)
+    {
+        [self.editFavoriteButton setTitle: @"Änderungen speichern" forState: UIControlStateNormal];
+        [self.appointmentsTableView setEditing:YES animated:YES];
+    }
+    else
+    {
+        [self.editFavoriteButton setTitle: @"Favoriten bearbeiten" forState: UIControlStateNormal];
+        [self.appointmentsTableView setEditing:NO animated:YES];
+    }
+
+}
 @end
