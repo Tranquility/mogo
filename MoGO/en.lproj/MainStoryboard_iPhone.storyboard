@@ -128,7 +128,7 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <action selector="editFavorites:" destination="JKN-HO-f9c" eventType="touchUpInside" id="gf0-c6-Jzi"/>
+                                        <action selector="editFavorites:" destination="JKN-HO-f9c" eventType="touchUpInside" id="Ddn-xf-glz"/>
                                     </connections>
                                 </button>
                                 <prototypes>
@@ -150,16 +150,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Termine" id="5zE-1C-n5K">
-                        <barButtonItem key="rightBarButtonItem" title="Fertig" id="BwO-wA-3Yl">
-                            <connections>
-                                <action selector="doneEditing:" destination="JKN-HO-f9c" id="BSG-7Q-Fd8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Termine" id="5zE-1C-n5K"/>
                     <connections>
                         <outlet property="appointmentsTableView" destination="l0U-Bl-3ch" id="lJs-wO-TGj"/>
-                        <outlet property="doneEditingButton" destination="BwO-wA-3Yl" id="fhA-Pn-HvM"/>
+                        <outlet property="editFavoriteButton" destination="iZO-gp-sBV" id="22t-hB-neu"/>
                         <segue destination="wEp-Bs-d7t" kind="push" identifier="toAppointmentDetail" id="mtb-th-UsI"/>
                         <segue destination="n0S-ah-3IA" kind="push" identifier="toSearch" id="1Fk-rt-SPK"/>
                         <segue destination="gCb-VM-UNO" kind="push" identifier="toMakeAppointment" id="G07-vO-8EL"/>

@@ -19,10 +19,9 @@
 @property (nonatomic) NSMutableArray *doctorList;
 @property (nonatomic) NSMutableArray *favouriteDoctorIDList;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneEditingButton;
 
-
-- (IBAction)doneEditing:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *editFavoriteButton;
 - (IBAction)editFavorites:(id)sender;
+
 
 @end

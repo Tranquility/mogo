@@ -56,7 +56,10 @@
     [super viewWillAppear:animated];
     [self fetchFavouriteDoctorIds];
     [self fetchAppointments];
-    self.doneEditingButton.enabled = NO;
+    [self.editFavoriteButton setTitle: @"Favoriten bearbeiten" forState: UIControlStateNormal];
+
+
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -71,8 +74,8 @@
 
 - (void)viewDidUnload
 {
-    [self setDoneEditingButton:nil];
-    [self setDoneEditingButton:nil];
+    
+    [self setEditFavoriteButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -401,16 +404,18 @@
 
 
 
-
-- (IBAction)doneEditing:(id)sender {
-    [self.appointmentsTableView setEditing:NO animated:YES];
-    self.doneEditingButton.enabled = NO;
-}
-
+ 
 - (IBAction)editFavorites:(id)sender {
-    [self.appointmentsTableView setEditing:YES animated:YES];
-    self.doneEditingButton.enabled = NO;
-
+    if(!self.appointmentsTableView.editing)
+    {
+        [self.editFavoriteButton setTitle: @"Änderungen speichern" forState: UIControlStateNormal];
+        [self.appointmentsTableView setEditing:YES animated:YES];
+    }
+    else
+    {
+        [self.editFavoriteButton setTitle: @"Favoriten bearbeiten" forState: UIControlStateNormal];
+        [self.appointmentsTableView setEditing:NO animated:YES];
+    }
 
 }
 @end
