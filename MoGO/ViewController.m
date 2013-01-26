@@ -37,7 +37,9 @@
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutButton:)];
     }else {
         NSLog(@"User is not Logged in");
-        [self performSegueWithIdentifier:@"mainToLogin" sender:self];
+      //  [self performSegueWithIdentifier:@"mainToLogin" sender:self];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"LogIn" style:UIBarButtonItemStylePlain target:self action:@selector(loginButton:)];
+
     }
     
 }
@@ -51,8 +53,14 @@
     [logout show];
 }
 
+- (IBAction)loginButton:(id)sender
+{
+    [self performSegueWithIdentifier:@"mainToLogin" sender:self];
+}
+
 - (void)viewDidUnload
 {
+    [self setSettingsButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -64,8 +72,15 @@
     if ([self.credentialStore isLoggedIn]) {
         NSLog(@"User is already Logged in");
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutButton:)];
+        [self.checkinButton setEnabled:YES];
+        [self.documentsButton setEnabled:YES];
+        [self.settingsButton setEnabled:YES];
     }else {
         NSLog(@"User is not Logged in");
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(loginButton:)];
+        [self.checkinButton setEnabled:NO];
+        [self.documentsButton setEnabled:NO];
+        [self.settingsButton setEnabled:NO];
     }
     
 }
