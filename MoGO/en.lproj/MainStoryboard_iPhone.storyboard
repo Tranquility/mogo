@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G56" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="04g-ES-bBl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -508,7 +508,6 @@
         <!--Referral Detail View Controller - Überweisung-->
         <scene sceneID="SEP-UG-SVg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0vs-qN-Ake" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="07A-yw-WVC" customClass="ReferralDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l8A-Q2-YWk">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
@@ -613,6 +612,7 @@
                         <outlet property="taskTextView" destination="NGb-bb-Uhc" id="T2O-ka-1pX"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0vs-qN-Ake" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1853" y="1957"/>
         </scene>
@@ -656,7 +656,7 @@
             </objects>
             <point key="canvasLocation" x="2319" y="1623"/>
         </scene>
-        <!--Medic Detail View Controller - Arztdetail-->
+        <!--Medic Detail View Controller - Arztdetails-->
         <scene sceneID="ce6-ko-jht">
             <objects>
                 <viewController id="RWq-Jq-LmT" customClass="MedicDetailViewController" sceneMemberID="viewController">
@@ -743,7 +743,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Arztdetail" id="u9I-q2-MN8">
+                    <navigationItem key="navigationItem" title="Arztdetails" id="u9I-q2-MN8">
                         <barButtonItem key="rightBarButtonItem" title="+ Termin" id="T01-UB-dUU">
                             <connections>
                                 <action selector="appointmentClicked:" destination="RWq-Jq-LmT" id="t9e-ub-caX"/>
@@ -877,7 +877,7 @@
             </objects>
             <point key="canvasLocation" x="2456" y="178"/>
         </scene>
-        <!--Appointment Detail View Controller - Termindetail-->
+        <!--Appointment Detail View Controller - Termindetails-->
         <scene sceneID="V93-fu-UUn">
             <objects>
                 <viewController storyboardIdentifier="AppointmentDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wEp-Bs-d7t" customClass="AppointmentDetailViewController" sceneMemberID="viewController">
@@ -929,21 +929,21 @@
                                 <color key="textColor" white="0.35000000000000003" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Datum:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WuZ-N1-0wh">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Datum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WuZ-N1-0wh">
                                 <rect key="frame" x="20" y="98" width="96" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Uhrzeit:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fXZ-YH-Jd8">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Uhrzeit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fXZ-YH-Jd8">
                                 <rect key="frame" x="20" y="127" width="96" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bemerkung:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FmQ-Xd-4bH">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bemerkung" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FmQ-Xd-4bH">
                                 <rect key="frame" x="20" y="156" width="96" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -974,7 +974,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Termindetail" id="EQq-eb-AHb"/>
+                    <navigationItem key="navigationItem" title="Termindetails" id="EQq-eb-AHb"/>
                     <connections>
                         <outlet property="cancelButton" destination="dSI-UN-mX9" id="1sx-Ur-erc"/>
                         <outlet property="changeButton" destination="jvq-5K-TrD" id="hQ5-Cm-onC"/>
@@ -1283,7 +1283,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Linn" placeholder="(Ihr Vorname)" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="17" id="Wa4-Fg-Dw2">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Linn" placeholder="(Ihr Vorname)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" id="Wa4-Fg-Dw2">
                                                     <rect key="frame" x="115" y="7" width="165" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1308,7 +1308,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(Ihr Nachname)" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="17" id="9tX-Dh-aHx">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(Ihr Nachname)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" id="9tX-Dh-aHx">
                                                     <rect key="frame" x="115" y="7" width="165" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1365,7 +1365,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hagmarksvägen" placeholder="(Ihre Straße)" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="17" id="X4x-lB-hP1">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hagmarksvägen" placeholder="(Ihre Straße)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" id="X4x-lB-hP1">
                                                     <rect key="frame" x="115" y="7" width="165" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1390,7 +1390,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(Ihre Hausnummer)" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="17" id="41L-FB-iGI">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(Ihre Hausnummer)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" id="41L-FB-iGI">
                                                     <rect key="frame" x="131" y="7" width="149" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1415,7 +1415,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="90104" placeholder="(Ihre Postleitzahl)" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="17" id="1Oq-bM-Qok">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="90104" placeholder="(Ihre Postleitzahl)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" id="1Oq-bM-Qok">
                                                     <rect key="frame" x="129" y="7" width="151" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1440,7 +1440,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(Ihre Stadt)" textAlignment="right" clearsOnBeginEditing="YES" minimumFontSize="17" id="sm7-0n-Xhf">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(Ihre Stadt)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" id="sm7-0n-Xhf">
                                                     <rect key="frame" x="96" y="7" width="184" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1616,7 +1616,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
                 <relationship kind="action" name="loginButtonPressed:"/>
-                <relationship kind="action" name="startButton:"/>
                 <relationship kind="outlet" name="mailAdressField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
             </relationships>
@@ -1710,7 +1709,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="logoutButton:"/>
                 <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="documentsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="settingsButton" candidateClass="UIBarButtonItem"/>
@@ -1724,10 +1722,10 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="hRw-Nb-KMH"/>
-        <segue reference="mtb-th-UsI"/>
         <segue reference="BRi-Ng-Shw"/>
         <segue reference="1Fk-rt-SPK"/>
-        <segue reference="lrQ-JL-IJT"/>
-        <segue reference="G07-vO-8EL"/>
+        <segue reference="mtb-th-UsI"/>
+        <segue reference="14t-Th-Xhn"/>
+        <segue reference="tv8-dD-g5m"/>
     </inferredMetricsTieBreakers>
 </document>
