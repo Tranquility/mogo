@@ -56,6 +56,7 @@
     [super viewWillAppear:animated];
     [self fetchFavouriteDoctorIds];
     [self fetchAppointments];
+    self.doneEditingButton.enabled = NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -70,6 +71,8 @@
 
 - (void)viewDidUnload
 {
+    [self setDoneEditingButton:nil];
+    [self setDoneEditingButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -246,7 +249,6 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", doctorModel.title, doctorModel.firstName,doctorModel.lastName];
         cell.detailTextLabel.text = doctorModel.discipline;
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        [self addTouchRecognizerForCell:cell];
     }
     
     return cell;
@@ -398,24 +400,17 @@
 }
 
 
--(void)addTouchRecognizerForCell:(UITableViewCell*)cell
-{
-    UILongPressGestureRecognizer *longPress =
-    [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
-    [cell addGestureRecognizer:longPress];
+
+
+- (IBAction)doneEditing:(id)sender {
+    [self.appointmentsTableView setEditing:NO animated:YES];
+    self.doneEditingButton.enabled = NO;
 }
 
--(void)longPressed:(UILongPressGestureRecognizer *)sender
-{
-    if(self.appointmentsTableView.isEditing == NO)
-        [self.appointmentsTableView setEditing:YES animated:YES];
+- (IBAction)editFavorites:(id)sender {
+    [self.appointmentsTableView setEditing:YES animated:YES];
+    self.doneEditingButton.enabled = NO;
+
+
 }
-
--(void)tapped
-{
-    if(self.appointmentsTableView.isEditing)
-        [self.appointmentsTableView setEditing:NO animated:YES];
-}
-
-
 @end
