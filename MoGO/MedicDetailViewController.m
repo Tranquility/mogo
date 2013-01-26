@@ -199,16 +199,25 @@
 {
     MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
     mailer.mailComposeDelegate = self;
-    [mailer setSubject:@""];
+    [mailer setSubject:[NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"E-Mail an", @"MAIL_TO"), self.doctor.fullName]];
      NSArray *toRecipients = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@", self.doctor.mail], nil];
     [mailer setToRecipients:toRecipients];
-    NSString *emailBody = [NSString stringWithFormat:@"Guten Tag %@", self.doctor.fullName];
+    NSString *emailBody = [NSString stringWithFormat:@"%@ %@,", NSLocalizedString(@"Guten Tag", @"MAIL_GREETING"),self.doctor.fullName];
     [mailer setMessageBody:emailBody isHTML:NO];
     [self presentModalViewController:mailer animated:YES];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
+    if(result == MFMailComposeResultSent)
+    {
+       UIAlertView *mailSent = [[UIAlertView alloc]
+             initWithTitle:NSLocalizedString(@"Mail erfolgreich versendet", @"MAIL_SENT")
+                                       message:[NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"Die Nachricht an ", @"MESSAGE"), self.doctor.fullName, NSLocalizedString(@"wurde erfolgreich versendet", @"WAS_SENT")]
+             delegate:self
+             cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [mailSent show];
+    }
     // Remove the mail view
     [self dismissModalViewControllerAnimated:YES];
 }
