@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "ApiClient.h"
 #import "CredentialStore.h"
+#import "UserDefaultConstants.h"
 
 @interface LoginViewController ()
     @property (nonatomic) CredentialStore *credentialStore;
@@ -87,6 +88,8 @@
                                        [self.credentialStore setAuthToken:authToken];
                                        
                                        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Login erfolgreich", @"LOGIN_SUCCESSFUL")];
+                                       NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                                       [userDefaults setObject:[responseObject objectForKey:@"user_id"] forKey:UD_USER_ID];
                                        [[self navigationController] popToRootViewControllerAnimated:YES];
                                        [self dismissViewControllerAnimated:YES completion:nil];
                                        

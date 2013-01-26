@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SocketIO.h"
 
-@interface WaitingRoomViewController : UIViewController <SocketIODelegate>
+@interface WaitingRoomViewController : UIViewController <UIAlertViewDelegate, SocketIODelegate>
 
 {
     SocketIO *socketIO;
 }
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *userId;
 
 @end

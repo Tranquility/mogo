@@ -7,6 +7,8 @@
 //
 
 #import "WaitingRoomViewController.h"
+#import "ApiClient.h"
+#import "UserDefaultConstants.h"
 
 #define SOCKET @"ole-reifschneider.de"
 #define SOCKET_PORT 8000
@@ -30,10 +32,22 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"start");
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.name = [NSString stringWithFormat: @"%@ %@", [userDefaults stringForKey:UD_USER_NAME], [userDefaults stringForKey:UD_USER_SURNAME]];
+    self.userId = [userDefaults stringForKey:UD_USER_ID];
+    
     socketIO = [[SocketIO alloc] initWithDelegate:self];
     [socketIO connectToHost:SOCKET onPort:SOCKET_PORT];
-    [socketIO sendEvent:@"adduser" withData:@"iphone"];
+    [socketIO sendEvent:@"adduser" withData:self.name];
+    
+    
+    NSString *authorization = NSLocalizedString(@"Möchten sie der Praxis ihre Patientakte freigeben?", @"AUTHORIZATION");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinweis", @"NOTE")
+                                                    message:authorization
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                          otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,6 +95,28 @@ typedef enum {
         [alert show];
     }
     
+}
+
+#pragma mark UIAlertViewDelegage methods
+
+- (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        id params = @{
+        @"authorization": @{
+            @"doctor_id": @"21",
+            @"patient_id": self.userId
+            }
+        };
+        
+        [[ApiClient sharedInstance] postPath:@"authorizations.json"
+                                  parameters:params
+                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                         NSLog(@"success");
+                                     }
+                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         NSLog(@"failure");
+                                     }];
+        }
 }
 
 @end

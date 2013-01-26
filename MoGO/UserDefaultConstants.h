@@ -12,6 +12,7 @@
 
 //user profile
 #define UD_USER_NAME  @"USER_NAME"
+#define UD_USER_ID  @"USER_ID"
 #define UD_USER_SURNAME  @"USER_SURNAME"
 #define UD_USER_STREET  @"USER_STREET"
 #define UD_USER_STREET_NR  @"USER_STREET_NR"
