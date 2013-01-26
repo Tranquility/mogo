@@ -96,6 +96,8 @@
 		25E8BE971670B56600807CC7 /* DrugDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrugDetailViewController.m; sourceTree = "<group>"; };
 		25EAF41016B3CCE500195643 /* sternNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sternNormal.png; sourceTree = "<group>"; };
 		25EAF41416B3D0AF00195643 /* sternGelb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sternGelb.png; sourceTree = "<group>"; };
+		25EAF46116B41A1500195643 /* HamburgTSystems.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HamburgTSystems.gpx; sourceTree = "<group>"; };
+		25EAF46216B41A7600195643 /* HamburgStellingen.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HamburgStellingen.gpx; sourceTree = "<group>"; };
 		25FAB33016661B62008EB8CF /* MoGOTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoGOTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25FAB33116661B62008EB8CF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		25FAB33716661B62008EB8CF /* MoGOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoGOTests-Info.plist"; sourceTree = "<group>"; };
@@ -271,6 +273,8 @@
 		DAC9B9F31660D7F900C36D2E = {
 			isa = PBXGroup;
 			children = (
+				25EAF46216B41A7600195643 /* HamburgStellingen.gpx */,
+				25EAF46116B41A1500195643 /* HamburgTSystems.gpx */,
 				BAE73622169F0CC500AC69E4 /* Default@2x.png */,
 				BAE7361F169F0CBC00AC69E4 /* Default.png */,
 				DAD4F9C01679E4D200E01B4C /* Default-568h@2x.png */,
