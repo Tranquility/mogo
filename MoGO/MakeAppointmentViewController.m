@@ -272,7 +272,6 @@
     id params = @{
     @"appointment": @{
     @"doctor_id": [NSNumber numberWithInt:self.doctor.idNumber],
-    @"patient_id": @1,
     @"start_at": timeString
     }
     };
