@@ -15,9 +15,9 @@
 		25DFDCFE16B145520098F861 /* KalenderIphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DFDCFD16B145520098F861 /* KalenderIphone.png */; };
 		25DFDD0016B145E20098F861 /* Dokument.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DFDCFF16B145E20098F861 /* Dokument.png */; };
 		25DFDD0C16B14E4B0098F861 /* Lupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DFDD0B16B14E4B0098F861 /* Lupe.png */; };
-		25E2C8431679FD16004AA1A5 /* sternNormal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25E2C8421679FD16004AA1A5 /* sternNormal.jpg */; };
-		25E2C8451679FD1F004AA1A5 /* sternGelb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25E2C8441679FD1F004AA1A5 /* sternGelb.jpg */; };
 		25E8BE981670B56600807CC7 /* DrugDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E8BE971670B56600807CC7 /* DrugDetailViewController.m */; };
+		25EAF41116B3CCE500195643 /* sternNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 25EAF41016B3CCE500195643 /* sternNormal.png */; };
+		25EAF41316B3CCEC00195643 /* sternGelb.png in Resources */ = {isa = PBXBuildFile; fileRef = 25EAF41216B3CCEC00195643 /* sternGelb.png */; };
 		25FAB33216661B62008EB8CF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FAB33116661B62008EB8CF /* SenTestingKit.framework */; };
 		25FAB33316661B62008EB8CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
 		25FAB33416661B62008EB8CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA041660D7FA00C36D2E /* Foundation.framework */; };
@@ -92,10 +92,10 @@
 		25DFDCFD16B145520098F861 /* KalenderIphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KalenderIphone.png; sourceTree = "<group>"; };
 		25DFDCFF16B145E20098F861 /* Dokument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dokument.png; sourceTree = "<group>"; };
 		25DFDD0B16B14E4B0098F861 /* Lupe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lupe.png; sourceTree = "<group>"; };
-		25E2C8421679FD16004AA1A5 /* sternNormal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sternNormal.jpg; sourceTree = "<group>"; };
-		25E2C8441679FD1F004AA1A5 /* sternGelb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sternGelb.jpg; sourceTree = "<group>"; };
 		25E8BE961670B56600807CC7 /* DrugDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrugDetailViewController.h; sourceTree = "<group>"; };
 		25E8BE971670B56600807CC7 /* DrugDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrugDetailViewController.m; sourceTree = "<group>"; };
+		25EAF41016B3CCE500195643 /* sternNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sternNormal.png; sourceTree = "<group>"; };
+		25EAF41216B3CCEC00195643 /* sternGelb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sternGelb.png; sourceTree = "<group>"; };
 		25FAB33016661B62008EB8CF /* MoGOTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoGOTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25FAB33116661B62008EB8CF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		25FAB33716661B62008EB8CF /* MoGOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoGOTests-Info.plist"; sourceTree = "<group>"; };
@@ -258,10 +258,10 @@
 				25274D0316B178840033557F /* email.png */,
 				2502DD0316A830B4004E9FF1 /* Zahnrad.png */,
 				BA97E14716946D0900FAD418 /* Icon.png */,
+				25EAF41016B3CCE500195643 /* sternNormal.png */,
+				25EAF41216B3CCEC00195643 /* sternGelb.png */,
 				2D451DC8168FE63A0058A6A7 /* phone.gif */,
 				DA1DC679167DFDF300B5D63C /* qr.png */,
-				25E2C8441679FD1F004AA1A5 /* sternGelb.jpg */,
-				25E2C8421679FD16004AA1A5 /* sternNormal.jpg */,
 				F16BF10816626811000E5FC0 /* accessories-date.png */,
 				F16BF10516626669000E5FC0 /* arztsuche.png */,
 			);
@@ -493,8 +493,6 @@
 				F1E22CCD166CFA490071AA7E /* DayTemplateView.xib in Resources */,
 				F1DBD2B2167368010078CF28 /* MakeAppointmentDayViewController.xib in Resources */,
 				DAD4F9C11679E4D200E01B4C /* Default-568h@2x.png in Resources */,
-				25E2C8431679FD16004AA1A5 /* sternNormal.jpg in Resources */,
-				25E2C8451679FD1F004AA1A5 /* sternGelb.jpg in Resources */,
 				DA1DC67A167DFDF300B5D63C /* qr.png in Resources */,
 				BA97E14816946D0900FAD418 /* Icon.png in Resources */,
 				2D451DC9168FE63A0058A6A7 /* phone.gif in Resources */,
@@ -506,6 +504,8 @@
 				25DFDD0C16B14E4B0098F861 /* Lupe.png in Resources */,
 				25274CDC16B166F60033557F /* CheckIn.png in Resources */,
 				25274D0416B178840033557F /* email.png in Resources */,
+				25EAF41116B3CCE500195643 /* sternNormal.png in Resources */,
+				25EAF41316B3CCEC00195643 /* sternGelb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
