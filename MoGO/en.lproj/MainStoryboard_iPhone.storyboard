@@ -1454,6 +1454,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
                 <relationship kind="action" name="loginButtonPressed:"/>
+                <relationship kind="action" name="startButton:"/>
                 <relationship kind="outlet" name="mailAdressField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
             </relationships>
@@ -1502,7 +1503,6 @@
         <class className="SearchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
             <relationships>
-                <relationship kind="action" name="chooseDiscipline:"/>
                 <relationship kind="outlet" name="disciplineButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
