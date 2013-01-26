@@ -17,7 +17,7 @@
 		25DFDD0C16B14E4B0098F861 /* Lupe.png in Resources */ = {isa = PBXBuildFile; fileRef = 25DFDD0B16B14E4B0098F861 /* Lupe.png */; };
 		25E8BE981670B56600807CC7 /* DrugDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E8BE971670B56600807CC7 /* DrugDetailViewController.m */; };
 		25EAF41116B3CCE500195643 /* sternNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 25EAF41016B3CCE500195643 /* sternNormal.png */; };
-		25EAF41316B3CCEC00195643 /* sternGelb.png in Resources */ = {isa = PBXBuildFile; fileRef = 25EAF41216B3CCEC00195643 /* sternGelb.png */; };
+		25EAF41516B3D0AF00195643 /* sternGelb.png in Resources */ = {isa = PBXBuildFile; fileRef = 25EAF41416B3D0AF00195643 /* sternGelb.png */; };
 		25FAB33216661B62008EB8CF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FAB33116661B62008EB8CF /* SenTestingKit.framework */; };
 		25FAB33316661B62008EB8CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA021660D7FA00C36D2E /* UIKit.framework */; };
 		25FAB33416661B62008EB8CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC9BA041660D7FA00C36D2E /* Foundation.framework */; };
@@ -95,7 +95,7 @@
 		25E8BE961670B56600807CC7 /* DrugDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrugDetailViewController.h; sourceTree = "<group>"; };
 		25E8BE971670B56600807CC7 /* DrugDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrugDetailViewController.m; sourceTree = "<group>"; };
 		25EAF41016B3CCE500195643 /* sternNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sternNormal.png; sourceTree = "<group>"; };
-		25EAF41216B3CCEC00195643 /* sternGelb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sternGelb.png; sourceTree = "<group>"; };
+		25EAF41416B3D0AF00195643 /* sternGelb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sternGelb.png; sourceTree = "<group>"; };
 		25FAB33016661B62008EB8CF /* MoGOTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoGOTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25FAB33116661B62008EB8CF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		25FAB33716661B62008EB8CF /* MoGOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoGOTests-Info.plist"; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				2502DD0316A830B4004E9FF1 /* Zahnrad.png */,
 				BA97E14716946D0900FAD418 /* Icon.png */,
 				25EAF41016B3CCE500195643 /* sternNormal.png */,
-				25EAF41216B3CCEC00195643 /* sternGelb.png */,
+				25EAF41416B3D0AF00195643 /* sternGelb.png */,
 				2D451DC8168FE63A0058A6A7 /* phone.gif */,
 				DA1DC679167DFDF300B5D63C /* qr.png */,
 				F16BF10816626811000E5FC0 /* accessories-date.png */,
@@ -505,7 +505,7 @@
 				25274CDC16B166F60033557F /* CheckIn.png in Resources */,
 				25274D0416B178840033557F /* email.png in Resources */,
 				25EAF41116B3CCE500195643 /* sternNormal.png in Resources */,
-				25EAF41316B3CCEC00195643 /* sternGelb.png in Resources */,
+				25EAF41516B3D0AF00195643 /* sternGelb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
