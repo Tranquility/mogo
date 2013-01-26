@@ -33,7 +33,7 @@
     self.medication.text = self.prescription.medication;
     self.doctor.text = [self.prescription.doctor fullName];
     self.date.text = date;
-    self.note.text = self.prescription.note;
+    self.note.text = [self.prescription.note isKindOfClass:[NSNull class]] ? @"" : self.prescription.note;
     if (self.prescription.fee) {
         self.fee.text = NSLocalizedString(@"gebührenpflichtig", @"CHARGEABLE");
     }
