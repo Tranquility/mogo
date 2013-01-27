@@ -11,6 +11,8 @@
 #import "DoctorModel.h"
 #import "AFNetworking.h"
 #import "ApiClient.h"
+#import "CredentialStore.h"
+#import "UserDefaultConstants.h"
 #import "MakeAppointmentViewController.h"
 #import "AppointmentDetailViewController.h"
 
@@ -18,6 +20,7 @@
 
 @property (nonatomic) DoctorModel *selectedDoctor;
 @property (nonatomic) AppointmentModel *selectedAppointment;
+@property (nonatomic) CredentialStore *credentialStore;
 
 @end
 
@@ -50,6 +53,8 @@
     [self fetchDoctorList];
     
     [self buttonVisible];
+    self.credentialStore = [[CredentialStore alloc] init];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -311,8 +316,53 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [self performAction:indexPath tableView:tableView];
+    //CHeck for Login
+    if([self.credentialStore isLoggedIn])
+    {
+        //Additionally, we need to have our profile filled out
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if([defaults boolForKey:UD_USER_DATA_COMPLETE])
+        {
+            [self performAction:indexPath tableView:tableView];
+        }
+        else{
+            UIAlertView *redirect = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profil nicht ausreichend ausgefüllt", @"UNCOMPLETE_PROFILE")
+                                                               message:NSLocalizedString(@"Möchten Sie zu den Einstellungen weitergeleitet werden?", @"REDIRECT_SETTINGS")
+                                                              delegate:self
+                                                     cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                                     otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+            
+            [redirect show];
+        }
+        [self.appointmentsTableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+    else
+    {
+        //Ask user to be redirected to Login
+        UIAlertView *logout = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Nur mit Anmeldung Möglich", @"ONLY_LOGGEDIN")
+                                                         message:NSLocalizedString(@"Möchten Sie zur Anmeldung weitergeleitet werden?", @"REDIRECT_LOGIN")
+                                                        delegate:self
+                                               cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                               otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+        
+        [logout show];
+        [self.appointmentsTableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
+    if([alertView.title isEqualToString:NSLocalizedString(@"Profil nicht ausreichend ausgefüllt", @"UNCOMPLETE_PROFILE")])
+    {
+        if (buttonIndex == 1) {
+            [self performSegueWithIdentifier:@"ToSettings" sender:self];
+        }
+    }
+    else{
+        if (buttonIndex == 1) {
+            [self performSegueWithIdentifier:@"ToLogin" sender:self];
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath

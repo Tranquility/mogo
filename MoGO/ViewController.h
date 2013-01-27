@@ -12,5 +12,7 @@
 
 // Need this because there is a line wrap in the button text
 @property (weak, nonatomic) IBOutlet UIButton *checkinButton;
+@property (weak, nonatomic) IBOutlet UIButton *documentsButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @end
