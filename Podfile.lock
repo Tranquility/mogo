@@ -1,20 +1,31 @@
 
 PODS:
-- AFNetworking (1.0.1)
+- AFNetworking (1.1.0)
 - SSKeychain (0.1.4)
-- SVProgressHUD (0.8)
+- SVProgressHUD (0.8.1)
+- SocketRocket (0.2.0)
 - ZXingObjC (HEAD based on 2.0.1)
+- socket.IO (0.2.5):
+  - SocketRocket (~> 0.2)
 
 DEPENDENCIES:
 - AFNetworking
 - SSKeychain
 - SVProgressHUD
+- SocketRocket (from `git://github.com/anair/SocketRocket.git')
 - ZXingObjC (HEAD)
+- socket.IO (~> 0.2.5)
+
+EXTERNAL SOURCES:
+  SocketRocket:
+    :git: git://github.com/anair/SocketRocket.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 4c11f857c9a18d65f4257c90a1e74ac49f0ac422
+  AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
   SSKeychain: bae692a4354f48691ca3463a121dc8060f781a7d
-  SVProgressHUD: 51042a14e3a716efdbdd73cbb2181fb23ee94389
+  SVProgressHUD: 592da548680cd3613923b5f98113add52ad30cc2
+  SocketRocket: 69053f9caabd70581bf32704922853dc745582cd
   ZXingObjC: 89b5ff1a8351c3c011e4a98be22e744e49e3dd70
+  socket.IO: a71cea70efdc39f8a10d67f9f44f71bbb8c71312
 
-COCOAPODS: 0.16.0
+COCOAPODS: 0.16.1
