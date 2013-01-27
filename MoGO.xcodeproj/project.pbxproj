@@ -28,6 +28,7 @@
 		2D43F64C1687E6720067A7E2 /* CheckinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D43F64A1687E6720067A7E2 /* CheckinViewController.m */; };
 		2D43F64F1687EA650067A7E2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D43F64E1687EA650067A7E2 /* CoreLocation.framework */; };
 		2D451DC9168FE63A0058A6A7 /* phone.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2D451DC8168FE63A0058A6A7 /* phone.gif */; };
+		2D53E76A16B5670C006E13C2 /* SocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53E76916B5670C006E13C2 /* SocketClient.m */; };
 		2D7CABBC166FB89F008187C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7CABBB166FB89F008187C0 /* LoginViewController.m */; };
 		2D7CABBD166FB89F008187C0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7CABBB166FB89F008187C0 /* LoginViewController.m */; };
 		2D95D8BD166E758D000A0122 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D95D8BC166E758D000A0122 /* RegisterViewController.m */; };
@@ -112,6 +113,8 @@
 		2D43F64A1687E6720067A7E2 /* CheckinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckinViewController.m; sourceTree = "<group>"; };
 		2D43F64E1687EA650067A7E2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2D451DC8168FE63A0058A6A7 /* phone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = phone.gif; sourceTree = "<group>"; };
+		2D53E76816B5670C006E13C2 /* SocketClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketClient.h; sourceTree = "<group>"; };
+		2D53E76916B5670C006E13C2 /* SocketClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketClient.m; sourceTree = "<group>"; };
 		2D7CABBA166FB89F008187C0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		2D7CABBB166FB89F008187C0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		2D95D8BB166E758D000A0122 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -322,6 +325,8 @@
 		DAC9BA081660D7FA00C36D2E /* MoGO */ = {
 			isa = PBXGroup;
 			children = (
+				2D53E76816B5670C006E13C2 /* SocketClient.h */,
+				2D53E76916B5670C006E13C2 /* SocketClient.m */,
 				BA65DC751667BE80007F7140 /* ApiClient.h */,
 				BA65DC761667BE80007F7140 /* ApiClient.m */,
 				DAC9BA111660D7FA00C36D2E /* AppDelegate.h */,
@@ -617,6 +622,7 @@
 				DC7F09F616B3ED0C00A84617 /* ReferralDetailViewController.m in Sources */,
 				DC7F09F916B4108000A84617 /* QrDetailViewController.m in Sources */,
 				BA9BF7A716B04FE3005C2C2B /* WaitingRoomViewController.m in Sources */,
+				2D53E76A16B5670C006E13C2 /* SocketClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
