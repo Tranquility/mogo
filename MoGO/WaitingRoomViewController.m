@@ -52,7 +52,7 @@ typedef enum {
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [socketIO disconnect];
+   // [socketIO disconnect];
 }
 
 - (void)didReceiveMemoryWarning
