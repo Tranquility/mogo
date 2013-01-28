@@ -10,18 +10,17 @@
 
 #define SOCKET @"ole-reifschneider.de"
 #define SOCKET_PORT 8000
-@interface SocketClient ()
-
-
-@end
 
 @implementation SocketClient
 
-static SocketIO *sharedInstance = nil;
 
 + (SocketIO *)sharedInstanceWithDelegate:(id<SocketIODelegate>)delegate {
+    static SocketIO *sharedInstance = nil;
+
     if (sharedInstance == nil) {
         sharedInstance = [[SocketIO alloc] initWithDelegate:delegate];
+        [sharedInstance connectToHost:SOCKET onPort:SOCKET_PORT];
+        [sharedInstance sendEvent:@"adduser" withData:@"iphone"];
     };
     
     return sharedInstance;

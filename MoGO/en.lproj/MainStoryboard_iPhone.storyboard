@@ -186,6 +186,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Wartezimmer" id="SCU-CO-s7s"/>
+                    <connections>
+                        <segue destination="h7E-97-Ext" kind="push" identifier="waitingToDocuments" id="MuN-Ce-DfC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYs-6M-dUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1687,178 +1690,17 @@
         <image name="phone.gif" width="43" height="41"/>
         <image name="sternNormal.png" width="100" height="96"/>
     </resources>
-    <classes>
-        <class className="AppointmentDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButton:"/>
-                <relationship kind="action" name="changeButton:"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="changeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="disciplineLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="noteTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="AppointmentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppointmentViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="editFavorites:"/>
-                <relationship kind="outlet" name="appointmentsTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="editFavoriteButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="CheckinViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CheckinViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="checkinPressed:"/>
-                <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="checkinMsgLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="descriptionField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DisplayInsurancesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DisplayInsurancesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="insuranceTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="DocumentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="DrugDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DrugDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doctor" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fee" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="medication" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="note" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="qrButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginButtonPressed:"/>
-                <relationship kind="outlet" name="mailAdressField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MakeAppointmentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MakeAppointmentViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="moveCalendarViewtoLeft:"/>
-                <relationship kind="action" name="moveCalendarViewtoRight:"/>
-                <relationship kind="outlet" name="buttonLeft" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="buttonRight" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="calendarScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="doctorDisciplineLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doctorLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="monthLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MedicDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MedicDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="appointmentClicked:"/>
-                <relationship kind="action" name="initiateCall:"/>
-                <relationship kind="action" name="mapClicked:"/>
-                <relationship kind="action" name="sendEmail:"/>
-                <relationship kind="action" name="setFavourite:"/>
-                <relationship kind="outlet" name="addFavourite" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="addressField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="appointmentItem" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="hoursField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="makeAppointment" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="mapOutlet" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="typeField" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="QrDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/QrDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="qrcodeView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="topicLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ReferralDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ReferralDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="diagnosisTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="fromDoctorLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="qrButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="reasonLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="targetLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="taskTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="RegisterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="registerButtonPressed:"/>
-                <relationship kind="outlet" name="mailAddressField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordConfirmField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="disciplineButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="subView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="birthdayText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="insuranceField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="savePasswordSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="saveToCalendarSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="streetField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="streetnumberField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="surnameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="townField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="zipField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="checkinButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="documentsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="settingsButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="WaitingRoomViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WaitingRoomViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hRw-Nb-KMH"/>
-        <segue reference="BRi-Ng-Shw"/>
         <segue reference="1Fk-rt-SPK"/>
+        <segue reference="MuN-Ce-DfC"/>
+        <segue reference="hRw-Nb-KMH"/>
         <segue reference="mtb-th-UsI"/>
+        <segue reference="BRi-Ng-Shw"/>
         <segue reference="14t-Th-Xhn"/>
         <segue reference="tv8-dD-g5m"/>
     </inferredMetricsTieBreakers>

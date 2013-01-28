@@ -19,6 +19,11 @@ typedef enum {
     Referral
 } DocType;
 
+@interface WaitingRoomViewController ()
+
+@property (nonatomic) SocketIO *socketIO;
+@end
+
 @implementation WaitingRoomViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,8 +42,7 @@ typedef enum {
     self.name = [NSString stringWithFormat: @"%@ %@", [userDefaults stringForKey:UD_USER_NAME], [userDefaults stringForKey:UD_USER_SURNAME]];
     self.userId = [userDefaults stringForKey:UD_USER_ID];
     
-    socketIO = [SocketClient sharedInstanceWithDelegate:self];
-    
+    self.socketIO = [SocketClient sharedInstanceWithDelegate:self];
     
     NSString *authorization = NSLocalizedString(@"Möchten sie der Praxis ihre Patientakte freigeben?", @"AUTHORIZATION");
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinweis", @"NOTE")
@@ -49,9 +53,20 @@ typedef enum {
     [alert show];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (!self.socketIO.isConnected) {
+        [self.socketIO connectToHost:SOCKET onPort:SOCKET_PORT];
+        [self.socketIO sendEvent:@"adduser" withData:@"iphone"];
+
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-   // [socketIO disconnect];
+    if (self.socketIO.isConnected) {
+        [self.socketIO disconnect];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,37 +105,48 @@ typedef enum {
     }
    
     if (newDoc.length > 0) {
-        NSString *msg = [NSString stringWithFormat:@"Sie haben %@", newDoc];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Hinweis", @"NOTE")
+        NSString *msg = [NSString stringWithFormat:@"Sie haben %@ möchten sie zu den Dokumenten springen?", newDoc];
+        UIAlertView *documentAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Neues Dokument", @"NOTE")
                                                         message:msg
                                                        delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
-                                              otherButtonTitles:nil];
-        [alert show];
+                                              cancelButtonTitle:NSLocalizedString(@"Nein", @"NO")
+                                              otherButtonTitles:NSLocalizedString(@"Ja", @"YES"), nil];
+        [documentAlert show];
     }
     
+}
+
+- (void) jumpToDocuments {
+    [self performSegueWithIdentifier:@"waitingToDocuments" sender:nil];
 }
 
 #pragma mark UIAlertViewDelegage methods
 
 - (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        id params = @{
-        @"authorization": @{
+    if ([alert.title isEqualToString:@"Neues Dokument"]) {
+        if (buttonIndex == 1) {
+            [self jumpToDocuments];
+        }
+    } else {
+        if (buttonIndex == 1) {
+            id params = @{
+            @"authorization": @{
             @"doctor_id": @"21",
             @"patient_id": self.userId
             }
-        };
-        
-        [[ApiClient sharedInstance] postPath:@"authorizations.json"
-                                  parameters:params
-                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                         NSLog(@"success");
-                                     }
-                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"failure");
-                                     }];
+            };
+            
+            [[ApiClient sharedInstance] postPath:@"authorizations.json"
+                                      parameters:params
+                                         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                             NSLog(@"success");
+                                         }
+                                         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                             NSLog(@"failure");
+                                         }];
         }
-}
+    }
+
+    }
 
 @end

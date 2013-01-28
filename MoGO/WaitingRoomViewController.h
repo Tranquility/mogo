@@ -11,9 +11,6 @@
 
 @interface WaitingRoomViewController : UIViewController <UIAlertViewDelegate, SocketIODelegate>
 
-{
-    SocketIO *socketIO;
-}
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *userId;
 
