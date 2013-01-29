@@ -24,6 +24,7 @@
 		25FAB33A16661B62008EB8CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25FAB33816661B62008EB8CF /* InfoPlist.strings */; };
 		2D163A221660F116000A65A7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D163A211660F116000A65A7 /* MapKit.framework */; };
 		2D163A251661021D000A65A7 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D163A241661021D000A65A7 /* MapViewAnnotation.m */; };
+		2D3881BC16B86F8300312A24 /* wartezimmer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D3881BB16B86F8300312A24 /* wartezimmer.png */; };
 		2D43F64B1687E6720067A7E2 /* CheckinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D43F64A1687E6720067A7E2 /* CheckinViewController.m */; };
 		2D43F64C1687E6720067A7E2 /* CheckinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D43F64A1687E6720067A7E2 /* CheckinViewController.m */; };
 		2D43F64F1687EA650067A7E2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D43F64E1687EA650067A7E2 /* CoreLocation.framework */; };
@@ -109,6 +110,7 @@
 		2D163A211660F116000A65A7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2D163A231661021D000A65A7 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		2D163A241661021D000A65A7 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
+		2D3881BB16B86F8300312A24 /* wartezimmer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wartezimmer.png; sourceTree = "<group>"; };
 		2D43F6491687E6720067A7E2 /* CheckinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckinViewController.h; sourceTree = "<group>"; };
 		2D43F64A1687E6720067A7E2 /* CheckinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckinViewController.m; sourceTree = "<group>"; };
 		2D43F64E1687EA650067A7E2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -357,6 +359,7 @@
 				DAC9BA171660D7FA00C36D2E /* MainStoryboard_iPad.storyboard */,
 				DAC9BA141660D7FA00C36D2E /* MainStoryboard_iPhone.storyboard */,
 				BA9BF7A516B04FE3005C2C2B /* WaitingRoomViewController.h */,
+				2D3881BB16B86F8300312A24 /* wartezimmer.png */,
 				BA9BF7A616B04FE3005C2C2B /* WaitingRoomViewController.m */,
 				F1DBD2AE167368010078CF28 /* MakeAppointmentDayViewController.h */,
 				F1DBD2AF167368010078CF28 /* MakeAppointmentDayViewController.m */,
@@ -531,6 +534,7 @@
 				25274D0416B178840033557F /* email.png in Resources */,
 				25EAF41116B3CCE500195643 /* sternNormal.png in Resources */,
 				25EAF41516B3D0AF00195643 /* sternGelb.png in Resources */,
+				2D3881BC16B86F8300312A24 /* wartezimmer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
