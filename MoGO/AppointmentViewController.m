@@ -60,16 +60,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchFavouriteDoctorIds];
-    [self fetchAppointments];
+    [self fetchAppointments];                     
     [self.editFavoriteButton setTitle: @"Favoriten bearbeiten" forState: UIControlStateNormal];
 
     [self buttonVisible];
 
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [self fetchAppointments];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
